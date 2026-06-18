@@ -181,7 +181,7 @@ td{
 
 .grid-calendario{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
   gap:12px;
 }
 
@@ -209,22 +209,22 @@ td{
   background:white;
   border-left:5px solid #0099cc;
   border-radius:8px;
-  padding:7px;
-  margin-bottom:7px;
+  padding:8px;
+  margin-bottom:8px;
   box-shadow:0 1px 4px rgba(0,0,0,.08);
 }
 
 .evento-turno{
   font-size:13px;
-  font-weight:800;
+  font-weight:900;
   color:#004466;
 }
 
 .evento-hora-grande{
-  font-size:16px;
+  font-size:18px;
   font-weight:900;
   color:#007faa;
-  margin-bottom:3px;
+  margin:3px 0;
 }
 
 .evento-nombre{
@@ -240,11 +240,107 @@ td{
 }
 
 @media(max-width:700px){
-  body{padding:8px}
-  .title{font-size:18px}
-  table{min-width:850px}
-  .evento{
+
+  body{
+    padding:6px;
+  }
+
+  .wrap{
+    border-radius:12px;
+  }
+
+  .top{
+    padding:12px;
+  }
+
+  .title{
+    font-size:20px;
+    text-align:center;
+  }
+
+  .controls{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .controls label{
+    font-weight:700;
+  }
+
+  .controls select,
+  .controls input,
+  .btn{
+    width:100%;
+    font-size:16px;
+    padding:12px;
+  }
+
+  .aviso{
+    font-size:14px;
+    text-align:center;
+  }
+
+  .grid-calendario{
     grid-template-columns:1fr;
+  }
+
+  .dia-card{
+    min-height:auto;
+  }
+
+  .dia-numero{
+    font-size:24px;
+  }
+
+  .evento-card{
+    padding:12px;
+  }
+
+  .evento-turno{
+    font-size:16px;
+  }
+
+  .evento-hora-grande{
+    font-size:24px;
+  }
+
+  .evento-nombre{
+    font-size:18px;
+  }
+
+  table{
+    min-width:0;
+  }
+
+  tr,td,th{
+    display:block;
+    width:100%;
+  }
+
+  th{
+    display:none;
+  }
+
+  .col-fecha{
+    width:100%;
+    text-align:left;
+    font-size:22px;
+    background:#e9f7ff;
+  }
+
+  .evento{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .evento select,
+  .evento input,
+  .btn-delete,
+  .btn-small{
+    width:100%;
+    font-size:16px;
+    padding:12px;
   }
 }
 </style>
@@ -311,6 +407,12 @@ const nombresMes = [
 
 const turnos = ["Matutino", "Vespertino", "Nocturno"];
 
+const ordenTurnos = {
+  "Matutino": 1,
+  "Vespertino": 2,
+  "Nocturno": 3
+};
+
 const mesSelect = document.getElementById("mes");
 const anioInput = document.getElementById("anio");
 const tabla = document.getElementById("tabla");
@@ -348,6 +450,20 @@ function keyDia(anio, mes, dia, turno){
 
 function obtenerEventos(key){
   return datosFirebase[key] || [];
+}
+
+function ordenarEventos(a,b){
+  const turnoA = ordenTurnos[a.turno] || 99;
+  const turnoB = ordenTurnos[b.turno] || 99;
+
+  if(turnoA !== turnoB){
+    return turnoA - turnoB;
+  }
+
+  const horaA = a.hora || "99:99";
+  const horaB = b.hora || "99:99";
+
+  return horaA.localeCompare(horaB);
 }
 
 function guardarEventos(key, eventos){
@@ -411,11 +527,7 @@ function generarCalendario(){
       });
     });
 
-    eventosDia.sort((a,b) => {
-      const horaA = a.hora || "99:99";
-      const horaB = b.hora || "99:99";
-      return horaA.localeCompare(horaB);
-    });
+    eventosDia.sort(ordenarEventos);
 
     html += `
       <tr id="${esHoy ? "filaHoy" : ""}" class="${esHoy ? "fila-hoy" : ""}" data-dia="${dia}">
@@ -600,11 +712,7 @@ function generarVistaGrafica(){
       });
     });
 
-    eventosDia.sort((a,b) => {
-      const horaA = a.hora || "99:99";
-      const horaB = b.hora || "99:99";
-      return horaA.localeCompare(horaB);
-    });
+    eventosDia.sort(ordenarEventos);
 
     if(textoBusqueda !== ""){
       eventosDia = eventosDia.filter(ev =>
