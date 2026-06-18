@@ -70,10 +70,10 @@ select,input{
   border:none;
   background:#00a86b;
   color:white;
-  padding:6px 9px;
+  padding:7px 12px;
   border-radius:8px;
   cursor:pointer;
-  font-size:12px;
+  font-size:13px;
   font-weight:700;
 }
 
@@ -81,10 +81,11 @@ select,input{
   border:none;
   background:#d9534f;
   color:white;
-  padding:5px 8px;
+  padding:7px 10px;
   border-radius:7px;
   cursor:pointer;
-  font-size:12px;
+  font-size:13px;
+  font-weight:800;
 }
 
 .aviso{
@@ -102,29 +103,31 @@ select,input{
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:1000px;
+  min-width:900px;
 }
 
 th{
   background:#e9f7ff;
-  padding:10px;
+  padding:12px;
   border-bottom:2px solid #bfe7ff;
   font-weight:800;
   color:#003d5a;
+  font-size:16px;
 }
 
 td{
   border-bottom:1px solid #e6f2fa;
-  padding:8px;
+  padding:10px;
   vertical-align:top;
 }
 
 .col-fecha{
-  width:110px;
+  width:150px;
   font-weight:800;
   text-align:center;
   background:#fbfdff;
   white-space:nowrap;
+  font-size:16px;
 }
 
 .fila-hoy{
@@ -133,60 +136,38 @@ td{
   outline-offset:-4px;
 }
 
-.turno{
+.caja-eventos{
   background:#f8fcff;
   border:1px solid #d7edf8;
-  border-radius:12px;
-  padding:8px;
-  min-height:90px;
-}
-
-.turno-title{
-  font-weight:800;
-  margin-bottom:8px;
-  color:#004466;
-  text-align:center;
-  cursor:pointer;
-  user-select:none;
-}
-
-.turno-title::after{
-  content:" ▼";
-  font-size:11px;
-}
-
-.turno.cerrado .turno-title::after{
-  content:" ▶";
-}
-
-.turno.cerrado .turno-body{
-  display:none;
+  border-radius:14px;
+  padding:10px;
 }
 
 .evento{
   display:grid;
-  grid-template-columns:90px 1fr auto;
-  gap:6px;
-  margin-bottom:6px;
+  grid-template-columns:150px 110px 1fr auto;
+  gap:8px;
+  margin-bottom:8px;
   align-items:center;
 }
 
-.evento input{
+.evento input,
+.evento select{
   width:100%;
-  padding:7px;
-  font-size:13px;
+  padding:8px;
+  font-size:14px;
 }
 
 .sin-eventos{
-  font-size:12px;
+  font-size:13px;
   color:#6b8794;
   text-align:center;
-  margin:8px 0;
+  margin:10px 0;
 }
 
 .acciones{
   text-align:center;
-  margin-top:6px;
+  margin-top:8px;
 }
 
 .oculto{
@@ -233,6 +214,12 @@ td{
   box-shadow:0 1px 4px rgba(0,0,0,.08);
 }
 
+.evento-turno{
+  font-size:13px;
+  font-weight:800;
+  color:#004466;
+}
+
 .evento-hora-grande{
   font-size:16px;
   font-weight:900;
@@ -256,6 +243,9 @@ td{
   body{padding:8px}
   .title{font-size:18px}
   table{min-width:850px}
+  .evento{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -391,7 +381,7 @@ function generarCalendario(){
   let html = `
     <tr>
       <th class="col-fecha">Fecha</th>
-      ${turnos.map(t => `<th>${t}</th>`).join("")}
+      <th>Actividades</th>
     </tr>
   `;
 
@@ -404,41 +394,52 @@ function generarCalendario(){
       continue;
     }
 
-    html += `
-      <tr id="${esHoy ? "filaHoy" : ""}" class="${esHoy ? "fila-hoy" : ""}" data-dia="${dia}">
-        <td class="col-fecha">${dia}/${mes + 1}/${anio}</td>
-    `;
+    let eventosDia = [];
 
     turnos.forEach(turno => {
       const key = keyDia(anio, mes, dia, turno);
       const eventos = obtenerEventos(key);
 
-      html += `
-        <td>
-          <div class="turno">
-            <div class="turno-title" onclick="plegarTurno(this)">${turno}</div>
-            <div class="turno-body">
-      `;
-
-      if(eventos.length === 0){
-        html += `<div class="sin-eventos">Sin eventos</div>`;
-      }
-
       eventos.forEach((ev, index) => {
-        html += crearEventoHTML(key, index, ev.hora, ev.nombre);
+        eventosDia.push({
+          key:key,
+          index:index,
+          turno:turno,
+          hora:ev.hora || "",
+          nombre:ev.nombre || ""
+        });
       });
+    });
 
-      html += `
-              <div class="acciones">
-                <button class="btn-small" onclick="agregarEvento('${key}')">Agregar evento</button>
-              </div>
+    eventosDia.sort((a,b) => {
+      const horaA = a.hora || "99:99";
+      const horaB = b.hora || "99:99";
+      return horaA.localeCompare(horaB);
+    });
+
+    html += `
+      <tr id="${esHoy ? "filaHoy" : ""}" class="${esHoy ? "fila-hoy" : ""}" data-dia="${dia}">
+        <td class="col-fecha">${dia}/${mes + 1}/${anio}</td>
+        <td>
+          <div class="caja-eventos">
+    `;
+
+    if(eventosDia.length === 0){
+      html += `<div class="sin-eventos">Sin eventos</div>`;
+    }
+
+    eventosDia.forEach(ev => {
+      html += crearEventoHTML(anio, mes, dia, ev.key, ev.index, ev.turno, ev.hora, ev.nombre);
+    });
+
+    html += `
+            <div class="acciones">
+              <button class="btn-small" onclick="agregarEvento(${anio}, ${mes}, ${dia})">Agregar evento</button>
             </div>
           </div>
         </td>
-      `;
-    });
-
-    html += `</tr>`;
+      </tr>
+    `;
   }
 
   tabla.innerHTML = html;
@@ -446,9 +447,15 @@ function generarCalendario(){
   buscarEventos();
 }
 
-function crearEventoHTML(key, index, hora = "", nombre = ""){
+function crearEventoHTML(anio, mes, dia, key, index, turno, hora = "", nombre = ""){
   return `
     <div class="evento">
+      <select onchange="moverTurno('${key}', ${index}, ${anio}, ${mes}, ${dia}, this.value)">
+        ${turnos.map(t => `
+          <option value="${t}" ${t === turno ? "selected" : ""}>${t}</option>
+        `).join("")}
+      </select>
+
       <input 
         type="time" 
         value="${escapeHtml(hora)}" 
@@ -471,8 +478,10 @@ function crearEventoHTML(key, index, hora = "", nombre = ""){
   `;
 }
 
-function agregarEvento(key){
+function agregarEvento(anio, mes, dia){
+  const key = keyDia(anio, mes, dia, "Matutino");
   const eventos = obtenerEventos(key);
+
   eventos.push({hora:"", nombre:""});
   datosFirebase[key] = eventos;
 
@@ -498,6 +507,31 @@ function actualizarEvento(key, index, campo, valor){
   window.timerEscribiendo = setTimeout(() => {
     escribiendo = false;
   }, 900);
+}
+
+function moverTurno(keyVieja, index, anio, mes, dia, turnoNuevo){
+  const eventosViejos = obtenerEventos(keyVieja);
+
+  if(!eventosViejos[index]){
+    return;
+  }
+
+  const evento = eventosViejos[index];
+  eventosViejos.splice(index, 1);
+
+  const keyNueva = keyDia(anio, mes, dia, turnoNuevo);
+  const eventosNuevos = obtenerEventos(keyNueva);
+  eventosNuevos.push(evento);
+
+  datosFirebase[keyVieja] = eventosViejos;
+  datosFirebase[keyNueva] = eventosNuevos;
+
+  Promise.all([
+    database.ref("actividades/" + keyVieja).set(eventosViejos),
+    database.ref("actividades/" + keyNueva).set(eventosNuevos)
+  ]).then(() => {
+    generarCalendario();
+  });
 }
 
 function eliminarEvento(key, index){
@@ -532,11 +566,6 @@ function alternarCarga(){
   generarCalendario();
 }
 
-function plegarTurno(elemento){
-  const turno = elemento.closest(".turno");
-  turno.classList.toggle("cerrado");
-}
-
 function generarVistaGrafica(){
   const mes = parseInt(mesSelect.value);
   const anio = parseInt(anioInput.value);
@@ -563,6 +592,7 @@ function generarVistaGrafica(){
       eventos.forEach(ev => {
         if((ev.nombre || "").trim() !== "" || (ev.hora || "").trim() !== ""){
           eventosDia.push({
+            turno: turno,
             hora: ev.hora || "",
             nombre: ev.nombre || ""
           });
@@ -579,7 +609,8 @@ function generarVistaGrafica(){
     if(textoBusqueda !== ""){
       eventosDia = eventosDia.filter(ev =>
         ev.nombre.toLowerCase().includes(textoBusqueda) ||
-        ev.hora.toLowerCase().includes(textoBusqueda)
+        ev.hora.toLowerCase().includes(textoBusqueda) ||
+        ev.turno.toLowerCase().includes(textoBusqueda)
       );
 
       if(eventosDia.length === 0){
@@ -598,6 +629,7 @@ function generarVistaGrafica(){
       eventosDia.forEach(ev => {
         html += `
           <div class="evento-card">
+            <div class="evento-turno">${escapeHtml(ev.turno)}</div>
             <div class="evento-hora-grande">${escapeHtml(ev.hora || "Sin hora")}</div>
             <div class="evento-nombre">${escapeHtml(ev.nombre || "Sin nombre")}</div>
           </div>
