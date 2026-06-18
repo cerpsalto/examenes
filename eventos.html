@@ -286,7 +286,7 @@ td{
   </div>
 
   <div class="aviso">
-    El calendario guarda automáticamente en este navegador. Al abrir el mes actual se muestra desde hoy, pero los días anteriores no se borran.
+    El calendario guarda automáticamente en línea. Los cambios se ven desde todas las computadoras.
   </div>
 
   <div class="table-wrap" id="vistaTabla">
@@ -299,7 +299,24 @@ td{
 
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
 <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAUbSmA64Kj6326H8-FJqSFDyb1Zzardj8",
+  authDomain: "calendario-actividades-76382.firebaseapp.com",
+  databaseURL: "https://calendario-actividades-76382-default-rtdb.firebaseio.com",
+  projectId: "calendario-actividades-76382",
+  storageBucket: "calendario-actividades-76382.firebasestorage.app",
+  messagingSenderId: "455833092742",
+  appId: "1:455833092742:web:eafb4950d8de8409b80707",
+  measurementId: "G-YWQ92KPD0T"
+};
+
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
 const nombresMes = [
   "Enero","Febrero","Marzo","Abril","Mayo","Junio",
   "Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre"
@@ -319,6 +336,8 @@ const btnVista = document.getElementById("btnVista");
 
 let mostrarAnteriores = false;
 let modoGrafico = false;
+let datosFirebase = {};
+let cargadoFirebase = false;
 
 const hoy = new Date();
 const hoyDia = hoy.getDate();
@@ -340,12 +359,19 @@ function keyDia(anio, mes, dia, turno){
 }
 
 function obtenerEventos(key){
-  return JSON.parse(localStorage.getItem(key) || "[]");
+  return datosFirebase[key] || [];
 }
 
 function guardarEventos(key, eventos){
-  localStorage.setItem(key, JSON.stringify(eventos));
+  datosFirebase[key] = eventos;
+  database.ref("actividades/" + key).set(eventos);
 }
+
+database.ref("actividades").on("value", function(snapshot){
+  datosFirebase = snapshot.val() || {};
+  cargadoFirebase = true;
+  generarCalendario();
+});
 
 function cambioMesAnio(){
   generarCalendario();
