@@ -26,19 +26,15 @@ body{
 }
 
 .top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
   padding:14px 16px;
   border-bottom:3px solid #0099cc;
-  flex-wrap:wrap;
 }
 
 .title{
   font-size:22px;
   font-weight:800;
   color:#004466;
+  margin-bottom:12px;
 }
 
 .controls{
@@ -99,6 +95,7 @@ select,input{
 }
 
 .table-wrap{
+  display:none;
   overflow-x:auto;
 }
 
@@ -150,20 +147,6 @@ td{
   color:#004466;
   text-align:center;
   cursor:pointer;
-  user-select:none;
-}
-
-.turno-title::after{
-  content:" ▼";
-  font-size:11px;
-}
-
-.turno.cerrado .turno-title::after{
-  content:" ▶";
-}
-
-.turno.cerrado .turno-body{
-  display:none;
 }
 
 .evento{
@@ -192,12 +175,10 @@ td{
   margin-top:6px;
 }
 
-.oculto{
-  display:none;
-}
+.oculto{display:none}
 
 .vista-grafica{
-  display:none;
+  display:block;
   padding:16px;
 }
 
@@ -277,9 +258,9 @@ td{
       <label>Año:</label>
       <input type="number" id="anio" min="2020" max="2100" onchange="cambioMesAnio()">
 
-      <button class="btn btn-green" onclick="cargarActividades()">Cargar actividades</button>
+      <button class="btn btn-green" id="btnModo" onclick="alternarModo()">Cargar actividades</button>
+
       <button class="btn" onclick="alternarAnteriores()" id="btnAnteriores">Ver días anteriores</button>
-      <button class="btn btn-green" onclick="alternarVistaGrafica()" id="btnVista">Ver todas las actividades</button>
 
       <input type="text" id="buscador" placeholder="Buscar evento..." oninput="buscarEventos()">
     </div>
@@ -289,12 +270,12 @@ td{
     El calendario guarda automáticamente en línea. Los cambios se ven desde todas las computadoras.
   </div>
 
-  <div class="table-wrap" id="vistaTabla">
-    <table id="tabla"></table>
-  </div>
-
   <div class="vista-grafica" id="vistaGrafica">
     <div class="grid-calendario" id="gridCalendario"></div>
+  </div>
+
+  <div class="table-wrap" id="vistaTabla">
+    <table id="tabla"></table>
   </div>
 
 </div>
@@ -304,14 +285,13 @@ td{
 
 <script>
 const firebaseConfig = {
-  apiKey: "AIzaSyAUbSmA64Kj6326H8-FJqSFDyb1Zzardj8",
-  authDomain: "calendario-actividades-76382.firebaseapp.com",
-  databaseURL: "https://calendario-actividades-76382-default-rtdb.firebaseio.com",
-  projectId: "calendario-actividades-76382",
-  storageBucket: "calendario-actividades-76382.firebasestorage.app",
-  messagingSenderId: "455833092742",
-  appId: "1:455833092742:web:eafb4950d8de8409b80707",
-  measurementId: "G-YWQ92KPD0T"
+  apiKey: "TU_API_KEY",
+  authDomain: "TU_PROYECTO.firebaseapp.com",
+  databaseURL: "TU_DATABASE_URL",
+  projectId: "TU_PROJECT_ID",
+  storageBucket: "TU_STORAGE_BUCKET",
+  messagingSenderId: "TU_MESSAGING_ID",
+  appId: "TU_APP_ID"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -328,14 +308,14 @@ const mesSelect = document.getElementById("mes");
 const anioInput = document.getElementById("anio");
 const tabla = document.getElementById("tabla");
 const btnAnteriores = document.getElementById("btnAnteriores");
+const btnModo = document.getElementById("btnModo");
 const buscador = document.getElementById("buscador");
 const vistaTabla = document.getElementById("vistaTabla");
 const vistaGrafica = document.getElementById("vistaGrafica");
 const gridCalendario = document.getElementById("gridCalendario");
-const btnVista = document.getElementById("btnVista");
 
 let mostrarAnteriores = false;
-let modoGrafico = false;
+let modoCarga = false;
 let datosFirebase = {};
 let escribiendo = false;
 let timersGuardado = {};
@@ -374,15 +354,29 @@ function guardarEventos(key, eventos){
 }
 
 database.ref("actividades").on("value", function(snapshot){
-  if(escribiendo){
-    return;
-  }
+  if(escribiendo) return;
 
   datosFirebase = snapshot.val() || {};
   generarCalendario();
 });
 
 function cambioMesAnio(){
+  generarCalendario();
+}
+
+function alternarModo(){
+  modoCarga = !modoCarga;
+
+  if(modoCarga){
+    vistaGrafica.style.display = "none";
+    vistaTabla.style.display = "block";
+    btnModo.textContent = "Ver calendario";
+  }else{
+    vistaTabla.style.display = "none";
+    vistaGrafica.style.display = "block";
+    btnModo.textContent = "Cargar actividades";
+  }
+
   generarCalendario();
 }
 
@@ -403,9 +397,7 @@ function generarCalendario(){
     const esDiaPasado = esMesActual && dia < hoyDia;
     const esHoy = esMesActual && dia === hoyDia;
 
-    if(esDiaPasado && !mostrarAnteriores){
-      continue;
-    }
+    if(esDiaPasado && !mostrarAnteriores) continue;
 
     html += `
       <tr id="${esHoy ? "filaHoy" : ""}" class="${esHoy ? "fila-hoy" : ""}" data-dia="${dia}">
@@ -419,7 +411,7 @@ function generarCalendario(){
       html += `
         <td>
           <div class="turno">
-            <div class="turno-title" onclick="plegarTurno(this)">${turno}</div>
+            <div class="turno-title">${turno}</div>
             <div class="turno-body">
       `;
 
@@ -519,38 +511,6 @@ function alternarAnteriores(){
   generarCalendario();
 }
 
-function cargarActividades(){
-  mesSelect.value = hoyMes;
-  anioInput.value = hoyAnio;
-  mostrarAnteriores = false;
-  btnAnteriores.textContent = "Ver días anteriores";
-  modoGrafico = false;
-  vistaTabla.style.display = "block";
-  vistaGrafica.style.display = "none";
-  btnVista.textContent = "Ver todas las actividades";
-  generarCalendario();
-}
-
-function plegarTurno(elemento){
-  const turno = elemento.closest(".turno");
-  turno.classList.toggle("cerrado");
-}
-
-function alternarVistaGrafica(){
-  modoGrafico = !modoGrafico;
-
-  if(modoGrafico){
-    vistaTabla.style.display = "none";
-    vistaGrafica.style.display = "block";
-    btnVista.textContent = "Volver a cargar actividades";
-    generarVistaGrafica();
-  }else{
-    vistaTabla.style.display = "block";
-    vistaGrafica.style.display = "none";
-    btnVista.textContent = "Ver todas las actividades";
-  }
-}
-
 function generarVistaGrafica(){
   const mes = parseInt(mesSelect.value);
   const anio = parseInt(anioInput.value);
@@ -564,9 +524,7 @@ function generarVistaGrafica(){
     const esDiaPasado = esMesActual && dia < hoyDia;
     const esHoy = esMesActual && dia === hoyDia;
 
-    if(esDiaPasado && !mostrarAnteriores){
-      continue;
-    }
+    if(esDiaPasado && !mostrarAnteriores) continue;
 
     let eventosDia = [];
 
@@ -596,9 +554,7 @@ function generarVistaGrafica(){
         ev.hora.toLowerCase().includes(textoBusqueda)
       );
 
-      if(eventosDia.length === 0){
-        continue;
-      }
+      if(eventosDia.length === 0) continue;
     }
 
     html += `
