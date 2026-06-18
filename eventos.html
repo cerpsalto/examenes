@@ -337,7 +337,8 @@ const btnVista = document.getElementById("btnVista");
 let mostrarAnteriores = false;
 let modoGrafico = false;
 let datosFirebase = {};
-let cargadoFirebase = false;
+let escribiendo = false;
+let timersGuardado = {};
 
 const hoy = new Date();
 const hoyDia = hoy.getDate();
@@ -364,12 +365,20 @@ function obtenerEventos(key){
 
 function guardarEventos(key, eventos){
   datosFirebase[key] = eventos;
-  database.ref("actividades/" + key).set(eventos);
+
+  clearTimeout(timersGuardado[key]);
+
+  timersGuardado[key] = setTimeout(() => {
+    database.ref("actividades/" + key).set(eventos);
+  }, 500);
 }
 
 database.ref("actividades").on("value", function(snapshot){
+  if(escribiendo){
+    return;
+  }
+
   datosFirebase = snapshot.val() || {};
-  cargadoFirebase = true;
   generarCalendario();
 });
 
@@ -443,8 +452,23 @@ function generarCalendario(){
 function crearEventoHTML(key, index, hora = "", nombre = ""){
   return `
     <div class="evento">
-      <input type="time" value="${escapeHtml(hora)}" oninput="actualizarEvento('${key}', ${index}, 'hora', this.value)">
-      <input type="text" value="${escapeHtml(nombre)}" placeholder="Nombre del evento" oninput="actualizarEvento('${key}', ${index}, 'nombre', this.value)">
+      <input 
+        type="time" 
+        value="${escapeHtml(hora)}" 
+        onfocus="escribiendo=true"
+        onblur="escribiendo=false"
+        oninput="actualizarEvento('${key}', ${index}, 'hora', this.value)"
+      >
+
+      <input 
+        type="text" 
+        value="${escapeHtml(nombre)}" 
+        placeholder="Nombre del evento" 
+        onfocus="escribiendo=true"
+        onblur="escribiendo=false"
+        oninput="actualizarEvento('${key}', ${index}, 'nombre', this.value)"
+      >
+
       <button class="btn-delete" onclick="eliminarEvento('${key}', ${index})">X</button>
     </div>
   `;
@@ -453,22 +477,40 @@ function crearEventoHTML(key, index, hora = "", nombre = ""){
 function agregarEvento(key){
   const eventos = obtenerEventos(key);
   eventos.push({hora:"", nombre:""});
-  guardarEventos(key, eventos);
-  generarCalendario();
+  datosFirebase[key] = eventos;
+
+  database.ref("actividades/" + key).set(eventos).then(() => {
+    generarCalendario();
+  });
 }
 
 function actualizarEvento(key, index, campo, valor){
+  escribiendo = true;
+
   const eventos = obtenerEventos(key);
+
+  if(!eventos[index]){
+    eventos[index] = {hora:"", nombre:""};
+  }
+
   eventos[index][campo] = valor;
   guardarEventos(key, eventos);
   generarVistaGrafica();
+
+  clearTimeout(window.timerEscribiendo);
+  window.timerEscribiendo = setTimeout(() => {
+    escribiendo = false;
+  }, 900);
 }
 
 function eliminarEvento(key, index){
   const eventos = obtenerEventos(key);
   eventos.splice(index, 1);
-  guardarEventos(key, eventos);
-  generarCalendario();
+  datosFirebase[key] = eventos;
+
+  database.ref("actividades/" + key).set(eventos).then(() => {
+    generarCalendario();
+  });
 }
 
 function alternarAnteriores(){
@@ -533,10 +575,10 @@ function generarVistaGrafica(){
       const eventos = obtenerEventos(key);
 
       eventos.forEach(ev => {
-        if(ev.nombre.trim() !== "" || ev.hora.trim() !== ""){
+        if((ev.nombre || "").trim() !== "" || (ev.hora || "").trim() !== ""){
           eventosDia.push({
-            hora: ev.hora,
-            nombre: ev.nombre
+            hora: ev.hora || "",
+            nombre: ev.nombre || ""
           });
         }
       });
