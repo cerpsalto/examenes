@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Calendario mensual de actividades</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(to bottom right,#cceeff,#99ccff);
+  padding:14px;
+  color:#003b57;
+}
+
+.wrap{
+  max-width:1300px;
+  margin:0 auto;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 0 12px rgba(0,0,0,.12);
+  overflow:hidden;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 16px;
+  border-bottom:3px solid #0099cc;
+  flex-wrap:wrap;
+}
+
+.title{
+  font-size:22px;
+  font-weight:800;
+  color:#004466;
+}
+
+.controls{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+select,input{
+  padding:8px;
+  border-radius:8px;
+  border:1px solid #9ed8ef;
+  font-size:14px;
+}
+
+.btn{
+  border:none;
+  background:#0099cc;
+  color:white;
+  padding:8px 11px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.btn:hover{background:#007faa}
+
+.btn-green{background:#00a86b}
+.btn-green:hover{background:#008e5b}
+
+.btn-small{
+  border:none;
+  background:#00a86b;
+  color:white;
+  padding:6px 9px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:700;
+}
+
+.btn-delete{
+  border:none;
+  background:#d9534f;
+  color:white;
+  padding:5px 8px;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:12px;
+}
+
+.aviso{
+  padding:10px 16px;
+  font-size:13px;
+  background:#f1fbff;
+  border-bottom:1px solid #cdefff;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:1000px;
+}
+
+th{
+  background:#e9f7ff;
+  padding:10px;
+  border-bottom:2px solid #bfe7ff;
+  font-weight:800;
+  color:#003d5a;
+}
+
+td{
+  border-bottom:1px solid #e6f2fa;
+  padding:8px;
+  vertical-align:top;
+}
+
+.col-fecha{
+  width:110px;
+  font-weight:800;
+  text-align:center;
+  background:#fbfdff;
+  white-space:nowrap;
+}
+
+.fila-hoy{
+  background:#fffbea;
+  outline:4px solid #e6c800;
+  outline-offset:-4px;
+}
+
+.turno{
+  background:#f8fcff;
+  border:1px solid #d7edf8;
+  border-radius:12px;
+  padding:8px;
+  min-height:90px;
+}
+
+.turno-title{
+  font-weight:800;
+  margin-bottom:8px;
+  color:#004466;
+  text-align:center;
+  cursor:pointer;
+  user-select:none;
+}
+
+.turno-title::after{
+  content:" ▼";
+  font-size:11px;
+}
+
+.turno.cerrado .turno-title::after{
+  content:" ▶";
+}
+
+.turno.cerrado .turno-body{
+  display:none;
+}
+
+.evento{
+  display:grid;
+  grid-template-columns:90px 1fr auto;
+  gap:6px;
+  margin-bottom:6px;
+  align-items:center;
+}
+
+.evento input{
+  width:100%;
+  padding:7px;
+  font-size:13px;
+}
+
+.sin-eventos{
+  font-size:12px;
+  color:#6b8794;
+  text-align:center;
+  margin:8px 0;
+}
+
+.acciones{
+  text-align:center;
+  margin-top:6px;
+}
+
+.oculto{
+  display:none;
+}
+
+.vista-grafica{
+  display:none;
+  padding:16px;
+}
+
+.grid-calendario{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:12px;
+}
+
+.dia-card{
+  border:2px solid #d7edf8;
+  border-radius:14px;
+  background:#f8fcff;
+  padding:10px;
+  min-height:130px;
+}
+
+.dia-card.hoy-card{
+  border-color:#e6c800;
+  background:#fffbea;
+}
+
+.dia-numero{
+  font-size:18px;
+  font-weight:900;
+  color:#004466;
+  margin-bottom:8px;
+}
+
+.evento-card{
+  background:white;
+  border-left:5px solid #0099cc;
+  border-radius:8px;
+  padding:7px;
+  margin-bottom:7px;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+}
+
+.evento-hora-grande{
+  font-size:16px;
+  font-weight:900;
+  color:#007faa;
+  margin-bottom:3px;
+}
+
+.evento-nombre{
+  font-size:14px;
+  font-weight:700;
+}
+
+.sin-actividad-card{
+  color:#7b929c;
+  font-size:13px;
+  text-align:center;
+  margin-top:25px;
+}
+
+@media(max-width:700px){
+  body{padding:8px}
+  .title{font-size:18px}
+  table{min-width:850px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <div class="top">
+    <div class="title">Calendario mensual de actividades</div>
+
+    <div class="controls">
+      <label>Mes:</label>
+      <select id="mes" onchange="cambioMesAnio()"></select>
+
+      <label>Año:</label>
+      <input type="number" id="anio" min="2020" max="2100" onchange="cambioMesAnio()">
+
+      <button class="btn btn-green" onclick="cargarActividades()">Cargar actividades</button>
+      <button class="btn" onclick="alternarAnteriores()" id="btnAnteriores">Ver días anteriores</button>
+      <button class="btn btn-green" onclick="alternarVistaGrafica()" id="btnVista">Ver todas las actividades</button>
+
+      <input type="text" id="buscador" placeholder="Buscar evento..." oninput="buscarEventos()">
+    </div>
+  </div>
+
+  <div class="aviso">
+    El calendario guarda automáticamente en este navegador. Al abrir el mes actual se muestra desde hoy, pero los días anteriores no se borran.
+  </div>
+
+  <div class="table-wrap" id="vistaTabla">
+    <table id="tabla"></table>
+  </div>
+
+  <div class="vista-grafica" id="vistaGrafica">
+    <div class="grid-calendario" id="gridCalendario"></div>
+  </div>
+
+</div>
+
+<script>
+const nombresMes = [
+  "Enero","Febrero","Marzo","Abril","Mayo","Junio",
+  "Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre"
+];
+
+const turnos = ["Mañana", "Tarde", "Noche"];
+
+const mesSelect = document.getElementById("mes");
+const anioInput = document.getElementById("anio");
+const tabla = document.getElementById("tabla");
+const btnAnteriores = document.getElementById("btnAnteriores");
+const buscador = document.getElementById("buscador");
+const vistaTabla = document.getElementById("vistaTabla");
+const vistaGrafica = document.getElementById("vistaGrafica");
+const gridCalendario = document.getElementById("gridCalendario");
+const btnVista = document.getElementById("btnVista");
+
+let mostrarAnteriores = false;
+let modoGrafico = false;
+
+const hoy = new Date();
+const hoyDia = hoy.getDate();
+const hoyMes = hoy.getMonth();
+const hoyAnio = hoy.getFullYear();
+
+for(let i=0;i<12;i++){
+  const op = document.createElement("option");
+  op.value = i;
+  op.textContent = nombresMes[i];
+  mesSelect.appendChild(op);
+}
+
+mesSelect.value = hoyMes;
+anioInput.value = hoyAnio;
+
+function keyDia(anio, mes, dia, turno){
+  return `calendario_${anio}_${mes + 1}_${dia}_${turno}`;
+}
+
+function obtenerEventos(key){
+  return JSON.parse(localStorage.getItem(key) || "[]");
+}
+
+function guardarEventos(key, eventos){
+  localStorage.setItem(key, JSON.stringify(eventos));
+}
+
+function cambioMesAnio(){
+  generarCalendario();
+}
+
+function generarCalendario(){
+  const mes = parseInt(mesSelect.value);
+  const anio = parseInt(anioInput.value);
+  const totalDias = new Date(anio, mes + 1, 0).getDate();
+
+  let html = `
+    <tr>
+      <th class="col-fecha">Fecha</th>
+      ${turnos.map(t => `<th>${t}</th>`).join("")}
+    </tr>
+  `;
+
+  for(let dia=1; dia<=totalDias; dia++){
+    const esMesActual = anio === hoyAnio && mes === hoyMes;
+    const esDiaPasado = esMesActual && dia < hoyDia;
+    const esHoy = esMesActual && dia === hoyDia;
+
+    if(esDiaPasado && !mostrarAnteriores){
+      continue;
+    }
+
+    html += `
+      <tr id="${esHoy ? "filaHoy" : ""}" class="${esHoy ? "fila-hoy" : ""}" data-dia="${dia}">
+        <td class="col-fecha">${dia}/${mes + 1}/${anio}</td>
+    `;
+
+    turnos.forEach(turno => {
+      const key = keyDia(anio, mes, dia, turno);
+      const eventos = obtenerEventos(key);
+
+      html += `
+        <td>
+          <div class="turno">
+            <div class="turno-title" onclick="plegarTurno(this)">${turno}</div>
+            <div class="turno-body">
+      `;
+
+      if(eventos.length === 0){
+        html += `<div class="sin-eventos">Sin eventos</div>`;
+      }
+
+      eventos.forEach((ev, index) => {
+        html += crearEventoHTML(key, index, ev.hora, ev.nombre);
+      });
+
+      html += `
+              <div class="acciones">
+                <button class="btn-small" onclick="agregarEvento('${key}')">Agregar evento</button>
+              </div>
+            </div>
+          </div>
+        </td>
+      `;
+    });
+
+    html += `</tr>`;
+  }
+
+  tabla.innerHTML = html;
+  generarVistaGrafica();
+  buscarEventos();
+}
+
+function crearEventoHTML(key, index, hora = "", nombre = ""){
+  return `
+    <div class="evento">
+      <input type="time" value="${escapeHtml(hora)}" oninput="actualizarEvento('${key}', ${index}, 'hora', this.value)">
+      <input type="text" value="${escapeHtml(nombre)}" placeholder="Nombre del evento" oninput="actualizarEvento('${key}', ${index}, 'nombre', this.value)">
+      <button class="btn-delete" onclick="eliminarEvento('${key}', ${index})">X</button>
+    </div>
+  `;
+}
+
+function agregarEvento(key){
+  const eventos = obtenerEventos(key);
+  eventos.push({hora:"", nombre:""});
+  guardarEventos(key, eventos);
+  generarCalendario();
+}
+
+function actualizarEvento(key, index, campo, valor){
+  const eventos = obtenerEventos(key);
+  eventos[index][campo] = valor;
+  guardarEventos(key, eventos);
+  generarVistaGrafica();
+}
+
+function eliminarEvento(key, index){
+  const eventos = obtenerEventos(key);
+  eventos.splice(index, 1);
+  guardarEventos(key, eventos);
+  generarCalendario();
+}
+
+function alternarAnteriores(){
+  mostrarAnteriores = !mostrarAnteriores;
+  btnAnteriores.textContent = mostrarAnteriores ? "Ocultar días anteriores" : "Ver días anteriores";
+  generarCalendario();
+}
+
+function cargarActividades(){
+  mesSelect.value = hoyMes;
+  anioInput.value = hoyAnio;
+  mostrarAnteriores = false;
+  btnAnteriores.textContent = "Ver días anteriores";
+  modoGrafico = false;
+  vistaTabla.style.display = "block";
+  vistaGrafica.style.display = "none";
+  btnVista.textContent = "Ver todas las actividades";
+  generarCalendario();
+}
+
+function plegarTurno(elemento){
+  const turno = elemento.closest(".turno");
+  turno.classList.toggle("cerrado");
+}
+
+function alternarVistaGrafica(){
+  modoGrafico = !modoGrafico;
+
+  if(modoGrafico){
+    vistaTabla.style.display = "none";
+    vistaGrafica.style.display = "block";
+    btnVista.textContent = "Volver a cargar actividades";
+    generarVistaGrafica();
+  }else{
+    vistaTabla.style.display = "block";
+    vistaGrafica.style.display = "none";
+    btnVista.textContent = "Ver todas las actividades";
+  }
+}
+
+function generarVistaGrafica(){
+  const mes = parseInt(mesSelect.value);
+  const anio = parseInt(anioInput.value);
+  const totalDias = new Date(anio, mes + 1, 0).getDate();
+  const textoBusqueda = buscador.value.toLowerCase().trim();
+
+  let html = "";
+
+  for(let dia=1; dia<=totalDias; dia++){
+    const esMesActual = anio === hoyAnio && mes === hoyMes;
+    const esDiaPasado = esMesActual && dia < hoyDia;
+    const esHoy = esMesActual && dia === hoyDia;
+
+    if(esDiaPasado && !mostrarAnteriores){
+      continue;
+    }
+
+    let eventosDia = [];
+
+    turnos.forEach(turno => {
+      const key = keyDia(anio, mes, dia, turno);
+      const eventos = obtenerEventos(key);
+
+      eventos.forEach(ev => {
+        if(ev.nombre.trim() !== "" || ev.hora.trim() !== ""){
+          eventosDia.push({
+            hora: ev.hora,
+            nombre: ev.nombre
+          });
+        }
+      });
+    });
+
+    eventosDia.sort((a,b) => {
+      const horaA = a.hora || "99:99";
+      const horaB = b.hora || "99:99";
+      return horaA.localeCompare(horaB);
+    });
+
+    if(textoBusqueda !== ""){
+      eventosDia = eventosDia.filter(ev =>
+        ev.nombre.toLowerCase().includes(textoBusqueda) ||
+        ev.hora.toLowerCase().includes(textoBusqueda)
+      );
+
+      if(eventosDia.length === 0){
+        continue;
+      }
+    }
+
+    html += `
+      <div class="dia-card ${esHoy ? "hoy-card" : ""}">
+        <div class="dia-numero">${dia}/${mes + 1}/${anio}</div>
+    `;
+
+    if(eventosDia.length === 0){
+      html += `<div class="sin-actividad-card">Sin actividades</div>`;
+    }else{
+      eventosDia.forEach(ev => {
+        html += `
+          <div class="evento-card">
+            <div class="evento-hora-grande">${escapeHtml(ev.hora || "Sin hora")}</div>
+            <div class="evento-nombre">${escapeHtml(ev.nombre || "Sin nombre")}</div>
+          </div>
+        `;
+      });
+    }
+
+    html += `</div>`;
+  }
+
+  gridCalendario.innerHTML = html;
+}
+
+function buscarEventos(){
+  const texto = buscador.value.toLowerCase().trim();
+  const filas = tabla.querySelectorAll("tr[data-dia]");
+
+  filas.forEach(fila => {
+    if(texto === ""){
+      fila.classList.remove("oculto");
+      return;
+    }
+
+    const contenido = fila.innerText.toLowerCase();
+
+    if(contenido.includes(texto)){
+      fila.classList.remove("oculto");
+    }else{
+      fila.classList.add("oculto");
+    }
+  });
+
+  generarVistaGrafica();
+}
+
+function escapeHtml(text){
+  return String(text || "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;");
+}
+
+generarCalendario();
+</script>
+
+</body>
+</html>
