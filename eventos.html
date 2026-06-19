@@ -91,7 +91,7 @@ select,input{
   border-radius:8px;
   cursor:pointer;
   font-size:13px;
-  font-weight:800;
+  font-weight:900;
 }
 
 .btn-options{
@@ -186,6 +186,48 @@ select,input{
   margin:24px 0;
 }
 
+.select-opciones{
+  width:100%;
+  margin-top:6px;
+  font-weight:700;
+  color:#004466;
+}
+
+.panel-reporte{
+  display:none;
+  padding:12px 16px;
+  background:#f1fbff;
+  border-bottom:2px solid #cdefff;
+}
+
+.panel-reporte .controls{
+  justify-content:center;
+}
+
+.reporte{
+  display:none;
+  padding:16px;
+  border-top:2px solid #cdefff;
+}
+
+.reporte h2{
+  color:#004466;
+  text-align:center;
+}
+
+.reporte-item{
+  background:#f8fcff;
+  border:1px solid #d7edf8;
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:8px;
+}
+
+.reporte-fecha{
+  font-weight:900;
+  color:#004466;
+}
+
 .modal-fondo{
   position:fixed;
   inset:0;
@@ -236,38 +278,9 @@ select,input{
   flex:1;
 }
 
-.reporte{
-  display:none;
-  padding:16px;
-  border-top:2px solid #cdefff;
-}
-
-.reporte h2{
-  color:#004466;
-  text-align:center;
-}
-
-.reporte-item{
-  background:#f8fcff;
-  border:1px solid #d7edf8;
-  border-radius:10px;
-  padding:10px;
-  margin-bottom:8px;
-}
-
-.reporte-fecha{
-  font-weight:900;
-  color:#004466;
-}
-
-.oculto{display:none}
-
 @media(max-width:700px){
-
   body{padding:6px}
-
   .wrap{border-radius:12px}
-
   .top{padding:12px}
 
   .encabezado{
@@ -306,16 +319,8 @@ select,input{
     grid-template-columns:1fr;
   }
 
-  .dia-card{
-    min-height:auto;
-  }
-
   .dia-numero{
     font-size:22px;
-  }
-
-  .evento-turno{
-    font-size:15px;
   }
 
   .evento-hora-grande{
@@ -337,28 +342,6 @@ select,input{
     flex-direction:column;
   }
 }
-
-@media print{
-  body{
-    background:white;
-    padding:0;
-  }
-
-  .top,
-  .vista-grafica,
-  .modal-fondo{
-    display:none !important;
-  }
-
-  .wrap{
-    box-shadow:none;
-    border-radius:0;
-  }
-
-  .reporte{
-    display:block !important;
-  }
-}
 </style>
 </head>
 
@@ -367,7 +350,6 @@ select,input{
 <div class="wrap">
 
   <div class="top">
-
     <div class="encabezado">
       <img src="dia.png" class="logo-principal" alt="Logo">
       <div class="title">Calendario mensual de actividades</div>
@@ -384,13 +366,20 @@ select,input{
 
       <input type="text" id="buscador" placeholder="Buscar actividad..." oninput="generarCalendario()">
 
+      <button class="btn btn-green" onclick="mostrarPanelReporte()">Generar reporte</button>
+    </div>
+  </div>
+
+  <div class="panel-reporte" id="panelReporte">
+    <div class="controls">
       <label>Desde:</label>
       <input type="date" id="fechaDesde">
 
       <label>Hasta:</label>
       <input type="date" id="fechaHasta">
 
-      <button class="btn btn-green" onclick="generarReporte()">Generar reporte</button>
+      <button class="btn btn-green" onclick="generarReporte()">Ver reporte</button>
+      <button class="btn btn-red" onclick="cerrarReporte()">Cerrar</button>
     </div>
   </div>
 
@@ -599,7 +588,12 @@ function generarCalendario(){
             <div class="evento-turno">${escapeHtml(ev.turno)}</div>
             <div class="evento-hora-grande">${escapeHtml(ev.hora || "Sin hora")}</div>
             <div class="evento-nombre">${escapeHtml(ev.nombre || "Sin nombre")}</div>
-            <button class="btn-options" onclick="opcionesEvento('${ev.key}', ${ev.index}, ${anio}, ${mes}, ${dia})">Opciones</button>
+
+            <select class="select-opciones" onchange="accionOpciones(this, '${ev.key}', ${ev.index}, ${anio}, ${mes}, ${dia})">
+              <option value="">Opciones</option>
+              <option value="editar">Editar</option>
+              <option value="quitar">Quitar</option>
+            </select>
           </div>
         `;
       });
@@ -609,6 +603,20 @@ function generarCalendario(){
   }
 
   gridCalendario.innerHTML = html;
+}
+
+function accionOpciones(select, key, index, anio, mes, dia){
+  const accion = select.value;
+
+  if(accion === "editar"){
+    abrirEditar(key, index, anio, mes, dia);
+  }
+
+  if(accion === "quitar"){
+    eliminarEvento(key, index);
+  }
+
+  select.value = "";
 }
 
 function abrirAgregar(anio, mes, dia){
@@ -695,11 +703,7 @@ function guardarDesdeModal(){
     const key = keyDia(modalAnio, modalMes, modalDia, turno);
     const eventos = obtenerEventos(key);
 
-    eventos.push({
-      hora: hora,
-      nombre: nombre
-    });
-
+    eventos.push({hora, nombre});
     datosFirebase[key] = eventos;
 
     database.ref("actividades/" + key).set(eventos).then(() => {
@@ -720,10 +724,7 @@ function guardarDesdeModal(){
     eventosViejos.splice(modalIndex, 1);
 
     const eventosNuevos = obtenerEventos(keyNueva);
-    eventosNuevos.push({
-      hora: hora,
-      nombre: nombre
-    });
+    eventosNuevos.push({hora, nombre});
 
     datosFirebase[modalKey] = eventosViejos;
     datosFirebase[keyNueva] = eventosNuevos;
@@ -735,18 +736,6 @@ function guardarDesdeModal(){
       cerrarModal();
       generarCalendario();
     });
-  }
-}
-
-function opcionesEvento(key, index, anio, mes, dia){
-  const opcion = prompt("Escriba:\n1 para editar\n2 para quitar");
-
-  if(opcion === "1"){
-    abrirEditar(key, index, anio, mes, dia);
-  }
-
-  if(opcion === "2"){
-    eliminarEvento(key, index);
   }
 }
 
@@ -768,6 +757,16 @@ function alternarAnteriores(){
   mostrarAnteriores = !mostrarAnteriores;
   btnAnteriores.textContent = mostrarAnteriores ? "Ocultar días anteriores" : "Ver días anteriores";
   generarCalendario();
+}
+
+function mostrarPanelReporte(){
+  const panel = document.getElementById("panelReporte");
+  panel.style.display = panel.style.display === "block" ? "none" : "block";
+}
+
+function cerrarReporte(){
+  document.getElementById("panelReporte").style.display = "none";
+  document.getElementById("reporte").style.display = "none";
 }
 
 function generarReporte(){
@@ -828,8 +827,8 @@ function generarReporte(){
 
   let html = `
     <h2>Reporte de actividades</h2>
-    <p><strong>Desde:</strong> ${formatearFechaInput(desde)} &nbsp; 
-    <strong>Hasta:</strong> ${formatearFechaInput(hasta)}</p>
+    <p><strong>Desde:</strong> ${formatearFechaInput(desde)}
+    &nbsp; <strong>Hasta:</strong> ${formatearFechaInput(hasta)}</p>
   `;
 
   if(items.length === 0){
