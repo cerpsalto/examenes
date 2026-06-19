@@ -94,15 +94,15 @@ select,input{
   font-weight:900;
 }
 
-.btn-options{
+.btn-minus{
   border:none;
-  background:#0099cc;
+  background:#d9534f;
   color:white;
-  padding:7px 10px;
+  padding:7px 12px;
   border-radius:8px;
   cursor:pointer;
-  font-size:13px;
-  font-weight:800;
+  font-size:15px;
+  font-weight:900;
 }
 
 .vista-grafica{
@@ -160,6 +160,13 @@ select,input{
   box-shadow:0 1px 4px rgba(0,0,0,.08);
 }
 
+.evento-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+
 .evento-turno{
   font-size:13px;
   font-weight:900;
@@ -179,18 +186,25 @@ select,input{
   margin-bottom:7px;
 }
 
+.acciones-evento{
+  display:none;
+  gap:6px;
+  margin-top:8px;
+}
+
+.acciones-evento.activo{
+  display:flex;
+}
+
+.acciones-evento button{
+  flex:1;
+}
+
 .sin-actividad-card{
   color:#7b929c;
   font-size:13px;
   text-align:center;
   margin:24px 0;
-}
-
-.select-opciones{
-  width:100%;
-  margin-top:6px;
-  font-weight:700;
-  color:#004466;
 }
 
 .panel-reporte{
@@ -332,7 +346,16 @@ select,input{
   }
 
   .btn-small,
-  .btn-options{
+  .btn-minus{
+    padding:11px 14px;
+    font-size:18px;
+  }
+
+  .acciones-evento{
+    flex-direction:column;
+  }
+
+  .acciones-evento button{
     width:100%;
     padding:11px;
     font-size:16px;
@@ -583,17 +606,22 @@ function generarCalendario(){
       html += `<div class="sin-actividad-card">Sin actividades</div>`;
     }else{
       eventosFiltrados.forEach(ev => {
+        const idAcciones = `acciones_${anio}_${mes}_${dia}_${ev.turno}_${ev.index}`;
+
         html += `
           <div class="evento-card">
-            <div class="evento-turno">${escapeHtml(ev.turno)}</div>
+            <div class="evento-header">
+              <div class="evento-turno">${escapeHtml(ev.turno)}</div>
+              <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
+            </div>
+
             <div class="evento-hora-grande">${escapeHtml(ev.hora || "Sin hora")}</div>
             <div class="evento-nombre">${escapeHtml(ev.nombre || "Sin nombre")}</div>
 
-            <select class="select-opciones" onchange="accionOpciones(this, '${ev.key}', ${ev.index}, ${anio}, ${mes}, ${dia})">
-              <option value="">Opciones</option>
-              <option value="editar">Editar</option>
-              <option value="quitar">Quitar</option>
-            </select>
+            <div class="acciones-evento" id="${idAcciones}">
+              <button class="btn" onclick="abrirEditar('${ev.key}', ${ev.index}, ${anio}, ${mes}, ${dia})">Editar</button>
+              <button class="btn btn-red" onclick="eliminarEvento('${ev.key}', ${ev.index})">Quitar</button>
+            </div>
           </div>
         `;
       });
@@ -605,18 +633,11 @@ function generarCalendario(){
   gridCalendario.innerHTML = html;
 }
 
-function accionOpciones(select, key, index, anio, mes, dia){
-  const accion = select.value;
-
-  if(accion === "editar"){
-    abrirEditar(key, index, anio, mes, dia);
+function mostrarAcciones(id){
+  const panel = document.getElementById(id);
+  if(panel){
+    panel.classList.toggle("activo");
   }
-
-  if(accion === "quitar"){
-    eliminarEvento(key, index);
-  }
-
-  select.value = "";
 }
 
 function abrirAgregar(anio, mes, dia){
