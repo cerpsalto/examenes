@@ -12,7 +12,7 @@ body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
   background:linear-gradient(to bottom right,#cceeff,#99ccff);
-  padding:14px;
+  padding:12px;
   color:#003b57;
 }
 
@@ -30,11 +30,24 @@ body{
   border-bottom:3px solid #0099cc;
 }
 
+.encabezado{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.logo-principal{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+}
+
 .title{
   font-size:22px;
   font-weight:800;
   color:#004466;
-  margin-bottom:12px;
 }
 
 .controls{
@@ -42,6 +55,7 @@ body{
   gap:8px;
   align-items:center;
   flex-wrap:wrap;
+  justify-content:center;
 }
 
 select,input{
@@ -66,6 +80,9 @@ select,input{
 .btn-green{background:#00a86b}
 .btn-green:hover{background:#008e5b}
 
+.btn-red{background:#d9534f}
+.btn-red:hover{background:#c9302c}
+
 .btn-small{
   border:none;
   background:#00a86b;
@@ -74,120 +91,21 @@ select,input{
   border-radius:8px;
   cursor:pointer;
   font-size:13px;
-  font-weight:700;
+  font-weight:800;
 }
 
-.btn-delete{
+.btn-options{
   border:none;
-  background:#d9534f;
+  background:#0099cc;
   color:white;
   padding:7px 10px;
-  border-radius:7px;
+  border-radius:8px;
   cursor:pointer;
   font-size:13px;
   font-weight:800;
 }
 
-.aviso{
-  padding:10px 16px;
-  font-size:13px;
-  background:#f1fbff;
-  border-bottom:1px solid #cdefff;
-}
-
-.table-wrap{
-  display:none;
-  overflow-x:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:900px;
-}
-
-th{
-  background:#e9f7ff;
-  padding:12px;
-  border-bottom:2px solid #bfe7ff;
-  font-weight:800;
-  color:#003d5a;
-  font-size:16px;
-}
-
-td{
-  border-bottom:1px solid #e6f2fa;
-  padding:10px;
-  vertical-align:top;
-}
-
-.col-fecha{
-  width:170px;
-  font-weight:800;
-  text-align:left;
-  background:#fbfdff;
-  white-space:nowrap;
-  font-size:16px;
-}
-
-.fecha-con-logo{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.logo-dia{
-  width:26px;
-  height:26px;
-  object-fit:contain;
-}
-
-.fila-hoy{
-  background:#fffbea;
-  outline:4px solid #e6c800;
-  outline-offset:-4px;
-}
-
-.caja-eventos{
-  background:#f8fcff;
-  border:1px solid #d7edf8;
-  border-radius:14px;
-  padding:10px;
-}
-
-.evento{
-  display:grid;
-  grid-template-columns:190px 110px 1fr auto;
-  gap:8px;
-  margin-bottom:8px;
-  align-items:center;
-}
-
-.evento input,
-.evento select{
-  width:100%;
-  padding:8px;
-  font-size:14px;
-}
-
-.sin-eventos{
-  font-size:13px;
-  color:#6b8794;
-  text-align:center;
-  margin:10px 0;
-}
-
-.acciones{
-  text-align:center;
-  margin-top:8px;
-}
-
-.oculto{
-  display:none;
-}
-
 .vista-grafica{
-  display:block;
   padding:16px;
 }
 
@@ -202,7 +120,7 @@ td{
   border-radius:14px;
   background:#f8fcff;
   padding:10px;
-  min-height:130px;
+  min-height:150px;
 }
 
 .dia-card.hoy-card{
@@ -217,7 +135,20 @@ td{
   margin-bottom:8px;
   display:flex;
   align-items:center;
+  justify-content:space-between;
   gap:8px;
+}
+
+.fecha-con-logo{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.logo-dia{
+  width:25px;
+  height:25px;
+  object-fit:contain;
 }
 
 .evento-card{
@@ -236,7 +167,7 @@ td{
 }
 
 .evento-hora-grande{
-  font-size:18px;
+  font-size:19px;
   font-weight:900;
   color:#007faa;
   margin:3px 0;
@@ -245,14 +176,91 @@ td{
 .evento-nombre{
   font-size:14px;
   font-weight:700;
+  margin-bottom:7px;
 }
 
 .sin-actividad-card{
   color:#7b929c;
   font-size:13px;
   text-align:center;
-  margin-top:25px;
+  margin:24px 0;
 }
+
+.modal-fondo{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:1000;
+}
+
+.modal{
+  background:white;
+  border-radius:16px;
+  padding:18px;
+  width:100%;
+  max-width:420px;
+  box-shadow:0 0 18px rgba(0,0,0,.25);
+}
+
+.modal h2{
+  margin-top:0;
+  color:#004466;
+  text-align:center;
+}
+
+.modal label{
+  display:block;
+  font-weight:800;
+  margin-top:10px;
+}
+
+.modal input,
+.modal select{
+  width:100%;
+  padding:10px;
+  font-size:16px;
+  margin-top:5px;
+}
+
+.modal-actions{
+  display:flex;
+  gap:8px;
+  margin-top:16px;
+}
+
+.modal-actions button{
+  flex:1;
+}
+
+.reporte{
+  display:none;
+  padding:16px;
+  border-top:2px solid #cdefff;
+}
+
+.reporte h2{
+  color:#004466;
+  text-align:center;
+}
+
+.reporte-item{
+  background:#f8fcff;
+  border:1px solid #d7edf8;
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:8px;
+}
+
+.reporte-fecha{
+  font-weight:900;
+  color:#004466;
+}
+
+.oculto{display:none}
 
 @media(max-width:700px){
 
@@ -261,6 +269,16 @@ td{
   .wrap{border-radius:12px}
 
   .top{padding:12px}
+
+  .encabezado{
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .logo-principal{
+    width:38px;
+    height:38px;
+  }
 
   .title{
     font-size:20px;
@@ -284,11 +302,6 @@ td{
     padding:12px;
   }
 
-  .aviso{
-    font-size:14px;
-    text-align:center;
-  }
-
   .grid-calendario{
     grid-template-columns:1fr;
   }
@@ -298,20 +311,11 @@ td{
   }
 
   .dia-numero{
-    font-size:24px;
-  }
-
-  .logo-dia{
-    width:30px;
-    height:30px;
-  }
-
-  .evento-card{
-    padding:12px;
+    font-size:22px;
   }
 
   .evento-turno{
-    font-size:16px;
+    font-size:15px;
   }
 
   .evento-hora-grande{
@@ -319,41 +323,40 @@ td{
   }
 
   .evento-nombre{
-    font-size:18px;
+    font-size:17px;
   }
 
-  table{
-    min-width:0;
-  }
-
-  tr,td,th{
-    display:block;
+  .btn-small,
+  .btn-options{
     width:100%;
-  }
-
-  th{
-    display:none;
-  }
-
-  .col-fecha{
-    width:100%;
-    font-size:22px;
-    background:#e9f7ff;
-  }
-
-  .evento{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-  }
-
-  .evento select,
-  .evento input,
-  .btn-delete,
-  .btn-small{
-    width:100%;
+    padding:11px;
     font-size:16px;
-    padding:12px;
+  }
+
+  .modal-actions{
+    flex-direction:column;
+  }
+}
+
+@media print{
+  body{
+    background:white;
+    padding:0;
+  }
+
+  .top,
+  .vista-grafica,
+  .modal-fondo{
+    display:none !important;
+  }
+
+  .wrap{
+    box-shadow:none;
+    border-radius:0;
+  }
+
+  .reporte{
+    display:block !important;
   }
 }
 </style>
@@ -364,35 +367,63 @@ td{
 <div class="wrap">
 
   <div class="top">
-    <div class="title">Calendario mensual de actividades</div>
+
+    <div class="encabezado">
+      <img src="dia.png" class="logo-principal" alt="Logo">
+      <div class="title">Calendario mensual de actividades</div>
+    </div>
 
     <div class="controls">
       <label>Mes:</label>
-      <select id="mes" onchange="cambioMesAnio()"></select>
+      <select id="mes" onchange="generarCalendario()"></select>
 
       <label>Año:</label>
-      <input type="number" id="anio" min="2020" max="2100" onchange="cambioMesAnio()">
-
-      <button class="btn btn-green" onclick="alternarCarga()" id="btnCarga">Cargar actividades</button>
+      <input type="number" id="anio" min="2020" max="2100" onchange="generarCalendario()">
 
       <button class="btn" onclick="alternarAnteriores()" id="btnAnteriores">Ver días anteriores</button>
 
-      <input type="text" id="buscador" placeholder="Buscar evento..." oninput="buscarEventos()">
+      <input type="text" id="buscador" placeholder="Buscar actividad..." oninput="generarCalendario()">
+
+      <label>Desde:</label>
+      <input type="date" id="fechaDesde">
+
+      <label>Hasta:</label>
+      <input type="date" id="fechaHasta">
+
+      <button class="btn btn-green" onclick="generarReporte()">Generar reporte</button>
     </div>
   </div>
 
-  <div class="aviso">
-    El calendario guarda automáticamente en línea. Los cambios se ven desde todas las computadoras.
-  </div>
-
-  <div class="vista-grafica" id="vistaGrafica">
+  <div class="vista-grafica">
     <div class="grid-calendario" id="gridCalendario"></div>
   </div>
 
-  <div class="table-wrap" id="vistaTabla">
-    <table id="tabla"></table>
-  </div>
+  <div class="reporte" id="reporte"></div>
 
+</div>
+
+<div class="modal-fondo" id="modalFondo">
+  <div class="modal">
+    <h2 id="tituloModal">Agregar actividad</h2>
+
+    <label>Turno</label>
+    <select id="modalTurno" onchange="actualizarLimiteHora()">
+      <option value="Matutino">Matutino</option>
+      <option value="Vespertino">Vespertino</option>
+      <option value="Nocturno">Nocturno</option>
+    </select>
+
+    <label>Hora</label>
+    <input type="time" id="modalHora">
+
+    <label>Actividad</label>
+    <input type="text" id="modalNombre" placeholder="Nombre de la actividad">
+
+    <div class="modal-actions">
+      <button class="btn btn-green" onclick="guardarDesdeModal()">Guardar</button>
+      <button class="btn btn-red" onclick="cerrarModal()">Cancelar</button>
+    </div>
+  </div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -420,33 +451,39 @@ const nombresMes = [
 
 const turnos = ["Matutino", "Vespertino", "Nocturno"];
 
-const rangosTurnos = {
-  "Matutino": "07 a 14",
-  "Vespertino": "12 a 20",
-  "Nocturno": "18 a 23"
-};
-
 const ordenTurnos = {
   "Matutino": 1,
   "Vespertino": 2,
   "Nocturno": 3
 };
 
+const limitesHora = {
+  "Matutino": {min:"07:00", max:"14:00"},
+  "Vespertino": {min:"14:00", max:"20:00"},
+  "Nocturno": {min:"18:00", max:"23:00"}
+};
+
 const mesSelect = document.getElementById("mes");
 const anioInput = document.getElementById("anio");
-const tabla = document.getElementById("tabla");
-const btnAnteriores = document.getElementById("btnAnteriores");
-const btnCarga = document.getElementById("btnCarga");
-const buscador = document.getElementById("buscador");
-const vistaTabla = document.getElementById("vistaTabla");
-const vistaGrafica = document.getElementById("vistaGrafica");
 const gridCalendario = document.getElementById("gridCalendario");
+const buscador = document.getElementById("buscador");
+const btnAnteriores = document.getElementById("btnAnteriores");
 
-let mostrarAnteriores = false;
-let modoCarga = false;
+const modalFondo = document.getElementById("modalFondo");
+const tituloModal = document.getElementById("tituloModal");
+const modalTurno = document.getElementById("modalTurno");
+const modalHora = document.getElementById("modalHora");
+const modalNombre = document.getElementById("modalNombre");
+
 let datosFirebase = {};
-let escribiendo = false;
-let timersGuardado = {};
+let mostrarAnteriores = false;
+
+let modalModo = "agregar";
+let modalAnio = null;
+let modalMes = null;
+let modalDia = null;
+let modalKey = null;
+let modalIndex = null;
 
 const hoy = new Date();
 const hoyDia = hoy.getDate();
@@ -462,19 +499,6 @@ for(let i=0;i<12;i++){
 
 mesSelect.value = hoyMes;
 anioInput.value = hoyAnio;
-
-function mostrarFecha(dia, mes, anio){
-  return `
-    <span class="fecha-con-logo">
-      <img src="dia.png" class="logo-dia" alt="Día">
-      <span>${dia}/${mes + 1}/${anio}</span>
-    </span>
-  `;
-}
-
-function textoTurno(turno){
-  return `${turno} (${rangosTurnos[turno]})`;
-}
 
 function keyDia(anio, mes, dia, turno){
   return `calendario_${anio}_${mes + 1}_${dia}_${turno}`;
@@ -498,219 +522,12 @@ function ordenarEventos(a,b){
   return horaA.localeCompare(horaB);
 }
 
-function guardarEventos(key, eventos){
-  datosFirebase[key] = eventos;
-
-  clearTimeout(timersGuardado[key]);
-
-  timersGuardado[key] = setTimeout(() => {
-    database.ref("actividades/" + key).set(eventos);
-  }, 500);
-}
-
 database.ref("actividades").on("value", function(snapshot){
-  if(escribiendo){
-    return;
-  }
-
   datosFirebase = snapshot.val() || {};
   generarCalendario();
 });
 
-function cambioMesAnio(){
-  generarCalendario();
-}
-
 function generarCalendario(){
-  const mes = parseInt(mesSelect.value);
-  const anio = parseInt(anioInput.value);
-  const totalDias = new Date(anio, mes + 1, 0).getDate();
-
-  let html = `
-    <tr>
-      <th class="col-fecha">Fecha</th>
-      <th>Actividades</th>
-    </tr>
-  `;
-
-  for(let dia=1; dia<=totalDias; dia++){
-    const esMesActual = anio === hoyAnio && mes === hoyMes;
-    const esDiaPasado = esMesActual && dia < hoyDia;
-    const esHoy = esMesActual && dia === hoyDia;
-
-    if(esDiaPasado && !mostrarAnteriores){
-      continue;
-    }
-
-    let eventosDia = [];
-
-    turnos.forEach(turno => {
-      const key = keyDia(anio, mes, dia, turno);
-      const eventos = obtenerEventos(key);
-
-      eventos.forEach((ev, index) => {
-        eventosDia.push({
-          key:key,
-          index:index,
-          turno:turno,
-          hora:ev.hora || "",
-          nombre:ev.nombre || ""
-        });
-      });
-    });
-
-    eventosDia.sort(ordenarEventos);
-
-    html += `
-      <tr id="${esHoy ? "filaHoy" : ""}" class="${esHoy ? "fila-hoy" : ""}" data-dia="${dia}">
-        <td class="col-fecha">${mostrarFecha(dia, mes, anio)}</td>
-        <td>
-          <div class="caja-eventos">
-    `;
-
-    if(eventosDia.length === 0){
-      html += `<div class="sin-eventos">Sin eventos</div>`;
-    }
-
-    eventosDia.forEach(ev => {
-      html += crearEventoHTML(anio, mes, dia, ev.key, ev.index, ev.turno, ev.hora, ev.nombre);
-    });
-
-    html += `
-            <div class="acciones">
-              <button class="btn-small" onclick="agregarEvento(${anio}, ${mes}, ${dia})">Agregar evento</button>
-            </div>
-          </div>
-        </td>
-      </tr>
-    `;
-  }
-
-  tabla.innerHTML = html;
-  generarVistaGrafica();
-  buscarEventos();
-}
-
-function crearEventoHTML(anio, mes, dia, key, index, turno, hora = "", nombre = ""){
-  return `
-    <div class="evento">
-      <select onchange="moverTurno('${key}', ${index}, ${anio}, ${mes}, ${dia}, this.value)">
-        ${turnos.map(t => `
-          <option value="${t}" ${t === turno ? "selected" : ""}>${textoTurno(t)}</option>
-        `).join("")}
-      </select>
-
-      <input 
-        type="time" 
-        value="${escapeHtml(hora)}" 
-        onfocus="escribiendo=true"
-        onblur="escribiendo=false"
-        oninput="actualizarEvento('${key}', ${index}, 'hora', this.value)"
-      >
-
-      <input 
-        type="text" 
-        value="${escapeHtml(nombre)}" 
-        placeholder="Nombre del evento" 
-        onfocus="escribiendo=true"
-        onblur="escribiendo=false"
-        oninput="actualizarEvento('${key}', ${index}, 'nombre', this.value)"
-      >
-
-      <button class="btn-delete" onclick="eliminarEvento('${key}', ${index})">X</button>
-    </div>
-  `;
-}
-
-function agregarEvento(anio, mes, dia){
-  const key = keyDia(anio, mes, dia, "Matutino");
-  const eventos = obtenerEventos(key);
-
-  eventos.push({hora:"", nombre:""});
-  datosFirebase[key] = eventos;
-
-  database.ref("actividades/" + key).set(eventos).then(() => {
-    generarCalendario();
-  });
-}
-
-function actualizarEvento(key, index, campo, valor){
-  escribiendo = true;
-
-  const eventos = obtenerEventos(key);
-
-  if(!eventos[index]){
-    eventos[index] = {hora:"", nombre:""};
-  }
-
-  eventos[index][campo] = valor;
-  guardarEventos(key, eventos);
-  generarVistaGrafica();
-
-  clearTimeout(window.timerEscribiendo);
-  window.timerEscribiendo = setTimeout(() => {
-    escribiendo = false;
-  }, 900);
-}
-
-function moverTurno(keyVieja, index, anio, mes, dia, turnoNuevo){
-  const eventosViejos = obtenerEventos(keyVieja);
-
-  if(!eventosViejos[index]){
-    return;
-  }
-
-  const evento = eventosViejos[index];
-  eventosViejos.splice(index, 1);
-
-  const keyNueva = keyDia(anio, mes, dia, turnoNuevo);
-  const eventosNuevos = obtenerEventos(keyNueva);
-  eventosNuevos.push(evento);
-
-  datosFirebase[keyVieja] = eventosViejos;
-  datosFirebase[keyNueva] = eventosNuevos;
-
-  Promise.all([
-    database.ref("actividades/" + keyVieja).set(eventosViejos),
-    database.ref("actividades/" + keyNueva).set(eventosNuevos)
-  ]).then(() => {
-    generarCalendario();
-  });
-}
-
-function eliminarEvento(key, index){
-  const eventos = obtenerEventos(key);
-  eventos.splice(index, 1);
-  datosFirebase[key] = eventos;
-
-  database.ref("actividades/" + key).set(eventos).then(() => {
-    generarCalendario();
-  });
-}
-
-function alternarAnteriores(){
-  mostrarAnteriores = !mostrarAnteriores;
-  btnAnteriores.textContent = mostrarAnteriores ? "Ocultar días anteriores" : "Ver días anteriores";
-  generarCalendario();
-}
-
-function alternarCarga(){
-  modoCarga = !modoCarga;
-
-  if(modoCarga){
-    vistaGrafica.style.display = "none";
-    vistaTabla.style.display = "block";
-    btnCarga.textContent = "Ver calendario";
-  }else{
-    vistaTabla.style.display = "none";
-    vistaGrafica.style.display = "block";
-    btnCarga.textContent = "Cargar actividades";
-  }
-
-  generarCalendario();
-}
-
-function generarVistaGrafica(){
   const mes = parseInt(mesSelect.value);
   const anio = parseInt(anioInput.value);
   const totalDias = new Date(anio, mes + 1, 0).getDate();
@@ -733,10 +550,12 @@ function generarVistaGrafica(){
       const key = keyDia(anio, mes, dia, turno);
       const eventos = obtenerEventos(key);
 
-      eventos.forEach(ev => {
+      eventos.forEach((ev, index) => {
         if((ev.nombre || "").trim() !== "" || (ev.hora || "").trim() !== ""){
           eventosDia.push({
-            turno: turno,
+            key,
+            index,
+            turno,
             hora: ev.hora || "",
             nombre: ev.nombre || ""
           });
@@ -746,14 +565,16 @@ function generarVistaGrafica(){
 
     eventosDia.sort(ordenarEventos);
 
+    let eventosFiltrados = eventosDia;
+
     if(textoBusqueda !== ""){
-      eventosDia = eventosDia.filter(ev =>
+      eventosFiltrados = eventosDia.filter(ev =>
         ev.nombre.toLowerCase().includes(textoBusqueda) ||
         ev.hora.toLowerCase().includes(textoBusqueda) ||
         ev.turno.toLowerCase().includes(textoBusqueda)
       );
 
-      if(eventosDia.length === 0){
+      if(eventosFiltrados.length === 0){
         continue;
       }
     }
@@ -761,20 +582,24 @@ function generarVistaGrafica(){
     html += `
       <div class="dia-card ${esHoy ? "hoy-card" : ""}">
         <div class="dia-numero">
-          <img src="dia.png" class="logo-dia" alt="Día">
-          <span>${dia}/${mes + 1}/${anio}</span>
+          <span class="fecha-con-logo">
+            <img src="dia.png" class="logo-dia" alt="Día">
+            <span>${dia}/${mes + 1}/${anio}</span>
+          </span>
+          <button class="btn-small" onclick="abrirAgregar(${anio}, ${mes}, ${dia})">+</button>
         </div>
     `;
 
-    if(eventosDia.length === 0){
+    if(eventosFiltrados.length === 0){
       html += `<div class="sin-actividad-card">Sin actividades</div>`;
     }else{
-      eventosDia.forEach(ev => {
+      eventosFiltrados.forEach(ev => {
         html += `
           <div class="evento-card">
-            <div class="evento-turno">${escapeHtml(textoTurno(ev.turno))}</div>
+            <div class="evento-turno">${escapeHtml(ev.turno)}</div>
             <div class="evento-hora-grande">${escapeHtml(ev.hora || "Sin hora")}</div>
             <div class="evento-nombre">${escapeHtml(ev.nombre || "Sin nombre")}</div>
+            <button class="btn-options" onclick="opcionesEvento('${ev.key}', ${ev.index}, ${anio}, ${mes}, ${dia})">Opciones</button>
           </div>
         `;
       });
@@ -786,26 +611,250 @@ function generarVistaGrafica(){
   gridCalendario.innerHTML = html;
 }
 
-function buscarEventos(){
-  const texto = buscador.value.toLowerCase().trim();
-  const filas = tabla.querySelectorAll("tr[data-dia]");
+function abrirAgregar(anio, mes, dia){
+  modalModo = "agregar";
+  modalAnio = anio;
+  modalMes = mes;
+  modalDia = dia;
+  modalKey = null;
+  modalIndex = null;
 
-  filas.forEach(fila => {
-    if(texto === ""){
-      fila.classList.remove("oculto");
+  tituloModal.textContent = "Agregar actividad";
+  modalTurno.value = "Matutino";
+  modalHora.value = "";
+  modalNombre.value = "";
+  actualizarLimiteHora();
+
+  modalFondo.style.display = "flex";
+}
+
+function abrirEditar(key, index, anio, mes, dia){
+  const eventos = obtenerEventos(key);
+  const evento = eventos[index];
+
+  if(!evento){
+    return;
+  }
+
+  const partes = key.split("_");
+  const turnoActual = partes[4];
+
+  modalModo = "editar";
+  modalAnio = anio;
+  modalMes = mes;
+  modalDia = dia;
+  modalKey = key;
+  modalIndex = index;
+
+  tituloModal.textContent = "Editar actividad";
+  modalTurno.value = turnoActual;
+  modalHora.value = evento.hora || "";
+  modalNombre.value = evento.nombre || "";
+  actualizarLimiteHora();
+
+  modalFondo.style.display = "flex";
+}
+
+function cerrarModal(){
+  modalFondo.style.display = "none";
+}
+
+function actualizarLimiteHora(){
+  const turno = modalTurno.value;
+  modalHora.min = limitesHora[turno].min;
+  modalHora.max = limitesHora[turno].max;
+
+  if(modalHora.value){
+    if(modalHora.value < modalHora.min || modalHora.value > modalHora.max){
+      modalHora.value = "";
+    }
+  }
+}
+
+function guardarDesdeModal(){
+  const turno = modalTurno.value;
+  const hora = modalHora.value;
+  const nombre = modalNombre.value.trim();
+
+  if(!nombre){
+    alert("Escriba el nombre de la actividad.");
+    return;
+  }
+
+  if(!hora){
+    alert("Seleccione una hora.");
+    return;
+  }
+
+  if(hora < limitesHora[turno].min || hora > limitesHora[turno].max){
+    alert("La hora seleccionada no corresponde al turno elegido.");
+    return;
+  }
+
+  if(modalModo === "agregar"){
+    const key = keyDia(modalAnio, modalMes, modalDia, turno);
+    const eventos = obtenerEventos(key);
+
+    eventos.push({
+      hora: hora,
+      nombre: nombre
+    });
+
+    datosFirebase[key] = eventos;
+
+    database.ref("actividades/" + key).set(eventos).then(() => {
+      cerrarModal();
+      generarCalendario();
+    });
+  }
+
+  if(modalModo === "editar"){
+    const keyNueva = keyDia(modalAnio, modalMes, modalDia, turno);
+    const eventosViejos = obtenerEventos(modalKey);
+
+    if(!eventosViejos[modalIndex]){
+      cerrarModal();
       return;
     }
 
-    const contenido = fila.innerText.toLowerCase();
+    eventosViejos.splice(modalIndex, 1);
 
-    if(contenido.includes(texto)){
-      fila.classList.remove("oculto");
-    }else{
-      fila.classList.add("oculto");
-    }
+    const eventosNuevos = obtenerEventos(keyNueva);
+    eventosNuevos.push({
+      hora: hora,
+      nombre: nombre
+    });
+
+    datosFirebase[modalKey] = eventosViejos;
+    datosFirebase[keyNueva] = eventosNuevos;
+
+    Promise.all([
+      database.ref("actividades/" + modalKey).set(eventosViejos),
+      database.ref("actividades/" + keyNueva).set(eventosNuevos)
+    ]).then(() => {
+      cerrarModal();
+      generarCalendario();
+    });
+  }
+}
+
+function opcionesEvento(key, index, anio, mes, dia){
+  const opcion = prompt("Escriba:\n1 para editar\n2 para quitar");
+
+  if(opcion === "1"){
+    abrirEditar(key, index, anio, mes, dia);
+  }
+
+  if(opcion === "2"){
+    eliminarEvento(key, index);
+  }
+}
+
+function eliminarEvento(key, index){
+  if(!confirm("¿Quitar esta actividad?")){
+    return;
+  }
+
+  const eventos = obtenerEventos(key);
+  eventos.splice(index, 1);
+  datosFirebase[key] = eventos;
+
+  database.ref("actividades/" + key).set(eventos).then(() => {
+    generarCalendario();
   });
+}
 
-  generarVistaGrafica();
+function alternarAnteriores(){
+  mostrarAnteriores = !mostrarAnteriores;
+  btnAnteriores.textContent = mostrarAnteriores ? "Ocultar días anteriores" : "Ver días anteriores";
+  generarCalendario();
+}
+
+function generarReporte(){
+  const desde = document.getElementById("fechaDesde").value;
+  const hasta = document.getElementById("fechaHasta").value;
+  const reporte = document.getElementById("reporte");
+
+  if(!desde || !hasta){
+    alert("Seleccione fecha desde y fecha hasta.");
+    return;
+  }
+
+  if(desde > hasta){
+    alert("La fecha desde no puede ser posterior a la fecha hasta.");
+    return;
+  }
+
+  let fechaActual = new Date(desde + "T00:00:00");
+  const fechaFinal = new Date(hasta + "T00:00:00");
+
+  let items = [];
+
+  while(fechaActual <= fechaFinal){
+    const anio = fechaActual.getFullYear();
+    const mes = fechaActual.getMonth();
+    const dia = fechaActual.getDate();
+
+    let eventosDia = [];
+
+    turnos.forEach(turno => {
+      const key = keyDia(anio, mes, dia, turno);
+      const eventos = obtenerEventos(key);
+
+      eventos.forEach(ev => {
+        if((ev.nombre || "").trim() !== "" || (ev.hora || "").trim() !== ""){
+          eventosDia.push({
+            turno,
+            hora: ev.hora || "",
+            nombre: ev.nombre || ""
+          });
+        }
+      });
+    });
+
+    eventosDia.sort(ordenarEventos);
+
+    eventosDia.forEach(ev => {
+      items.push({
+        fecha: `${dia}/${mes + 1}/${anio}`,
+        turno: ev.turno,
+        hora: ev.hora || "Sin hora",
+        nombre: ev.nombre || "Sin nombre"
+      });
+    });
+
+    fechaActual.setDate(fechaActual.getDate() + 1);
+  }
+
+  let html = `
+    <h2>Reporte de actividades</h2>
+    <p><strong>Desde:</strong> ${formatearFechaInput(desde)} &nbsp; 
+    <strong>Hasta:</strong> ${formatearFechaInput(hasta)}</p>
+  `;
+
+  if(items.length === 0){
+    html += `<p>No hay actividades cargadas en el rango seleccionado.</p>`;
+  }else{
+    items.forEach(item => {
+      html += `
+        <div class="reporte-item">
+          <div class="reporte-fecha">${escapeHtml(item.fecha)}</div>
+          <div><strong>Turno:</strong> ${escapeHtml(item.turno)}</div>
+          <div><strong>Hora:</strong> ${escapeHtml(item.hora)}</div>
+          <div><strong>Actividad:</strong> ${escapeHtml(item.nombre)}</div>
+        </div>
+      `;
+    });
+  }
+
+  reporte.innerHTML = html;
+  reporte.style.display = "block";
+  reporte.scrollIntoView({behavior:"smooth"});
+}
+
+function formatearFechaInput(fecha){
+  const partes = fecha.split("-");
+  return `${partes[2]}/${partes[1]}/${partes[0]}`;
 }
 
 function escapeHtml(text){
