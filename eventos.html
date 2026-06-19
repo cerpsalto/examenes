@@ -122,12 +122,24 @@ td{
 }
 
 .col-fecha{
-  width:150px;
+  width:170px;
   font-weight:800;
-  text-align:center;
+  text-align:left;
   background:#fbfdff;
   white-space:nowrap;
   font-size:16px;
+}
+
+.fecha-con-logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.logo-dia{
+  width:26px;
+  height:26px;
+  object-fit:contain;
 }
 
 .fila-hoy{
@@ -145,7 +157,7 @@ td{
 
 .evento{
   display:grid;
-  grid-template-columns:150px 110px 1fr auto;
+  grid-template-columns:190px 110px 1fr auto;
   gap:8px;
   margin-bottom:8px;
   align-items:center;
@@ -203,6 +215,9 @@ td{
   font-weight:900;
   color:#004466;
   margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
 .evento-card{
@@ -241,17 +256,11 @@ td{
 
 @media(max-width:700px){
 
-  body{
-    padding:6px;
-  }
+  body{padding:6px}
 
-  .wrap{
-    border-radius:12px;
-  }
+  .wrap{border-radius:12px}
 
-  .top{
-    padding:12px;
-  }
+  .top{padding:12px}
 
   .title{
     font-size:20px;
@@ -292,6 +301,11 @@ td{
     font-size:24px;
   }
 
+  .logo-dia{
+    width:30px;
+    height:30px;
+  }
+
   .evento-card{
     padding:12px;
   }
@@ -323,7 +337,6 @@ td{
 
   .col-fecha{
     width:100%;
-    text-align:left;
     font-size:22px;
     background:#e9f7ff;
   }
@@ -407,6 +420,12 @@ const nombresMes = [
 
 const turnos = ["Matutino", "Vespertino", "Nocturno"];
 
+const rangosTurnos = {
+  "Matutino": "07 a 14",
+  "Vespertino": "12 a 20",
+  "Nocturno": "18 a 23"
+};
+
 const ordenTurnos = {
   "Matutino": 1,
   "Vespertino": 2,
@@ -443,6 +462,19 @@ for(let i=0;i<12;i++){
 
 mesSelect.value = hoyMes;
 anioInput.value = hoyAnio;
+
+function mostrarFecha(dia, mes, anio){
+  return `
+    <span class="fecha-con-logo">
+      <img src="dia.png" class="logo-dia" alt="Día">
+      <span>${dia}/${mes + 1}/${anio}</span>
+    </span>
+  `;
+}
+
+function textoTurno(turno){
+  return `${turno} (${rangosTurnos[turno]})`;
+}
 
 function keyDia(anio, mes, dia, turno){
   return `calendario_${anio}_${mes + 1}_${dia}_${turno}`;
@@ -531,7 +563,7 @@ function generarCalendario(){
 
     html += `
       <tr id="${esHoy ? "filaHoy" : ""}" class="${esHoy ? "fila-hoy" : ""}" data-dia="${dia}">
-        <td class="col-fecha">${dia}/${mes + 1}/${anio}</td>
+        <td class="col-fecha">${mostrarFecha(dia, mes, anio)}</td>
         <td>
           <div class="caja-eventos">
     `;
@@ -564,7 +596,7 @@ function crearEventoHTML(anio, mes, dia, key, index, turno, hora = "", nombre = 
     <div class="evento">
       <select onchange="moverTurno('${key}', ${index}, ${anio}, ${mes}, ${dia}, this.value)">
         ${turnos.map(t => `
-          <option value="${t}" ${t === turno ? "selected" : ""}>${t}</option>
+          <option value="${t}" ${t === turno ? "selected" : ""}>${textoTurno(t)}</option>
         `).join("")}
       </select>
 
@@ -728,7 +760,10 @@ function generarVistaGrafica(){
 
     html += `
       <div class="dia-card ${esHoy ? "hoy-card" : ""}">
-        <div class="dia-numero">${dia}/${mes + 1}/${anio}</div>
+        <div class="dia-numero">
+          <img src="dia.png" class="logo-dia" alt="Día">
+          <span>${dia}/${mes + 1}/${anio}</span>
+        </div>
     `;
 
     if(eventosDia.length === 0){
@@ -737,7 +772,7 @@ function generarVistaGrafica(){
       eventosDia.forEach(ev => {
         html += `
           <div class="evento-card">
-            <div class="evento-turno">${escapeHtml(ev.turno)}</div>
+            <div class="evento-turno">${escapeHtml(textoTurno(ev.turno))}</div>
             <div class="evento-hora-grande">${escapeHtml(ev.hora || "Sin hora")}</div>
             <div class="evento-nombre">${escapeHtml(ev.nombre || "Sin nombre")}</div>
           </div>
