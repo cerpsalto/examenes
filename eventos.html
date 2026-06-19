@@ -207,20 +207,29 @@ select,input{
   margin:24px 0;
 }
 
-.panel-reporte{
-  display:none;
-  padding:12px 16px;
-  background:#f1fbff;
-  border-bottom:2px solid #cdefff;
+.bloque-boton-reporte{
+  margin-top:22px;
+  text-align:center;
 }
 
-.panel-reporte .controls{
-  justify-content:center;
+.boton-reporte{
+  font-size:18px;
+  padding:12px 24px;
+}
+
+.panel-reporte{
+  display:none;
+  margin-top:14px;
+  padding:14px;
+  background:#f1fbff;
+  border:2px solid #cdefff;
+  border-radius:14px;
 }
 
 .reporte{
   display:none;
   padding:16px;
+  margin-top:14px;
   border-top:2px solid #cdefff;
 }
 
@@ -388,29 +397,33 @@ select,input{
       <button class="btn" onclick="alternarAnteriores()" id="btnAnteriores">Ver días anteriores</button>
 
       <input type="text" id="buscador" placeholder="Buscar actividad..." oninput="generarCalendario()">
-
-      <button class="btn btn-green" onclick="mostrarPanelReporte()">Generar reporte</button>
-    </div>
-  </div>
-
-  <div class="panel-reporte" id="panelReporte">
-    <div class="controls">
-      <label>Desde:</label>
-      <input type="date" id="fechaDesde">
-
-      <label>Hasta:</label>
-      <input type="date" id="fechaHasta">
-
-      <button class="btn btn-green" onclick="generarReporte()">Ver reporte</button>
-      <button class="btn btn-red" onclick="cerrarReporte()">Cerrar</button>
     </div>
   </div>
 
   <div class="vista-grafica">
     <div class="grid-calendario" id="gridCalendario"></div>
-  </div>
 
-  <div class="reporte" id="reporte"></div>
+    <div class="bloque-boton-reporte">
+      <button class="btn btn-green boton-reporte" onclick="mostrarPanelReporte()">
+        Generar reporte
+      </button>
+    </div>
+
+    <div class="panel-reporte" id="panelReporte">
+      <div class="controls">
+        <label>Desde:</label>
+        <input type="date" id="fechaDesde">
+
+        <label>Hasta:</label>
+        <input type="date" id="fechaHasta">
+
+        <button class="btn btn-green" onclick="generarReporte()">Ver reporte</button>
+        <button class="btn btn-red" onclick="cerrarReporte()">Cerrar</button>
+      </div>
+    </div>
+
+    <div class="reporte" id="reporte"></div>
+  </div>
 
 </div>
 
