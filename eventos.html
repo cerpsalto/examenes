@@ -180,6 +180,13 @@ select,input{
   margin:3px 0;
 }
 
+.evento-duracion{
+  font-size:13px;
+  font-weight:700;
+  color:#005f7f;
+  margin-bottom:4px;
+}
+
 .evento-nombre{
   font-size:14px;
   font-weight:700;
@@ -354,6 +361,10 @@ select,input{
     font-size:17px;
   }
 
+  .evento-duracion{
+    font-size:15px;
+  }
+
   .btn-small,
   .btn-minus{
     padding:11px 14px;
@@ -438,8 +449,11 @@ select,input{
       <option value="Nocturno">Nocturno</option>
     </select>
 
-    <label>Hora</label>
+    <label>Hora de inicio</label>
     <input type="time" id="modalHora">
+
+    <label>Duración de la actividad</label>
+    <input type="time" id="modalDuracion" value="01:00">
 
     <label>Actividad</label>
     <input type="text" id="modalNombre" placeholder="Nombre de la actividad">
@@ -498,6 +512,7 @@ const modalFondo = document.getElementById("modalFondo");
 const tituloModal = document.getElementById("tituloModal");
 const modalTurno = document.getElementById("modalTurno");
 const modalHora = document.getElementById("modalHora");
+const modalDuracion = document.getElementById("modalDuracion");
 const modalNombre = document.getElementById("modalNombre");
 
 let datosFirebase = {};
@@ -582,6 +597,7 @@ function generarCalendario(){
             index,
             turno,
             hora: ev.hora || "",
+            duracion: ev.duracion || "01:00",
             nombre: ev.nombre || ""
           });
         }
@@ -596,6 +612,7 @@ function generarCalendario(){
       eventosFiltrados = eventosDia.filter(ev =>
         ev.nombre.toLowerCase().includes(textoBusqueda) ||
         ev.hora.toLowerCase().includes(textoBusqueda) ||
+        ev.duracion.toLowerCase().includes(textoBusqueda) ||
         ev.turno.toLowerCase().includes(textoBusqueda)
       );
 
@@ -629,6 +646,7 @@ function generarCalendario(){
             </div>
 
             <div class="evento-hora-grande">${escapeHtml(ev.hora || "Sin hora")}</div>
+            <div class="evento-duracion">Duración: ${escapeHtml(ev.duracion || "01:00")} hs</div>
             <div class="evento-nombre">${escapeHtml(ev.nombre || "Sin nombre")}</div>
 
             <div class="acciones-evento" id="${idAcciones}">
@@ -664,6 +682,7 @@ function abrirAgregar(anio, mes, dia){
   tituloModal.textContent = "Agregar actividad";
   modalTurno.value = "Matutino";
   modalHora.value = "";
+  modalDuracion.value = "01:00";
   modalNombre.value = "";
   actualizarLimiteHora();
 
@@ -691,6 +710,7 @@ function abrirEditar(key, index, anio, mes, dia){
   tituloModal.textContent = "Editar actividad";
   modalTurno.value = turnoActual;
   modalHora.value = evento.hora || "";
+  modalDuracion.value = evento.duracion || "01:00";
   modalNombre.value = evento.nombre || "";
   actualizarLimiteHora();
 
@@ -716,6 +736,7 @@ function actualizarLimiteHora(){
 function guardarDesdeModal(){
   const turno = modalTurno.value;
   const hora = modalHora.value;
+  const duracion = modalDuracion.value;
   const nombre = modalNombre.value.trim();
 
   if(!nombre){
@@ -724,7 +745,17 @@ function guardarDesdeModal(){
   }
 
   if(!hora){
-    alert("Seleccione una hora.");
+    alert("Seleccione una hora de inicio.");
+    return;
+  }
+
+  if(!duracion){
+    alert("Ingrese la duración de la actividad.");
+    return;
+  }
+
+  if(duracion === "00:00"){
+    alert("La duración no puede ser 00:00.");
     return;
   }
 
@@ -737,7 +768,12 @@ function guardarDesdeModal(){
     const key = keyDia(modalAnio, modalMes, modalDia, turno);
     const eventos = obtenerEventos(key);
 
-    eventos.push({hora, nombre});
+    eventos.push({
+      hora,
+      duracion,
+      nombre
+    });
+
     datosFirebase[key] = eventos;
 
     database.ref("actividades/" + key).set(eventos).then(() => {
@@ -758,7 +794,12 @@ function guardarDesdeModal(){
     eventosViejos.splice(modalIndex, 1);
 
     const eventosNuevos = obtenerEventos(keyNueva);
-    eventosNuevos.push({hora, nombre});
+
+    eventosNuevos.push({
+      hora,
+      duracion,
+      nombre
+    });
 
     datosFirebase[modalKey] = eventosViejos;
     datosFirebase[keyNueva] = eventosNuevos;
@@ -839,6 +880,7 @@ function generarReporte(){
           eventosDia.push({
             turno,
             hora: ev.hora || "",
+            duracion: ev.duracion || "01:00",
             nombre: ev.nombre || ""
           });
         }
@@ -852,6 +894,7 @@ function generarReporte(){
         fecha: `${dia}/${mes + 1}/${anio}`,
         turno: ev.turno,
         hora: ev.hora || "Sin hora",
+        duracion: ev.duracion || "01:00",
         nombre: ev.nombre || "Sin nombre"
       });
     });
@@ -873,7 +916,8 @@ function generarReporte(){
         <div class="reporte-item">
           <div class="reporte-fecha">${escapeHtml(item.fecha)}</div>
           <div><strong>Turno:</strong> ${escapeHtml(item.turno)}</div>
-          <div><strong>Hora:</strong> ${escapeHtml(item.hora)}</div>
+          <div><strong>Hora de inicio:</strong> ${escapeHtml(item.hora)}</div>
+          <div><strong>Duración:</strong> ${escapeHtml(item.duracion)} hs</div>
           <div><strong>Actividad:</strong> ${escapeHtml(item.nombre)}</div>
         </div>
       `;
