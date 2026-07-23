@@ -1,1 +1,12 @@
-[]
+{
+  "horarios_salones_Salón_1_Lunes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "robótica",
+      "docente": "eduardo cantos",
+      "especialidad": "informática",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    }
+  ]
+}
