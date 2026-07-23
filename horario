@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Consulta de Horarios por Especialidad - CFE / ANEP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+*{
+  box-sizing: border-box;
+  user-select: none; /* Evita selección de texto para uso táctil */
+}
+
+body{
+  margin: 0;
+  padding: 15px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f4f7f9;
+  color: #000;
+}
+
+.contenedor-principal{
+  max-width: 1300px;
+  margin: 0 auto;
+  background: white;
+  border: 2px solid #000;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* ENCABEZADO INSTITUCIONAL */
+.encabezado-anep{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.logo-sec{
+  font-weight: bold;
+  font-size: 14px;
+  color: #005596;
+}
+
+.titulos-institucion{
+  text-align: center;
+  flex: 1;
+}
+
+.titulos-institucion h1{
+  margin: 0;
+  font-size: 18px;
+  color: #003366;
+  text-transform: uppercase;
+}
+
+.titulos-institucion h2{
+  margin: 4px 0 0 0;
+  font-size: 15px;
+  color: #d90000;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+/* MENÚ DESPLEGABLE TÁCTIL (SIN TECLADO) */
+.panel-seleccion{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background-color: #e6f0fa;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #b8d4f0;
+  margin-bottom: 15px;
+}
+
+.panel-seleccion label{
+  font-weight: bold;
+  font-size: 16px;
+  color: #003366;
+}
+
+.panel-seleccion select{
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: 2px solid #005596;
+  background-color: white;
+  color: #003366;
+  cursor: pointer;
+  outline: none;
+}
+
+/* TABLA DE HORARIOS FORMATO ANEP */
+.contenedor-tabla{
+  overflow-x: auto;
+}
+
+table.tabla-horarios{
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid #000;
+  background-color: white;
+  text-align: center;
+}
+
+table.tabla-horarios th,
+table.tabla-horarios td{
+  border: 1px solid #000;
+  padding: 6px 4px;
+  vertical-align: middle;
+}
+
+table.tabla-horarios th{
+  background-color: #e6f2ff;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+table.tabla-horarios th.col-horario{
+  width: 110px;
+}
+
+.celda-hora{
+  font-weight: bold;
+  font-size: 13px;
+  background-color: #f9f9f9;
+  white-space: nowrap;
+}
+
+.celda-clase{
+  font-size: 12px;
+  height: 65px;
+}
+
+.materia-nombre{
+  font-weight: bold;
+  color: #000;
+  display: block;
+  margin-bottom: 3px;
+  font-size: 13px;
+}
+
+.docente-nombre{
+  font-style: italic;
+  color: #222;
+  display: block;
+}
+
+.salon-tag{
+  display: inline-block;
+  background-color: #d90000;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-top: 3px;
+}
+
+.sin-clase{
+  color: #ccc;
+}
+
+.mensaje-estado{
+  text-align: center;
+  padding: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #003366;
+}
+
+@media print {
+  .panel-seleccion{ display: none; }
+  body{ padding: 0; background: white; }
+  .contenedor-principal{ border: none; box-shadow: none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor-principal">
+
+  <!-- ENCABEZADO ESTILO ANEP / CFE -->
+  <div class="encabezado-anep">
+    <div class="logo-sec">
+      ANEP | CFE<br>
+      <small style="font-weight:normal; color:#555;">CeRP del Litoral - Salto</small>
+    </div>
+    <div class="titulos-institucion">
+      <h1 id="tituloEncabezado">SELECCIONE ESPECIALIDAD Y AÑO</h1>
+      <h2 id="subtituloSalon">HORARIOS DE CLASE</h2>
+    </div>
+  </div>
+
+  <!-- SELECCIÓN TÁCTIL SIN TECLADO -->
+  <div class="panel-seleccion">
+    <label for="selectEspecialidad">Especialidad:</label>
+    <select id="selectEspecialidad" onchange="alCambiarEspecialidad()">
+      <option value="">-- Cargar especialidades... --</option>
+    </select>
+
+    <label for="selectAnio">Año:</label>
+    <select id="selectAnio" onchange="renderizarTablaHorarios()">
+      <option value="">-- Seleccione Año --</option>
+      <option value="Primero">Primero (1°)</option>
+      <option value="Segundo">Segundo (2°)</option>
+      <option value="Tercero">Tercero (3°)</option>
+      <option value="Cuarto">Cuarto (4°)</option>
+    </select>
+  </div>
+
+  <!-- TABLA DE RESULTADOS -->
+  <div class="contenedor-tabla">
+    <div id="mensajeEstado" class="mensaje-estado">Cargando información del servidor...</div>
+    <table class="tabla-horarios" id="tablaHorarios" style="display:none;">
+      <thead>
+        <tr>
+          <th class="col-horario">HORARIO</th>
+          <th>LUNES</th>
+          <th>MARTES</th>
+          <th>MIÉRCOLES</th>
+          <th>JUEVES</th>
+          <th>VIERNES</th>
+          <th>SÁBADO</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpoTabla"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+// URL del archivo JSON externo
+const JSON_URL = "https://cerpsalto.github.io/examenes/salones.json";
+
+// Mapeo de años para títulos abreviados
+const mapaAnios = {
+  "Primero": "PRIMER AÑO",
+  "Segundo": "SEGUNDO AÑO",
+  "Tercero": "TERCER AÑO",
+  "Cuarto": "CUARTO AÑO"
+};
+
+const diasSemana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+
+// Lista fija de bloques horarios de la institución
+const bloquesHorarios = [
+  { inicio: "07:10", fin: "07:55" },
+  { inicio: "07:55", fin: "08:40" },
+  { inicio: "08:50", fin: "09:35" },
+  { inicio: "09:35", fin: "10:20" },
+  { inicio: "10:30", fin: "11:15" },
+  { inicio: "11:15", fin: "12:00" },
+  { inicio: "12:10", fin: "12:55" },
+  { inicio: "12:55", fin: "13:40" },
+  { inicio: "13:50", fin: "14:35" },
+  { inicio: "14:35", fin: "15:20" },
+  { inicio: "15:30", fin: "16:15" },
+  { inicio: "16:15", fin: "17:00" },
+  { inicio: "17:10", fin: "17:55" },
+  { inicio: "17:55", fin: "18:40" },
+  { inicio: "18:45", fin: "19:30" },
+  { inicio: "19:30", fin: "20:15" },
+  { inicio: "20:25", fin: "21:10" },
+  { inicio: "21:10", fin: "21:55" },
+  { inicio: "22:05", fin: "22:50" }
+];
+
+let datosBase = {};
+let especialidadesDisponibles = new Set();
+
+// Elementos DOM
+const selectEspecialidad = document.getElementById("selectEspecialidad");
+const selectAnio = document.getElementById("selectAnio");
+const tituloEncabezado = document.getElementById("tituloEncabezado");
+const subtituloSalon = document.getElementById("subtituloSalon");
+const tablaHorarios = document.getElementById("tablaHorarios");
+const cuerpoTabla = document.getElementById("cuerpoTabla");
+const mensajeEstado = document.getElementById("mensajeEstado");
+
+// Cargar datos al iniciar
+window.addEventListener("DOMContentLoaded", cargarDatosJSON);
+
+function cargarDatosJSON(){
+  fetch(JSON_URL)
+    .then(respuesta => {
+      if(!respuesta.ok) throw new Error("No se pudo obtener el archivo JSON");
+      return respuesta.json();
+    })
+    .then(data => {
+      datosBase = data;
+      extraerEspecialidades();
+      poblarDesplegableEspecialidades();
+      mensajeEstado.textContent = "Por favor, seleccione Especialidad y Año en el menú superior.";
+    })
+    .catch(error => {
+      console.error(error);
+      mensajeEstado.textContent = "Error al cargar la base de datos de salones.";
+    });
+}
+
+// Escanea todo el JSON para extraer únicamente las especialidades existentes
+function extraerEspecialidades(){
+  especialidadesDisponibles.clear();
+
+  Object.keys(datosBase).forEach(clave => {
+    const listaEventos = datosBase[clave];
+    if(Array.isArray(listaEventos)){
+      listaEventos.forEach(ev => {
+        if(ev.especialidad && ev.especialidad.trim() !== ""){
+          especialidadesDisponibles.add(ev.especialidad.trim());
+        }
+      });
+    }
+  });
+}
+
+function poblarDesplegableEspecialidades(){
+  selectEspecialidad.innerHTML = `<option value="">-- Seleccione Especialidad --</option>`;
+  
+  const ordenadas = Array.from(especialidadesDisponibles).sort();
+  ordenadas.forEach(esp => {
+    const op = document.createElement("option");
+    op.value = esp;
+    op.textContent = esp.toUpperCase();
+    selectEspecialidad.appendChild(op);
+  });
+}
+
+function alCambiarEspecialidad(){
+  renderizarTablaHorarios();
+}
+
+function renderizarTablaHorarios(){
+  const espSel = selectEspecialidad.value;
+  const anioSel = selectAnio.value;
+
+  if(!espSel || !anioSel){
+    tablaHorarios.style.display = "none";
+    mensajeEstado.style.display = "block";
+    mensajeEstado.textContent = "Seleccione Especialidad y Año para visualizar la grilla.";
+    tituloEncabezado.textContent = "SELECCIONE ESPECIALIDAD Y AÑO";
+    subtituloSalon.textContent = "HORARIOS DE CLASE";
+    return;
+  }
+
+  // Actualizar Títulos de Cabecera al estilo ANEP
+  const textoAnio = mapaAnios[anioSel] || anioSel.toUpperCase();
+  tituloEncabezado.textContent = `${textoAnio} - ESPECIALIDAD ${espSel.toUpperCase()}`;
+  
+  // Extraer todas las clases asignadas a esta combinación
+  const matrizHorarios = estructurarDatosGrilla(espSel, anioSel);
+
+  // Construir filas HTML de la tabla
+  let htmlFilas = "";
+  let hayAlMenosUnaClase = false;
+
+  bloquesHorarios.forEach(bloque => {
+    let filaTieneContenido = false;
+    let celdasFilaHTML = "";
+
+    diasSemana.forEach(dia => {
+      const clasesEnBloque = matrizHorarios[dia][bloque.inicio] || [];
+
+      if(clasesEnBloque.length > 0){
+        filaTieneContenido = true;
+        hayAlMenosUnaClase = true;
+
+        let contenidoCelda = "";
+        clasesEnBloque.forEach(c => {
+          contenidoCelda += `
+            <div style="margin-bottom: 4px;">
+              <span class="materia-nombre">${escapeHtml(c.asignatura)}</span>
+              <span class="docente-nombre">${escapeHtml(c.docente)}</span>
+              <span class="salon-tag">${escapeHtml(c.salon)}</span>
+            </div>
+          `;
+        });
+
+        celdasFilaHTML += `<td class="celda-clase">${contenidoCelda}</td>`;
+      } else {
+        celdasFilaHTML += `<td class="celda-clase sin-clase">---</td>`;
+      }
+    });
+
+    // Solo renderizar filas que tengan al menos una clase o dentro de la franja horaria ocupada
+    if(filaTieneContenido || hayAlMenosUnaClase){
+      htmlFilas += `
+        <tr>
+          <td class="celda-hora">${bloque.inicio} a ${bloque.fin}</td>
+          ${celdasFilaHTML}
+        </tr>
+      `;
+    }
+  });
+
+  if(!hayAlMenosUnaClase){
+    tablaHorarios.style.display = "none";
+    mensajeEstado.style.display = "block";
+    mensajeEstado.textContent = `No hay clases registradas para ${textoAnio} de ${espSel}.`;
+    return;
+  }
+
+  cuerpoTabla.innerHTML = htmlFilas;
+  mensajeEstado.style.display = "none";
+  tablaHorarios.style.display = "table";
+}
+
+// Organiza el JSON plano en una estructura cruzada por [Día][HoraInicio]
+function estructurarDatosGrilla(especialidadBuscada, anioBuscado){
+  const estructura = {};
+  diasSemana.forEach(d => estructura[d] = {});
+
+  Object.keys(datosBase).forEach(key => {
+    // Las keys tienen el formato: horarios_salones_Salón_1_Lunes
+    const partes = key.split("_");
+    const diaEnKey = partes[partes.length - 1];
+
+    if(diasSemana.includes(diaEnKey)){
+      const nombreSalon = extraerNombreSalonDesdeKey(key);
+      const eventos = datosBase[key];
+
+      if(Array.isArray(eventos)){
+        eventos.forEach(ev => {
+          const coincideEsp = (ev.especialidad || "").trim().toLowerCase() === especialidadBuscada.trim().toLowerCase();
+          const coincideAnio = (ev.anio || "").trim().toLowerCase() === anioBuscado.trim().toLowerCase();
+
+          if(coincideEsp && coincideAnio){
+            if(!estructura[diaEnKey][ev.horaInicio]){
+              estructura[diaEnKey][ev.horaInicio] = [];
+            }
+            estructura[diaEnKey][ev.horaInicio].push({
+              asignatura: ev.asignatura,
+              docente: ev.docente,
+              salon: nombreSalon
+            });
+          }
+        });
+      }
+    }
+  });
+
+  return estructura;
+}
+
+function extraerNombreSalonDesdeKey(key){
+  // Ejemplo: "horarios_salones_Salón_20_Lunes" -> "Salón 20"
+  let limpia = key.replace("horarios_salones_", "");
+  const ultimoGuion = limpia.lastIndexOf("_");
+  if(ultimoGuion !== -1){
+    limpia = limpia.substring(0, ultimoGuion);
+  }
+  return limpia.replace(/_/g, " ");
+}
+
+function escapeHtml(text){
+  return String(text || "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;");
+}
+</script>
+
+</body>
+</html>
