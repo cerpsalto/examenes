@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Gestión de Horarios y Salones</title>
+<title>Gestión de Horarios por Salón</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -36,12 +36,6 @@ body{
   justify-content:center;
   gap:12px;
   margin-bottom:12px;
-}
-
-.logo-principal{
-  width:42px;
-  height:42px;
-  object-fit:contain;
 }
 
 .title{
@@ -151,7 +145,7 @@ select,input{
 }
 
 .evento-hora{
-  font-size:14px;
+  font-size:13px;
   font-weight:900;
   color:#007faa;
 }
@@ -253,7 +247,6 @@ select,input{
 
   <div class="top">
     <div class="encabezado">
-      <img src="dia.png" class="logo-principal" alt="Logo" onerror="this.style.display='none'">
       <div class="title">Gestión de Horarios por Salón</div>
     </div>
 
@@ -268,7 +261,22 @@ select,input{
         <option value="Sábado">Sábado</option>
       </select>
 
-      <input type="text" id="buscador" placeholder="Buscar docente, asignatura, especialidad, grado..." oninput="generarVistaSalones()" style="width: 350px;">
+      <label>Buscar por:</label>
+      <select id="tipoBusqueda" onchange="cambiarTipoBusqueda()">
+        <option value="asignatura">Asignatura</option>
+        <option value="docente">Docente</option>
+        <option value="especialidad">Especialidad</option>
+      </select>
+
+      <select id="selectAnio" onchange="generarVistaSalones()" style="display:none;">
+        <option value="">Todos los años</option>
+        <option value="Primero">Primero</option>
+        <option value="Segundo">Segundo</option>
+        <option value="Tercero">Tercero</option>
+        <option value="Cuarto">Cuarto</option>
+      </select>
+
+      <input type="text" id="buscador" placeholder="Buscar asignatura..." oninput="generarVistaSalones()" style="width: 250px;">
     </div>
   </div>
 
@@ -283,20 +291,28 @@ select,input{
   <div class="modal">
     <h2 id="tituloModal">Asignar Salón</h2>
 
-    <label>Horario</label>
-    <select id="modalBloqueHora"></select>
+    <label>Horario Inicio</label>
+    <select id="modalHoraInicio"></select>
+
+    <label>Horario Fin</label>
+    <select id="modalHoraFin"></select>
 
     <label>Docente</label>
-    <input type="text" id="modalDocente" placeholder="Nombre del docente">
+    <input type="text" id="modalDocente">
 
     <label>Asignatura</label>
-    <input type="text" id="modalAsignatura" placeholder="Nombre de la asignatura">
+    <input type="text" id="modalAsignatura">
 
     <label>Especialidad</label>
-    <input type="text" id="modalEspecialidad" placeholder="Ej: Informática, Electromecánica...">
+    <input type="text" id="modalEspecialidad">
 
-    <label>Grado / Grupo</label>
-    <input type="text" id="modalGrado" placeholder="Ej: 1° EMT, 3° BA, etc.">
+    <label>Año</label>
+    <select id="modalAnio">
+      <option value="Primero">Primero</option>
+      <option value="Segundo">Segundo</option>
+      <option value="Tercero">Tercero</option>
+      <option value="Cuarto">Cuarto</option>
+    </select>
 
     <div class="modal-actions">
       <button class="btn btn-green" onclick="guardarDesdeModal()">Guardar</button>
@@ -323,47 +339,41 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-// Bloques horarios extraídos fielmente de la imagen
-const bloquesHorarios = [
-  "07:10 a 07:55",
-  "07:55 a 08:40",
-  "08:50 a 09:35",
-  "09:35 a 10:20",
-  "10:30 a 11:15",
-  "11:15 a 12:00",
-  "12:10 a 12:55",
-  "12:55 a 13:40",
-  "13:50 a 14:35",
-  "14:35 a 15:20",
-  "15:30 a 16:15",
-  "16:15 a 17:00",
-  "17:10 a 17:55",
-  "17:55 a 18:40",
-  "18:50 a 19:35",
-  "19:35 a 20:20",
-  "20:25 a 21:10",
-  "21:10 a 21:55",
-  "22:05 a 22:50",
-  "22:50 a 23:35"
+const horasInicio = [
+  "07:10", "07:55", "08:50", "09:35", "10:30", "11:15",
+  "12:10", "12:55", "13:50", "14:35", "15:30", "16:15",
+  "17:10", "17:55", "18:50", "19:35", "20:25", "21:10",
+  "22:05", "22:50"
 ];
 
-// Generar lista completa de salones
-const salones = ["Salón de actos", "Biblioteca"];
+const horasFin = [
+  "07:55", "08:40", "09:35", "10:20", "11:15", "12:00",
+  "12:55", "13:40", "14:35", "15:20", "16:15", "17:00",
+  "17:55", "18:40", "19:35", "20:20", "21:10", "21:55",
+  "22:50", "23:35"
+];
+
+// Salones 1 a 24 y Mediateca
+const salones = [];
 for(let i=1; i<=24; i++){
   salones.push(`Salón ${i}`);
 }
+salones.push("Mediateca");
 
 const diaSemanaSelect = document.getElementById("diaSemana");
+const tipoBusquedaSelect = document.getElementById("tipoBusqueda");
+const selectAnio = document.getElementById("selectAnio");
 const gridSalones = document.getElementById("gridSalones");
 const buscador = document.getElementById("buscador");
 
 const modalFondo = document.getElementById("modalFondo");
 const tituloModal = document.getElementById("tituloModal");
-const modalBloqueHora = document.getElementById("modalBloqueHora");
+const modalHoraInicio = document.getElementById("modalHoraInicio");
+const modalHoraFin = document.getElementById("modalHoraFin");
 const modalDocente = document.getElementById("modalDocente");
 const modalAsignatura = document.getElementById("modalAsignatura");
 const modalEspecialidad = document.getElementById("modalEspecialidad");
-const modalGrado = document.getElementById("modalGrado");
+const modalAnio = document.getElementById("modalAnio");
 
 let datosFirebase = {};
 
@@ -371,16 +381,39 @@ let modalModo = "agregar";
 let modalSalonSeleccionado = null;
 let modalIndex = null;
 
-// Cargar Bloques Horarios en el select del modal
-bloquesHorarios.forEach(bloque => {
+// Cargar selectores de horario
+horasInicio.forEach((h, index) => {
   const op = document.createElement("option");
-  op.value = bloque;
-  op.textContent = bloque;
-  modalBloqueHora.appendChild(op);
+  op.value = h;
+  op.textContent = `${h} a ${horasFin[index]}`;
+  modalHoraInicio.appendChild(op);
 });
 
+horasFin.forEach(h => {
+  const op = document.createElement("option");
+  op.value = h;
+  op.textContent = h;
+  modalHoraFin.appendChild(op);
+});
+
+function cambiarTipoBusqueda(){
+  const tipo = tipoBusquedaSelect.value;
+  if(tipo === "especialidad"){
+    selectAnio.style.display = "inline-block";
+    buscador.placeholder = "Buscar especialidad...";
+  } else {
+    selectAnio.style.display = "none";
+    selectAnio.value = "";
+    if(tipo === "docente"){
+      buscador.placeholder = "Buscar docente...";
+    } else {
+      buscador.placeholder = "Buscar asignatura...";
+    }
+  }
+  generarVistaSalones();
+}
+
 function keySalonDia(salon, dia){
-  // Sanitizar nombre para Firebase key
   const salonClean = salon.replace(/\s+/g, '_');
   return `horarios_salones_${salonClean}_${dia}`;
 }
@@ -396,7 +429,9 @@ database.ref("gestion_salones").on("value", function(snapshot){
 
 function generarVistaSalones(){
   const diaActual = diaSemanaSelect.value;
+  const tipoBusqueda = tipoBusquedaSelect.value;
   const textoBusqueda = buscador.value.toLowerCase().trim();
+  const anioFiltro = selectAnio.value;
 
   let html = "";
 
@@ -404,24 +439,28 @@ function generarVistaSalones(){
     const key = keySalonDia(salon, diaActual);
     const eventos = obtenerEventos(key);
 
-    // Ordenar por hora
-    eventos.sort((a, b) => bloquesHorarios.indexOf(a.horario) - bloquesHorarios.indexOf(b.horario));
+    eventos.sort((a, b) => (a.horaInicio || "").localeCompare(b.horaInicio || ""));
 
     let eventosFiltrados = eventos;
 
-    if(textoBusqueda !== ""){
-      eventosFiltrados = eventos.filter(ev =>
-        (ev.docente || "").toLowerCase().includes(textoBusqueda) ||
-        (ev.asignatura || "").toLowerCase().includes(textoBusqueda) ||
-        (ev.especialidad || "").toLowerCase().includes(textoBusqueda) ||
-        (ev.grado || "").toLowerCase().includes(textoBusqueda) ||
-        (ev.horario || "").toLowerCase().includes(textoBusqueda)
-      );
+    if(tipoBusqueda === "especialidad" && anioFiltro !== ""){
+      eventosFiltrados = eventosFiltrados.filter(ev => (ev.anio || "") === anioFiltro);
+    }
 
-      // Si se busca algo y este salón no coincide en nada, se omite
-      if(eventosFiltrados.length === 0){
-        return;
-      }
+    if(textoBusqueda !== ""){
+      eventosFiltrados = eventosFiltrados.filter(ev => {
+        if(tipoBusqueda === "docente"){
+          return (ev.docente || "").toLowerCase().includes(textoBusqueda);
+        } else if(tipoBusqueda === "especialidad"){
+          return (ev.especialidad || "").toLowerCase().includes(textoBusqueda);
+        } else {
+          return (ev.asignatura || "").toLowerCase().includes(textoBusqueda);
+        }
+      });
+    }
+
+    if((textoBusqueda !== "" || (tipoBusqueda === "especialidad" && anioFiltro !== "")) && eventosFiltrados.length === 0){
+      return;
     }
 
     html += `
@@ -441,13 +480,13 @@ function generarVistaSalones(){
         html += `
           <div class="evento-card">
             <div class="evento-header">
-              <span class="evento-hora">⏰ ${escapeHtml(ev.horario)}</span>
+              <span class="evento-hora">⏰ ${escapeHtml(ev.horaInicio)} a ${escapeHtml(ev.horaFin)}</span>
               <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
             </div>
             <div class="evento-detalle"><strong>Asignatura:</strong> ${escapeHtml(ev.asignatura)}</div>
             <div class="evento-detalle"><strong>Docente:</strong> ${escapeHtml(ev.docente)}</div>
             <div class="evento-detalle"><strong>Especialidad:</strong> ${escapeHtml(ev.especialidad)}</div>
-            <div class="evento-detalle"><strong>Grado:</strong> ${escapeHtml(ev.grado)}</div>
+            <div class="evento-detalle"><strong>Año:</strong> ${escapeHtml(ev.anio)}</div>
 
             <div class="acciones-evento" id="${idAcciones}">
               <button class="btn" onclick="abrirEditar('${salon}', ${idx})">Editar</button>
@@ -461,8 +500,8 @@ function generarVistaSalones(){
     html += `</div>`;
   });
 
-  if(html === "" && textoBusqueda !== ""){
-    html = `<div style="grid-column: 1/-1; text-align: center; color: #004466; font-size: 16px; padding: 20px;">No se encontraron salones ni horarios que coincidan con la búsqueda.</div>`;
+  if(html === "" && (textoBusqueda !== "" || anioFiltro !== "")){
+    html = `<div style="grid-column: 1/-1; text-align: center; color: #004466; font-size: 16px; padding: 20px;">No se encontraron salones ni cursos que coincidan con los filtros seleccionados.</div>`;
   }
 
   gridSalones.innerHTML = html;
@@ -481,11 +520,12 @@ function abrirAgregar(salon){
   modalIndex = null;
 
   tituloModal.textContent = `Asignar a ${salon}`;
-  modalBloqueHora.selectedIndex = 0;
+  modalHoraInicio.selectedIndex = 0;
+  modalHoraFin.selectedIndex = 0;
   modalDocente.value = "";
   modalAsignatura.value = "";
   modalEspecialidad.value = "";
-  modalGrado.value = "";
+  modalAnio.value = "Primero";
 
   modalFondo.style.display = "flex";
 }
@@ -503,11 +543,12 @@ function abrirEditar(salon, index){
   modalIndex = index;
 
   tituloModal.textContent = `Editar asignación en ${salon}`;
-  modalBloqueHora.value = ev.horario || bloquesHorarios[0];
+  modalHoraInicio.value = ev.horaInicio || horasInicio[0];
+  modalHoraFin.value = ev.horaFin || horasFin[0];
   modalDocente.value = ev.docente || "";
   modalAsignatura.value = ev.asignatura || "";
   modalEspecialidad.value = ev.especialidad || "";
-  modalGrado.value = ev.grado || "";
+  modalAnio.value = ev.anio || "Primero";
 
   modalFondo.style.display = "flex";
 }
@@ -518,14 +559,20 @@ function cerrarModal(){
 
 function guardarDesdeModal(){
   const diaActual = diaSemanaSelect.value;
-  const horario = modalBloqueHora.value;
+  const horaInicio = modalHoraInicio.value;
+  const horaFin = modalHoraFin.value;
   const docente = modalDocente.value.trim();
   const asignatura = modalAsignatura.value.trim();
   const especialidad = modalEspecialidad.value.trim();
-  const grado = modalGrado.value.trim();
+  const anio = modalAnio.value;
 
   if(!docente || !asignatura){
-    alert("Por favor complete al menos el Docente y la Asignatura.");
+    alert("Por favor complete los campos requeridos.");
+    return;
+  }
+
+  if(horaInicio >= horaFin){
+    alert("La hora de inicio debe ser anterior a la hora de fin.");
     return;
   }
 
@@ -533,9 +580,9 @@ function guardarDesdeModal(){
   const eventos = obtenerEventos(key);
 
   if(modalModo === "agregar"){
-    eventos.push({ horario, docente, asignatura, especialidad, grado });
+    eventos.push({ horaInicio, horaFin, docente, asignatura, especialidad, anio });
   } else if(modalModo === "editar" && modalIndex !== null){
-    eventos[modalIndex] = { horario, docente, asignatura, especialidad, grado };
+    eventos[modalIndex] = { horaInicio, horaFin, docente, asignatura, especialidad, anio };
   }
 
   datosFirebase[key] = eventos;
