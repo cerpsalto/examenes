@@ -554,9 +554,15 @@ for(let i=0;i<12;i++){
   mesSelect.appendChild(op);
 }
 
-// Inicializar desplegable de salones
+// Inicializar desplegable de salones con la opción "No requiere"
 function cargarSalones(){
   modalSalon.innerHTML = "";
+
+  const opNoRequiere = document.createElement("option");
+  opNoRequiere.value = "No requiere";
+  opNoRequiere.textContent = "No requiere";
+  modalSalon.appendChild(opNoRequiere);
+
   const opActos = document.createElement("option");
   opActos.value = "Salón de actos";
   opActos.textContent = "Salón de actos";
@@ -635,7 +641,7 @@ function generarCalendario(){
             key,
             index,
             turno,
-            salon: ev.salon || "Salón no asignado",
+            salon: ev.salon || "No requiere",
             hora: ev.hora || "",
             duracion: ev.duracion || "01:00",
             nombre: ev.nombre || ""
@@ -678,13 +684,14 @@ function generarCalendario(){
     }else{
       eventosFiltrados.forEach(ev => {
         const idAcciones = `acciones_${anio}_${mes}_${dia}_${ev.turno.replace(/\s+/g, '_')}_${ev.index}`;
+        const textoSalon = ev.salon === "No requiere" ? "No requiere salón" : `📍 ${escapeHtml(ev.salon)}`;
 
         html += `
           <div class="evento-card">
             <div class="evento-header">
               <div>
                 <div class="evento-turno">${escapeHtml(ev.turno)}</div>
-                <div class="evento-salon">📍 ${escapeHtml(ev.salon)}</div>
+                <div class="evento-salon">${textoSalon}</div>
               </div>
               <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
             </div>
@@ -725,7 +732,7 @@ function abrirAgregar(anio, mes, dia){
 
   tituloModal.textContent = "Agregar actividad";
   modalTurno.value = "Matutino";
-  modalSalon.value = "Salón de actos";
+  modalSalon.value = "No requiere";
   modalHora.value = "";
   modalDuracion.value = "01:00";
   modalNombre.value = "";
@@ -754,7 +761,7 @@ function abrirEditar(key, index, anio, mes, dia){
 
   tituloModal.textContent = "Editar actividad";
   modalTurno.value = turnoActual;
-  modalSalon.value = evento.salon || "Salón de actos";
+  modalSalon.value = evento.salon || "No requiere";
   modalHora.value = evento.hora || "";
   modalDuracion.value = evento.duracion || "01:00";
   modalNombre.value = evento.nombre || "";
@@ -772,7 +779,7 @@ function actualizarLimiteHora(){
 
   if (turno === "Toda la jornada") {
     modalHora.value = "07:00";
-    modalDuracion.value = "16:30"; // De 07:00 a 23:30 son 16h 30m
+    modalDuracion.value = "16:30";
     modalHora.disabled = true;
     modalDuracion.disabled = true;
   } else {
@@ -938,7 +945,7 @@ function generarReporte(){
         if((ev.nombre || "").trim() !== "" || (ev.hora || "").trim() !== ""){
           eventosDia.push({
             turno,
-            salon: ev.salon || "Sin salón",
+            salon: ev.salon || "No requiere",
             hora: ev.hora || "",
             duracion: ev.duracion || "01:00",
             nombre: ev.nombre || ""
