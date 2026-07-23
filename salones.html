@@ -99,13 +99,23 @@ select,input{
   font-weight:900;
 }
 
+.btn-eye{
+  border:none;
+  background:#0099cc;
+  color:white;
+  padding:2px 5px;
+  border-radius:4px;
+  cursor:pointer;
+  font-size:11px;
+}
+
 .vista-grafica{
   padding:16px;
 }
 
 .grid-salones{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
   gap:12px;
 }
 
@@ -129,7 +139,7 @@ select,input{
   padding-bottom: 4px;
 }
 
-/* ESTILOS DE VISTA COMPACTA (POR DEFECTO) */
+/* ESTILOS VISTA COMPACTA */
 .evento-card-compacto{
   background:white;
   border-left:4px solid #0099cc;
@@ -161,7 +171,7 @@ select,input{
   white-space:nowrap;
 }
 
-/* ESTILOS DE VISTA DETALLADA (CUANDO SE FILTRA) */
+/* ESTILOS VISTA DETALLADA */
 .evento-card-detallado{
   background:white;
   border-left:5px solid #0099cc;
@@ -267,6 +277,16 @@ select,input{
   flex:1;
 }
 
+.detalles-box{
+  background:#f1fbff;
+  border:1px solid #9ed8ef;
+  border-radius:10px;
+  padding:12px;
+  margin-top:10px;
+  font-size:14px;
+  line-height:1.6;
+}
+
 @media(max-width:700px){
   body{padding:6px}
   .controls{flex-direction:column; align-items:stretch;}
@@ -304,13 +324,15 @@ select,input{
 
       <select id="selectAnio" onchange="generarVistaSalones()" style="display:none;">
         <option value="">Todos los años</option>
-        <option value="Primero">Primero</option>
-        <option value="Segundo">Segundo</option>
-        <option value="Tercero">Tercero</option>
-        <option value="Cuarto">Cuarto</option>
+        <option value="Primero">Primero (1°)</option>
+        <option value="Segundo">Segundo (2°)</option>
+        <option value="Tercero">Tercero (3°)</option>
+        <option value="Cuarto">Cuarto (4°)</option>
       </select>
 
-      <input type="text" id="buscador" placeholder="Buscar asignatura..." oninput="generarVistaSalones()" style="width: 250px;">
+      <input type="text" id="buscador" placeholder="Buscar asignatura..." oninput="generarVistaSalones()" style="width: 230px;">
+
+      <button class="btn btn-green" onclick="descargarJSON()">Descargar JSON</button>
     </div>
   </div>
 
@@ -342,15 +364,26 @@ select,input{
 
     <label>Año</label>
     <select id="modalAnio">
-      <option value="Primero">Primero</option>
-      <option value="Segundo">Segundo</option>
-      <option value="Tercero">Tercero</option>
-      <option value="Cuarto">Cuarto</option>
+      <option value="Primero">Primero (1°)</option>
+      <option value="Segundo">Segundo (2°)</option>
+      <option value="Tercero">Tercero (3°)</option>
+      <option value="Cuarto">Cuarto (4°)</option>
     </select>
 
     <div class="modal-actions">
       <button class="btn btn-green" onclick="guardarDesdeModal()">Guardar</button>
       <button class="btn btn-red" onclick="cerrarModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL VER DETALLES (OJITO) -->
+<div class="modal-fondo" id="modalDetallesFondo">
+  <div class="modal">
+    <h2>Detalles de la Clase</h2>
+    <div class="detalles-box" id="contenidoDetalles"></div>
+    <div class="modal-actions">
+      <button class="btn" onclick="cerrarModalDetalles()">Cerrar</button>
     </div>
   </div>
 </div>
@@ -387,6 +420,13 @@ const horasFin = [
   "22:50", "23:35"
 ];
 
+const mapaAnioAbreviado = {
+  "Primero": "1°",
+  "Segundo": "2°",
+  "Tercero": "3°",
+  "Cuarto": "4°"
+};
+
 const salones = [];
 for(let i=1; i<=24; i++){
   salones.push(`Salón ${i}`);
@@ -407,6 +447,9 @@ const modalDocente = document.getElementById("modalDocente");
 const modalAsignatura = document.getElementById("modalAsignatura");
 const modalEspecialidad = document.getElementById("modalEspecialidad");
 const modalAnio = document.getElementById("modalAnio");
+
+const modalDetallesFondo = document.getElementById("modalDetallesFondo");
+const contenidoDetalles = document.getElementById("contenidoDetalles");
 
 let datosFirebase = {};
 
@@ -465,7 +508,6 @@ function generarVistaSalones(){
   const textoBusqueda = buscador.value.toLowerCase().trim();
   const anioFiltro = selectAnio.value;
 
-  // Identificar si hay algún filtro activo
   const estaFiltrando = textoBusqueda !== "" || anioFiltro !== "";
 
   let html = "";
@@ -511,14 +553,18 @@ function generarVistaSalones(){
     }else{
       eventosFiltrados.forEach((ev, idx) => {
         const idAcciones = `acciones_${key.replace(/[^a-zA-Z0-9_]/g, '')}_${idx}`;
+        const anioAbrev = mapaAnioAbreviado[ev.anio] || ev.anio || "";
 
         if(!estaFiltrando){
-          // VISTA COMPACTA (POR DEFECTO)
+          // VISTA COMPACTA: Formato -> [Año] [Especialidad] [Asignatura] ([Docente])
           html += `
             <div class="evento-card-compacto">
               <div class="evento-header-compacto">
                 <span class="evento-hora-compacto">⏰ ${escapeHtml(ev.horaInicio)}-${escapeHtml(ev.horaFin)}</span>
-                <span class="evento-info-compacto"><strong>${escapeHtml(ev.asignatura)}</strong> (${escapeHtml(ev.docente)})</span>
+                <span class="evento-info-compacto">
+                  <strong>${escapeHtml(anioAbrev)} ${escapeHtml(ev.especialidad)}</strong> - ${escapeHtml(ev.asignatura)} (${escapeHtml(ev.docente)})
+                </span>
+                <button class="btn-eye" title="Ver detalles" onclick="verDetalles('${salon}', '${ev.horaInicio}', '${ev.horaFin}', '${escapeHtml(ev.docente)}', '${escapeHtml(ev.asignatura)}', '${escapeHtml(ev.especialidad)}', '${escapeHtml(ev.anio)}')">👁️</button>
                 <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
               </div>
 
@@ -529,17 +575,17 @@ function generarVistaSalones(){
             </div>
           `;
         } else {
-          // VISTA DETALLADA EXTENDIDA (AL FILTRAR)
+          // VISTA DETALLADA EXTENDIDA
           html += `
             <div class="evento-card-detallado">
               <div class="evento-header-detallado">
                 <span class="evento-hora-detallado">⏰ ${escapeHtml(ev.horaInicio)} a ${escapeHtml(ev.horaFin)}</span>
                 <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
               </div>
+              <div class="evento-detalle"><strong>Año / Curso:</strong> ${escapeHtml(anioAbrev)} (${escapeHtml(ev.anio)})</div>
+              <div class="evento-detalle"><strong>Especialidad:</strong> ${escapeHtml(ev.especialidad)}</div>
               <div class="evento-detalle"><strong>Asignatura:</strong> ${escapeHtml(ev.asignatura)}</div>
               <div class="evento-detalle"><strong>Docente:</strong> ${escapeHtml(ev.docente)}</div>
-              <div class="evento-detalle"><strong>Especialidad:</strong> ${escapeHtml(ev.especialidad)}</div>
-              <div class="evento-detalle"><strong>Año:</strong> ${escapeHtml(ev.anio)}</div>
 
               <div class="acciones-evento" id="${idAcciones}">
                 <button class="btn" onclick="abrirEditar('${salon}', ${idx})">Editar</button>
@@ -559,6 +605,23 @@ function generarVistaSalones(){
   }
 
   gridSalones.innerHTML = html;
+}
+
+function verDetalles(salon, inicio, fin, docente, asignatura, especialidad, anio){
+  const anioAbrev = mapaAnioAbreviado[anio] || anio;
+  contenidoDetalles.innerHTML = `
+    <div><strong>Salón:</strong> ${escapeHtml(salon)}</div>
+    <div><strong>Horario:</strong> ${escapeHtml(inicio)} a ${escapeHtml(fin)} hs</div>
+    <div><strong>Año / Grado:</strong> ${escapeHtml(anioAbrev)} (${escapeHtml(anio)})</div>
+    <div><strong>Especialidad:</strong> ${escapeHtml(especialidad)}</div>
+    <div><strong>Asignatura:</strong> ${escapeHtml(asignatura)}</div>
+    <div><strong>Docente:</strong> ${escapeHtml(docente)}</div>
+  `;
+  modalDetallesFondo.style.display = "flex";
+}
+
+function cerrarModalDetalles(){
+  modalDetallesFondo.style.display = "none";
 }
 
 function mostrarAcciones(id){
@@ -662,6 +725,17 @@ function eliminarEvento(salon, index){
   database.ref("gestion_salones/" + key).set(eventos).then(() => {
     generarVistaSalones();
   });
+}
+
+// Descargar estructura completa compatible con JSON externo
+function descargarJSON(){
+  const jsonString = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(datosFirebase, null, 2));
+  const downloadAnchor = document.createElement('a');
+  downloadAnchor.setAttribute("href", jsonString);
+  downloadAnchor.setAttribute("download", "salones.json");
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
 }
 
 function escapeHtml(text){
