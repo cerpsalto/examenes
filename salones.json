@@ -18,5 +18,15 @@
       "horaFin": "08:40",
       "horaInicio": "07:10"
     }
+  ],
+  "horarios_salones_Salón_2_Viernes": [
+    {
+      "anio": "Primero",
+      "asignatura": "física 1",
+      "docente": "eduardo",
+      "especialidad": "física",
+      "horaFin": "07:55",
+      "horaInicio": "07:10"
+    }
   ]
 }
