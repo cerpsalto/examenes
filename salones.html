@@ -81,10 +81,10 @@ select,input{
   border:none;
   background:#00a86b;
   color:white;
-  padding:6px 10px;
-  border-radius:8px;
+  padding:4px 8px;
+  border-radius:6px;
   cursor:pointer;
-  font-size:13px;
+  font-size:12px;
   font-weight:900;
 }
 
@@ -92,10 +92,10 @@ select,input{
   border:none;
   background:#d9534f;
   color:white;
-  padding:4px 8px;
-  border-radius:6px;
+  padding:2px 6px;
+  border-radius:4px;
   cursor:pointer;
-  font-size:13px;
+  font-size:11px;
   font-weight:900;
 }
 
@@ -105,31 +105,64 @@ select,input{
 
 .grid-salones{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:14px;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:12px;
 }
 
 .salon-card{
   border:2px solid #d7edf8;
-  border-radius:14px;
+  border-radius:12px;
   background:#f8fcff;
-  padding:12px;
-  min-height:160px;
+  padding:10px;
+  min-height:120px;
 }
 
 .salon-header{
-  font-size:18px;
+  font-size:16px;
   font-weight:900;
   color:#004466;
-  margin-bottom:10px;
+  margin-bottom:8px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   border-bottom: 2px solid #e1f3fd;
-  padding-bottom: 6px;
+  padding-bottom: 4px;
 }
 
-.evento-card{
+/* ESTILOS DE VISTA COMPACTA (POR DEFECTO) */
+.evento-card-compacto{
+  background:white;
+  border-left:4px solid #0099cc;
+  border-radius:6px;
+  padding:4px 6px;
+  margin-bottom:4px;
+  box-shadow:0 1px 3px rgba(0,0,0,.06);
+  font-size:11px;
+  line-height:1.3;
+}
+
+.evento-header-compacto{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:4px;
+}
+
+.evento-hora-compacto{
+  font-weight:800;
+  color:#007faa;
+  white-space:nowrap;
+}
+
+.evento-info-compacto{
+  color:#003b57;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+/* ESTILOS DE VISTA DETALLADA (CUANDO SE FILTRA) */
+.evento-card-detallado{
   background:white;
   border-left:5px solid #0099cc;
   border-radius:8px;
@@ -138,21 +171,22 @@ select,input{
   box-shadow:0 1px 4px rgba(0,0,0,.08);
 }
 
-.evento-header{
+.evento-header-detallado{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  margin-bottom:4px;
 }
 
-.evento-hora{
+.evento-hora-detallado{
   font-size:13px;
   font-weight:900;
   color:#007faa;
 }
 
 .evento-detalle{
-  font-size:13px;
-  margin-top:3px;
+  font-size:12px;
+  margin-top:2px;
 }
 
 .evento-detalle strong{
@@ -162,7 +196,7 @@ select,input{
 .acciones-evento{
   display:none;
   gap:6px;
-  margin-top:8px;
+  margin-top:6px;
 }
 
 .acciones-evento.activo{
@@ -175,9 +209,9 @@ select,input{
 
 .sin-actividad-card{
   color:#7b929c;
-  font-size:13px;
+  font-size:12px;
   text-align:center;
-  margin:20px 0;
+  margin:15px 0;
 }
 
 .modal-fondo{
@@ -353,7 +387,6 @@ const horasFin = [
   "22:50", "23:35"
 ];
 
-// Salones 1 a 24 y Mediateca
 const salones = [];
 for(let i=1; i<=24; i++){
   salones.push(`Salón ${i}`);
@@ -381,7 +414,6 @@ let modalModo = "agregar";
 let modalSalonSeleccionado = null;
 let modalIndex = null;
 
-// Cargar selectores de horario
 horasInicio.forEach((h, index) => {
   const op = document.createElement("option");
   op.value = h;
@@ -433,6 +465,9 @@ function generarVistaSalones(){
   const textoBusqueda = buscador.value.toLowerCase().trim();
   const anioFiltro = selectAnio.value;
 
+  // Identificar si hay algún filtro activo
+  const estaFiltrando = textoBusqueda !== "" || anioFiltro !== "";
+
   let html = "";
 
   salones.forEach(salon => {
@@ -459,7 +494,7 @@ function generarVistaSalones(){
       });
     }
 
-    if((textoBusqueda !== "" || (tipoBusqueda === "especialidad" && anioFiltro !== "")) && eventosFiltrados.length === 0){
+    if(estaFiltrando && eventosFiltrados.length === 0){
       return;
     }
 
@@ -477,30 +512,49 @@ function generarVistaSalones(){
       eventosFiltrados.forEach((ev, idx) => {
         const idAcciones = `acciones_${key.replace(/[^a-zA-Z0-9_]/g, '')}_${idx}`;
 
-        html += `
-          <div class="evento-card">
-            <div class="evento-header">
-              <span class="evento-hora">⏰ ${escapeHtml(ev.horaInicio)} a ${escapeHtml(ev.horaFin)}</span>
-              <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
-            </div>
-            <div class="evento-detalle"><strong>Asignatura:</strong> ${escapeHtml(ev.asignatura)}</div>
-            <div class="evento-detalle"><strong>Docente:</strong> ${escapeHtml(ev.docente)}</div>
-            <div class="evento-detalle"><strong>Especialidad:</strong> ${escapeHtml(ev.especialidad)}</div>
-            <div class="evento-detalle"><strong>Año:</strong> ${escapeHtml(ev.anio)}</div>
+        if(!estaFiltrando){
+          // VISTA COMPACTA (POR DEFECTO)
+          html += `
+            <div class="evento-card-compacto">
+              <div class="evento-header-compacto">
+                <span class="evento-hora-compacto">⏰ ${escapeHtml(ev.horaInicio)}-${escapeHtml(ev.horaFin)}</span>
+                <span class="evento-info-compacto"><strong>${escapeHtml(ev.asignatura)}</strong> (${escapeHtml(ev.docente)})</span>
+                <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
+              </div>
 
-            <div class="acciones-evento" id="${idAcciones}">
-              <button class="btn" onclick="abrirEditar('${salon}', ${idx})">Editar</button>
-              <button class="btn btn-red" onclick="eliminarEvento('${salon}', ${idx})">Quitar</button>
+              <div class="acciones-evento" id="${idAcciones}">
+                <button class="btn" onclick="abrirEditar('${salon}', ${idx})">Editar</button>
+                <button class="btn btn-red" onclick="eliminarEvento('${salon}', ${idx})">Quitar</button>
+              </div>
             </div>
-          </div>
-        `;
+          `;
+        } else {
+          // VISTA DETALLADA EXTENDIDA (AL FILTRAR)
+          html += `
+            <div class="evento-card-detallado">
+              <div class="evento-header-detallado">
+                <span class="evento-hora-detallado">⏰ ${escapeHtml(ev.horaInicio)} a ${escapeHtml(ev.horaFin)}</span>
+                <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
+              </div>
+              <div class="evento-detalle"><strong>Asignatura:</strong> ${escapeHtml(ev.asignatura)}</div>
+              <div class="evento-detalle"><strong>Docente:</strong> ${escapeHtml(ev.docente)}</div>
+              <div class="evento-detalle"><strong>Especialidad:</strong> ${escapeHtml(ev.especialidad)}</div>
+              <div class="evento-detalle"><strong>Año:</strong> ${escapeHtml(ev.anio)}</div>
+
+              <div class="acciones-evento" id="${idAcciones}">
+                <button class="btn" onclick="abrirEditar('${salon}', ${idx})">Editar</button>
+                <button class="btn btn-red" onclick="eliminarEvento('${salon}', ${idx})">Quitar</button>
+              </div>
+            </div>
+          `;
+        }
       });
     }
 
     html += `</div>`;
   });
 
-  if(html === "" && (textoBusqueda !== "" || anioFiltro !== "")){
+  if(html === "" && estaFiltrando){
     html = `<div style="grid-column: 1/-1; text-align: center; color: #004466; font-size: 16px; padding: 20px;">No se encontraron salones ni cursos que coincidan con los filtros seleccionados.</div>`;
   }
 
