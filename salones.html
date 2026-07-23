@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Gestión de Horarios y Salones</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(to bottom right,#cceeff,#99ccff);
+  padding:12px;
+  color:#003b57;
+}
+
+.wrap{
+  max-width:1400px;
+  margin:0 auto;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 0 12px rgba(0,0,0,.12);
+  overflow:hidden;
+}
+
+.top{
+  padding:14px 16px;
+  border-bottom:3px solid #0099cc;
+}
+
+.encabezado{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.logo-principal{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+}
+
+.title{
+  font-size:22px;
+  font-weight:800;
+  color:#004466;
+}
+
+.controls{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+select,input{
+  padding:8px;
+  border-radius:8px;
+  border:1px solid #9ed8ef;
+  font-size:14px;
+}
+
+.btn{
+  border:none;
+  background:#0099cc;
+  color:white;
+  padding:8px 11px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.btn:hover{background:#007faa}
+
+.btn-green{background:#00a86b}
+.btn-green:hover{background:#008e5b}
+
+.btn-red{background:#d9534f}
+.btn-red:hover{background:#c9302c}
+
+.btn-small{
+  border:none;
+  background:#00a86b;
+  color:white;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:13px;
+  font-weight:900;
+}
+
+.btn-minus{
+  border:none;
+  background:#d9534f;
+  color:white;
+  padding:4px 8px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:13px;
+  font-weight:900;
+}
+
+.vista-grafica{
+  padding:16px;
+}
+
+.grid-salones{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px;
+}
+
+.salon-card{
+  border:2px solid #d7edf8;
+  border-radius:14px;
+  background:#f8fcff;
+  padding:12px;
+  min-height:160px;
+}
+
+.salon-header{
+  font-size:18px;
+  font-weight:900;
+  color:#004466;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom: 2px solid #e1f3fd;
+  padding-bottom: 6px;
+}
+
+.evento-card{
+  background:white;
+  border-left:5px solid #0099cc;
+  border-radius:8px;
+  padding:8px;
+  margin-bottom:8px;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+}
+
+.evento-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.evento-hora{
+  font-size:14px;
+  font-weight:900;
+  color:#007faa;
+}
+
+.evento-detalle{
+  font-size:13px;
+  margin-top:3px;
+}
+
+.evento-detalle strong{
+  color:#004466;
+}
+
+.acciones-evento{
+  display:none;
+  gap:6px;
+  margin-top:8px;
+}
+
+.acciones-evento.activo{
+  display:flex;
+}
+
+.acciones-evento button{
+  flex:1;
+}
+
+.sin-actividad-card{
+  color:#7b929c;
+  font-size:13px;
+  text-align:center;
+  margin:20px 0;
+}
+
+.modal-fondo{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:1000;
+}
+
+.modal{
+  background:white;
+  border-radius:16px;
+  padding:18px;
+  width:100%;
+  max-width:440px;
+  box-shadow:0 0 18px rgba(0,0,0,.25);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal h2{
+  margin-top:0;
+  color:#004466;
+  text-align:center;
+}
+
+.modal label{
+  display:block;
+  font-weight:800;
+  margin-top:10px;
+  font-size:14px;
+}
+
+.modal input,
+.modal select{
+  width:100%;
+  padding:9px;
+  font-size:15px;
+  margin-top:4px;
+}
+
+.modal-actions{
+  display:flex;
+  gap:8px;
+  margin-top:18px;
+}
+
+.modal-actions button{
+  flex:1;
+}
+
+@media(max-width:700px){
+  body{padding:6px}
+  .controls{flex-direction:column; align-items:stretch;}
+  .grid-salones{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <div class="top">
+    <div class="encabezado">
+      <img src="dia.png" class="logo-principal" alt="Logo" onerror="this.style.display='none'">
+      <div class="title">Gestión de Horarios por Salón</div>
+    </div>
+
+    <div class="controls">
+      <label>Día de la semana:</label>
+      <select id="diaSemana" onchange="generarVistaSalones()">
+        <option value="Lunes">Lunes</option>
+        <option value="Martes">Martes</option>
+        <option value="Miércoles">Miércoles</option>
+        <option value="Jueves">Jueves</option>
+        <option value="Viernes">Viernes</option>
+        <option value="Sábado">Sábado</option>
+      </select>
+
+      <input type="text" id="buscador" placeholder="Buscar docente, asignatura, especialidad, grado..." oninput="generarVistaSalones()" style="width: 350px;">
+    </div>
+  </div>
+
+  <div class="vista-grafica">
+    <div class="grid-salones" id="gridSalones"></div>
+  </div>
+
+</div>
+
+<!-- MODAL PARA AGREGAR / EDITAR HORARIO DE SALÓN -->
+<div class="modal-fondo" id="modalFondo">
+  <div class="modal">
+    <h2 id="tituloModal">Asignar Salón</h2>
+
+    <label>Horario</label>
+    <select id="modalBloqueHora"></select>
+
+    <label>Docente</label>
+    <input type="text" id="modalDocente" placeholder="Nombre del docente">
+
+    <label>Asignatura</label>
+    <input type="text" id="modalAsignatura" placeholder="Nombre de la asignatura">
+
+    <label>Especialidad</label>
+    <input type="text" id="modalEspecialidad" placeholder="Ej: Informática, Electromecánica...">
+
+    <label>Grado / Grupo</label>
+    <input type="text" id="modalGrado" placeholder="Ej: 1° EMT, 3° BA, etc.">
+
+    <div class="modal-actions">
+      <button class="btn btn-green" onclick="guardarDesdeModal()">Guardar</button>
+      <button class="btn btn-red" onclick="cerrarModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAUbSmA64Kj6326H8-FJqSFDyb1Zzardj8",
+  authDomain: "calendario-actividades-76382.firebaseapp.com",
+  databaseURL: "https://calendario-actividades-76382-default-rtdb.firebaseio.com",
+  projectId: "calendario-actividades-76382",
+  storageBucket: "calendario-actividades-76382.firebasestorage.app",
+  messagingSenderId: "455833092742",
+  appId: "1:455833092742:web:eafb4950d8de8409b80707",
+  measurementId: "G-YWQ92KPD0T"
+};
+
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// Bloques horarios extraídos fielmente de la imagen
+const bloquesHorarios = [
+  "07:10 a 07:55",
+  "07:55 a 08:40",
+  "08:50 a 09:35",
+  "09:35 a 10:20",
+  "10:30 a 11:15",
+  "11:15 a 12:00",
+  "12:10 a 12:55",
+  "12:55 a 13:40",
+  "13:50 a 14:35",
+  "14:35 a 15:20",
+  "15:30 a 16:15",
+  "16:15 a 17:00",
+  "17:10 a 17:55",
+  "17:55 a 18:40",
+  "18:50 a 19:35",
+  "19:35 a 20:20",
+  "20:25 a 21:10",
+  "21:10 a 21:55",
+  "22:05 a 22:50",
+  "22:50 a 23:35"
+];
+
+// Generar lista completa de salones
+const salones = ["Salón de actos", "Biblioteca"];
+for(let i=1; i<=24; i++){
+  salones.push(`Salón ${i}`);
+}
+
+const diaSemanaSelect = document.getElementById("diaSemana");
+const gridSalones = document.getElementById("gridSalones");
+const buscador = document.getElementById("buscador");
+
+const modalFondo = document.getElementById("modalFondo");
+const tituloModal = document.getElementById("tituloModal");
+const modalBloqueHora = document.getElementById("modalBloqueHora");
+const modalDocente = document.getElementById("modalDocente");
+const modalAsignatura = document.getElementById("modalAsignatura");
+const modalEspecialidad = document.getElementById("modalEspecialidad");
+const modalGrado = document.getElementById("modalGrado");
+
+let datosFirebase = {};
+
+let modalModo = "agregar";
+let modalSalonSeleccionado = null;
+let modalIndex = null;
+
+// Cargar Bloques Horarios en el select del modal
+bloquesHorarios.forEach(bloque => {
+  const op = document.createElement("option");
+  op.value = bloque;
+  op.textContent = bloque;
+  modalBloqueHora.appendChild(op);
+});
+
+function keySalonDia(salon, dia){
+  // Sanitizar nombre para Firebase key
+  const salonClean = salon.replace(/\s+/g, '_');
+  return `horarios_salones_${salonClean}_${dia}`;
+}
+
+function obtenerEventos(key){
+  return datosFirebase[key] || [];
+}
+
+database.ref("gestion_salones").on("value", function(snapshot){
+  datosFirebase = snapshot.val() || {};
+  generarVistaSalones();
+});
+
+function generarVistaSalones(){
+  const diaActual = diaSemanaSelect.value;
+  const textoBusqueda = buscador.value.toLowerCase().trim();
+
+  let html = "";
+
+  salones.forEach(salon => {
+    const key = keySalonDia(salon, diaActual);
+    const eventos = obtenerEventos(key);
+
+    // Ordenar por hora
+    eventos.sort((a, b) => bloquesHorarios.indexOf(a.horario) - bloquesHorarios.indexOf(b.horario));
+
+    let eventosFiltrados = eventos;
+
+    if(textoBusqueda !== ""){
+      eventosFiltrados = eventos.filter(ev =>
+        (ev.docente || "").toLowerCase().includes(textoBusqueda) ||
+        (ev.asignatura || "").toLowerCase().includes(textoBusqueda) ||
+        (ev.especialidad || "").toLowerCase().includes(textoBusqueda) ||
+        (ev.grado || "").toLowerCase().includes(textoBusqueda) ||
+        (ev.horario || "").toLowerCase().includes(textoBusqueda)
+      );
+
+      // Si se busca algo y este salón no coincide en nada, se omite
+      if(eventosFiltrados.length === 0){
+        return;
+      }
+    }
+
+    html += `
+      <div class="salon-card">
+        <div class="salon-header">
+          <span>🏛️ ${salon}</span>
+          <button class="btn-small" onclick="abrirAgregar('${salon}')">+</button>
+        </div>
+    `;
+
+    if(eventosFiltrados.length === 0){
+      html += `<div class="sin-actividad-card">Sin clases asignadas</div>`;
+    }else{
+      eventosFiltrados.forEach((ev, idx) => {
+        const idAcciones = `acciones_${key.replace(/[^a-zA-Z0-9_]/g, '')}_${idx}`;
+
+        html += `
+          <div class="evento-card">
+            <div class="evento-header">
+              <span class="evento-hora">⏰ ${escapeHtml(ev.horario)}</span>
+              <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
+            </div>
+            <div class="evento-detalle"><strong>Asignatura:</strong> ${escapeHtml(ev.asignatura)}</div>
+            <div class="evento-detalle"><strong>Docente:</strong> ${escapeHtml(ev.docente)}</div>
+            <div class="evento-detalle"><strong>Especialidad:</strong> ${escapeHtml(ev.especialidad)}</div>
+            <div class="evento-detalle"><strong>Grado:</strong> ${escapeHtml(ev.grado)}</div>
+
+            <div class="acciones-evento" id="${idAcciones}">
+              <button class="btn" onclick="abrirEditar('${salon}', ${idx})">Editar</button>
+              <button class="btn btn-red" onclick="eliminarEvento('${salon}', ${idx})">Quitar</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    html += `</div>`;
+  });
+
+  if(html === "" && textoBusqueda !== ""){
+    html = `<div style="grid-column: 1/-1; text-align: center; color: #004466; font-size: 16px; padding: 20px;">No se encontraron salones ni horarios que coincidan con la búsqueda.</div>`;
+  }
+
+  gridSalones.innerHTML = html;
+}
+
+function mostrarAcciones(id){
+  const panel = document.getElementById(id);
+  if(panel){
+    panel.classList.toggle("activo");
+  }
+}
+
+function abrirAgregar(salon){
+  modalModo = "agregar";
+  modalSalonSeleccionado = salon;
+  modalIndex = null;
+
+  tituloModal.textContent = `Asignar a ${salon}`;
+  modalBloqueHora.selectedIndex = 0;
+  modalDocente.value = "";
+  modalAsignatura.value = "";
+  modalEspecialidad.value = "";
+  modalGrado.value = "";
+
+  modalFondo.style.display = "flex";
+}
+
+function abrirEditar(salon, index){
+  const diaActual = diaSemanaSelect.value;
+  const key = keySalonDia(salon, diaActual);
+  const eventos = obtenerEventos(key);
+  const ev = eventos[index];
+
+  if(!ev) return;
+
+  modalModo = "editar";
+  modalSalonSeleccionado = salon;
+  modalIndex = index;
+
+  tituloModal.textContent = `Editar asignación en ${salon}`;
+  modalBloqueHora.value = ev.horario || bloquesHorarios[0];
+  modalDocente.value = ev.docente || "";
+  modalAsignatura.value = ev.asignatura || "";
+  modalEspecialidad.value = ev.especialidad || "";
+  modalGrado.value = ev.grado || "";
+
+  modalFondo.style.display = "flex";
+}
+
+function cerrarModal(){
+  modalFondo.style.display = "none";
+}
+
+function guardarDesdeModal(){
+  const diaActual = diaSemanaSelect.value;
+  const horario = modalBloqueHora.value;
+  const docente = modalDocente.value.trim();
+  const asignatura = modalAsignatura.value.trim();
+  const especialidad = modalEspecialidad.value.trim();
+  const grado = modalGrado.value.trim();
+
+  if(!docente || !asignatura){
+    alert("Por favor complete al menos el Docente y la Asignatura.");
+    return;
+  }
+
+  const key = keySalonDia(modalSalonSeleccionado, diaActual);
+  const eventos = obtenerEventos(key);
+
+  if(modalModo === "agregar"){
+    eventos.push({ horario, docente, asignatura, especialidad, grado });
+  } else if(modalModo === "editar" && modalIndex !== null){
+    eventos[modalIndex] = { horario, docente, asignatura, especialidad, grado };
+  }
+
+  datosFirebase[key] = eventos;
+
+  database.ref("gestion_salones/" + key).set(eventos).then(() => {
+    cerrarModal();
+    generarVistaSalones();
+  });
+}
+
+function eliminarEvento(salon, index){
+  if(!confirm("¿Quitar esta ocupación de horario?")){
+    return;
+  }
+
+  const diaActual = diaSemanaSelect.value;
+  const key = keySalonDia(salon, diaActual);
+  const eventos = obtenerEventos(key);
+
+  eventos.splice(index, 1);
+  datosFirebase[key] = eventos;
+
+  database.ref("gestion_salones/" + key).set(eventos).then(() => {
+    generarVistaSalones();
+  });
+}
+
+function escapeHtml(text){
+  return String(text || "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;");
+}
+
+generarVistaSalones();
+</script>
+
+</body>
+</html>
