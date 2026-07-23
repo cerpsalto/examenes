@@ -173,6 +173,13 @@ select,input{
   color:#004466;
 }
 
+.evento-salon{
+  font-size:12px;
+  font-weight:700;
+  color:#007faa;
+  margin-top:2px;
+}
+
 .evento-hora-grande{
   font-size:19px;
   font-weight:900;
@@ -276,6 +283,8 @@ select,input{
   width:100%;
   max-width:420px;
   box-shadow:0 0 18px rgba(0,0,0,.25);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal h2{
@@ -447,7 +456,11 @@ select,input{
       <option value="Matutino">Matutino</option>
       <option value="Vespertino">Vespertino</option>
       <option value="Nocturno">Nocturno</option>
+      <option value="Toda la jornada">Toda la jornada</option>
     </select>
+
+    <label>Salón / Espacio</label>
+    <select id="modalSalon"></select>
 
     <label>Hora de inicio</label>
     <input type="time" id="modalHora">
@@ -488,18 +501,20 @@ const nombresMes = [
   "Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre"
 ];
 
-const turnos = ["Matutino", "Vespertino", "Nocturno"];
+const turnos = ["Matutino", "Vespertino", "Nocturno", "Toda la jornada"];
 
 const ordenTurnos = {
   "Matutino": 1,
   "Vespertino": 2,
-  "Nocturno": 3
+  "Nocturno": 3,
+  "Toda la jornada": 4
 };
 
 const limitesHora = {
   "Matutino": {min:"07:00", max:"14:00"},
   "Vespertino": {min:"14:00", max:"20:00"},
-  "Nocturno": {min:"18:00", max:"23:00"}
+  "Nocturno": {min:"18:00", max:"23:00"},
+  "Toda la jornada": {min:"07:00", max:"23:30"}
 };
 
 const mesSelect = document.getElementById("mes");
@@ -511,6 +526,7 @@ const btnAnteriores = document.getElementById("btnAnteriores");
 const modalFondo = document.getElementById("modalFondo");
 const tituloModal = document.getElementById("tituloModal");
 const modalTurno = document.getElementById("modalTurno");
+const modalSalon = document.getElementById("modalSalon");
 const modalHora = document.getElementById("modalHora");
 const modalDuracion = document.getElementById("modalDuracion");
 const modalNombre = document.getElementById("modalNombre");
@@ -530,12 +546,35 @@ const hoyDia = hoy.getDate();
 const hoyMes = hoy.getMonth();
 const hoyAnio = hoy.getFullYear();
 
+// Inicializar selectores de meses
 for(let i=0;i<12;i++){
   const op = document.createElement("option");
   op.value = i;
   op.textContent = nombresMes[i];
   mesSelect.appendChild(op);
 }
+
+// Inicializar desplegable de salones
+function cargarSalones(){
+  modalSalon.innerHTML = "";
+  const opActos = document.createElement("option");
+  opActos.value = "Salón de actos";
+  opActos.textContent = "Salón de actos";
+  modalSalon.appendChild(opActos);
+
+  const opBiblio = document.createElement("option");
+  opBiblio.value = "Biblioteca";
+  opBiblio.textContent = "Biblioteca";
+  modalSalon.appendChild(opBiblio);
+
+  for(let i=1; i<=24; i++){
+    const op = document.createElement("option");
+    op.value = `Salón ${i}`;
+    op.textContent = `Salón ${i}`;
+    modalSalon.appendChild(op);
+  }
+}
+cargarSalones();
 
 mesSelect.value = hoyMes;
 anioInput.value = hoyAnio;
@@ -596,6 +635,7 @@ function generarCalendario(){
             key,
             index,
             turno,
+            salon: ev.salon || "Salón no asignado",
             hora: ev.hora || "",
             duracion: ev.duracion || "01:00",
             nombre: ev.nombre || ""
@@ -613,7 +653,8 @@ function generarCalendario(){
         ev.nombre.toLowerCase().includes(textoBusqueda) ||
         ev.hora.toLowerCase().includes(textoBusqueda) ||
         ev.duracion.toLowerCase().includes(textoBusqueda) ||
-        ev.turno.toLowerCase().includes(textoBusqueda)
+        ev.turno.toLowerCase().includes(textoBusqueda) ||
+        ev.salon.toLowerCase().includes(textoBusqueda)
       );
 
       if(eventosFiltrados.length === 0){
@@ -636,12 +677,15 @@ function generarCalendario(){
       html += `<div class="sin-actividad-card">Sin actividades</div>`;
     }else{
       eventosFiltrados.forEach(ev => {
-        const idAcciones = `acciones_${anio}_${mes}_${dia}_${ev.turno}_${ev.index}`;
+        const idAcciones = `acciones_${anio}_${mes}_${dia}_${ev.turno.replace(/\s+/g, '_')}_${ev.index}`;
 
         html += `
           <div class="evento-card">
             <div class="evento-header">
-              <div class="evento-turno">${escapeHtml(ev.turno)}</div>
+              <div>
+                <div class="evento-turno">${escapeHtml(ev.turno)}</div>
+                <div class="evento-salon">📍 ${escapeHtml(ev.salon)}</div>
+              </div>
               <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
             </div>
 
@@ -681,6 +725,7 @@ function abrirAgregar(anio, mes, dia){
 
   tituloModal.textContent = "Agregar actividad";
   modalTurno.value = "Matutino";
+  modalSalon.value = "Salón de actos";
   modalHora.value = "";
   modalDuracion.value = "01:00";
   modalNombre.value = "";
@@ -709,6 +754,7 @@ function abrirEditar(key, index, anio, mes, dia){
 
   tituloModal.textContent = "Editar actividad";
   modalTurno.value = turnoActual;
+  modalSalon.value = evento.salon || "Salón de actos";
   modalHora.value = evento.hora || "";
   modalDuracion.value = evento.duracion || "01:00";
   modalNombre.value = evento.nombre || "";
@@ -723,18 +769,29 @@ function cerrarModal(){
 
 function actualizarLimiteHora(){
   const turno = modalTurno.value;
-  modalHora.min = limitesHora[turno].min;
-  modalHora.max = limitesHora[turno].max;
 
-  if(modalHora.value){
-    if(modalHora.value < modalHora.min || modalHora.value > modalHora.max){
-      modalHora.value = "";
+  if (turno === "Toda la jornada") {
+    modalHora.value = "07:00";
+    modalDuracion.value = "16:30"; // De 07:00 a 23:30 son 16h 30m
+    modalHora.disabled = true;
+    modalDuracion.disabled = true;
+  } else {
+    modalHora.disabled = false;
+    modalDuracion.disabled = false;
+    modalHora.min = limitesHora[turno].min;
+    modalHora.max = limitesHora[turno].max;
+
+    if(modalHora.value){
+      if(modalHora.value < modalHora.min || modalHora.value > modalHora.max){
+        modalHora.value = "";
+      }
     }
   }
 }
 
 function guardarDesdeModal(){
   const turno = modalTurno.value;
+  const salon = modalSalon.value;
   const hora = modalHora.value;
   const duracion = modalDuracion.value;
   const nombre = modalNombre.value.trim();
@@ -759,7 +816,7 @@ function guardarDesdeModal(){
     return;
   }
 
-  if(hora < limitesHora[turno].min || hora > limitesHora[turno].max){
+  if(turno !== "Toda la jornada" && (hora < limitesHora[turno].min || hora > limitesHora[turno].max)){
     alert("La hora seleccionada no corresponde al turno elegido.");
     return;
   }
@@ -771,7 +828,8 @@ function guardarDesdeModal(){
     eventos.push({
       hora,
       duracion,
-      nombre
+      nombre,
+      salon
     });
 
     datosFirebase[key] = eventos;
@@ -798,7 +856,8 @@ function guardarDesdeModal(){
     eventosNuevos.push({
       hora,
       duracion,
-      nombre
+      nombre,
+      salon
     });
 
     datosFirebase[modalKey] = eventosViejos;
@@ -879,6 +938,7 @@ function generarReporte(){
         if((ev.nombre || "").trim() !== "" || (ev.hora || "").trim() !== ""){
           eventosDia.push({
             turno,
+            salon: ev.salon || "Sin salón",
             hora: ev.hora || "",
             duracion: ev.duracion || "01:00",
             nombre: ev.nombre || ""
@@ -893,6 +953,7 @@ function generarReporte(){
       items.push({
         fecha: `${dia}/${mes + 1}/${anio}`,
         turno: ev.turno,
+        salon: ev.salon,
         hora: ev.hora || "Sin hora",
         duracion: ev.duracion || "01:00",
         nombre: ev.nombre || "Sin nombre"
@@ -916,6 +977,7 @@ function generarReporte(){
         <div class="reporte-item">
           <div class="reporte-fecha">${escapeHtml(item.fecha)}</div>
           <div><strong>Turno:</strong> ${escapeHtml(item.turno)}</div>
+          <div><strong>Salón / Espacio:</strong> ${escapeHtml(item.salon)}</div>
           <div><strong>Hora de inicio:</strong> ${escapeHtml(item.hora)}</div>
           <div><strong>Duración:</strong> ${escapeHtml(item.duracion)} hs</div>
           <div><strong>Actividad:</strong> ${escapeHtml(item.nombre)}</div>
