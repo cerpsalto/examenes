@@ -1,4 +1,14 @@
 {
+  "horarios_salones_Salón_15_Viernes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Robótica",
+      "docente": "eduardo cantos",
+      "especialidad": "informática",
+      "horaFin": "07:55",
+      "horaInicio": "07:10"
+    }
+  ],
   "horarios_salones_Salón_1_Lunes": [
     {
       "anio": "Tercero",
