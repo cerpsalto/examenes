@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Gestión de Horarios por Salón</title>
+<title>Sistema de Gestión y Consulta de Horarios</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-*{box-sizing:border-box}
+*{box-sizing:border-box; user-select:none;}
 
 body{
   margin:0;
@@ -14,6 +14,43 @@ body{
   background:linear-gradient(to bottom right,#cceeff,#99ccff);
   padding:12px;
   color:#003b57;
+  min-height:100vh;
+}
+
+/* MENÚ SUPERIOR DE NAVEGACIÓN */
+.nav-menu{
+  max-width:1400px;
+  margin:0 auto 12px auto;
+  display:flex;
+  gap:10px;
+  justify-content:center;
+}
+
+.nav-tab{
+  flex:1;
+  max-width:280px;
+  padding:12px 20px;
+  background:#ffffffcc;
+  border:2px solid #0099cc;
+  border-radius:12px;
+  color:#004466;
+  font-weight:800;
+  font-size:16px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  transition:all .2s ease;
+}
+
+.nav-tab:hover{
+  background:#ffffff;
+  transform:translateY(-2px);
+}
+
+.nav-tab.active{
+  background:#0099cc;
+  color:white;
+  box-shadow:0 4px 14px rgba(0,153,204,.35);
 }
 
 .wrap{
@@ -139,7 +176,7 @@ select,input{
   padding-bottom: 4px;
 }
 
-/* ESTILOS VISTA COMPACTA */
+/* VISTA COMPACTA */
 .evento-card-compacto{
   background:white;
   border-left:4px solid #0099cc;
@@ -171,7 +208,7 @@ select,input{
   white-space:nowrap;
 }
 
-/* ESTILOS VISTA DETALLADA */
+/* VISTA DETALLADA */
 .evento-card-detallado{
   background:white;
   border-left:5px solid #0099cc;
@@ -224,6 +261,95 @@ select,input{
   margin:15px 0;
 }
 
+/* ESTILOS DE VISTA CONSULTA (MATRIZ) */
+.seccion-tabla{
+  padding:16px;
+  overflow-x:auto;
+}
+
+.subtitulo{
+  font-size:18px;
+  color:#005b84;
+  margin-bottom:12px;
+  border-left:5px solid #1aa7d6;
+  padding-left:10px;
+  font-weight:700;
+  text-transform:uppercase;
+}
+
+table.tabla-horario-matriz{
+  width:100%;
+  border-collapse:collapse;
+  border-radius:10px;
+  overflow:hidden;
+  background:#ffffff;
+}
+
+table.tabla-horario-matriz th, 
+table.tabla-horario-matriz td{
+  border:1px solid #1aa7d6;
+  padding:8px 6px;
+  text-align:center;
+  vertical-align:middle;
+  font-size:12px;
+}
+
+table.tabla-horario-matriz thead{
+  background:#bfe8fb;
+}
+
+table.tabla-horario-matriz th{
+  color:#003f5c;
+  font-weight:700;
+  text-transform:uppercase;
+  width:14%;
+}
+
+table.tabla-horario-matriz th.col-horario-head{
+  width:12%;
+  background:#99d8f5;
+}
+
+.td-horario{
+  background:#e9f6fc;
+  font-weight:bold;
+  color:#004d73;
+  white-space:nowrap;
+}
+
+.celda-materia{
+  font-weight:700;
+  color:#002b42;
+  display:block;
+  margin-bottom:3px;
+  text-transform:capitalize;
+}
+
+.celda-docente{
+  font-style:italic;
+  color:#495057;
+  font-size:11px;
+  display:block;
+  text-transform:capitalize;
+}
+
+.celda-salon{
+  font-size:10px;
+  color:#d63384;
+  font-weight:bold;
+  display:block;
+  margin-top:2px;
+}
+
+.mensaje-info{
+  text-align:center;
+  padding:30px;
+  color:#005b84;
+  font-weight:600;
+  font-size:15px;
+}
+
+/* MODALES */
 .modal-fondo{
   position:fixed;
   inset:0;
@@ -242,8 +368,8 @@ select,input{
   width:100%;
   max-width:440px;
   box-shadow:0 0 18px rgba(0,0,0,.25);
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height:90vh;
+  overflow-y:auto;
 }
 
 .modal h2{
@@ -291,53 +417,113 @@ select,input{
   body{padding:6px}
   .controls{flex-direction:column; align-items:stretch;}
   .grid-salones{grid-template-columns:1fr;}
+  .nav-menu{flex-direction:column; align-items:center;}
+  .nav-tab{width:100%; max-width:none;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- MENÚ INICIAL DE SELECCIÓN DE VISTA -->
+<div class="nav-menu">
+  <div class="nav-tab active" id="tabConsulta" onclick="cambiarVista('consulta')">
+    📅 Ver Horarios
+  </div>
+  <div class="nav-tab" id="tabCargar" onclick="cambiarVista('cargar')">
+    ⚙️ Cargar / Gestionar Horarios
+  </div>
+</div>
+
 <div class="wrap">
 
-  <div class="top">
-    <div class="encabezado">
-      <div class="title">Gestión de Horarios por Salón</div>
+  <!-- ==================== SECCIÓN 1: VER HORARIOS (CONSULTA POR ESPECIALIDAD) ==================== -->
+  <div id="vistaConsulta">
+    <div class="top">
+      <div class="encabezado">
+        <div class="title">Horarios de Clases por Especialidad</div>
+      </div>
+      <div class="controls">
+        <label>Especialidad:</label>
+        <select id="selectEspecialidadMatriz" onchange="alCambiarFiltroMatriz()">
+          <option value="">-- Seleccionar Especialidad --</option>
+        </select>
+
+        <label>Año / Nivel:</label>
+        <select id="selectAnioMatriz" onchange="alCambiarFiltroMatriz()">
+          <option value="">-- Seleccionar Año --</option>
+          <option value="1">Primero (1°)</option>
+          <option value="2">Segundo (2°)</option>
+          <option value="3">Tercero (3°)</option>
+          <option value="4">Cuarto (4°)</option>
+        </select>
+      </div>
     </div>
 
-    <div class="controls">
-      <label>Día de la semana:</label>
-      <select id="diaSemana" onchange="generarVistaSalones()">
-        <option value="Lunes">Lunes</option>
-        <option value="Martes">Martes</option>
-        <option value="Miércoles">Miércoles</option>
-        <option value="Jueves">Jueves</option>
-        <option value="Viernes">Viernes</option>
-        <option value="Sábado">Sábado</option>
-      </select>
+    <div class="seccion-tabla">
+      <div class="subtitulo" id="tituloVistaMatriz">Seleccione los filtros superiores</div>
+      
+      <div id="mensajeInfoMatriz" class="mensaje-info">Seleccione Especialidad y Año para desplegar la grilla de clases.</div>
 
-      <label>Buscar por:</label>
-      <select id="tipoBusqueda" onchange="cambiarTipoBusqueda()">
-        <option value="asignatura">Asignatura</option>
-        <option value="docente">Docente</option>
-        <option value="especialidad">Especialidad</option>
-      </select>
-
-      <select id="selectAnio" onchange="generarVistaSalones()" style="display:none;">
-        <option value="">Todos los años</option>
-        <option value="Primero">Primero (1°)</option>
-        <option value="Segundo">Segundo (2°)</option>
-        <option value="Tercero">Tercero (3°)</option>
-        <option value="Cuarto">Cuarto (4°)</option>
-      </select>
-
-      <input type="text" id="buscador" placeholder="Buscar asignatura..." oninput="generarVistaSalones()" style="width: 230px;">
-
-      <button class="btn btn-green" onclick="descargarJSON()">Descargar JSON</button>
+      <table id="tablaHorariosMatriz" class="tabla-horario-matriz" style="display: none;">
+        <thead>
+          <tr>
+            <th class="col-horario-head">HORARIO</th>
+            <th>LUNES</th>
+            <th>MARTES</th>
+            <th>MIÉRCOLES</th>
+            <th>JUEVES</th>
+            <th>VIERNES</th>
+            <th>SÁBADO</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpoTablaMatriz"></tbody>
+      </table>
     </div>
   </div>
 
-  <div class="vista-grafica">
-    <div class="grid-salones" id="gridSalones"></div>
+  <!-- ==================== SECCIÓN 2: CARGAR HORARIOS (GESTIÓN DE SALONES) ==================== -->
+  <div id="vistaCargar" style="display: none;">
+    <div class="top">
+      <div class="encabezado">
+        <div class="title">Gestión de Horarios por Salón</div>
+      </div>
+
+      <div class="controls">
+        <label>Día de la semana:</label>
+        <select id="diaSemana" onchange="generarVistaSalones()">
+          <option value="Lunes">Lunes</option>
+          <option value="Martes">Martes</option>
+          <option value="Miércoles">Miércoles</option>
+          <option value="Jueves">Jueves</option>
+          <option value="Viernes">Viernes</option>
+          <option value="Sábado">Sábado</option>
+        </select>
+
+        <label>Buscar por:</label>
+        <select id="tipoBusqueda" onchange="cambiarTipoBusqueda()">
+          <option value="asignatura">Asignatura</option>
+          <option value="docente">Docente</option>
+          <option value="especialidad">Especialidad</option>
+        </select>
+
+        <select id="selectAnio" onchange="generarVistaSalones()" style="display:none;">
+          <option value="">Todos los años</option>
+          <option value="Primero">Primero (1°)</option>
+          <option value="Segundo">Segundo (2°)</option>
+          <option value="Tercero">Tercero (3°)</option>
+          <option value="Cuarto">Cuarto (4°)</option>
+        </select>
+
+        <input type="text" id="buscador" placeholder="Buscar asignatura..." oninput="generarVistaSalones()" style="width: 230px;">
+
+        <button class="btn btn-green" onclick="descargarJSON()">Descargar JSON</button>
+      </div>
+    </div>
+
+    <div class="vista-grafica">
+      <div class="grid-salones" id="gridSalones"></div>
+    </div>
   </div>
 
 </div>
@@ -377,7 +563,7 @@ select,input{
   </div>
 </div>
 
-<!-- MODAL VER DETALLES (OJITO) -->
+<!-- MODAL VER DETALLES -->
 <div class="modal-fondo" id="modalDetallesFondo">
   <div class="modal">
     <h2>Detalles de la Clase</h2>
@@ -388,6 +574,7 @@ select,input{
   </div>
 </div>
 
+<!-- FIREBASE UTILS -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
@@ -427,12 +614,22 @@ const mapaAnioAbreviado = {
   "Cuarto": "4°"
 };
 
+const diasSemanaMatriz = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+
 const salones = [];
 for(let i=1; i<=24; i++){
   salones.push(`Salón ${i}`);
 }
 salones.push("Mediateca");
 
+let datosFirebase = {};
+let listaEspecialidades = new Set();
+
+let modalModo = "agregar";
+let modalSalonSeleccionado = null;
+let modalIndex = null;
+
+// ELEMENTOS DOM
 const diaSemanaSelect = document.getElementById("diaSemana");
 const tipoBusquedaSelect = document.getElementById("tipoBusqueda");
 const selectAnio = document.getElementById("selectAnio");
@@ -451,12 +648,7 @@ const modalAnio = document.getElementById("modalAnio");
 const modalDetallesFondo = document.getElementById("modalDetallesFondo");
 const contenidoDetalles = document.getElementById("contenidoDetalles");
 
-let datosFirebase = {};
-
-let modalModo = "agregar";
-let modalSalonSeleccionado = null;
-let modalIndex = null;
-
+// INICIALIZACIÓN
 horasInicio.forEach((h, index) => {
   const op = document.createElement("option");
   op.value = h;
@@ -471,6 +663,209 @@ horasFin.forEach(h => {
   modalHoraFin.appendChild(op);
 });
 
+// ESCUCHADOR DE FIREBASE EN TIEMPO REAL
+database.ref("gestion_salones").on("value", function(snapshot){
+  datosFirebase = snapshot.val() || {};
+  generarVistaSalones();
+  extraerEspecialidades();
+  poblarDesplegableEspecialidades();
+  alCambiarFiltroMatriz();
+});
+
+// CONTROL DE PESTAÑAS / MENU
+function cambiarVista(vista){
+  const tabConsulta = document.getElementById("tabConsulta");
+  const tabCargar = document.getElementById("tabCargar");
+  const vistaConsulta = document.getElementById("vistaConsulta");
+  const vistaCargar = document.getElementById("vistaCargar");
+
+  if(vista === 'consulta'){
+    tabConsulta.classList.add("active");
+    tabCargar.classList.remove("active");
+    vistaConsulta.style.display = "block";
+    vistaCargar.style.display = "none";
+  } else {
+    tabCargar.classList.add("active");
+    tabConsulta.classList.remove("active");
+    vistaCargar.style.display = "block";
+    vistaConsulta.style.display = "none";
+  }
+}
+
+/* ==========================================================================
+   LÓGICA VISTA 1: VER HORARIOS (MATRIZ POR ESPECIALIDAD)
+   ========================================================================== */
+function extraerEspecialidades(){
+  listaEspecialidades.clear();
+  Object.keys(datosFirebase).forEach(clave => {
+    const eventos = datosFirebase[clave];
+    if(Array.isArray(eventos)){
+      eventos.forEach(ev => {
+        if(ev.especialidad && ev.especialidad.trim() !== ""){
+          listaEspecialidades.add(ev.especialidad.trim().toLowerCase());
+        }
+      });
+    }
+  });
+}
+
+function poblarDesplegableEspecialidades(){
+  const combo = document.getElementById("selectEspecialidadMatriz");
+  const valorActual = combo.value;
+  combo.innerHTML = `<option value="">-- Seleccionar Especialidad --</option>`;
+  
+  Array.from(listaEspecialidades).sort().forEach(esp => {
+    const opt = document.createElement("option");
+    opt.value = esp;
+    opt.textContent = esp.charAt(0).toUpperCase() + esp.slice(1);
+    combo.appendChild(opt);
+  });
+  combo.value = valorActual;
+}
+
+function normalizarAnio(valor){
+  if(!valor) return "";
+  const str = String(valor).toLowerCase().trim();
+  if(str.includes("1") || str.includes("prim")) return "1";
+  if(str.includes("2") || str.includes("seg")) return "2";
+  if(str.includes("3") || str.includes("terc")) return "3";
+  if(str.includes("4") || str.includes("cua")) return "4";
+  return str;
+}
+
+function alCambiarFiltroMatriz(){
+  const espSel = document.getElementById("selectEspecialidadMatriz").value;
+  const anioSel = document.getElementById("selectAnioMatriz").value;
+
+  const tabla = document.getElementById("tablaHorariosMatriz");
+  const mensaje = document.getElementById("mensajeInfoMatriz");
+  const titulo = document.getElementById("tituloVistaMatriz");
+
+  if(!espSel || !anioSel){
+    tabla.style.display = "none";
+    mensaje.style.display = "block";
+    mensaje.textContent = "Seleccione Especialidad y Año para desplegar la grilla de clases.";
+    titulo.textContent = "SELECCIONE LOS FILTROS SUPERIORES";
+    return;
+  }
+
+  const labelAnio = anioSel + "° AÑO";
+  titulo.textContent = `${labelAnio} - ESPECIALIDAD ${espSel.toUpperCase()}`;
+
+  const clasesEncontradas = buscarClasesMatriz(espSel, anioSel);
+
+  if(clasesEncontradas.length === 0){
+    tabla.style.display = "none";
+    mensaje.style.display = "block";
+    mensaje.textContent = `No hay clases asignadas para ${labelAnio} de ${espSel}.`;
+    return;
+  }
+
+  renderizarMatrizHorario(clasesEncontradas);
+  mensaje.style.display = "none";
+  tabla.style.display = "table";
+}
+
+function buscarClasesMatriz(especialidad, anio){
+  const resultados = [];
+
+  Object.keys(datosFirebase).forEach(clave => {
+    const partes = clave.split("_");
+    const dia = partes[partes.length - 1];
+
+    if(diasSemanaMatriz.includes(dia)){
+      const salon = obtenerNombreSalon(clave);
+      const lista = datosFirebase[clave];
+
+      if(Array.isArray(lista)){
+        lista.forEach(item => {
+          const espOk = (item.especialidad || "").trim().toLowerCase() === especialidad.trim().toLowerCase();
+          const anioNormalizado = normalizarAnio(item.anio);
+          const anioOk = anioNormalizado === anio;
+
+          if(espOk && anioOk){
+            resultados.push({
+              dia: dia,
+              horaInicio: item.horaInicio || item.horainicio || "",
+              horaFin: item.horaFin || item.horafin || "",
+              rangoHorario: `${item.horaInicio || item.horainicio} a ${item.horaFin || item.horafin}`,
+              asignatura: item.asignatura || item.materia || "",
+              docente: item.docente || "",
+              salon: salon
+            });
+          }
+        });
+      }
+    }
+  });
+
+  return resultados;
+}
+
+function obtenerNombreSalon(clave){
+  let texto = clave.replace("horarios_salones_", "");
+  const pos = texto.lastIndexOf("_");
+  if(pos !== -1) texto = texto.substring(0, pos);
+  return texto.replace(/_/g, " ");
+}
+
+function renderizarMatrizHorario(clases){
+  const tbody = document.getElementById("cuerpoTablaMatriz");
+  
+  const mapaHorarios = {};
+  clases.forEach(c => {
+    if(!mapaHorarios[c.rangoHorario]){
+      mapaHorarios[c.rangoHorario] = c.horaInicio;
+    }
+  });
+
+  const rangosOrdenados = Object.keys(mapaHorarios).sort((a, b) => {
+    return mapaHorarios[a].localeCompare(mapaHorarios[b]);
+  });
+
+  const matriz = {};
+  rangosOrdenados.forEach(rango => {
+    matriz[rango] = {};
+    diasSemanaMatriz.forEach(dia => {
+      matriz[rango][dia] = [];
+    });
+  });
+
+  clases.forEach(c => {
+    if(matriz[c.rangoHorario] && matriz[c.rangoHorario][c.dia]){
+      matriz[c.rangoHorario][c.dia].push(c);
+    }
+  });
+
+  let html = "";
+  rangosOrdenados.forEach(rango => {
+    html += `<tr>`;
+    html += `<td class="td-horario">${escapeHtml(rango)}</td>`;
+    
+    diasSemanaMatriz.forEach(dia => {
+      const items = matriz[rango][dia];
+      html += `<td>`;
+      if(items && items.length > 0){
+        items.forEach(it => {
+          html += `
+            <span class="celda-materia">${escapeHtml(it.asignatura)}</span>
+            <span class="celda-docente">${escapeHtml(it.docente)}</span>
+            <span class="celda-salon">🏛️ ${escapeHtml(it.salon)}</span>
+          `;
+        });
+      }
+      html += `</td>`;
+    });
+    
+    html += `</tr>`;
+  });
+
+  tbody.innerHTML = html;
+}
+
+/* ==========================================================================
+   LÓGICA VISTA 2: CARGAR Y GESTIONAR HORARIOS (SALONES)
+   ========================================================================== */
 function cambiarTipoBusqueda(){
   const tipo = tipoBusquedaSelect.value;
   if(tipo === "especialidad"){
@@ -496,11 +891,6 @@ function keySalonDia(salon, dia){
 function obtenerEventos(key){
   return datosFirebase[key] || [];
 }
-
-database.ref("gestion_salones").on("value", function(snapshot){
-  datosFirebase = snapshot.val() || {};
-  generarVistaSalones();
-});
 
 function generarVistaSalones(){
   const diaActual = diaSemanaSelect.value;
@@ -556,7 +946,6 @@ function generarVistaSalones(){
         const anioAbrev = mapaAnioAbreviado[ev.anio] || ev.anio || "";
 
         if(!estaFiltrando){
-          // VISTA COMPACTA: Formato -> [Año] [Especialidad] [Asignatura] ([Docente])
           html += `
             <div class="evento-card-compacto">
               <div class="evento-header-compacto">
@@ -575,7 +964,6 @@ function generarVistaSalones(){
             </div>
           `;
         } else {
-          // VISTA DETALLADA EXTENDIDA
           html += `
             <div class="evento-card-detallado">
               <div class="evento-header-detallado">
@@ -727,7 +1115,6 @@ function eliminarEvento(salon, index){
   });
 }
 
-// Descargar estructura completa compatible con JSON externo
 function descargarJSON(){
   const jsonString = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(datosFirebase, null, 2));
   const downloadAnchor = document.createElement('a');
@@ -745,8 +1132,6 @@ function escapeHtml(text){
     .replaceAll(">","&gt;")
     .replaceAll('"',"&quot;");
 }
-
-generarVistaSalones();
 </script>
 
 </body>
