@@ -1,0 +1,223 @@
+<?php include "seguridad.php"; ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Gestión de Horarios y Salones</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    box-sizing: border-box;
+    user-select: none; /* Ideal para tótems táctiles */
+}
+
+body{
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(to bottom right, #cceeff, #99ccff);
+    color: #003b5c;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ENCABEZADO IDÉNTICO */
+.header{
+    width: 100%;
+    background: #ffffffdd;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.10);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #1aa7d6;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header h1{
+    margin: 0;
+    font-size: 22px;
+    color: #004d73;
+    font-weight: 700;
+}
+
+/* BOTÓN DE REGRESO */
+.back-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: #ffffffcc;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,.18);
+    backdrop-filter: blur(4px);
+    transition: transform .15s ease, background .2s ease;
+}
+
+.back-btn:active {
+    transform: scale(0.95);
+}
+
+.back-btn span{
+    color: #024a6b;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.contenedor{
+    flex: 1;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.titulo-seccion{
+    font-size: 26px;
+    font-weight: 800;
+    color: #004466;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(255,255,255,0.6);
+}
+
+/* GRID DE OPCIONES */
+.menu-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+.card-opcion{
+    background: #ffffffdd;
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #003b5c;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border: 2px solid #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-opcion:hover, .card-opcion:active{
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0,153,204,0.25);
+    border-color: #1aa7d6;
+    background: #ffffff;
+}
+
+.card-icon{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #e0f2fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    box-shadow: inset 0 0 10px rgba(0,153,204,0.15);
+}
+
+.card-icon svg{
+    width: 42px;
+    height: 42px;
+    fill: #0077a3;
+}
+
+.card-title{
+    font-size: 20px;
+    font-weight: 700;
+    color: #004d73;
+    margin-bottom: 10px;
+}
+
+.card-desc{
+    font-size: 13px;
+    color: #557788;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+@media(min-width: 1600px){
+    .header h1{ font-size: 28px; }
+    .card-title{ font-size: 22px; }
+    .card-desc{ font-size: 14px; }
+    .contenedor{ max-width: 1200px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Módulo de Horarios y Salones</h1>
+    <a class="back-btn" href="index.php">
+        <span>⬅ Menú principal</span>
+    </a>
+</div>
+
+<div class="contenedor">
+
+    <div class="titulo-seccion">Seleccione la consulta deseada</div>
+
+    <div class="menu-grid">
+
+        <!-- OPCIÓN 1: AGENDA INSTITUCIONAL -->
+        <a href="https://cerpsalto.github.io/examenes/eventos.html" class="card-opcion">
+            <div class="card-icon">
+                <!-- Icono de Calendario / Eventos -->
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/>
+                </svg>
+            </div>
+            <div class="card-title">Agenda Institucional</div>
+            <div class="card-desc">Consulte eventos, actividades planificadas y encuentros en la cartelera digital.</div>
+        </a>
+
+        <!-- OPCIÓN 2: SALONARIO -->
+        <a href="https://cerpsalto.github.io/examenes/salones.html" class="card-opcion">
+            <div class="card-icon">
+                <!-- Icono de Salón / Horarios -->
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                </svg>
+            </div>
+            <div class="card-title">Salonario</div>
+            <div class="card-desc">Gestión y distribución de horarios de clases por espacio y salón asignado.</div>
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+/* BLOQUEO DE TERMINAL TÁCTIL */
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("dragstart", e => e.preventDefault());
+
+document.addEventListener("keydown", function(e){
+    if(e.key === "F12") e.preventDefault();
+    if(e.ctrlKey && e.shiftKey && e.key === "I") e.preventDefault();
+    if(e.ctrlKey && e.key === "u") e.preventDefault();
+});
+</script>
+
+</body>
+</html>
