@@ -20,49 +20,33 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-}
-
-/* ENCABEZADO */
-.header{
-    width: 100%;
-    background: #ffffffdd;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.10);
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    border-bottom: 4px solid #1aa7d6;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: relative;
 }
 
-.header h1{
-    margin: 0;
-    font-size: 22px;
-    color: #004d73;
-    font-weight: 700;
-}
-
-/* BOTÓN DE REGRESO (ESTILO APP ORIGINAL) */
-.back-btn{
+/* BOTÓN DE REGRESO FLOTANTE (ARRIBA A LA DERECHA) */
+.back-btn-top{
+    position: absolute;
+    top: 20px;
+    right: 20px;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
+    padding: 10px 18px;
     border-radius: 12px;
-    background: #ffffff;
+    background: #ffffffdd;
+    backdrop-filter: blur(4px);
     text-decoration: none;
     box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    transition: transform .15s ease, box-shadow .2s ease;
+    transition: transform .15s ease, background .2s ease;
+    z-index: 10;
 }
 
-.back-btn:active {
+.back-btn-top:active {
     transform: scale(0.95);
 }
 
-.back-btn span{
+.back-btn-top span{
     color: #024a6b;
     font-weight: 700;
     font-size: 15px;
@@ -70,22 +54,20 @@ body{
 
 /* CONTENEDOR PRINCIPAL */
 .contenedor{
-    flex: 1;
     width: 90%;
     max-width: 900px;
-    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 30px 0;
+    padding: 40px 0;
 }
 
 .titulo-seccion{
-    font-size: 26px;
+    font-size: 30px;
     font-weight: 800;
     color: #004466;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
     text-align: center;
     text-shadow: 0 2px 4px rgba(255,255,255,0.6);
 }
@@ -102,7 +84,7 @@ body{
     background: #ffffffdd;
     backdrop-filter: blur(8px);
     border-radius: 24px;
-    padding: 35px 25px;
+    padding: 40px 25px;
     text-align: center;
     text-decoration: none;
     color: #003b5c;
@@ -124,8 +106,8 @@ body{
 
 /* CONTENEDOR Y ESTILOS PARA LAS IMÁGENES PNG/JPG */
 .card-img-box{
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -159,22 +141,19 @@ body{
 }
 
 @media(min-width: 1600px){
-    .header h1{ font-size: 28px; }
     .card-title{ font-size: 24px; }
     .card-desc{ font-size: 15px; }
     .contenedor{ max-width: 1050px; }
-    .card-img-box{ width: 160px; height: 160px; }
+    .card-img-box{ width: 170px; height: 170px; }
 }
 </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>Módulo de Horarios y Salones</h1>
-    <a class="back-btn" href="index.php">
-        <span>← Menú principal</span>
-    </a>
-</div>
+<!-- BOTÓN VOLVER FLOTANTE -->
+<a class="back-btn-top" href="index.php">
+    <span>← Menú principal</span>
+</a>
 
 <div class="contenedor">
 
