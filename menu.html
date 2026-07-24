@@ -22,7 +22,7 @@ body{
     flex-direction: column;
 }
 
-/* ENCABEZADO IDÉNTICO */
+/* ENCABEZADO */
 .header{
     width: 100%;
     background: #ffffffdd;
@@ -45,18 +45,17 @@ body{
     font-weight: 700;
 }
 
-/* BOTÓN DE REGRESO */
+/* BOTÓN DE REGRESO (ESTILO APP ORIGINAL) */
 .back-btn{
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 14px;
-    border-radius: 10px;
-    background: #ffffffcc;
+    padding: 8px 16px;
+    border-radius: 12px;
+    background: #ffffff;
     text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,.18);
-    backdrop-filter: blur(4px);
-    transition: transform .15s ease, background .2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    transition: transform .15s ease, box-shadow .2s ease;
 }
 
 .back-btn:active {
@@ -66,14 +65,14 @@ body{
 .back-btn span{
     color: #024a6b;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 /* CONTENEDOR PRINCIPAL */
 .contenedor{
     flex: 1;
     width: 90%;
-    max-width: 1000px;
+    max-width: 900px;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -86,7 +85,7 @@ body{
     font-size: 26px;
     font-weight: 800;
     color: #004466;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     text-align: center;
     text-shadow: 0 2px 4px rgba(255,255,255,0.6);
 }
@@ -94,22 +93,22 @@ body{
 /* GRID DE OPCIONES */
 .menu-grid{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
     width: 100%;
 }
 
 .card-opcion{
     background: #ffffffdd;
     backdrop-filter: blur(8px);
-    border-radius: 20px;
-    padding: 30px 20px;
+    border-radius: 24px;
+    padding: 35px 25px;
     text-align: center;
     text-decoration: none;
     color: #003b5c;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     border: 2px solid #ffffff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -117,49 +116,54 @@ body{
 }
 
 .card-opcion:hover, .card-opcion:active{
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 12px 28px rgba(0,153,204,0.25);
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 16px 32px rgba(0, 153, 204, 0.3);
     border-color: #1aa7d6;
     background: #ffffff;
 }
 
-.card-icon{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: #e0f2fe;
+/* CONTENEDOR Y ESTILOS PARA LAS IMÁGENES PNG/JPG */
+.card-img-box{
+    width: 140px;
+    height: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 18px;
-    box-shadow: inset 0 0 10px rgba(0,153,204,0.15);
+    margin-bottom: 20px;
 }
 
-.card-icon svg{
-    width: 42px;
-    height: 42px;
-    fill: #0077a3;
+.card-img-box img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
+    transition: transform 0.3s ease;
+}
+
+.card-opcion:hover .card-img-box img{
+    transform: scale(1.08);
 }
 
 .card-title{
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 800;
     color: #004d73;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .card-desc{
-    font-size: 13px;
-    color: #557788;
+    font-size: 14px;
+    color: #4a6b82;
     line-height: 1.4;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 @media(min-width: 1600px){
     .header h1{ font-size: 28px; }
-    .card-title{ font-size: 22px; }
-    .card-desc{ font-size: 14px; }
-    .contenedor{ max-width: 1200px; }
+    .card-title{ font-size: 24px; }
+    .card-desc{ font-size: 15px; }
+    .contenedor{ max-width: 1050px; }
+    .card-img-box{ width: 160px; height: 160px; }
 }
 </style>
 </head>
@@ -168,7 +172,7 @@ body{
 <div class="header">
     <h1>Módulo de Horarios y Salones</h1>
     <a class="back-btn" href="index.php">
-        <span>⬅ Menú principal</span>
+        <span>← Menú principal</span>
     </a>
 </div>
 
@@ -180,11 +184,8 @@ body{
 
         <!-- OPCIÓN 1: AGENDA INSTITUCIONAL -->
         <a href="https://cerpsalto.github.io/examenes/eventos.html" class="card-opcion">
-            <div class="card-icon">
-                <!-- Icono de Calendario / Eventos -->
-                <svg viewBox="0 0 24 24">
-                    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/>
-                </svg>
+            <div class="card-img-box">
+                <img src="agenda.png" alt="Agenda Institucional">
             </div>
             <div class="card-title">Agenda Institucional</div>
             <div class="card-desc">Consulte eventos, actividades planificadas y encuentros en la cartelera digital.</div>
@@ -192,11 +193,8 @@ body{
 
         <!-- OPCIÓN 2: SALONARIO -->
         <a href="https://cerpsalto.github.io/examenes/salones.html" class="card-opcion">
-            <div class="card-icon">
-                <!-- Icono de Salón / Horarios -->
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-                </svg>
+            <div class="card-img-box">
+                <img src="salon.png" alt="Salonario">
             </div>
             <div class="card-title">Salonario</div>
             <div class="card-desc">Gestión y distribución de horarios de clases por espacio y salón asignado.</div>
