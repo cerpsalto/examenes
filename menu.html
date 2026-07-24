@@ -22,34 +22,6 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
-}
-
-/* BOTÓN DE REGRESO FLOTANTE (ARRIBA A LA DERECHA) */
-.back-btn-top{
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 18px;
-    border-radius: 12px;
-    background: #ffffffdd;
-    backdrop-filter: blur(4px);
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    transition: transform .15s ease, background .2s ease;
-    z-index: 10;
-}
-
-.back-btn-top:active {
-    transform: scale(0.95);
-}
-
-.back-btn-top span{
-    color: #024a6b;
-    font-weight: 700;
-    font-size: 15px;
 }
 
 /* CONTENEDOR PRINCIPAL */
@@ -64,7 +36,7 @@ body{
 }
 
 .titulo-seccion{
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 800;
     color: #004466;
     margin-bottom: 40px;
@@ -141,6 +113,7 @@ body{
 }
 
 @media(min-width: 1600px){
+    .titulo-seccion{ font-size: 36px; }
     .card-title{ font-size: 24px; }
     .card-desc{ font-size: 15px; }
     .contenedor{ max-width: 1050px; }
@@ -149,11 +122,6 @@ body{
 </style>
 </head>
 <body>
-
-<!-- BOTÓN VOLVER FLOTANTE -->
-<a class="back-btn-top" href="index.php">
-    <span>← Menú principal</span>
-</a>
 
 <div class="contenedor">
 
