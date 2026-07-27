@@ -83,7 +83,7 @@ body{
 
 .controls{
   display:flex;
-  gap:8px;
+  gap:10px;
   align-items:center;
   flex-wrap:wrap;
   justify-content:center;
@@ -100,7 +100,7 @@ select,input{
   border:none;
   background:#0099cc;
   color:white;
-  padding:8px 11px;
+  padding:8px 14px;
   border-radius:9px;
   cursor:pointer;
   font-weight:700;
@@ -114,167 +114,29 @@ select,input{
 .btn-red{background:#d9534f}
 .btn-red:hover{background:#c9302c}
 
-.btn-small{
-  border:none;
-  background:#00a86b;
-  color:white;
-  padding:4px 8px;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:12px;
-  font-weight:900;
-}
-
-.btn-minus{
-  border:none;
-  background:#d9534f;
-  color:white;
-  padding:2px 6px;
-  border-radius:4px;
-  cursor:pointer;
-  font-size:11px;
-  font-weight:900;
-}
-
-.btn-eye{
-  border:none;
-  background:#0099cc;
-  color:white;
-  padding:2px 5px;
-  border-radius:4px;
-  cursor:pointer;
-  font-size:11px;
-}
-
-.vista-grafica{
-  padding:16px;
-}
-
-.grid-salones{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
-  gap:12px;
-}
-
-.salon-card{
-  border:2px solid #d7edf8;
-  border-radius:12px;
-  background:#f8fcff;
-  padding:10px;
-  min-height:120px;
-}
-
-.salon-header{
-  font-size:16px;
-  font-weight:900;
-  color:#004466;
-  margin-bottom:8px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom: 2px solid #e1f3fd;
-  padding-bottom: 4px;
-}
-
-/* VISTA COMPACTA */
-.evento-card-compacto{
-  background:white;
-  border-left:4px solid #0099cc;
-  border-radius:6px;
-  padding:4px 6px;
-  margin-bottom:4px;
-  box-shadow:0 1px 3px rgba(0,0,0,.06);
-  font-size:11px;
-  line-height:1.3;
-}
-
-.evento-header-compacto{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:4px;
-}
-
-.evento-hora-compacto{
-  font-weight:800;
-  color:#007faa;
-  white-space:nowrap;
-}
-
-.evento-info-compacto{
-  color:#003b57;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-/* VISTA DETALLADA */
-.evento-card-detallado{
-  background:white;
-  border-left:5px solid #0099cc;
-  border-radius:8px;
-  padding:8px;
-  margin-bottom:8px;
-  box-shadow:0 1px 4px rgba(0,0,0,.08);
-}
-
-.evento-header-detallado{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:4px;
-}
-
-.evento-hora-detallado{
-  font-size:13px;
-  font-weight:900;
-  color:#007faa;
-}
-
-.evento-detalle{
-  font-size:12px;
-  margin-top:2px;
-}
-
-.evento-detalle strong{
-  color:#004466;
-}
-
-.acciones-evento{
-  display:none;
-  gap:6px;
-  margin-top:6px;
-}
-
-.acciones-evento.activo{
-  display:flex;
-}
-
-.acciones-evento button{
-  flex:1;
-}
-
-.sin-actividad-card{
-  color:#7b929c;
-  font-size:12px;
-  text-align:center;
-  margin:15px 0;
-}
-
-/* ESTILOS DE VISTA CONSULTA (MATRIZ) */
+/* TABLA MATRIZ/LISTADO */
 .seccion-tabla{
   padding:16px;
   overflow-x:auto;
 }
 
+.subtitulo-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .subtitulo{
   font-size:18px;
   color:#005b84;
-  margin-bottom:12px;
   border-left:5px solid #1aa7d6;
   padding-left:10px;
   font-weight:700;
   text-transform:uppercase;
+  margin: 0;
 }
 
 table.tabla-horario-matriz{
@@ -321,8 +183,7 @@ table.tabla-horario-matriz th.col-horario-head{
   font-weight:700;
   color:#002b42;
   display:block;
-  margin-bottom:3px;
-  text-transform:capitalize;
+  margin-bottom:2px;
 }
 
 .celda-docente{
@@ -330,15 +191,30 @@ table.tabla-horario-matriz th.col-horario-head{
   color:#495057;
   font-size:11px;
   display:block;
-  text-transform:capitalize;
 }
 
 .celda-salon{
-  font-size:10px;
+  font-size:11px;
   color:#d63384;
   font-weight:bold;
   display:block;
   margin-top:2px;
+}
+
+.acciones-item{
+  margin-top: 4px;
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+}
+
+.btn-mini{
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  color: white;
 }
 
 .mensaje-info{
@@ -403,29 +279,19 @@ table.tabla-horario-matriz th.col-horario-head{
   flex:1;
 }
 
-.detalles-box{
-  background:#f1fbff;
-  border:1px solid #9ed8ef;
-  border-radius:10px;
-  padding:12px;
-  margin-top:10px;
-  font-size:14px;
-  line-height:1.6;
-}
-
 @media(max-width:700px){
   body{padding:6px}
   .controls{flex-direction:column; align-items:stretch;}
-  .grid-salones{grid-template-columns:1fr;}
   .nav-menu{flex-direction:column; align-items:center;}
   .nav-tab{width:100%; max-width:none;}
+  .subtitulo-header{flex-direction: column; align-items: stretch;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- MENÚ INICIAL DE SELECCIÓN DE VISTA -->
+<!-- MENÚ DE SELECCIÓN DE PESTAÑAS -->
 <div class="nav-menu">
   <div class="nav-tab active" id="tabConsulta" onclick="cambiarVista('consulta')">
     📅 Ver Horarios
@@ -437,7 +303,7 @@ table.tabla-horario-matriz th.col-horario-head{
 
 <div class="wrap">
 
-  <!-- ==================== SECCIÓN 1: VER HORARIOS (CONSULTA POR ESPECIALIDAD) ==================== -->
+  <!-- ==================== SECCIÓN 1: CONSULTA DE HORARIOS ==================== -->
   <div id="vistaConsulta">
     <div class="top">
       <div class="encabezado">
@@ -452,17 +318,16 @@ table.tabla-horario-matriz th.col-horario-head{
         <label>Año / Nivel:</label>
         <select id="selectAnioMatriz" onchange="alCambiarFiltroMatriz()">
           <option value="">-- Seleccionar Año --</option>
-          <option value="1">Primero (1°)</option>
-          <option value="2">Segundo (2°)</option>
-          <option value="3">Tercero (3°)</option>
-          <option value="4">Cuarto (4°)</option>
+          <option value="Primero">Primero (1°)</option>
+          <option value="Segundo">Segundo (2°)</option>
+          <option value="Tercero">Tercero (3°)</option>
+          <option value="Cuarto">Cuarto (4°)</option>
         </select>
       </div>
     </div>
 
     <div class="seccion-tabla">
       <div class="subtitulo" id="tituloVistaMatriz">Seleccione los filtros superiores</div>
-      
       <div id="mensajeInfoMatriz" class="mensaje-info">Seleccione Especialidad y Año para desplegar la grilla de clases.</div>
 
       <table id="tablaHorariosMatriz" class="tabla-horario-matriz" style="display: none;">
@@ -482,66 +347,81 @@ table.tabla-horario-matriz th.col-horario-head{
     </div>
   </div>
 
-  <!-- ==================== SECCIÓN 2: CARGAR HORARIOS (GESTIÓN DE SALONES) ==================== -->
+  <!-- ==================== SECCIÓN 2: CARGAR Y GESTIONAR HORARIOS ==================== -->
   <div id="vistaCargar" style="display: none;">
     <div class="top">
       <div class="encabezado">
-        <div class="title">Gestión de Horarios por Salón</div>
+        <div class="title">Cargar Horarios por Especialidad y Año</div>
       </div>
 
       <div class="controls">
-        <label>Día:</label>
-        <select id="diaSemana" onchange="generarVistaSalones()">
-          <option value="Lunes">Lunes</option>
-          <option value="Martes">Martes</option>
-          <option value="Miércoles">Miércoles</option>
-          <option value="Jueves">Jueves</option>
-          <option value="Viernes">Viernes</option>
-          <option value="Sábado">Sábado</option>
-        </select>
-
         <label>Especialidad:</label>
-        <select id="filtroEspecialidadCargar" onchange="generarVistaSalones()">
-          <option value="">Todas las especialidades</option>
+        <select id="filtroEspecialidadCargar" onchange="actualizarVistaCargas()">
+          <option value="">-- Seleccionar Especialidad --</option>
         </select>
 
         <label>Año:</label>
-        <select id="selectAnio" onchange="generarVistaSalones()">
-          <option value="">Todos los años</option>
+        <select id="selectAnioCargar" onchange="actualizarVistaCargas()">
+          <option value="">-- Seleccionar Año --</option>
           <option value="Primero">Primero (1°)</option>
           <option value="Segundo">Segundo (2°)</option>
           <option value="Tercero">Tercero (3°)</option>
           <option value="Cuarto">Cuarto (4°)</option>
         </select>
 
-        <input type="text" id="buscadorDocente" placeholder="Buscar docente..." oninput="generarVistaSalones()" style="width: 180px;">
+        <label>Buscar Docente:</label>
+        <input type="text" id="buscadorDocenteCargar" placeholder="Nombre docente..." oninput="actualizarVistaCargas()" style="width: 160px;">
 
         <button class="btn btn-green" onclick="descargarJSON()">Descargar JSON</button>
       </div>
     </div>
 
-    <div class="vista-grafica">
-      <div class="grid-salones" id="gridSalones"></div>
+    <div class="seccion-tabla">
+      <div class="subtitulo-header">
+        <div class="subtitulo" id="tituloCargas">SELECCIONE ESPECIALIDAD Y AÑO</div>
+        <button class="btn btn-green" id="btnAgregarClase" style="display:none;" onclick="abrirModalAgregar()">
+          ➕ Agregar Clase
+        </button>
+      </div>
+
+      <div id="mensajeInfoCargas" class="mensaje-info">Seleccione una Especialidad y un Año para gestionar sus clases.</div>
+
+      <table id="tablaCargasMatriz" class="tabla-horario-matriz" style="display: none;">
+        <thead>
+          <tr>
+            <th class="col-horario-head">HORARIO</th>
+            <th>LUNES</th>
+            <th>MARTES</th>
+            <th>MIÉRCOLES</th>
+            <th>JUEVES</th>
+            <th>VIERNES</th>
+            <th>SÁBADO</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpoTablaCargas"></tbody>
+      </table>
     </div>
   </div>
 
 </div>
 
-<!-- MODAL PARA AGREGAR / EDITAR HORARIO DE SALÓN -->
+<!-- MODAL PARA AGREGAR / EDITAR CLASE -->
 <div class="modal-fondo" id="modalFondo">
   <div class="modal">
-    <h2 id="tituloModal">Asignar Salón</h2>
+    <h2 id="tituloModal">Agregar Clase</h2>
 
-    <label>Especialidad</label>
-    <select id="modalEspecialidad"></select>
-
-    <label>Año / Grado</label>
-    <select id="modalAnio">
-      <option value="Primero">Primero (1°)</option>
-      <option value="Segundo">Segundo (2°)</option>
-      <option value="Tercero">Tercero (3°)</option>
-      <option value="Cuarto">Cuarto (4°)</option>
+    <label>Día de la semana</label>
+    <select id="modalDia">
+      <option value="Lunes">Lunes</option>
+      <option value="Martes">Martes</option>
+      <option value="Miércoles">Miércoles</option>
+      <option value="Jueves">Jueves</option>
+      <option value="Viernes">Viernes</option>
+      <option value="Sábado">Sábado</option>
     </select>
+
+    <label>Salón</label>
+    <select id="modalSalon"></select>
 
     <label>Horario Inicio</label>
     <select id="modalHoraInicio"></select>
@@ -550,25 +430,14 @@ table.tabla-horario-matriz th.col-horario-head{
     <select id="modalHoraFin"></select>
 
     <label>Asignatura</label>
-    <input type="text" id="modalAsignatura" placeholder="Ej: Algoritmos">
+    <input type="text" id="modalAsignatura" placeholder="Ej: Matemática I">
 
     <label>Docente</label>
-    <input type="text" id="modalDocente" placeholder="Ej: Juan Pérez">
+    <input type="text" id="modalDocente" placeholder="Ej: Prof. María García">
 
     <div class="modal-actions">
-      <button class="btn btn-green" onclick="guardarDesdeModal()">Guardar</button>
+      <button class="btn btn-green" onclick="guardarDesdeModal()">Guardar Clase</button>
       <button class="btn btn-red" onclick="cerrarModal()">Cancelar</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL VER DETALLES -->
-<div class="modal-fondo" id="modalDetallesFondo">
-  <div class="modal">
-    <h2>Detalles de la Clase</h2>
-    <div class="detalles-box" id="contenidoDetalles"></div>
-    <div class="modal-actions">
-      <button class="btn" onclick="cerrarModalDetalles()">Cerrar</button>
     </div>
   </div>
 </div>
@@ -592,22 +461,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-// LISTA DE ESPECIALIDADES DEFINIDAS
 const listaEspecialidadesBase = [
-  "Biología",
-  "Com. Visual",
-  "Derecho",
-  "Español",
-  "Física",
-  "Geografía",
-  "Historia",
-  "Informática",
-  "Inglés",
-  "Literatura",
-  "Matemática",
-  "Química",
-  "Trayecto equivalente",
-  "Maestro Técnico"
+  "Biología", "Com. Visual", "Derecho", "Español",
+  "Física", "Geografía", "Historia", "Informática",
+  "Inglés", "Literatura", "Matemática", "Química",
+  "Trayecto equivalente", "Maestro Técnico"
 ];
 
 const horasInicio = [
@@ -624,13 +482,6 @@ const horasFin = [
   "22:50", "23:35"
 ];
 
-const mapaAnioAbreviado = {
-  "Primero": "1°",
-  "Segundo": "2°",
-  "Tercero": "3°",
-  "Cuarto": "4°"
-};
-
 const diasSemanaMatriz = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
 const salones = [];
@@ -641,85 +492,73 @@ salones.push("Mediateca");
 
 let datosFirebase = {};
 
-let modalModo = "agregar";
-let modalSalonSeleccionado = null;
-let modalIndex = null;
+// Estado del Modal
+let modalEdicionData = null; // null si agregamos, objeto si editamos
 
 // ELEMENTOS DOM
-const diaSemanaSelect = document.getElementById("diaSemana");
-const selectAnio = document.getElementById("selectAnio");
+const selectEspecialidadMatriz = document.getElementById("selectEspecialidadMatriz");
+const selectAnioMatriz = document.getElementById("selectAnioMatriz");
+
 const filtroEspecialidadCargar = document.getElementById("filtroEspecialidadCargar");
-const buscadorDocente = document.getElementById("buscadorDocente");
-const gridSalones = document.getElementById("gridSalones");
+const selectAnioCargar = document.getElementById("selectAnioCargar");
+const buscadorDocenteCargar = document.getElementById("buscadorDocenteCargar");
 
 const modalFondo = document.getElementById("modalFondo");
-const tituloModal = document.getElementById("tituloModal");
+const modalSalon = document.getElementById("modalSalon");
+const modalDia = document.getElementById("modalDia");
 const modalHoraInicio = document.getElementById("modalHoraInicio");
 const modalHoraFin = document.getElementById("modalHoraFin");
-const modalDocente = document.getElementById("modalDocente");
 const modalAsignatura = document.getElementById("modalAsignatura");
-const modalEspecialidad = document.getElementById("modalEspecialidad");
-const modalAnio = document.getElementById("modalAnio");
+const modalDocente = document.getElementById("modalDocente");
 
-const modalDetallesFondo = document.getElementById("modalDetallesFondo");
-const contenidoDetalles = document.getElementById("contenidoDetalles");
-
-// INICIALIZACIÓN DE SELECTS Y DESPLEGABLES
-horasInicio.forEach((h, index) => {
-  const op = document.createElement("option");
-  op.value = h;
-  op.textContent = `${h} a ${horasFin[index]}`;
-  modalHoraInicio.appendChild(op);
-});
-
-horasFin.forEach(h => {
-  const op = document.createElement("option");
-  op.value = h;
-  op.textContent = h;
-  modalHoraFin.appendChild(op);
-});
-
-// Poblar los desplegables de Especialidad con la lista fija
-function inicializarDesplegablesEspecialidades(){
-  // Modal de asignación
-  modalEspecialidad.innerHTML = "";
-  listaEspecialidadesBase.forEach(esp => {
+// INICIALIZAR CONTROLES
+function inicializar(){
+  // Horarios
+  horasInicio.forEach((h, index) => {
     const op = document.createElement("option");
-    op.value = esp;
-    op.textContent = esp;
-    modalEspecialidad.appendChild(op);
+    op.value = h;
+    op.textContent = `${h} a ${horasFin[index]}`;
+    modalHoraInicio.appendChild(op);
   });
 
-  // Filtro en Vista Consulta
-  const comboMatriz = document.getElementById("selectEspecialidadMatriz");
-  comboMatriz.innerHTML = `<option value="">-- Seleccionar Especialidad --</option>`;
-  listaEspecialidadesBase.forEach(esp => {
+  horasFin.forEach(h => {
     const op = document.createElement("option");
-    op.value = esp;
-    op.textContent = esp;
-    comboMatriz.appendChild(op);
+    op.value = h;
+    op.textContent = h;
+    modalHoraFin.appendChild(op);
   });
 
-  // Filtro en Vista Cargar/Gestión
-  filtroEspecialidadCargar.innerHTML = `<option value="">Todas las especialidades</option>`;
-  listaEspecialidadesBase.forEach(esp => {
+  // Salones en Modal
+  salones.forEach(s => {
     const op = document.createElement("option");
-    op.value = esp;
-    op.textContent = esp;
-    filtroEspecialidadCargar.appendChild(op);
+    op.value = s;
+    op.textContent = s;
+    modalSalon.appendChild(op);
+  });
+
+  // Especialidades
+  listaEspecialidadesBase.forEach(esp => {
+    const op1 = document.createElement("option");
+    op1.value = esp;
+    op1.textContent = esp;
+    selectEspecialidadMatriz.appendChild(op1);
+
+    const op2 = document.createElement("option");
+    op2.value = esp;
+    op2.textContent = esp;
+    filtroEspecialidadCargar.appendChild(op2);
   });
 }
 
-inicializarDesplegablesEspecialidades();
+inicializar();
 
-// ESCUCHADOR DE FIREBASE EN TIEMPO REAL
+// FIREBASE LISTENER
 database.ref("gestion_salones").on("value", function(snapshot){
   datosFirebase = snapshot.val() || {};
-  generarVistaSalones();
   alCambiarFiltroMatriz();
+  actualizarVistaCargas();
 });
 
-// CONTROL DE PESTAÑAS / MENU
 function cambiarVista(vista){
   const tabConsulta = document.getElementById("tabConsulta");
   const tabCargar = document.getElementById("tabCargar");
@@ -739,22 +578,60 @@ function cambiarVista(vista){
   }
 }
 
-/* ==========================================================================
-   LÓGICA VISTA 1: VER HORARIOS (MATRIZ POR ESPECIALIDAD)
-   ========================================================================== */
 function normalizarAnio(valor){
   if(!valor) return "";
   const str = String(valor).toLowerCase().trim();
-  if(str.includes("1") || str.includes("prim")) return "1";
-  if(str.includes("2") || str.includes("seg")) return "2";
-  if(str.includes("3") || str.includes("terc")) return "3";
-  if(str.includes("4") || str.includes("cua")) return "4";
-  return str;
+  if(str.includes("1") || str.includes("prim")) return "Primero";
+  if(str.includes("2") || str.includes("seg")) return "Segundo";
+  if(str.includes("3") || str.includes("terc")) return "Tercero";
+  if(str.includes("4") || str.includes("cua")) return "Cuarto";
+  return valor;
 }
 
+/* ==========================================================================
+   MÉTODO COMPARTIDO: EXTRAER CLASES
+   ========================================================================== */
+function obtenerTodasLasClases(){
+  const listaCompleta = [];
+
+  Object.keys(datosFirebase).forEach(clave => {
+    // Ejemplo clave: horarios_salones_Salon_1_Lunes
+    const partes = clave.split("_");
+    const dia = partes[partes.length - 1];
+
+    if(diasSemanaMatriz.includes(dia)){
+      const salon = clave.replace("horarios_salones_", "").replace(`_${dia}`, "").replace(/_/g, " ");
+      const clasesArray = datosFirebase[clave];
+
+      if(Array.isArray(clasesArray)){
+        clasesArray.forEach((item, index) => {
+          listaCompleta.push({
+            claveFirebase: clave,
+            indexFirebase: index,
+            dia: dia,
+            salon: salon,
+            especialidad: item.especialidad || "",
+            anio: normalizarAnio(item.anio),
+            horaInicio: item.horaInicio || item.horainicio || "",
+            horaFin: item.horaFin || item.horafin || "",
+            rangoHorario: `${item.horaInicio || item.horainicio} a ${item.horaFin || item.horafin}`,
+            asignatura: item.asignatura || "",
+            docente: item.docente || ""
+          });
+        });
+      }
+    }
+  });
+
+  return listaCompleta;
+}
+
+/* ==========================================================================
+   VISTA 1: CONSULTA DE HORARIOS
+   ========================================================================== */
 function alCambiarFiltroMatriz(){
-  const espSel = document.getElementById("selectEspecialidadMatriz").value;
-  const anioSel = document.getElementById("selectAnioMatriz").value;
+  const espSel = selectEspecialidadMatriz.value;
+  const anioSel = selectAnioMatriz.value;
 
   const tabla = document.getElementById("tablaHorariosMatriz");
   const mensaje = document.getElementById("mensajeInfoMatriz");
@@ -768,68 +645,71 @@ function alCambiarFiltroMatriz(){
     return;
   }
 
-  const labelAnio = anioSel + "° AÑO";
-  titulo.textContent = `${labelAnio} - ESPECIALIDAD ${espSel.toUpperCase()}`;
+  titulo.textContent = `${espSel.toUpperCase()} - ${anioSel.toUpperCase()}`;
 
-  const clasesEncontradas = buscarClasesMatriz(espSel, anioSel);
+  const todas = obtenerTodasLasClases();
+  const filtradas = todas.filter(c => 
+    c.especialidad.toLowerCase() === espSel.toLowerCase() && 
+    c.anio === anioSel
+  );
 
-  if(clasesEncontradas.length === 0){
+  if(filtradas.length === 0){
     tabla.style.display = "none";
     mensaje.style.display = "block";
-    mensaje.textContent = `No hay clases asignadas para ${labelAnio} de ${espSel}.`;
+    mensaje.textContent = `No hay clases registradas para ${espSel} (${anioSel}).`;
     return;
   }
 
-  renderizarMatrizHorario(clasesEncontradas);
+  renderizarMatriz(filtradas, "cuerpoTablaMatriz", false);
   mensaje.style.display = "none";
   tabla.style.display = "table";
 }
 
-function buscarClasesMatriz(especialidad, anio){
-  const resultados = [];
+/* ==========================================================================
+   VISTA 2: CARGA Y GESTIÓN DE HORARIOS
+   ========================================================================== */
+function actualizarVistaCargas(){
+  const espSel = filtroEspecialidadCargar.value;
+  const anioSel = selectAnioCargar.value;
+  const filtroDocente = buscadorDocenteCargar.value.toLowerCase().trim();
 
-  Object.keys(datosFirebase).forEach(clave => {
-    const partes = clave.split("_");
-    const dia = partes[partes.length - 1];
+  const tabla = document.getElementById("tablaCargasMatriz");
+  const mensaje = document.getElementById("mensajeInfoCargas");
+  const titulo = document.getElementById("tituloCargas");
+  const btnAgregar = document.getElementById("btnAgregarClase");
 
-    if(diasSemanaMatriz.includes(dia)){
-      const salon = obtenerNombreSalon(clave);
-      const lista = datosFirebase[clave];
+  if(!espSel || !anioSel){
+    tabla.style.display = "none";
+    mensaje.style.display = "block";
+    mensaje.textContent = "Seleccione Especialidad y Año para gestionar los horarios.";
+    titulo.textContent = "SELECCIONE ESPECIALIDAD Y AÑO";
+    btnAgregar.style.display = "none";
+    return;
+  }
 
-      if(Array.isArray(lista)){
-        lista.forEach(item => {
-          const espOk = (item.especialidad || "").trim().toLowerCase() === especialidad.trim().toLowerCase();
-          const anioNormalizado = normalizarAnio(item.anio);
-          const anioOk = anioNormalizado === anio;
+  titulo.textContent = `GESTIONANDO: ${espSel.toUpperCase()} - ${anioSel.toUpperCase()}`;
+  btnAgregar.style.display = "inline-block";
 
-          if(espOk && anioOk){
-            resultados.push({
-              dia: dia,
-              horaInicio: item.horaInicio || item.horainicio || "",
-              horaFin: item.horaFin || item.horafin || "",
-              rangoHorario: `${item.horaInicio || item.horainicio} a ${item.horaFin || item.horafin}`,
-              asignatura: item.asignatura || item.materia || "",
-              docente: item.docente || "",
-              salon: salon
-            });
-          }
-        });
-      }
-    }
-  });
+  const todas = obtenerTodasLasClases();
+  let filtradas = todas.filter(c => 
+    c.especialidad.toLowerCase() === espSel.toLowerCase() && 
+    c.anio === anioSel
+  );
 
-  return resultados;
+  if(filtroDocente !== ""){
+    filtradas = filtradas.filter(c => c.docente.toLowerCase().includes(filtroDocente));
+  }
+
+  renderizarMatriz(filtradas, "cuerpoTablaCargas", true);
+  mensaje.style.display = "none";
+  tabla.style.display = "table";
 }
 
-function obtenerNombreSalon(clave){
-  let texto = clave.replace("horarios_salones_", "");
-  const pos = texto.lastIndexOf("_");
-  if(pos !== -1) texto = texto.substring(0, pos);
-  return texto.replace(/_/g, " ");
-}
-
-function renderizarMatrizHorario(clases){
-  const tbody = document.getElementById("cuerpoTablaMatriz");
+/* ==========================================================================
+   RENDERIZADOR DE TABLA GRÁFICA
+   ========================================================================== */
+function renderizarMatriz(clases, elementIdBody, conAcciones = false){
+  const tbody = document.getElementById(elementIdBody);
   
   const mapaHorarios = {};
   clases.forEach(c => {
@@ -871,6 +751,15 @@ function renderizarMatrizHorario(clases){
             <span class="celda-docente">${escapeHtml(it.docente)}</span>
             <span class="celda-salon">🏛️ ${escapeHtml(it.salon)}</span>
           `;
+
+          if(conAcciones){
+            html += `
+              <div class="acciones-item">
+                <button class="btn-mini btn" onclick="abrirModalEditar('${it.claveFirebase}', ${it.indexFirebase})">✏️</button>
+                <button class="btn-mini btn-red" onclick="eliminarClase('${it.claveFirebase}', ${it.indexFirebase})">🗑️</button>
+              </div>
+            `;
+          }
         });
       }
       html += `</td>`;
@@ -883,155 +772,22 @@ function renderizarMatrizHorario(clases){
 }
 
 /* ==========================================================================
-   LÓGICA VISTA 2: CARGAR Y GESTIONAR HORARIOS (SALONES)
+   MODAL DE AÑADIR / EDITAR
    ========================================================================== */
-function keySalonDia(salon, dia){
-  const salonClean = salon.replace(/\s+/g, '_');
-  return `horarios_salones_${salonClean}_${dia}`;
-}
+function abrirModalAgregar(){
+  const espSel = filtroEspecialidadCargar.value;
+  const anioSel = selectAnioCargar.value;
 
-function obtenerEventos(key){
-  return datosFirebase[key] || [];
-}
-
-function generarVistaSalones(){
-  const diaActual = diaSemanaSelect.value;
-  const especialidadFiltro = filtroEspecialidadCargar.value;
-  const anioFiltro = selectAnio.value;
-  const textoDocente = buscadorDocente.value.toLowerCase().trim();
-
-  const estaFiltrando = especialidadFiltro !== "" || anioFiltro !== "" || textoDocente !== "";
-
-  let html = "";
-
-  salones.forEach(salon => {
-    const key = keySalonDia(salon, diaActual);
-    const eventos = obtenerEventos(key);
-
-    eventos.sort((a, b) => (a.horaInicio || "").localeCompare(b.horaInicio || ""));
-
-    let eventosFiltrados = eventos;
-
-    // Filtro por Especialidad
-    if(especialidadFiltro !== ""){
-      eventosFiltrados = eventosFiltrados.filter(ev => 
-        (ev.especialidad || "").toLowerCase() === especialidadFiltro.toLowerCase()
-      );
-    }
-
-    // Filtro por Año
-    if(anioFiltro !== ""){
-      eventosFiltrados = eventosFiltrados.filter(ev => (ev.anio || "") === anioFiltro);
-    }
-
-    // Filtro por Docente
-    if(textoDocente !== ""){
-      eventosFiltrados = eventosFiltrados.filter(ev => 
-        (ev.docente || "").toLowerCase().includes(textoDocente)
-      );
-    }
-
-    if(estaFiltrando && eventosFiltrados.length === 0){
-      return;
-    }
-
-    html += `
-      <div class="salon-card">
-        <div class="salon-header">
-          <span>🏛️ ${salon}</span>
-          <button class="btn-small" onclick="abrirAgregar('${salon}')">+</button>
-        </div>
-    `;
-
-    if(eventosFiltrados.length === 0){
-      html += `<div class="sin-actividad-card">Sin clases asignadas</div>`;
-    } else {
-      eventosFiltrados.forEach((ev, idx) => {
-        const idAcciones = `acciones_${key.replace(/[^a-zA-Z0-9_]/g, '')}_${idx}`;
-        const anioAbrev = mapaAnioAbreviado[ev.anio] || ev.anio || "";
-
-        if(!estaFiltrando){
-          html += `
-            <div class="evento-card-compacto">
-              <div class="evento-header-compacto">
-                <span class="evento-hora-compacto">⏰ ${escapeHtml(ev.horaInicio)}-${escapeHtml(ev.horaFin)}</span>
-                <span class="evento-info-compacto">
-                  <strong>${escapeHtml(anioAbrev)} ${escapeHtml(ev.especialidad)}</strong> - ${escapeHtml(ev.asignatura)} (${escapeHtml(ev.docente)})
-                </span>
-                <button class="btn-eye" title="Ver detalles" onclick="verDetalles('${salon}', '${ev.horaInicio}', '${ev.horaFin}', '${escapeHtml(ev.docente)}', '${escapeHtml(ev.asignatura)}', '${escapeHtml(ev.especialidad)}', '${escapeHtml(ev.anio)}')">👁️</button>
-                <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
-              </div>
-
-              <div class="acciones-evento" id="${idAcciones}">
-                <button class="btn" onclick="abrirEditar('${salon}', ${idx})">Editar</button>
-                <button class="btn btn-red" onclick="eliminarEvento('${salon}', ${idx})">Quitar</button>
-              </div>
-            </div>
-          `;
-        } else {
-          html += `
-            <div class="evento-card-detallado">
-              <div class="evento-header-detallado">
-                <span class="evento-hora-detallado">⏰ ${escapeHtml(ev.horaInicio)} a ${escapeHtml(ev.horaFin)}</span>
-                <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
-              </div>
-              <div class="evento-detalle"><strong>Año / Curso:</strong> ${escapeHtml(anioAbrev)} (${escapeHtml(ev.anio)})</div>
-              <div class="evento-detalle"><strong>Especialidad:</strong> ${escapeHtml(ev.especialidad)}</div>
-              <div class="evento-detalle"><strong>Asignatura:</strong> ${escapeHtml(ev.asignatura)}</div>
-              <div class="evento-detalle"><strong>Docente:</strong> ${escapeHtml(ev.docente)}</div>
-
-              <div class="acciones-evento" id="${idAcciones}">
-                <button class="btn" onclick="abrirEditar('${salon}', ${idx})">Editar</button>
-                <button class="btn btn-red" onclick="eliminarEvento('${salon}', ${idx})">Quitar</button>
-              </div>
-            </div>
-          `;
-        }
-      });
-    }
-
-    html += `</div>`;
-  });
-
-  if(html === "" && estaFiltrando){
-    html = `<div style="grid-column: 1/-1; text-align: center; color: #004466; font-size: 16px; padding: 20px;">No se encontraron salones ni cursos que coincidan con los filtros seleccionados.</div>`;
+  if(!espSel || !anioSel){
+    alert("Por favor, seleccione primero Especialidad y Año.");
+    return;
   }
 
-  gridSalones.innerHTML = html;
-}
-
-function verDetalles(salon, inicio, fin, docente, asignatura, especialidad, anio){
-  const anioAbrev = mapaAnioAbreviado[anio] || anio;
-  contenidoDetalles.innerHTML = `
-    <div><strong>Salón:</strong> ${escapeHtml(salon)}</div>
-    <div><strong>Horario:</strong> ${escapeHtml(inicio)} a ${escapeHtml(fin)} hs</div>
-    <div><strong>Año / Grado:</strong> ${escapeHtml(anioAbrev)} (${escapeHtml(anio)})</div>
-    <div><strong>Especialidad:</strong> ${escapeHtml(especialidad)}</div>
-    <div><strong>Asignatura:</strong> ${escapeHtml(asignatura)}</div>
-    <div><strong>Docente:</strong> ${escapeHtml(docente)}</div>
-  `;
-  modalDetallesFondo.style.display = "flex";
-}
-
-function cerrarModalDetalles(){
-  modalDetallesFondo.style.display = "none";
-}
-
-function mostrarAcciones(id){
-  const panel = document.getElementById(id);
-  if(panel){
-    panel.classList.toggle("activo");
-  }
-}
-
-function abrirAgregar(salon){
-  modalModo = "agregar";
-  modalSalonSeleccionado = salon;
-  modalIndex = null;
-
-  tituloModal.textContent = `Asignar a ${salon}`;
-  modalEspecialidad.selectedIndex = 0;
-  modalAnio.value = "Primero";
+  modalEdicionData = null;
+  document.getElementById("tituloModal").textContent = `Agregar Clase (${espSel} - ${anioSel})`;
+  
+  modalDia.selectedIndex = 0;
+  modalSalon.selectedIndex = 0;
   modalHoraInicio.selectedIndex = 0;
   modalHoraFin.selectedIndex = 0;
   modalAsignatura.value = "";
@@ -1040,23 +796,23 @@ function abrirAgregar(salon){
   modalFondo.style.display = "flex";
 }
 
-function abrirEditar(salon, index){
-  const diaActual = diaSemanaSelect.value;
-  const key = keySalonDia(salon, diaActual);
-  const eventos = obtenerEventos(key);
-  const ev = eventos[index];
+function abrirModalEditar(claveFirebase, index){
+  const lista = datosFirebase[claveFirebase] || [];
+  const ev = lista[index];
 
   if(!ev) return;
 
-  modalModo = "editar";
-  modalSalonSeleccionado = salon;
-  modalIndex = index;
+  const partes = claveFirebase.split("_");
+  const dia = partes[partes.length - 1];
+  const salon = claveFirebase.replace("horarios_salones_", "").replace(`_${dia}`, "").replace(/_/g, " ");
 
-  tituloModal.textContent = `Editar asignación en ${salon}`;
-  modalEspecialidad.value = ev.especialidad || listaEspecialidadesBase[0];
-  modalAnio.value = ev.anio || "Primero";
-  modalHoraInicio.value = ev.horaInicio || horasInicio[0];
-  modalHoraFin.value = ev.horaFin || horasFin[0];
+  modalEdicionData = { claveFirebase, index };
+
+  document.getElementById("tituloModal").textContent = "Editar Clase";
+  modalDia.value = dia;
+  modalSalon.value = salon;
+  modalHoraInicio.value = ev.horaInicio || ev.horainicio || horasInicio[0];
+  modalHoraFin.value = ev.horaFin || ev.horafin || horasFin[0];
   modalAsignatura.value = ev.asignatura || "";
   modalDocente.value = ev.docente || "";
 
@@ -1067,16 +823,23 @@ function cerrarModal(){
   modalFondo.style.display = "none";
 }
 
+function keySalonDia(salon, dia){
+  const salonClean = salon.replace(/\s+/g, '_');
+  return `horarios_salones_${salonClean}_${dia}`;
+}
+
 function guardarDesdeModal(){
-  const diaActual = diaSemanaSelect.value;
-  const especialidad = modalEspecialidad.value;
-  const anio = modalAnio.value;
+  const espSel = filtroEspecialidadCargar.value;
+  const anioSel = selectAnioCargar.value;
+  
+  const dia = modalDia.value;
+  const salon = modalSalon.value;
   const horaInicio = modalHoraInicio.value;
   const horaFin = modalHoraFin.value;
   const asignatura = modalAsignatura.value.trim();
   const docente = modalDocente.value.trim();
 
-  if(!docente || !asignatura){
+  if(!asignatura || !docente){
     alert("Por favor complete los campos requeridos (Asignatura y Docente).");
     return;
   }
@@ -1086,37 +849,43 @@ function guardarDesdeModal(){
     return;
   }
 
-  const key = keySalonDia(modalSalonSeleccionado, diaActual);
-  const eventos = obtenerEventos(key);
+  const objetoClase = {
+    especialidad: espSel,
+    anio: anioSel,
+    horaInicio: horaInicio,
+    horaFin: horaFin,
+    asignatura: asignatura,
+    docente: docente
+  };
 
-  if(modalModo === "agregar"){
-    eventos.push({ horaInicio, horaFin, docente, asignatura, especialidad, anio });
-  } else if(modalModo === "editar" && modalIndex !== null){
-    eventos[modalIndex] = { horaInicio, horaFin, docente, asignatura, especialidad, anio };
+  // Si estábamos editando y se cambió de salón o día, hay que borrar el registro viejo
+  if(modalEdicionData !== null){
+    const prevLista = datosFirebase[modalEdicionData.claveFirebase] || [];
+    prevLista.splice(modalEdicionData.index, 1);
+    database.ref("gestion_salones/" + modalEdicionData.claveFirebase).set(prevLista);
   }
 
-  datosFirebase[key] = eventos;
+  // Guardar en el salón/día correspondiente
+  const nuevaClave = keySalonDia(salon, dia);
+  const nuevaLista = datosFirebase[nuevaClave] || [];
+  nuevaLista.push(objetoClase);
 
-  database.ref("gestion_salones/" + key).set(eventos).then(() => {
+  database.ref("gestion_salones/" + nuevaClave).set(nuevaLista).then(() => {
     cerrarModal();
-    generarVistaSalones();
+    actualizarVistaCargas();
   });
 }
 
-function eliminarEvento(salon, index){
-  if(!confirm("¿Quitar esta ocupación de horario?")){
+function eliminarClase(claveFirebase, index){
+  if(!confirm("¿Desea quitar esta clase?")){
     return;
   }
 
-  const diaActual = diaSemanaSelect.value;
-  const key = keySalonDia(salon, diaActual);
-  const eventos = obtenerEventos(key);
+  const lista = datosFirebase[claveFirebase] || [];
+  lista.splice(index, 1);
 
-  eventos.splice(index, 1);
-  datosFirebase[key] = eventos;
-
-  database.ref("gestion_salones/" + key).set(eventos).then(() => {
-    generarVistaSalones();
+  database.ref("gestion_salones/" + claveFirebase).set(lista).then(() => {
+    actualizarVistaCargas();
   });
 }
 
