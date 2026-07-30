@@ -225,6 +225,36 @@ table.tabla-horario-matriz th.col-horario-head{
   font-size:15px;
 }
 
+/* GRILLA DE SALONES DISPONIBLES */
+.grid-salones {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.card-salon {
+  background: #e8f8f5;
+  border: 2px solid #2ecc71;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.card-salon .salon-nombre {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1e8449;
+}
+
+.card-salon .salon-estado {
+  font-size: 13px;
+  color: #27ae60;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
 /* MODALES */
 .modal-fondo{
   position:fixed;
@@ -296,8 +326,11 @@ table.tabla-horario-matriz th.col-horario-head{
   <div class="nav-tab active" id="tabConsulta" onclick="cambiarVista('consulta')">
     📅 Ver Horarios
   </div>
+  <div class="nav-tab" id="tabBuscarLibres" onclick="cambiarVista('libres')">
+    🔍 Salones Libres
+  </div>
   <div class="nav-tab" id="tabCargar" onclick="cambiarVista('cargar')">
-    ⚙️ Cargar / Gestionar Horarios
+    ⚙️ Cargar / Gestionar
   </div>
 </div>
 
@@ -347,7 +380,40 @@ table.tabla-horario-matriz th.col-horario-head{
     </div>
   </div>
 
-  <!-- ==================== SECCIÓN 2: CARGAR Y GESTIONAR HORARIOS ==================== -->
+  <!-- ==================== SECCIÓN 2: BUSCAR SALONES LIBRES ==================== -->
+  <div id="vistaLibres" style="display: none;">
+    <div class="top">
+      <div class="encabezado">
+        <div class="title">Búsqueda de Salones Disponibles</div>
+      </div>
+      <div class="controls">
+        <label>Día:</label>
+        <select id="selectDiaLibre" onchange="buscarSalonesLibres()">
+          <option value="Lunes">Lunes</option>
+          <option value="Martes">Martes</option>
+          <option value="Miércoles">Miércoles</option>
+          <option value="Jueves">Jueves</option>
+          <option value="Viernes">Viernes</option>
+          <option value="Sábado">Sábado</option>
+        </select>
+
+        <label>Hora Inicio:</label>
+        <select id="selectHoraInicioLibre" onchange="buscarSalonesLibres()"></select>
+
+        <label>Hora Fin:</label>
+        <select id="selectHoraFinLibre" onchange="buscarSalonesLibres()"></select>
+      </div>
+    </div>
+
+    <div class="seccion-tabla">
+      <div class="subtitulo" id="tituloVistaLibres">SALONES DISPONIBLES</div>
+      <div id="mensajeInfoLibres" class="mensaje-info">Ajuste la hora y el día para ver la disponibilidad.</div>
+
+      <div id="contenedorSalonesLibres" class="grid-salones" style="display: none;"></div>
+    </div>
+  </div>
+
+  <!-- ==================== SECCIÓN 3: CARGAR Y GESTIONAR HORARIOS ==================== -->
   <div id="vistaCargar" style="display: none;">
     <div class="top">
       <div class="encabezado">
@@ -503,6 +569,10 @@ const filtroEspecialidadCargar = document.getElementById("filtroEspecialidadCarg
 const selectAnioCargar = document.getElementById("selectAnioCargar");
 const buscadorDocenteCargar = document.getElementById("buscadorDocenteCargar");
 
+const selectDiaLibre = document.getElementById("selectDiaLibre");
+const selectHoraInicioLibre = document.getElementById("selectHoraInicioLibre");
+const selectHoraFinLibre = document.getElementById("selectHoraFinLibre");
+
 const modalFondo = document.getElementById("modalFondo");
 const modalSalon = document.getElementById("modalSalon");
 const modalDia = document.getElementById("modalDia");
@@ -515,17 +585,27 @@ const modalDocente = document.getElementById("modalDocente");
 function inicializar(){
   // Horarios
   horasInicio.forEach((h, index) => {
-    const op = document.createElement("option");
-    op.value = h;
-    op.textContent = `${h} a ${horasFin[index]}`;
-    modalHoraInicio.appendChild(op);
+    const op1 = document.createElement("option");
+    op1.value = h;
+    op1.textContent = `${h} a ${horasFin[index]}`;
+    modalHoraInicio.appendChild(op1);
+
+    const opLibre = document.createElement("option");
+    opLibre.value = h;
+    opLibre.textContent = h;
+    selectHoraInicioLibre.appendChild(opLibre);
   });
 
   horasFin.forEach(h => {
-    const op = document.createElement("option");
-    op.value = h;
-    op.textContent = h;
-    modalHoraFin.appendChild(op);
+    const op1 = document.createElement("option");
+    op1.value = h;
+    op1.textContent = h;
+    modalHoraFin.appendChild(op1);
+
+    const opLibre = document.createElement("option");
+    opLibre.value = h;
+    opLibre.textContent = h;
+    selectHoraFinLibre.appendChild(opLibre);
   });
 
   // Salones en Modal
@@ -548,6 +628,10 @@ function inicializar(){
     op2.textContent = esp;
     filtroEspecialidadCargar.appendChild(op2);
   });
+
+  // Valores predeterminados búsqueda salones
+  selectHoraInicioLibre.value = "08:50";
+  selectHoraFinLibre.value = "10:20";
 }
 
 inicializar();
@@ -557,24 +641,32 @@ database.ref("gestion_salones").on("value", function(snapshot){
   datosFirebase = snapshot.val() || {};
   alCambiarFiltroMatriz();
   actualizarVistaCargas();
+  buscarSalonesLibres();
 });
 
 function cambiarVista(vista){
   const tabConsulta = document.getElementById("tabConsulta");
+  const tabBuscarLibres = document.getElementById("tabBuscarLibres");
   const tabCargar = document.getElementById("tabCargar");
+  
   const vistaConsulta = document.getElementById("vistaConsulta");
+  const vistaLibres = document.getElementById("vistaLibres");
   const vistaCargar = document.getElementById("vistaCargar");
+
+  // Resetear estados de tabs
+  [tabConsulta, tabBuscarLibres, tabCargar].forEach(t => t.classList.remove("active"));
+  [vistaConsulta, vistaLibres, vistaCargar].forEach(v => v.style.display = "none");
 
   if(vista === 'consulta'){
     tabConsulta.classList.add("active");
-    tabCargar.classList.remove("active");
     vistaConsulta.style.display = "block";
-    vistaCargar.style.display = "none";
+  } else if(vista === 'libres'){
+    tabBuscarLibres.classList.add("active");
+    vistaLibres.style.display = "block";
+    buscarSalonesLibres();
   } else {
     tabCargar.classList.add("active");
-    tabConsulta.classList.remove("active");
     vistaCargar.style.display = "block";
-    vistaConsulta.style.display = "none";
   }
 }
 
@@ -666,7 +758,64 @@ function alCambiarFiltroMatriz(){
 }
 
 /* ==========================================================================
-   VISTA 2: CARGA Y GESTIÓN DE HORARIOS
+   VISTA 2: BÚSQUEDA DE SALONES LIBRES
+   ========================================================================== */
+function buscarSalonesLibres(){
+  const dia = selectDiaLibre.value;
+  const inicioBusqueda = selectHoraInicioLibre.value;
+  const finBusqueda = selectHoraFinLibre.value;
+
+  const contenedor = document.getElementById("contenedorSalonesLibres");
+  const mensaje = document.getElementById("mensajeInfoLibres");
+  const titulo = document.getElementById("tituloVistaLibres");
+
+  if(inicioBusqueda >= finBusqueda){
+    contenedor.style.display = "none";
+    mensaje.style.display = "block";
+    mensaje.textContent = "La hora de inicio debe ser estrictamente menor que la hora de fin.";
+    return;
+  }
+
+  titulo.textContent = `Salones libres el ${dia} (${inicioBusqueda} - ${finBusqueda})`;
+
+  const todasClases = obtenerTodasLasClases();
+  const salonesOcupados = new Set();
+
+  todasClases.forEach(clase => {
+    if(clase.dia === dia){
+      // Validar solapamiento de horarios (Overlap logic)
+      if(inicioBusqueda < clase.horaFin && finBusqueda > clase.horaInicio){
+        salonesOcupados.add(clase.salon);
+      }
+    }
+  });
+
+  const disponibles = salones.filter(s => !salonesOcupados.has(s));
+
+  if(disponibles.length === 0){
+    contenedor.style.display = "none";
+    mensaje.style.display = "block";
+    mensaje.textContent = "No hay salones libres en el rango de horario seleccionado.";
+    return;
+  }
+
+  let html = "";
+  disponibles.forEach(s => {
+    html += `
+      <div class="card-salon">
+        <div class="salon-nombre">🏛️ ${escapeHtml(s)}</div>
+        <div class="salon-estado">Disponible</div>
+      </div>
+    `;
+  });
+
+  contenedor.innerHTML = html;
+  mensaje.style.display = "none";
+  contenedor.style.display = "grid";
+}
+
+/* ==========================================================================
+   VISTA 3: CARGA Y GESTIÓN DE HORARIOS
    ========================================================================== */
 function actualizarVistaCargas(){
   const espSel = filtroEspecialidadCargar.value;
@@ -806,7 +955,12 @@ function abrirModalEditar(claveFirebase, index){
   const dia = partes[partes.length - 1];
   const salon = claveFirebase.replace("horarios_salones_", "").replace(`_${dia}`, "").replace(/_/g, " ");
 
-  modalEdicionData = { claveFirebase, index };
+  modalEdicionData = { 
+    claveFirebase, 
+    index, 
+    especialidad: ev.especialidad || filtroEspecialidadCargar.value, 
+    anio: ev.anio || selectAnioCargar.value 
+  };
 
   document.getElementById("tituloModal").textContent = "Editar Clase";
   modalDia.value = dia;
@@ -829,9 +983,14 @@ function keySalonDia(salon, dia){
 }
 
 function guardarDesdeModal(){
-  const espSel = filtroEspecialidadCargar.value;
-  const anioSel = selectAnioCargar.value;
+  let espSel = filtroEspecialidadCargar.value;
+  let anioSel = selectAnioCargar.value;
   
+  if(modalEdicionData !== null){
+    espSel = modalEdicionData.especialidad;
+    anioSel = modalEdicionData.anio;
+  }
+
   const dia = modalDia.value;
   const salon = modalSalon.value;
   const horaInicio = modalHoraInicio.value;
@@ -873,6 +1032,7 @@ function guardarDesdeModal(){
   database.ref("gestion_salones/" + nuevaClave).set(nuevaLista).then(() => {
     cerrarModal();
     actualizarVistaCargas();
+    buscarSalonesLibres();
   });
 }
 
@@ -886,6 +1046,7 @@ function eliminarClase(claveFirebase, index){
 
   database.ref("gestion_salones/" + claveFirebase).set(lista).then(() => {
     actualizarVistaCargas();
+    buscarSalonesLibres();
   });
 }
 
