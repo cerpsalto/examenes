@@ -587,10 +587,10 @@ const modalDocente = document.getElementById("modalDocente");
 // INICIALIZAR CONTROLES
 function inicializar(){
   // Horarios
-  horasInicio.forEach((h, index) => {
+  horasInicio.forEach((h) => {
     const op1 = document.createElement("option");
     op1.value = h;
-    op1.textContent = `${h} a ${horasFin[index]}`;
+    op1.textContent = h;
     modalHoraInicio.appendChild(op1);
 
     const opLibre = document.createElement("option");
@@ -775,7 +775,7 @@ function buscarSalonesLibres(){
   if(inicioBusqueda >= finBusqueda){
     contenedor.style.display = "none";
     mensaje.style.display = "block";
-    mensaje.textContent = "La hora de inicio debe ser estrictamente menor que la hora de fin.";
+    mensaje.textContent = "La hora de inicio debe ser strictly menor que la hora de fin.";
     return;
   }
 
