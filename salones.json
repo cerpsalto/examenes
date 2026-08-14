@@ -1,4 +1,100 @@
 {
+  "horarios_salones_Lab_Biología_Jueves": [
+    {
+      "anio": "Segundo",
+      "asignatura": "Biología Humana",
+      "docente": "Ma. E. Fernandez",
+      "especialidad": "Biología",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Andrea Prado",
+      "especialidad": "Biología",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Sandra Flores",
+      "especialidad": "Biología",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Biología Animal II",
+      "docente": "Darío Dalmás",
+      "especialidad": "Biología",
+      "horaFin": "17:55",
+      "horaInicio": "15:30"
+    }
+  ],
+  "horarios_salones_Lab_Biología_Lunes": [
+    {
+      "anio": "Segundo",
+      "asignatura": "Biología Humana",
+      "docente": "Ma. E. Fernandez",
+      "especialidad": "Biología",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    }
+  ],
+  "horarios_salones_Lab_Biología_Martes": [
+    {
+      "anio": "Segundo",
+      "asignatura": "Biología Humana",
+      "docente": "Ma. E. Fernandez",
+      "especialidad": "Biología",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Educación para la Salud",
+      "docente": "Guidaí Calleros",
+      "especialidad": "Biología",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Sandra Flores",
+      "especialidad": "Biología",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Lab_Biología_Miércoles": [
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Andrea Prado",
+      "especialidad": "Biología",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Biología Evolutiva",
+      "docente": "Darío Dalmás",
+      "especialidad": "Biología",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Biología Animal II",
+      "docente": "Darío Dalmás",
+      "especialidad": "Biología",
+      "horaFin": "19:35",
+      "horaInicio": "16:15"
+    }
+  ],
   "horarios_salones_Lab_Biología_Viernes": [
     {
       "anio": "Cuarto",
@@ -10,10 +106,66 @@
     },
     {
       "anio": "Cuarto",
-      "asignatura": "Biología animal II",
+      "asignatura": "Biología Animal II",
       "docente": "Darío Dalmás",
       "especialidad": "Biología",
       "horaFin": "18:40",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Lab_Física_Jueves": [
+    {
+      "anio": "Cuarto",
+      "asignatura": "Física Moderna y Contemporánea",
+      "docente": "Mario Silva",
+      "especialidad": "Física",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Proyecto de Física",
+      "docente": "Mario Silva",
+      "especialidad": "Física",
+      "horaFin": "17:55",
+      "horaInicio": "15:30"
+    }
+  ],
+  "horarios_salones_Lab_Física_Lunes": [
+    {
+      "anio": "Cuarto",
+      "asignatura": "Proyecto de Física",
+      "docente": "Mario Silva",
+      "especialidad": "Física",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Lab_Física_Martes": [
+    {
+      "anio": "Cuarto",
+      "asignatura": "Física Moderna y Contemporánea",
+      "docente": "Mario Silva",
+      "especialidad": "Física",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Lab_Física_Miércoles": [
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Giselle Vargas",
+      "especialidad": "Física",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Física Moderna y Contemporánea",
+      "docente": "Mario Silva",
+      "especialidad": "Física",
+      "horaFin": "17:55",
       "horaInicio": "16:15"
     }
   ],
@@ -33,6 +185,706 @@
       "especialidad": "Física",
       "horaFin": "18:40",
       "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Lab_Química_Jueves": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Química de las Biomoléculas",
+      "docente": "Javier Texeira",
+      "especialidad": "Química",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Química Inorgánica",
+      "docente": "Verónica Crusi",
+      "especialidad": "Química",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    }
+  ],
+  "horarios_salones_Lab_Química_Lunes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Lenguaje de la Química",
+      "docente": "Verónica Crusi",
+      "especialidad": "Química",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Química Inorgánica II",
+      "docente": "Verónica Crusi",
+      "especialidad": "Química",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Laura Silva",
+      "especialidad": "Química",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
+    }
+  ],
+  "horarios_salones_Lab_Química_Martes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Química de las Biomoléculas",
+      "docente": "Javier Texeira",
+      "especialidad": "Química",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Enzo Fagúndez",
+      "especialidad": "Química",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    }
+  ],
+  "horarios_salones_Lab_Química_Miércoles": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Enzo Fagúndez",
+      "especialidad": "Química",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Química Inorgánica II",
+      "docente": "Verónica Crusi",
+      "especialidad": "Química",
+      "horaFin": "12:00",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Laura Silva",
+      "especialidad": "Química",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Lab_Química_Viernes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Lenguaje de la Química",
+      "docente": "Verónica Crusi",
+      "especialidad": "Química",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Prácticas Inclusivas en Educación en Química",
+      "docente": "Fernanda Molina",
+      "especialidad": "Química",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    }
+  ],
+  "horarios_salones_Salón_10_Jueves": [
+    {
+      "anio": "Primero",
+      "asignatura": "Química General I",
+      "docente": "Alberto Quiroga",
+      "especialidad": "Química",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Química Orgánica",
+      "docente": "Javier Texeira",
+      "especialidad": "Química",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_10_Lunes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Fernanda Molina",
+      "especialidad": "Química",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Física para Química",
+      "docente": "Ruben Rodríguez",
+      "especialidad": "Química",
+      "horaFin": "11:15",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Química General II",
+      "docente": "Daniela Viola",
+      "especialidad": "Química",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "E. Bremerman",
+      "especialidad": "Química",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "E. Bremerman",
+      "especialidad": "Química",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Alberto Quiroga",
+      "especialidad": "Química",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    }
+  ],
+  "horarios_salones_Salón_10_Martes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Física para Química",
+      "docente": "Ruben Rodríguez",
+      "especialidad": "Química",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Química General I",
+      "docente": "Alberto Quiroga",
+      "especialidad": "Química",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Fernanda Molina",
+      "especialidad": "Química",
+      "horaFin": "13:40",
+      "horaInicio": "12:55"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Química General II",
+      "docente": "Daniela Viola",
+      "especialidad": "Química",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Química Orgánica",
+      "docente": "Javier Texeira",
+      "especialidad": "Química",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_10_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "Física para Química",
+      "docente": "Ruben Rodríguez",
+      "especialidad": "Química",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Química General I",
+      "docente": "Alberto Quiroga",
+      "especialidad": "Química",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Química General II",
+      "docente": "Daniela Viola",
+      "especialidad": "Química",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Química Orgánica",
+      "docente": "Javier Texeira",
+      "especialidad": "Química",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    }
+  ],
+  "horarios_salones_Salón_10_Viernes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Física para Química",
+      "docente": "Ruben Rodríguez",
+      "especialidad": "Química",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Alberto Quiroga",
+      "especialidad": "Química",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_11_Jueves": [
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Física",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Física",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Química",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Química",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Biología",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Biología",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Biología Celular",
+      "docente": "María Eugenia Fernández",
+      "especialidad": "Biología",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo nacional: Marco Normativo",
+      "docente": "E. Bremerman",
+      "especialidad": "Biología",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "E. Bremerman",
+      "especialidad": "Física",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "Erick Bremerman",
+      "especialidad": "Química",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Matemática",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    }
+  ],
+  "horarios_salones_Salón_11_Lunes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Física",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Física",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Química",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Química",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Biología",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Biología",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Los Seres Vivos en su Ambiente",
+      "docente": "Marcelo Barreto",
+      "especialidad": "Biología",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Educación para la Salud",
+      "docente": "Guidaí Calleros",
+      "especialidad": "Biología",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: marco Normativo",
+      "docente": "E. Bremerman",
+      "especialidad": "Biología",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "E. Bremeran",
+      "especialidad": "Física",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Biología",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Química",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Com. Visual",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Joela Barrios",
+      "especialidad": "Filosofía",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Filosofía",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Física",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    }
+  ],
+  "horarios_salones_Salón_11_Martes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Física",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Química",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Los Seres Vivos en su Ambiente",
+      "docente": "Marcelo Barreto",
+      "especialidad": "Biología",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Biología",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Biología Celular",
+      "docente": "María Eugenia Fernández",
+      "especialidad": "Biología",
+      "horaFin": "13:40",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodríguez Carvalho",
+      "especialidad": "Biología",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Química",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Matemática",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Matemática",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Com. Visual",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Joela Barrios",
+      "especialidad": "Filosofía",
+      "horaFin": "09:35",
+      "horaInicio": "07:55"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Filosofía",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel rodriguez carvalho",
+      "especialidad": "Física",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    }
+  ],
+  "horarios_salones_Salón_11_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Física",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Química",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Los Seres Vivos en su Ambiente",
+      "docente": "Marcelo Barreto",
+      "especialidad": "Biología",
+      "horaFin": "10:20",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Biología Celular",
+      "docente": "María Eugenia Fernández",
+      "especialidad": "Biología",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Biología",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "César Paulino",
+      "especialidad": "Biología",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "César Paulino",
+      "especialidad": "Física",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "César Paulino",
+      "especialidad": "Química",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Biología",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Química",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Com. Visual",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Filosofía",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Física",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
     }
   ],
   "horarios_salones_Salón_11_Viernes": [
@@ -59,6 +911,518 @@
       "especialidad": "Química",
       "horaFin": "16:15",
       "horaInicio": "13:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Física",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Física",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Química",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Química",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Biología",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Biología",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "María Eugenia Fernández",
+      "especialidad": "Biología",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodríguez Carvalho",
+      "especialidad": "Biología",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodríguez Carvalho",
+      "especialidad": "Química",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Matemática",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Com. Visual",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Filosofía",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Física",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    }
+  ],
+  "horarios_salones_Salón_12_Jueves": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Literatura",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Español",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Derecho",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Historia Local",
+      "docente": "Ana Almeida",
+      "especialidad": "Historia",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Historia del Uruguay de 1830 a 1930",
+      "docente": "Victor Pizzichillo",
+      "especialidad": "Historia",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Historia",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Inglés",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Historia Universal Siglo XX y XXI",
+      "docente": "Victor Pizzichillo",
+      "especialidad": "Historia",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Historia",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Derecho",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Literatura",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Español",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Inglés",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_12_Lunes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Derecho",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Alicia Moreira",
+      "especialidad": "Historia",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Historia del Uruguay de 1830 a 1930",
+      "docente": "Victor Pizzichillo",
+      "especialidad": "Historia",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "América Latina de 1830 a comienzos del siglo XXI",
+      "docente": "Eduviges De Thy",
+      "especialidad": "Historia",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Historia Universal Siglo XX y XXI",
+      "docente": "Victor Pizzichillo",
+      "especialidad": "Historia",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Historia",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua Extranjera II",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Historia",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Geografía",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua Extranjera I",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Geografía",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Derecho",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua Extranjera II",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Derecho",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Español",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua Extranjera II",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Español",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Inglés",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_12_Martes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Literatura",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Literatura",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la educación",
+      "docente": "Isabel rodriguez Carvalho",
+      "especialidad": "Español",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Español",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Derecho",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Historia",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Historia del Uruguay de 1830 a 1930",
+      "docente": "Victor Pizzichillo",
+      "especialidad": "Historia",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Historia",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Inglés",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa",
+      "docente": "Fanny Fernández",
+      "especialidad": "Inglés",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua Extranjera II",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Historia",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Historia Universal Siglo XX y XXI",
+      "docente": "Victor Pizzichillo",
+      "especialidad": "Historia",
+      "horaFin": "17:00",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua Extranjera II",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Geografía",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua Extranjera II",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Derecho",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua Extranjera II",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Literatura",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Literatura Iberoamericana II",
+      "docente": "Fernando Rocha",
+      "especialidad": "Literatura",
+      "horaFin": "17:00",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua Extranjera II",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Español",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_12_Miércoles": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Alicia Moreira",
+      "especialidad": "Historia",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Historia del Uruguay de 1830 a 1930",
+      "docente": "Victor Pizzichillo",
+      "especialidad": "Historia",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "América Latina de 1830 a comienzos del siglo XXI",
+      "docente": "Eduviges De Thy",
+      "especialidad": "Historia",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Soledad Rodríguez",
+      "especialidad": "Historia",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Historia Universal Siglo XX y XXI",
+      "docente": "Victor Pizzichillo",
+      "especialidad": "Historia",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Seminario Taller de Investigación Histórico Educativa",
+      "docente": "Soledad Rodriguez",
+      "especialidad": "Historia",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
     }
   ],
   "horarios_salones_Salón_12_Viernes": [
@@ -77,6 +1441,116 @@
       "especialidad": "Historia",
       "horaFin": "18:40",
       "horaInicio": "16:15"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodríguez Carvalho",
+      "especialidad": "Literatura",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodríguez Carvalho",
+      "especialidad": "Español",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Derecho",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Historia",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Historia Local",
+      "docente": "Ana Almeida",
+      "especialidad": "Historia",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Inglés",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    }
+  ],
+  "horarios_salones_Salón_13_Jueves": [
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Geografía",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Geografía de los Países en Desarrollo",
+      "docente": "Ana Urroz",
+      "especialidad": "Geografía",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Geografía de los Países en Desarrollo",
+      "docente": "Ana Urroz",
+      "especialidad": "Geografía",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
+    }
+  ],
+  "horarios_salones_Salón_13_Lunes": [
+    {
+      "anio": "Cuarto",
+      "asignatura": "Geografía de los Países en Desarrollo",
+      "docente": "Ana Urroz",
+      "especialidad": "Geografía",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_13_Miércoles": [
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Graciela García",
+      "especialidad": "Geografía",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Geografía de los Países en Desarrollo",
+      "docente": "Ana Urroz",
+      "especialidad": "Geografía",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Seminario Taller de Investigación en Problemáticas ambientales",
+      "docente": "Marcela Pérez",
+      "especialidad": "Geografía",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
     }
   ],
   "horarios_salones_Salón_13_Viernes": [
@@ -97,6 +1571,176 @@
       "horaInicio": "16:15"
     }
   ],
+  "horarios_salones_Salón_14_Jueves": [
+    {
+      "anio": "Primero",
+      "asignatura": "Probabilidad y Estadística",
+      "docente": "Alvaro Núñez",
+      "especialidad": "Física",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    }
+  ],
+  "horarios_salones_Salón_14_Lunes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Principios de Conservación en Mecánica",
+      "docente": "Mario Silva",
+      "especialidad": "Física",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Andrea Torales",
+      "especialidad": "Física",
+      "horaFin": "11:15",
+      "horaInicio": "10:30"
+    }
+  ],
+  "horarios_salones_Salón_14_Martes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Pricipios de Conservación en Mecánica",
+      "docente": "Mario Silva",
+      "especialidad": "Física",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Probabilidad y Estadística",
+      "docente": "Alvaro Núñez",
+      "especialidad": "Física",
+      "horaFin": "13:40",
+      "horaInicio": "10:30"
+    }
+  ],
+  "horarios_salones_Salón_14_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Andrea Torales",
+      "especialidad": "Física",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Principios de Conservación en Mecánica",
+      "docente": "Mario Silva",
+      "especialidad": "Física",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    }
+  ],
+  "horarios_salones_Salón_14_Viernes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Pricipios de Conservación en Mecánica",
+      "docente": "Mario Silva",
+      "especialidad": "Física",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    }
+  ],
+  "horarios_salones_Salón_15_Jueves": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Probabilidad y Estadística II",
+      "docente": "Juan Volpi",
+      "especialidad": "Matemática",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Lenguaje en las Aplicaciones Matemáticas",
+      "docente": "Analí Da Silva",
+      "especialidad": "Matemática",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    }
+  ],
+  "horarios_salones_Salón_15_Lunes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Wilsmar Dos Santos",
+      "especialidad": "Matemática",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Probabilidad y Estadística II",
+      "docente": "Juan Volpi",
+      "especialidad": "Matemática",
+      "horaFin": "10:20",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Lenguaje en las Aplicaciones Matemáticas",
+      "docente": "Analí Da Silva",
+      "especialidad": "Matemática",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    }
+  ],
+  "horarios_salones_Salón_15_Martes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Análisis II",
+      "docente": "Wilsmar Dos Santos",
+      "especialidad": "Matemática",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    }
+  ],
+  "horarios_salones_Salón_15_Miércoles": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Wilsmar Dos Santos",
+      "especialidad": "Matemática",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Análisis II",
+      "docente": "Wilsmar Dos Santos",
+      "especialidad": "Matemática",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Probabilidad y Estadística II",
+      "docente": "Juan Volpi",
+      "especialidad": "Matemática",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Evolución del Pensamiento Matemático",
+      "docente": "Analí Da Silva",
+      "especialidad": "Matemática",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Filosofía de la Educación",
+      "docente": "Isabel Rodriguez Carvalho",
+      "especialidad": "Informática",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    }
+  ],
   "horarios_salones_Salón_15_Viernes": [
     {
       "anio": "Tercero",
@@ -105,6 +1749,102 @@
       "especialidad": "Informática",
       "horaFin": "20:20",
       "horaInicio": "17:55"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Probabilidad  y Estadística II",
+      "docente": "Juan Volpi",
+      "especialidad": "Matemática",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    }
+  ],
+  "horarios_salones_Salón_17_Jueves": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Sociología V",
+      "docente": "Emilio Arredondo",
+      "especialidad": "Derecho",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Derecho Penal",
+      "docente": "Alvaro Machado",
+      "especialidad": "Derecho",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    }
+  ],
+  "horarios_salones_Salón_17_Lunes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Fabiana Bautista",
+      "especialidad": "Derecho",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Sociología V",
+      "docente": "Emilio Arredondo",
+      "especialidad": "Derecho",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "La Evolución Histórica de la terminología Política",
+      "docente": "Fanny Fernández",
+      "especialidad": "Derecho",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    }
+  ],
+  "horarios_salones_Salón_17_Martes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Derecho Penal",
+      "docente": "Alvaro Machado",
+      "especialidad": "Derecho",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    }
+  ],
+  "horarios_salones_Salón_17_Miércoles": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Fabiana Bautista",
+      "especialidad": "Derecho",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Derecho Penal",
+      "docente": "Alvaro Machado",
+      "especialidad": "Derecho",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Seminario de Derechos Humanos",
+      "docente": "Alexandra Camacho",
+      "especialidad": "Derecho",
+      "horaFin": "12:55",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Lea Silva",
+      "especialidad": "Derecho",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
     }
   ],
   "horarios_salones_Salón_17_Viernes": [
@@ -115,16 +1855,304 @@
       "especialidad": "Derecho",
       "horaFin": "16:15",
       "horaInicio": "14:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "La Evolución Histórica de la Terminología Jurídica",
+      "docente": "Fanny Fernández",
+      "especialidad": "Derecho",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    }
+  ],
+  "horarios_salones_Salón_18_Jueves": [
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Lea Silva",
+      "especialidad": "Derecho",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sociología IV",
+      "docente": "Bernabé Pagani",
+      "especialidad": "Derecho",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    }
+  ],
+  "horarios_salones_Salón_18_Lunes": [
+    {
+      "anio": "Segundo",
+      "asignatura": "Derecho Público II",
+      "docente": "Alexandra Camacho",
+      "especialidad": "Derecho",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Derecho Privado I",
+      "docente": "Angela Martinez",
+      "especialidad": "Derecho",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    }
+  ],
+  "horarios_salones_Salón_18_Martes": [
+    {
+      "anio": "Segundo",
+      "asignatura": "Derecho Privado I",
+      "docente": "Angela Martinez",
+      "especialidad": "Derecho",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_18_Miércoles": [
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Lea Silva",
+      "especialidad": "Derecho",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sociología IV",
+      "docente": "Bernabé Pagani",
+      "especialidad": "Derecho",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
     }
   ],
   "horarios_salones_Salón_18_Viernes": [
     {
       "anio": "Segundo",
       "asignatura": "Derecho Público II",
-      "docente": "Camacho",
+      "docente": "Alexandra Camacho",
       "especialidad": "Derecho",
       "horaFin": "20:20",
       "horaInicio": "18:50"
+    }
+  ],
+  "horarios_salones_Salón_19_Jueves": [
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Com. Visual",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Ética",
+      "docente": "Daiana Capurro",
+      "especialidad": "Filosofía",
+      "horaFin": "10:20",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Filosofía",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Filosofía Política",
+      "docente": "Adán Chiappa",
+      "especialidad": "Filosofía",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Historia de la Filosofía Moderna",
+      "docente": "Adán Chiappa",
+      "especialidad": "Filosofía",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    }
+  ],
+  "horarios_salones_Salón_19_Lunes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Liliana Flores",
+      "especialidad": "Com. Visual",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Com. Visual",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Liliana Flores",
+      "especialidad": "Filosofía",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Filosofía",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Historia de la Filosofía Antigua y Medieval",
+      "docente": "Adán Chiappa",
+      "especialidad": "Filosofía",
+      "horaFin": "13:40",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Historia de la Filosofía Moderna",
+      "docente": "Adán Chiappa",
+      "especialidad": "Filosofía",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Filosofía Política",
+      "docente": "Adán Chiappa",
+      "especialidad": "Filosofía",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_19_Martes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Liliana Flores",
+      "especialidad": "Com. Visual",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Com. Visual",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Liliana Flores",
+      "especialidad": "Filosofía",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Filosofía",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Historia de la Filosofía Antigua y Medieval",
+      "docente": "Adán Chiappa",
+      "especialidad": "Filosofía",
+      "horaFin": "13:40",
+      "horaInicio": "10:30"
+    }
+  ],
+  "horarios_salones_Salón_19_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Com. Visual",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Com. Visual",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Filosofía",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Ética",
+      "docente": "Daiana Capurro",
+      "especialidad": "Filosofía",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Filosofía",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Rosario Piastri",
+      "especialidad": "Filosofía",
+      "horaFin": "13:40",
+      "horaInicio": "12:55"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Historia de la Filosofía Moderna",
+      "docente": "Adán Chiappa",
+      "especialidad": "Filosofía",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Tomás Prado",
+      "especialidad": "Filosofía",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Filosofía Política",
+      "docente": "Adán Chiappa",
+      "especialidad": "Filosofía",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
     }
   ],
   "horarios_salones_Salón_19_Viernes": [
@@ -135,27 +2163,369 @@
       "especialidad": "Filosofía",
       "horaFin": "20:20",
       "horaInicio": "18:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Com. Visual",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Liliana Flores",
+      "especialidad": "Com. Visual",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Ética",
+      "docente": "Daiana Capurro",
+      "especialidad": "Filosofía",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Filosofía",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Liliana Flores",
+      "especialidad": "Filosofía",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    }
+  ],
+  "horarios_salones_Salón_1_Jueves": [
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Fabiana Bautista",
+      "especialidad": "Derecho",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Ciudadanía y Derechos Humanos",
+      "docente": "Bernabé Pagani",
+      "especialidad": "Derecho",
+      "horaFin": "11:15",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Derecho",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Matemática",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Física",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Química",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Biología",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Estética",
+      "docente": "SIlvana Rasedo",
+      "especialidad": "Filosofía",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Historia de la Filosofía en el Uruguay",
+      "docente": "Silvana Rasedo",
+      "especialidad": "Filosofía",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Filosofía",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Ana Cabrera",
+      "especialidad": "Com. Visual",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
     }
   ],
   "horarios_salones_Salón_1_Lunes": [
     {
       "anio": "Primero",
-      "asignatura": "ddewd",
-      "docente": "fknscnsf",
-      "especialidad": "Física",
+      "asignatura": "TEORÍA SOCIAL I",
+      "docente": "Emilio Arredondo",
+      "especialidad": "Derecho",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Derecho",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española I",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Derecho",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Ciudadanía y Derechos Humanos",
+      "docente": "Bernabé Pagani",
+      "especialidad": "Derecho",
       "horaFin": "13:40",
       "horaInicio": "12:10"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjera II",
+      "docente": "María Realini",
+      "especialidad": "Matemática",
+      "horaFin": "17:55",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjeras II",
+      "docente": "María Realini",
+      "especialidad": "Física",
+      "horaFin": "17:55",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjeras II",
+      "docente": "Maria Realini",
+      "especialidad": "Química",
+      "horaFin": "17:55",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjeras II",
+      "docente": "María Realini",
+      "especialidad": "Biología",
+      "horaFin": "17:55",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Historia de la Filosofía en el Uruguay",
+      "docente": "Silvana Rasedo",
+      "especialidad": "Filosofía",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjeras II",
+      "docente": "María Realini",
+      "especialidad": "Filosofía",
+      "horaFin": "17:55",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjeras II",
+      "docente": "María Realini",
+      "especialidad": "Com. Visual",
+      "horaFin": "17:55",
+      "horaInicio": "15:30"
+    }
+  ],
+  "horarios_salones_Salón_1_Martes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Procesos Sociales Contemporáneos",
+      "docente": "Bernabé Pagani",
+      "especialidad": "Derecho",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española I",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Derecho",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Derecho",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Derecho",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjera II",
+      "docente": "María Realini",
+      "especialidad": "Matemática",
+      "horaFin": "17:00",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjeras II",
+      "docente": "María Realini",
+      "especialidad": "Física",
+      "horaFin": "17:00",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjeras II",
+      "docente": "María Realini",
+      "especialidad": "Química",
+      "horaFin": "17:00",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjeras II",
+      "docente": "María Realini",
+      "especialidad": "Biología",
+      "horaFin": "17:00",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Estética",
+      "docente": "Silvana Rasedo",
+      "especialidad": "Filosofía",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjeras II",
+      "docente": "María Realini",
+      "especialidad": "Filosofía",
+      "horaFin": "17:00",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjeras II",
+      "docente": "María Realini",
+      "especialidad": "Com. Visual",
+      "horaFin": "17:00",
+      "horaInicio": "15:30"
+    }
+  ],
+  "horarios_salones_Salón_1_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "PSICOLOGÍA DEL DESARROLLO",
+      "docente": "Liliana Flores",
+      "especialidad": "Historia",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Ciudadanía y Derechos Humanos",
+      "docente": "Bernabé Pagani",
+      "especialidad": "Derecho",
+      "horaFin": "07:55",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Liliana Flores",
+      "especialidad": "Derecho",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Procesos Sociales Contemporáneos",
+      "docente": "Bernabé Pagani",
+      "especialidad": "Derecho",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Tomás Prado",
+      "especialidad": "Filosofía",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Historia de la Filosofía en el Uruguay",
+      "docente": "Silvana Rasedo",
+      "especialidad": "Filosofía",
+      "horaFin": "17:55",
+      "horaInicio": "15:30"
     }
   ],
   "horarios_salones_Salón_1_Viernes": [
-    {
-      "anio": "Segundo",
-      "asignatura": "Didáctica I",
-      "docente": "Alberto Quiroga",
-      "especialidad": "Química",
-      "horaFin": "17:55",
-      "horaInicio": "16:15"
-    },
     {
       "anio": "Cuarto",
       "asignatura": "Investigación Educativa Aplicada",
@@ -221,12 +2591,166 @@
       "horaInicio": "18:50"
     },
     {
-      "anio": "Cuarto",
-      "asignatura": "Lingüística II",
-      "docente": "Agustín Grattarola",
-      "especialidad": "Inglés",
-      "horaFin": "18:40",
-      "horaInicio": "16:15"
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Liliana Flores",
+      "especialidad": "Derecho",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Teoría Social I",
+      "docente": "Emilio Arredondo",
+      "especialidad": "Derecho",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lingüística General",
+      "docente": "Fabiana Meneses",
+      "especialidad": "Literatura",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Rosario Piastri",
+      "especialidad": "Filosofía",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    }
+  ],
+  "horarios_salones_Salón_20_Jueves": [
+    {
+      "anio": "Primero",
+      "asignatura": "Latín II",
+      "docente": "Sixto Monetta",
+      "especialidad": "Español",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Paula Galván",
+      "especialidad": "Informática",
+      "horaFin": "19:35",
+      "horaInicio": "18:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Isabel Flores",
+      "especialidad": "Informática",
+      "horaFin": "21:55",
+      "horaInicio": "19:35"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Matemática Discreta",
+      "docente": "Alvaro Núñez",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "22:05"
+    }
+  ],
+  "horarios_salones_Salón_20_Lunes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Español",
+      "horaFin": "13:40",
+      "horaInicio": "12:55"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación",
+      "docente": "Myriam Souza",
+      "especialidad": "Informática",
+      "horaFin": "21:10",
+      "horaInicio": "18:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Programación I",
+      "docente": "Marcos Berttoni",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "21:10"
+    }
+  ],
+  "horarios_salones_Salón_20_Martes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Programación I",
+      "docente": "Marcos Berttoni",
+      "especialidad": "Informática",
+      "horaFin": "22:50",
+      "horaInicio": "20:25"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Felipe Machado",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "22:50"
+    }
+  ],
+  "horarios_salones_Salón_20_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "Latín II",
+      "docente": "Sixto Monetta",
+      "especialidad": "Español",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Paula Galván",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "22:05"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Informática",
+      "horaFin": "19:35",
+      "horaInicio": "18:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Isabel Flores",
+      "especialidad": "Informática",
+      "horaFin": "21:55",
+      "horaInicio": "19:35"
+    }
+  ],
+  "horarios_salones_Salón_20_Sábado": [
+    {
+      "anio": "Primero",
+      "asignatura": "Matemática Discreta",
+      "docente": "Alvaro Núñez",
+      "especialidad": "Informática",
+      "horaFin": "12:00",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Felipe Machado",
+      "especialidad": "Informática",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
     }
   ],
   "horarios_salones_Salón_20_Viernes": [
@@ -253,17 +2777,259 @@
       "especialidad": "Informática",
       "horaFin": "23:35",
       "horaInicio": "22:05"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Latín II",
+      "docente": "Sixto Monetta",
+      "especialidad": "Español",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Español",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
     }
   ],
-  "horarios_salones_Salón_21_Viernes": [
+  "horarios_salones_Salón_21_Jueves": [
+    {
+      "anio": "Primero",
+      "asignatura": "Taller de Producción Oral",
+      "docente": "Agustin Grattarolla",
+      "especialidad": "Inglés",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Inglés",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Inglés",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Biología Vegetal I",
+      "docente": "Sonia Kosolap",
+      "especialidad": "Biología",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Lectura y Escritura Académica en Tutoría de Pasantías",
+      "docente": "María Eugenia Fernández",
+      "especialidad": "Biología",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Taller Integrado de Sistemas",
+      "docente": "Jorge Ferreira",
+      "especialidad": "Informática",
+      "horaFin": "12:00",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Ingeniería de Software",
+      "docente": "Guillermo Uscudum",
+      "especialidad": "Informática",
+      "horaFin": "21:55",
+      "horaInicio": "20:25"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Taller Integrado de Sistemas",
+      "docente": "Jorge Ferreira",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "22:05"
+    }
+  ],
+  "horarios_salones_Salón_21_Lunes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua y Cultura Inglesa I",
+      "docente": "Miriam Taruselli",
+      "especialidad": "Inglés",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Lengua y Cultura Inglesa II",
+      "docente": "María Machiavello",
+      "especialidad": "Inglés",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Sandra Flores",
+      "especialidad": "Biología",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Ecología",
+      "docente": "María Eugenia Fernández",
+      "especialidad": "Biología",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Lectura y Escritura Académica en Tutoría de Pasantías",
+      "docente": "María Eugenia Fernández",
+      "especialidad": "Biología",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Taller Integrado de Sistemas",
+      "docente": "Jorge Ferreira",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "20:25"
+    }
+  ],
+  "horarios_salones_Salón_21_Martes": [
     {
       "anio": "Segundo",
       "asignatura": "Fonética y Fonología I",
-      "docente": "Agustín Grattola",
+      "docente": "Agustín Grattarola",
+      "especialidad": "Inglés",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Ecología",
+      "docente": "María Eugenia Fernández",
+      "especialidad": "Biología",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación en la Enseñanza en Cs. Biológicas",
+      "docente": "Marcelo Barreto",
+      "especialidad": "Biología",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Investigación Educativa Aplicada",
+      "docente": "Fabián Bochia",
+      "especialidad": "Informática",
+      "horaFin": "21:55",
+      "horaInicio": "20:25"
+    }
+  ],
+  "horarios_salones_Salón_21_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua y Cultura Inglesa I",
+      "docente": "Miriam Taruselli",
+      "especialidad": "Inglés",
+      "horaFin": "11:15",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Taller de Producción Oral",
+      "docente": "Agustín Grattarolla",
+      "especialidad": "Inglés",
+      "horaFin": "12:55",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Lengua y Cultura Inglesa II",
+      "docente": "María Machiavello",
       "especialidad": "Inglés",
       "horaFin": "16:15",
       "horaInicio": "13:50"
     },
+    {
+      "anio": "Segundo",
+      "asignatura": "Fonética y Fonología I",
+      "docente": "Agustín Grattarola",
+      "especialidad": "Inglés",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Inglés",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Sandra Flores",
+      "especialidad": "Biología",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Biología Vegetal I",
+      "docente": "Sonia Kosolap",
+      "especialidad": "Biología",
+      "horaFin": "12:00",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Desarrollo Web",
+      "docente": "Jorge Ferreira",
+      "especialidad": "Informática",
+      "horaFin": "12:00",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Epistemología de la Educación",
+      "docente": "Sixto Monetta",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "20:25"
+    }
+  ],
+  "horarios_salones_Salón_21_Sábado": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica",
+      "docente": "Diego Caballero",
+      "especialidad": "Informática",
+      "horaFin": "12:00",
+      "horaInicio": "08:50"
+    }
+  ],
+  "horarios_salones_Salón_21_Viernes": [
     {
       "anio": "Segundo",
       "asignatura": "Lengua y Cultura inglesa II",
@@ -273,12 +3039,286 @@
       "horaInicio": "16:15"
     },
     {
+      "anio": "Primero",
+      "asignatura": "Taller de Producción Oral",
+      "docente": "Agustín Grattarolla",
+      "especialidad": "Inglés",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Fonética y Fonología I",
+      "docente": "Agustín Grattarola",
+      "especialidad": "Inglés",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Biología Vegetal I",
+      "docente": "Sonia Kosolap",
+      "especialidad": "Biología",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
       "anio": "Tercero",
       "asignatura": "Investigación Educativa Aplicada",
-      "docente": "Ana Cabrera",
+      "docente": "Fabian Bochia",
       "especialidad": "Informática",
       "horaFin": "21:55",
       "horaInicio": "20:25"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Desarrollo Web",
+      "docente": "Jorge Ferreira",
+      "especialidad": "Informática",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    }
+  ],
+  "horarios_salones_Salón_22_Jueves": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Lengua y Cultura Inglesa III",
+      "docente": "Miriam Taruselli",
+      "especialidad": "Inglés",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Lengua y Literatura I",
+      "docente": "María Realini",
+      "especialidad": "Inglés",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua y Cultura Inglesa IV",
+      "docente": "Miriam Taruselli",
+      "especialidad": "Inglés",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lingüística II",
+      "docente": "Agustín Grattarola",
+      "especialidad": "Inglés",
+      "horaFin": "18:40",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Programación II",
+      "docente": "Marcos Berttoni",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "21:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Matemática Aplicada II",
+      "docente": "Federico Araujo",
+      "especialidad": "Maestro Técnico",
+      "horaFin": "23:35",
+      "horaInicio": "21:10"
+    }
+  ],
+  "horarios_salones_Salón_22_Lunes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Daniela Zanotta",
+      "especialidad": "Inglés",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Lengua y Cultura Inglesa III",
+      "docente": "Miriam Taruselli",
+      "especialidad": "Inglés",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Lengua y Literatura I",
+      "docente": "María Realini",
+      "especialidad": "Inglés",
+      "horaFin": "13:40",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lingüística II",
+      "docente": "Agustín Grattarola",
+      "especialidad": "Inglés",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua Extranjera II",
+      "docente": "Flora Rodríguez",
+      "especialidad": "Inglés",
+      "horaFin": "18:40",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Carlos Silva",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "21:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Matemática Aplicada II",
+      "docente": "Federico Araújo",
+      "especialidad": "Maestro Técnico",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I y II",
+      "docente": "Richard Correa",
+      "especialidad": "Maestro Técnico",
+      "horaFin": "21:10",
+      "horaInicio": "20:25"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Carlos Silva",
+      "especialidad": "Maestro Técnico",
+      "horaFin": "23:35",
+      "horaInicio": "21:10"
+    }
+  ],
+  "horarios_salones_Salón_22_Martes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Lengua y Literatura I",
+      "docente": "María Realini",
+      "especialidad": "Inglés",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua Extranjera II",
+      "docente": "Flora Rodriguez",
+      "especialidad": "Inglés",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lengua y Cultura Inglesa IV",
+      "docente": "Miriam Taruselli",
+      "especialidad": "Inglés",
+      "horaFin": "17:00",
+      "horaInicio": "15:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Daniela Zanotta",
+      "especialidad": "Inglés",
+      "horaFin": "18:40",
+      "horaInicio": "17:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Inteligencia Artificial",
+      "docente": "Eduardo Cantos",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "20:25"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Introducción a la Electricidad",
+      "docente": "Martín Finozzi",
+      "especialidad": "Maestro Técnico",
+      "horaFin": "23:35",
+      "horaInicio": "20:25"
+    }
+  ],
+  "horarios_salones_Salón_22_Miércoles": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Daniela Zanotta",
+      "especialidad": "Inglés",
+      "horaFin": "08:40",
+      "horaInicio": "07:55"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica de la Lengua y la Evaluación",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Inglés",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Taller de Escritura Académica en Inglés",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Inglés",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lingüística II",
+      "docente": "Agustín Grattarola",
+      "especialidad": "Inglés",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Daniela Zanotta",
+      "especialidad": "Inglés",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I y II",
+      "docente": "Richard Correa",
+      "especialidad": "Maestro Técnico",
+      "horaFin": "23:35",
+      "horaInicio": "21:10"
+    }
+  ],
+  "horarios_salones_Salón_22_Sábado": [
+    {
+      "anio": "Segundo",
+      "asignatura": "Programación II",
+      "docente": "Marcos Berttoni",
+      "especialidad": "Informática",
+      "horaFin": "12:55",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Taller II",
+      "docente": "Martin Finozzi",
+      "especialidad": "Maestro Técnico",
+      "horaFin": "12:55",
+      "horaInicio": "07:10"
     }
   ],
   "horarios_salones_Salón_22_Viernes": [
@@ -297,6 +3337,118 @@
       "especialidad": "Informática",
       "horaFin": "22:50",
       "horaInicio": "20:25"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Taller de Escritura Académica en Inglés",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Inglés",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Daniela Zanotta",
+      "especialidad": "Inglés",
+      "horaFin": "12:55",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lingüística II",
+      "docente": "Agustín Grattarola",
+      "especialidad": "Inglés",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Introducción a la Electricidad",
+      "docente": "Martín Finozzi",
+      "especialidad": "Maestro Técnico",
+      "horaFin": "21:10",
+      "horaInicio": "19:35"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: marco normativo",
+      "docente": "Alexandra Camacho",
+      "especialidad": "Maestro Técnico",
+      "horaFin": "23:35",
+      "horaInicio": "21:10"
+    }
+  ],
+  "horarios_salones_Salón_23_Jueves": [
+    {
+      "anio": "Cuarto",
+      "asignatura": "Sistemas Operativos",
+      "docente": "Marcos Berttoni",
+      "especialidad": "Informática",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Investigación Educativa II",
+      "docente": "Mario Sosa",
+      "especialidad": "Informática",
+      "horaFin": "21:10",
+      "horaInicio": "19:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Taller Integrado II",
+      "docente": "Mauricio Vázquez",
+      "especialidad": "Informática",
+      "horaFin": "22:50",
+      "horaInicio": "21:10"
+    }
+  ],
+  "horarios_salones_Salón_23_Lunes": [
+    {
+      "anio": "Cuarto",
+      "asignatura": "Sistemas Operativos",
+      "docente": "Marcos Berttoni",
+      "especialidad": "Informática",
+      "horaFin": "21:10",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Lenguas Extranjeras II",
+      "docente": "Gabriela Barboza",
+      "especialidad": "Informática",
+      "horaFin": "22:50",
+      "horaInicio": "21:10"
+    }
+  ],
+  "horarios_salones_Salón_23_Martes": [
+    {
+      "anio": "Cuarto",
+      "asignatura": "Informática de Soporte",
+      "docente": "Elizabeth Silva",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "20:25"
+    }
+  ],
+  "horarios_salones_Salón_23_Miércoles": [
+    {
+      "anio": "Cuarto",
+      "asignatura": "Sistemas Operativos",
+      "docente": "Marcos Berttoni",
+      "especialidad": "Informática",
+      "horaFin": "21:10",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Informática de Soporte",
+      "docente": "Elizabeth Silva",
+      "especialidad": "Informática",
+      "horaFin": "23:35",
+      "horaInicio": "21:10"
     }
   ],
   "horarios_salones_Salón_23_Viernes": [
@@ -318,30 +3470,296 @@
     },
     {
       "anio": "Cuarto",
-      "asignatura": "Taller II",
+      "asignatura": "Taller Integrado II",
       "docente": "Maurio Vázquez",
       "especialidad": "Informática",
       "horaFin": "23:35",
       "horaInicio": "22:05"
     }
   ],
-  "horarios_salones_Salón_2_Viernes": [
+  "horarios_salones_Salón_24_Viernes": [
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Andrea Barisano",
+      "especialidad": "Informática",
+      "horaFin": "12:00",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Andrea Barisano",
+      "especialidad": "Informática",
+      "horaFin": "17:00",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_2_Jueves": [
     {
       "anio": "Primero",
-      "asignatura": "física 1",
-      "docente": "eduardo",
-      "especialidad": "física",
-      "horaFin": "07:55",
+      "asignatura": "DE LAS PRIMERAS CIVILIZACIONES A LA EDAD MODERNA",
+      "docente": "Soledad Rodriguez",
+      "especialidad": "Historia",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "LENGUA ESPAÑOLA II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Historia",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "CIVILIZACIONES ACTUALES Y GLOBALIZACIÓN",
+      "docente": "Ana Almeida",
+      "especialidad": "Historia",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "INTRODUCCIÓN AL CAMPO PROFESIONAL",
+      "docente": "Ma. Luján Grilli",
+      "especialidad": "Historia",
+      "horaFin": "13:40",
+      "horaInicio": "12:55"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "LENGUA ESPAÑOLA I",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Geografía",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Historia de las Expresiones Artísticas",
+      "docente": "Ana Almeida",
+      "especialidad": "Historia",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Eduviges De Thy- Ma. del Luján Grilli",
+      "especialidad": "Historia",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "América y América Latina hasta 1830",
+      "docente": "Alicia Moreira",
+      "especialidad": "Historia",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    }
+  ],
+  "horarios_salones_Salón_2_Lunes": [
+    {
+      "anio": "Primero",
+      "asignatura": "SOCIOLOGÍA DE LA EDUCACIÓN I",
+      "docente": "Myriam Souza",
+      "especialidad": "Historia",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "DE LAS PRIMERAS CIVILIZACIONES A LA EDAD MODERNA",
+      "docente": "Soledad Rodriguez",
+      "especialidad": "Historia",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "CIVILIZACIONES ACTUALES Y GLOBALIZACIÓN",
+      "docente": "Ana Almeida",
+      "especialidad": "Historia",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "SOCIOLOGÍA DE LA EDUCACIÓN I",
+      "docente": "Myriam Souza",
+      "especialidad": "Geografía",
+      "horaFin": "08:40",
       "horaInicio": "07:10"
     },
     {
       "anio": "Segundo",
+      "asignatura": "América y América Latina hasta 1830",
+      "docente": "Alicia Moreira",
+      "especialidad": "Historia",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Historia de las Expresiones Artísticas",
+      "docente": "Ana Almeida",
+      "especialidad": "Historia",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_2_Martes": [
+    {
+      "anio": "Primero",
+      "asignatura": "PEDAGOGÍA",
+      "docente": "Jesús Arbiza",
+      "especialidad": "Historia",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "DE LAS PRIMERAS CIVILIZACIONES A LA EDAD MODERNA",
+      "docente": "Soledad Rodriguez",
+      "especialidad": "Historia",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "SOCIOLOGÍA DE LA EDUCACIÓN",
+      "docente": "Myriam Souza",
+      "especialidad": "Historia",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "PEDAGOGÍA",
+      "docente": "Jesús Arbiza",
+      "especialidad": "Geografía",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "SOCIOLOGÍA DE LA EDUCACIÓN",
+      "docente": "Myriam Souza",
+      "especialidad": "Geografía",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Segundo",
       "asignatura": "Sistema Educativo Nacional: Marco Normativo",
-      "docente": "Bremeerman",
+      "docente": "Erick Bremerman",
       "especialidad": "Historia",
       "horaFin": "16:15",
       "horaInicio": "13:50"
     },
+    {
+      "anio": "Segundo",
+      "asignatura": "Historia de las Expresiones Artísitcas",
+      "docente": "Ana Almeida",
+      "especialidad": "Historia",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "E. Bremerman",
+      "especialidad": "Geografía",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Nacional: Marco Normativo",
+      "docente": "E. Bremerman",
+      "especialidad": "Derecho",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_2_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "LENGUA II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Historia",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "DE LAS PRIMERAS CIVILIZACIONES A LA EDAD MODERNA",
+      "docente": "Soledad Rodriguez",
+      "especialidad": "Historia",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "LENGUA ESPAÑOLA II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Geografía",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "PSICOLOGÍA DEL DESARROLLO",
+      "docente": "Liliana Flores",
+      "especialidad": "Geografía",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "César Paulino",
+      "especialidad": "Historia",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Eduviges De Thy- Ma. del Luján Grilli",
+      "especialidad": "Historia",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "América y América Latina hasta 1830",
+      "docente": "Alicia Moreira",
+      "especialidad": "Historia",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "César Paulino",
+      "especialidad": "Geografía",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "César Paulino",
+      "especialidad": "Derecho",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_2_Viernes": [
     {
       "anio": "Segundo",
       "asignatura": "Pensamiento Computacional",
@@ -367,11 +3785,59 @@
       "horaInicio": "16:15"
     },
     {
+      "anio": "Primero",
+      "asignatura": "PEDAGOGÍA",
+      "docente": "Jesús Arbiza",
+      "especialidad": "Historia",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "PSICOLOGÍA DEL DESARROLLO",
+      "docente": "Liliana Flores",
+      "especialidad": "Historia",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "INTRODUCCIÓN AL CAMPO PROFESIONAL",
+      "docente": "Ma. Luján Grilli",
+      "especialidad": "Historia",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "PEDAGOGÍA",
+      "docente": "Jesús Arbiza",
+      "especialidad": "Geografía",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "PSICOLOGÍA DEL DESARROLLO",
+      "docente": "Liliana Flores",
+      "especialidad": "Geografía",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
       "anio": "Segundo",
       "asignatura": "Sistema Educativo Nacional: Marco Normativo",
-      "docente": "Bremerman",
+      "docente": "Erick Bremeerman",
+      "especialidad": "Historia",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "E. Bremerman",
       "especialidad": "Derecho",
-      "horaFin": "15:20",
+      "horaFin": "16:15",
       "horaInicio": "13:50"
     },
     {
@@ -379,6 +3845,134 @@
       "asignatura": "Pensamiento Computacional",
       "docente": "César Paulino",
       "especialidad": "Derecho",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_3_Jueves": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Técnicas y Recursos de Medios de la Visualidad",
+      "docente": "Mari Rodriguez",
+      "especialidad": "Com. Visual",
+      "horaFin": "10:20",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Imagen III",
+      "docente": "Mari Rodriguez",
+      "especialidad": "Com. Visual",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Diseño IV",
+      "docente": "Angel Gallino",
+      "especialidad": "Com. Visual",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Imagen B",
+      "docente": "Silvia GArcía Aguiar",
+      "especialidad": "Com. Visual",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_3_Lunes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Imagen III",
+      "docente": "Mari Rodriguez",
+      "especialidad": "Com. Visual",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Teorías de las Artes",
+      "docente": "Pablo Sánchez",
+      "especialidad": "Com. Visual",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Christian Acosta",
+      "especialidad": "Com. Visual",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Diseño IV",
+      "docente": "Angel Gallino",
+      "especialidad": "Com. Visual",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_3_Martes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Imagen III",
+      "docente": "Mari Rodriguez",
+      "especialidad": "Com. Visual",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Imagen B",
+      "docente": "Silvia García Aguiar",
+      "especialidad": "Com. Visual",
+      "horaFin": "15:20",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_3_Miércoles": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Imagen III",
+      "docente": "Mari Rodriguez",
+      "especialidad": "Com. Visual",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Christian Acosta",
+      "especialidad": "Com. Visual",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Técnicas y Recursos de Medios de la Visualidad",
+      "docente": "Mari Rodriguez",
+      "especialidad": "Com. Visual",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Olga Márquez",
+      "especialidad": "Com. Visual",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Imagen B",
+      "docente": "Silvia García Aguiar",
+      "especialidad": "Com. Visual",
       "horaFin": "18:40",
       "horaInicio": "16:15"
     }
@@ -399,6 +3993,414 @@
       "especialidad": "Com. Visual",
       "horaFin": "18:40",
       "horaInicio": "16:15"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Teorías de las Artes",
+      "docente": "Pablo Sánchez",
+      "especialidad": "Com. Visual",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Gramática del Lenguaje Visual",
+      "docente": "Luis Araújo",
+      "especialidad": "Com. Visual",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    }
+  ],
+  "horarios_salones_Salón_4_Jueves": [
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Inglés",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Literatura Medieval y Renacentista",
+      "docente": "Pablo Márquez",
+      "especialidad": "Literatura",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Gramática Española I",
+      "docente": "Lucía Gabrielli",
+      "especialidad": "Literatura",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lingüística General",
+      "docente": "Fabiana Meneses",
+      "especialidad": "Literatura",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Literatura Medieval y Renacentista",
+      "docente": "Pablo Márquez",
+      "especialidad": "Español",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Gramática Española I",
+      "docente": "Lucía Gabrielli",
+      "especialidad": "Español",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacioinal: Marco Normativo",
+      "docente": "E. Bremerman",
+      "especialidad": "Español",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Lourdes Berreta",
+      "especialidad": "Español",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "Erick Bremerman",
+      "especialidad": "Inglés",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Lourdes Berreta",
+      "especialidad": "Inglés",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "Erick Bremerman",
+      "especialidad": "Literatura",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Lourdes Berreta",
+      "especialidad": "Literatura",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_4_Lunes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Jesús Arbiza",
+      "especialidad": "Inglés",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Inglés",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Jesús Arbiza",
+      "especialidad": "Literatura",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Literatura",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Gramática Española I",
+      "docente": "Lucía Gabrielli",
+      "especialidad": "Literatura",
+      "horaFin": "12:55",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Paola Borges",
+      "especialidad": "Literatura",
+      "horaFin": "13:40",
+      "horaInicio": "12:55"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Jesús Arbiza",
+      "especialidad": "Español",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Español",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Gramática Española I",
+      "docente": "Lucía Gabrielli",
+      "especialidad": "Español",
+      "horaFin": "12:55",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "E. Bremerman",
+      "especialidad": "Español",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "Erick Bremerman",
+      "especialidad": "Inglés",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "Erick Bremerman",
+      "especialidad": "Literatura",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Literatura Española II",
+      "docente": "Pablo Márquez",
+      "especialidad": "Literatura",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "María González",
+      "especialidad": "Literatura",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    }
+  ],
+  "horarios_salones_Salón_4_Martes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Inglés",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Inglés",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua y Cultura Inglesa I",
+      "docente": "Miriam Taruselli",
+      "especialidad": "Inglés",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Literatura",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Literatura Medieval y Renacentista",
+      "docente": "Pablo Márquez",
+      "especialidad": "Literatura",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Literatura",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Español",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Español",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Literatura Medieval y Renacentista",
+      "docente": "Pablo Márquez",
+      "especialidad": "Español",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Lourdes Berreta",
+      "especialidad": "Español",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Literatura Universal I",
+      "docente": "Pablo Márquez",
+      "especialidad": "Literatura",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Lourdes Berreta",
+      "especialidad": "Literatura",
+      "horaFin": "19:35",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Lourdes Berreta",
+      "especialidad": "Inglés",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_4_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Jesús Arbiza",
+      "especialidad": "Inglés",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Jesús Arbiza",
+      "especialidad": "Literatura",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Gramática Española I",
+      "docente": "Lucía Gabrielli",
+      "especialidad": "Literatura",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lingüística General",
+      "docente": "Fabiana Meneses",
+      "especialidad": "Literatura",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Jesús Arbiza",
+      "especialidad": "Español",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Gramática Española I",
+      "docente": "Lucía Gabrielli",
+      "especialidad": "Español",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Literatura Española II",
+      "docente": "Pablo Márquez",
+      "especialidad": "Literatura",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Literatura Universal I",
+      "docente": "Pablo Márquez",
+      "especialidad": "Literatura",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "María González",
+      "especialidad": "Literatura",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
     }
   ],
   "horarios_salones_Salón_4_Viernes": [
@@ -411,11 +4413,315 @@
       "horaInicio": "16:15"
     },
     {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Inglés",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Inglés",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Literatura",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Literatura Medieval y Renacentista",
+      "docente": "Pablo Márquez",
+      "especialidad": "Literatura",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Paola Borges",
+      "especialidad": "Literatura",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Español",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Literatura Medieval y Renacentista",
+      "docente": "Pablo Márquez",
+      "especialidad": "Español",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
       "anio": "Segundo",
       "asignatura": "Literatura Española II",
       "docente": "Pablo Marquez",
       "especialidad": "Literatura",
-      "horaFin": "19:35",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    }
+  ],
+  "horarios_salones_Salón_5_Jueves": [
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Matemática",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Geometría I",
+      "docente": "Alvaro Núñez",
+      "especialidad": "Matemática",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Matemática",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Anali Da Silva",
+      "especialidad": "Matemática",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Eduardo Cantos",
+      "especialidad": "Com. Visual",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Eduardo Cantos",
+      "especialidad": "Matemática",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Wilsmar Dos Santos",
+      "especialidad": "Matemática",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Eduardo Cantos",
+      "especialidad": "Filosofía",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_5_Lunes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Matemática",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Geometría I",
+      "docente": "Alvaro Núñez",
+      "especialidad": "Matemática",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Matemática",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Análisis I",
+      "docente": "Juan Volpi",
+      "especialidad": "Matemática",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Geometría y Algebra Lineal II",
+      "docente": "Juan Volpi",
+      "especialidad": "Matemática",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    }
+  ],
+  "horarios_salones_Salón_5_Martes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Lengua Española II",
+      "docente": "Gabriela Rochón",
+      "especialidad": "Matemática",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Geometría I",
+      "docente": "Alvaro Núñez",
+      "especialidad": "Matemática",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Fundamentos de la Matemática II",
+      "docente": "Wilsmar Dos Santos",
+      "especialidad": "Matemática",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Matemática",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Eduardo Cantos",
+      "especialidad": "Com. Visual",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "Alexandra Camacho",
+      "especialidad": "Com. Visual",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Compurtacional",
+      "docente": "Eduardo Cantos",
+      "especialidad": "Matemática",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "Alexandra Camacho",
+      "especialidad": "Matemática",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Pensamiento Computacional",
+      "docente": "Eduardo Cantos",
+      "especialidad": "Filosofía",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "Alexandra Camacho",
+      "especialidad": "Filosofía",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_5_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "Psicología del Desarrollo",
+      "docente": "Pablo Cardozo",
+      "especialidad": "Matemática",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Sociología de la Educación I",
+      "docente": "Ana Carolina Cabrera",
+      "especialidad": "Matemática",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Fundamentos de la Matemática I",
+      "docente": "Wilsmar Dos Santos",
+      "especialidad": "Matemática",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Geometría I",
+      "docente": "Alvaro Núñez",
+      "especialidad": "Matemática",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Análisis I",
+      "docente": "Juan Volpi",
+      "especialidad": "Matemática",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Geometría y Algebra Lineal II",
+      "docente": "Juan Volpi",
+      "especialidad": "Matemática",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Wilsmar Dos Santos",
+      "especialidad": "Matemática",
+      "horaFin": "20:20",
       "horaInicio": "18:50"
     }
   ],
@@ -438,14 +4744,6 @@
     },
     {
       "anio": "Segundo",
-      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
-      "docente": "Camacho",
-      "especialidad": "Matemática",
-      "horaFin": "18:40",
-      "horaInicio": "16:15"
-    },
-    {
-      "anio": "Segundo",
       "asignatura": "Análisis I",
       "docente": "Juan Volpi",
       "especialidad": "Matemática",
@@ -453,12 +4751,164 @@
       "horaInicio": "18:50"
     },
     {
+      "anio": "Primero",
+      "asignatura": "Fundamentos de la Matemática II",
+      "docente": "Wilsmar Dos Santos",
+      "especialidad": "Matemática",
+      "horaFin": "11:15",
+      "horaInicio": "07:55"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Pedagogía",
+      "docente": "Mario Sosa",
+      "especialidad": "Matemática",
+      "horaFin": "12:55",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Analí Da Silva",
+      "especialidad": "Matemática",
+      "horaFin": "13:40",
+      "horaInicio": "12:55"
+    },
+    {
       "anio": "Segundo",
       "asignatura": "Sistema Educativo Nacional: Marco Normativo",
-      "docente": "Camacho",
+      "docente": "Alexandra Camacho",
+      "especialidad": "Matemática",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "Alexandra Camacho",
       "especialidad": "Filosofía",
       "horaFin": "18:40",
       "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_6_Jueves": [
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Olga Márquez",
+      "especialidad": "Com. Visual",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Historia del Arte I",
+      "docente": "Regino López",
+      "especialidad": "Com. Visual",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Diseño II",
+      "docente": "Luis Araújo",
+      "especialidad": "Com. Visual",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Santiago Pablo",
+      "especialidad": "Com. Visual",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
+    }
+  ],
+  "horarios_salones_Salón_6_Lunes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Historia del Arte I",
+      "docente": "Regino López",
+      "especialidad": "Com. Visual",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Diseño I",
+      "docente": "Angel Gallino",
+      "especialidad": "Com. Visual",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Imagen II",
+      "docente": "Silvia García Aguiar",
+      "especialidad": "Com. Visual",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_6_Martes": [
+    {
+      "anio": "Primero",
+      "asignatura": "Diseño I",
+      "docente": "Angel Gallino",
+      "especialidad": "Com. Visual",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Historia del Arte I",
+      "docente": "Regino López",
+      "especialidad": "Com. Visual",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    }
+  ],
+  "horarios_salones_Salón_6_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "Diseño I",
+      "docente": "Angel Gallino",
+      "especialidad": "Com. Visual",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Introducción al Campo Profesional",
+      "docente": "Olga Márquez",
+      "especialidad": "Com. Visual",
+      "horaFin": "13:40",
+      "horaInicio": "12:55"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Imagen II",
+      "docente": "Silvia García Aguiar",
+      "especialidad": "Com. Visual",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Diseño II",
+      "docente": "Luis Araújo",
+      "especialidad": "Com. Visual",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Santiago Pablo",
+      "especialidad": "Com. Visual",
+      "horaFin": "20:20",
+      "horaInicio": "18:50"
     }
   ],
   "horarios_salones_Salón_6_Viernes": [
@@ -477,6 +4927,150 @@
       "especialidad": "Com. Visual",
       "horaFin": "20:20",
       "horaInicio": "18:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Historia del Arte I",
+      "docente": "Regino López",
+      "especialidad": "Com. Visual",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "Diseño I",
+      "docente": "Angel Gallino",
+      "especialidad": "Com. Visual",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    }
+  ],
+  "horarios_salones_Salón_7_Jueves": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Literatura Uruguaya I",
+      "docente": "María González",
+      "especialidad": "Literatura",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Literatura Española III",
+      "docente": "María González",
+      "especialidad": "Literatura",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Estética Literaria",
+      "docente": "Paola Borges",
+      "especialidad": "Literatura",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Isabel Flores",
+      "especialidad": "Literatura",
+      "horaFin": "19:35",
+      "horaInicio": "17:55"
+    }
+  ],
+  "horarios_salones_Salón_7_Lunes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Literatura Española III",
+      "docente": "María González",
+      "especialidad": "Literatura",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Literatura Uruguaya I",
+      "docente": "María González",
+      "especialidad": "Literatura",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Estética Literaria",
+      "docente": "Paola Borges",
+      "especialidad": "Literatura",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_7_Martes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Narrativa Transmedia",
+      "docente": "Pablo Márquez",
+      "especialidad": "Literatura",
+      "horaFin": "11:15",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Liliana Flores",
+      "especialidad": "Literatura",
+      "horaFin": "12:00",
+      "horaInicio": "11:15"
+    }
+  ],
+  "horarios_salones_Salón_7_Miércoles": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Liliana Flores",
+      "especialidad": "Literatura",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Narrativa Transmedia",
+      "docente": "Pablo Márquez",
+      "especialidad": "Literatura",
+      "horaFin": "12:00",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Literatura Uruguaya I",
+      "docente": "María González",
+      "especialidad": "Literatura",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "Isabel Flores",
+      "especialidad": "Literatura",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Estética Literaria",
+      "docente": "Paola Borges",
+      "especialidad": "Literatura",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Literatura Iberoamericana II",
+      "docente": "Fernando Rocha",
+      "especialidad": "Literatura",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
     }
   ],
   "horarios_salones_Salón_7_Viernes": [
@@ -486,6 +5080,166 @@
       "docente": "Fernando Rocha",
       "especialidad": "Literatura",
       "horaFin": "18:40",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Escritura y Texto Literario en Educación Media",
+      "docente": "Pablo Márquez",
+      "especialidad": "Literatura",
+      "horaFin": "12:55",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Literatura Española III",
+      "docente": "María González",
+      "especialidad": "Literatura",
+      "horaFin": "11:15",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "Liliana Flores",
+      "especialidad": "Literatura",
+      "horaFin": "14:35",
+      "horaInicio": "13:50"
+    }
+  ],
+  "horarios_salones_Salón_8_Jueves": [
+    {
+      "anio": "Primero",
+      "asignatura": "GEOGRAFÍA FÍSICA I",
+      "docente": "Gladys Meirelles",
+      "especialidad": "Geografía",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "DINÁMICAS SOCIOECONÓMICAS GLOBALES",
+      "docente": "Lucía Sicilia",
+      "especialidad": "Geografía",
+      "horaFin": "12:55",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "INTRODUCCIÓN AL CAMPO PROFESIONAL",
+      "docente": "Mariza Rebollo",
+      "especialidad": "Geografía",
+      "horaFin": "13:40",
+      "horaInicio": "12:55"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Geografía física II y Morfología",
+      "docente": "Mariza Rebollo",
+      "especialidad": "Geografía",
+      "horaFin": "16:15",
+      "horaInicio": "13:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Mariza Rebollo",
+      "especialidad": "Geografía",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Geografía Humana y Económica",
+      "docente": "Graciela García",
+      "especialidad": "Geografía",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    }
+  ],
+  "horarios_salones_Salón_8_Lunes": [
+    {
+      "anio": "Primero",
+      "asignatura": "DINÁMICAS SOCIOECONÓMICAS GLOBALES",
+      "docente": "Lucía Sicilia",
+      "especialidad": "Geografía",
+      "horaFin": "13:40",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "GEOGRAFÍA FÍSICA I",
+      "docente": "Gladys Meirelles",
+      "especialidad": "Geografía",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Geografía Humana y Económica",
+      "docente": "Graciela García",
+      "especialidad": "Geografía",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Geografía Física II y Morfología",
+      "docente": "Mariza Rebollo",
+      "especialidad": "Geografía",
+      "horaFin": "20:20",
+      "horaInicio": "17:55"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Mariza Rebollo",
+      "especialidad": "Geografía",
+      "horaFin": "17:55",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_8_Martes": [
+    {
+      "anio": "Primero",
+      "asignatura": "GEOGRAFÍA FÍSICA I",
+      "docente": "Gladys Meirelles",
+      "especialidad": "Geografía",
+      "horaFin": "10:20",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "DINÁMICAS SOCIOECONÓMICAS GLOBALES",
+      "docente": "Lucía Sicilia",
+      "especialidad": "Geografía",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Geografía Humana y Económica",
+      "docente": "Graciela García",
+      "especialidad": "Geografía",
+      "horaFin": "18:40",
+      "horaInicio": "16:15"
+    }
+  ],
+  "horarios_salones_Salón_8_Miércoles": [
+    {
+      "anio": "Primero",
+      "asignatura": "GEOGRAFÍA FÍSICA I",
+      "docente": "Gladys Meirelles",
+      "especialidad": "Geografía",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Didáctica I",
+      "docente": "Mariza Rebollo",
+      "especialidad": "Geografía",
+      "horaFin": "17:55",
       "horaInicio": "16:15"
     }
   ],
@@ -497,6 +5251,152 @@
       "especialidad": "Geografía",
       "horaFin": "20:20",
       "horaInicio": "18:50"
+    },
+    {
+      "anio": "Primero",
+      "asignatura": "ICP",
+      "docente": "Mariza Rebollo",
+      "especialidad": "Geografía",
+      "horaFin": "13:40",
+      "horaInicio": "12:10"
+    }
+  ],
+  "horarios_salones_Salón_9_Jueves": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Gramática Española III",
+      "docente": "Lucía Gabrielli",
+      "especialidad": "Español",
+      "horaFin": "09:35",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Gramática Histórica I",
+      "docente": "Paula Galván",
+      "especialidad": "Español",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "María Martinez",
+      "especialidad": "Español",
+      "horaFin": "16:15",
+      "horaInicio": "14:35"
+    }
+  ],
+  "horarios_salones_Salón_9_Lunes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Estilística y Análisis de textos I",
+      "docente": "María Martínez",
+      "especialidad": "Español",
+      "horaFin": "10:20",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "María Martínez",
+      "especialidad": "Español",
+      "horaFin": "12:00",
+      "horaInicio": "10:30"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Gramática Histórica I",
+      "docente": "Paula Galván",
+      "especialidad": "Español",
+      "horaFin": "12:55",
+      "horaInicio": "12:10"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Inteligencia Artificial",
+      "docente": "Eduardo Cantos",
+      "especialidad": "Informática",
+      "horaFin": "21:10",
+      "horaInicio": "17:55"
+    }
+  ],
+  "horarios_salones_Salón_9_Martes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Literatura Española II",
+      "docente": "María González",
+      "especialidad": "Español",
+      "horaFin": "12:00",
+      "horaInicio": "09:35"
+    },
+    {
+      "anio": "Cuarto",
+      "asignatura": "Didáctica III",
+      "docente": "María Martínez",
+      "especialidad": "Español",
+      "horaFin": "17:00",
+      "horaInicio": "15:30"
+    }
+  ],
+  "horarios_salones_Salón_9_Miércoles": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Gramática Española III",
+      "docente": "Lucía Gabrielli",
+      "especialidad": "Español",
+      "horaFin": "08:40",
+      "horaInicio": "07:10"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Didáctica II",
+      "docente": "María Martínez",
+      "especialidad": "Español",
+      "horaFin": "12:55",
+      "horaInicio": "11:15"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Gramática Histórica I",
+      "docente": "Paula Galván",
+      "especialidad": "Español",
+      "horaFin": "13:40",
+      "horaInicio": "12:55"
+    },
+    {
+      "anio": "Tercero",
+      "asignatura": "Literatura Española II",
+      "docente": "María González",
+      "especialidad": "Español",
+      "horaFin": "11:15",
+      "horaInicio": "08:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: Marco Normativo",
+      "docente": "Alexandra Camacho",
+      "especialidad": "Informática",
+      "horaFin": "21:10",
+      "horaInicio": "18:50"
+    },
+    {
+      "anio": "Segundo",
+      "asignatura": "Sistema Educativo Nacional: marco normativo",
+      "docente": "Alexandra Camacho",
+      "especialidad": "Maestro Técnico",
+      "horaFin": "21:10",
+      "horaInicio": "18:50"
+    }
+  ],
+  "horarios_salones_Salón_9_Viernes": [
+    {
+      "anio": "Tercero",
+      "asignatura": "Gramática Histórica I",
+      "docente": "Paula Galván",
+      "especialidad": "Español",
+      "horaFin": "13:40",
+      "horaInicio": "09:35"
     }
   ]
 }
