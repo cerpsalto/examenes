@@ -78,6 +78,82 @@ select,input{
 .btn-red{background:#d9534f}
 .btn-red:hover{background:#c9302c}
 
+.btn-purple{background:#8e44ad}
+.btn-purple:hover{background:#732d91}
+
+/* VISTA CALENDARIO POR FECHA */
+.vista-fecha-container{
+  padding: 20px;
+}
+
+.calendario-grid{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.selector-fechas-box{
+  flex: 1;
+  min-width: 280px;
+  background: #f4fbff;
+  border: 2px solid #bce2f3;
+  border-radius: 12px;
+  padding: 16px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.fecha-item-btn{
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  background: #ffffff;
+  border: 1px solid #9ed8ef;
+  border-radius: 8px;
+  text-align: left;
+  font-weight: 700;
+  color: #004466;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.fecha-item-btn:hover{
+  background: #e1f3fc;
+  border-color: #0099cc;
+}
+
+.fecha-item-btn.active{
+  background: #0099cc;
+  color: white;
+  border-color: #007faa;
+}
+
+.badge-contador{
+  background: #d63384;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+}
+
+.fecha-item-btn.active .badge-contador{
+  background: #ffffff;
+  color: #0099cc;
+}
+
+.detalle-fecha-box{
+  flex: 2.5;
+  min-width: 320px;
+  background: #ffffff;
+  border: 2px solid #bce2f3;
+  border-radius: 12px;
+  padding: 16px;
+}
+
 /* TABLA EXÁMENES */
 .seccion-tabla{
   padding:16px;
@@ -184,6 +260,7 @@ table.tabla-examenes th{
   body{padding:6px}
   .controls{flex-direction:column; align-items:stretch;}
   .subtitulo-header{flex-direction: column; align-items: stretch;}
+  .calendario-grid{flex-direction: column;}
 }
 </style>
 </head>
@@ -209,7 +286,7 @@ table.tabla-examenes th{
         <option value="1°">Primero (1°)</option>
         <option value="2°">Segundo (2°)</option>
         <option value="3°">Tercero (3°)</option>
-        <option value="4°">Cuarto (4°)</option>
+        <option value="4°">Quarto (4°)</option>
       </select>
 
       <label>Plan:</label>
@@ -217,14 +294,21 @@ table.tabla-examenes th{
         <option value="">-- Todos los Planes --</option>
         <option value="2008">2008</option>
         <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
         <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
       </select>
 
+      <button class="btn btn-purple" onclick="alternarVistaFecha()">📅 Ver por Fecha (Hoy)</button>
       <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 Generar y Descargar JSON</button>
     </div>
   </div>
 
-  <div class="seccion-tabla">
+  <!-- VISTA GENERAL (TABLA EDITABLE) -->
+  <div id="seccionTablaGeneral" class="seccion-tabla">
     <div class="subtitulo-header">
       <div class="subtitulo" id="tituloTabla">LISTADO GENERAL DE EXÁMENES</div>
       <button class="btn btn-green" onclick="agregarFilaExamen()">➕ Agregar Examen</button>
@@ -254,6 +338,24 @@ table.tabla-examenes th{
     </table>
   </div>
 
+  <!-- VISTA CALENDARIO / POR FECHA -->
+  <div id="seccionVistaFecha" class="vista-fecha-container" style="display:none;">
+    <div class="subtitulo-header">
+      <div class="subtitulo" id="tituloVistaFecha">EXÁMENES AGRUPADOS POR FECHA (DESTACANDO HOY)</div>
+      <button class="btn" onclick="alternarVistaFecha()">⬅️ Volver al Listado General</button>
+    </div>
+
+    <div class="calendario-grid">
+      <div class="selector-fechas-box" id="listaFechasLateral">
+        <!-- Se llena con las fechas disponibles -->
+      </div>
+      <div class="detalle-fecha-box">
+        <div class="subtitulo" id="tituloDetalleFecha" style="margin-bottom: 12px; font-size:16px;">Seleccione una fecha</div>
+        <div id="contenidoDetalleFecha"></div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -261,12 +363,22 @@ const listaEspecialidadesBase = [
   "Biología", "Com. Visual", "Derecho", "Español",
   "Física", "Geografía", "Historia", "Informática",
   "Inglés", "Literatura", "Matemática", "Química",
-  "Trayecto equivalente", "Maestro Técnico", "Filosofía"
+  "Trayecto equivalente", "Maestro Técnico", "Filosofía",
+  "Sociología"
 ];
 
 let examenesData = [];
+let vistaCalendarioActiva = false;
+let fechaSeleccionadaActual = null;
 
-// Inicializar selector de especialidades en filtros
+function normalizarTexto(texto) {
+  return String(texto || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
 function inicializarFiltros(){
   const selectEsp = document.getElementById("filtroEspecialidad");
   listaEspecialidadesBase.forEach(esp => {
@@ -277,12 +389,10 @@ function inicializarFiltros(){
   });
 }
 
-// Cargar el JSON remoto al iniciar
 function cargarExamenesRemotos(){
   fetch("https://cerpsalto.github.io/examenes/examenes.json")
     .then(res => res.json())
     .then(data => {
-      // Si el JSON no trae la propiedad "activo", la inicializamos por defecto en true (o false según prefieras)
       examenesData = data.map(item => ({
         ...item,
         activo: item.activo !== undefined ? item.activo : true 
@@ -300,8 +410,8 @@ inicializarFiltros();
 cargarExamenesRemotos();
 
 function filtrarYRenderizar(){
-  const espSel = document.getElementById("filtroEspecialidad").value.toLowerCase();
-  const nivelSel = document.getElementById("filtroNivel").value.toLowerCase();
+  const espSel = normalizarTexto(document.getElementById("filtroEspecialidad").value);
+  const nivelSel = normalizarTexto(document.getElementById("filtroNivel").value);
   const planSel = document.getElementById("filtroPlan").value;
 
   const tbody = document.getElementById("cuerpoTablaExamenes");
@@ -309,12 +419,15 @@ function filtrarYRenderizar(){
   const tabla = document.getElementById("tablaExamenes");
 
   const filtrados = examenesData.filter((item, index) => {
-    // Guardamos el índice real para editar/borrar correctamente sobre el array maestro
     item._indexReal = index; 
 
-    const matchEsp = !espSel || (item.Especialidad && item.Especialidad.toLowerCase() === espSel);
-    const matchNivel = !nivelSel || (item.Nivel && item.Nivel.toLowerCase() === nivelSel);
-    const matchPlan = !planSel || (item.Plan && String(item.Plan) === String(planSel));
+    const itemEsp = normalizarTexto(item.Especialidad);
+    const itemNivel = normalizarTexto(item.Nivel);
+    const itemPlan = String(item.Plan || "").trim();
+
+    const matchEsp = !espSel || itemEsp.includes(espSel) || espSel.includes(itemEsp);
+    const matchNivel = !nivelSel || itemNivel === nivelSel;
+    const matchPlan = !planSel || itemPlan === planSel;
 
     return matchEsp && matchNivel && matchPlan;
   });
@@ -336,24 +449,15 @@ function filtrarYRenderizar(){
         <td><input type="text" class="input-tabla" value="${escapeHtml(item.Fecha || '')}" onchange="actualizarCampo(${i}, 'Fecha', this.value)"></td>
         <td><input type="text" class="input-tabla" style="width:70px;" value="${escapeHtml(item.Hora || '')}" onchange="actualizarCampo(${i}, 'Hora', this.value)"></td>
         <td>
-          <select class="input-tabla" onchange="actualizarCampo(${i}, 'Plan', this.value)">
-            <option value="2008" ${item.Plan === '2008' ? 'selected' : ''}>2008</option>
-            <option value="2023" ${item.Plan === '2023' ? 'selected' : ''}>2023</option>
-            <option value="2027" ${item.Plan === '2027' ? 'selected' : ''}>2027</option>
-          </select>
+          <input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan || '')}" onchange="actualizarCampo(${i}, 'Plan', this.value)">
         </td>
         <td>
-          <select class="input-tabla" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
-            <option value="1°" ${item.Nivel === '1°' ? 'selected' : ''}>1°</option>
-            <option value="2°" ${item.Nivel === '2°' ? 'selected' : ''}>2°</option>
-            <option value="3°" ${item.Nivel === '3°' ? 'selected' : ''}>3°</option>
-            <option value="4°" ${item.Nivel === '4°' ? 'selected' : ''}>4°</option>
-          </select>
+          <input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel || '')}" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
         </td>
         <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(item["D.A"] || '')}" onchange="actualizarCampo(${i}, 'D.A', this.value)"></td>
         <td>
           <select class="input-tabla" onchange="actualizarCampo(${i}, 'Especialidad', this.value)">
-            ${listaEspecialidadesBase.map(esp => `<option value="${esp}" ${item.Especialidad === esp ? 'selected' : ''}>${esp}</option>`).join('')}
+            ${listaEspecialidadesBase.map(esp => `<option value="${esp}" ${normalizarTexto(item.Especialidad) === normalizarTexto(esp) ? 'selected' : ''}>${esp}</option>`).join('')}
           </select>
         </td>
         <td><input type="text" class="input-tabla" value="${escapeHtml(item["Unidad Curricular/Asignatura"] || '')}" onchange="actualizarCampo(${i}, 'Unidad Curricular/Asignatura', this.value)"></td>
@@ -400,17 +504,144 @@ function agregarFilaExamen(){
   };
   examenesData.unshift(nuevoExamen);
   filtrarYRenderizar();
+  if(vistaCalendarioActiva) poblarVistaFechas();
 }
 
 function eliminarFila(index){
   if(confirm("¿Desea eliminar este examen del registro?")){
     examenesData.splice(index, 1);
     filtrarYRenderizar();
+    if(vistaCalendarioActiva) poblarVistaFechas();
   }
 }
 
+function alternarVistaFecha(){
+  vistaCalendarioActiva = !vistaCalendarioActiva;
+  const secGeneral = document.getElementById("seccionTablaGeneral");
+  const secFecha = document.getElementById("seccionVistaFecha");
+
+  if(vistaCalendarioActiva){
+    secGeneral.style.display = "none";
+    secFecha.style.display = "block";
+    poblarVistaFechas();
+  } else {
+    secFecha.style.display = "none";
+    secGeneral.style.display = "block";
+    filtrarYRenderizar();
+  }
+}
+
+function poblarVistaFechas(){
+  const mapaFechas = {};
+  examenesData.forEach(item => {
+    const f = (item.Fecha || "Sin fecha").trim();
+    if(!mapaFechas[f]) mapaFechas[f] = [];
+    mapaFechas[f].push(item);
+  });
+
+  // Ordenar fechas cronológicamente si tienen formato DD/MM/YYYY
+  const fechasOrdenadas = Object.keys(mapaFechas).sort((a, b) => {
+    const partesA = a.split('/');
+    const partesB = b.split('/');
+    if(partesA.length === 3 && partesB.length === 3){
+      const dateA = new Date(partesA[2], partesA[1] - 1, partesA[0]);
+      const dateB = new Date(partesB[2], partesB[1] - 1, partesB[0]);
+      return dateA - dateB;
+    }
+    return a.localeCompare(b);
+  });
+
+  const contenedorLista = document.getElementById("listaFechasLateral");
+  let htmlLista = "";
+
+  // Intentar detectar la fecha de hoy simulada (06/11/2026 o similar según el entorno)
+  // Formato dd/mm/yyyy
+  const hoyStr = "06/11/2026"; 
+  let fechaDefault = fechasOrdenadas[0];
+
+  // Si alguna fecha coincide con hoy, la priorizamos por defecto
+  if(fechasOrdenadas.includes(hoyStr)){
+    fechaDefault = hoyStr;
+  }
+
+  if(!fechaSeleccionadaActual || !mapaFechas[fechaSeleccionadaActual]){
+    fechaSeleccionadaActual = fechaDefault;
+  }
+
+  fechasOrdenadas.forEach(fecha => {
+    const cantidad = mapaFechas[fecha].length;
+    const esHoy = (fecha === hoyStr);
+    const etiquetaHoy = esHoy ? " ⭐ (HOY)" : "";
+    const claseActiva = (fecha === fechaSeleccionadaActual) ? "active" : "";
+
+    htmlLista += `
+      <button class="fecha-item-btn ${claseActiva}" onclick="seleccionarFechaCalendario('${fecha}')">
+        <span>📅 ${fecha}${etiquetaHoy}</span>
+        <span class="badge-contador">${cantidad}</span>
+      </button>
+    `;
+  });
+
+  contenedorLista.innerHTML = htmlLista;
+  mostrarDetalleFecha(fechaSeleccionadaActual, mapaFechas);
+}
+
+function seleccionarFechaCalendario(fecha){
+  fechaSeleccionadaActual = fecha;
+  poblarVistaFechas();
+}
+
+function mostrarDetalleFecha(fecha, mapaFechas){
+  const tituloDetalle = document.getElementById("tituloDetalleFecha");
+  const contenidoDetalle = document.getElementById("contenidoDetalleFecha");
+
+  if(!fecha || !mapaFechas[fecha]){
+    tituloDetalle.textContent = "Sin fecha seleccionada";
+    contenidoDetalle.innerHTML = "<div class='mensaje-info'>Seleccione una fecha a la izquierda.</div>";
+    return;
+  }
+
+  tituloDetalle.textContent = `Exámenes programados para el ${fecha}:`;
+  const lista = mapaFechas[fecha];
+
+  let html = `
+    <table class="tabla-examenes" style="margin-top:10px;">
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Plan</th>
+          <th>Nivel</th>
+          <th>Asignatura</th>
+          <th>Especialidad</th>
+          <th>Tribunal (Pres. / Sec. / Voc. / Sup.)</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  lista.forEach(ex => {
+    html += `
+      <tr>
+        <td><strong>${escapeHtml(ex.Hora)}</strong></td>
+        <td>${escapeHtml(ex.Plan)}</td>
+        <td>${escapeHtml(ex.Nivel)}</td>
+        <td><strong>${escapeHtml(ex["Unidad Curricular/Asignatura"])}</strong></td>
+        <td>${escapeHtml(ex.Especialidad)}</td>
+        <td style="font-size:11px; text-align:left; padding-left:10px;">
+          <div><strong>Pres:</strong> ${escapeHtml(ex.Presidente)}</div>
+          <div><strong>Sec:</strong> ${escapeHtml(ex.Secretario)}</div>
+          <div><strong>Voc:</strong> ${escapeHtml(ex.Vocal)}</div>
+          <div><strong>Sup:</strong> ${escapeHtml(ex.Suplente)}</div>
+        </td>
+      </tr>
+    `;
+  });
+
+  html += `</tbody></table>`;
+  contenidoDetalle.innerHTML = html;
+}
+
 function descargarJSONExamenes(){
-  // Limpiamos la propiedad interna _indexReal antes de exportar
   const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
 
   const jsonString = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(datosLimpios, null, 2));
