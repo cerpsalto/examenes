@@ -286,7 +286,7 @@ table.tabla-examenes th{
         <option value="1°">Primero (1°)</option>
         <option value="2°">Segundo (2°)</option>
         <option value="3°">Tercero (3°)</option>
-        <option value="4°">Cuarto (4°)</option>
+        <option value="4°">Quarto (4°)</option>
       </select>
 
       <label>Plan:</label>
@@ -294,11 +294,16 @@ table.tabla-examenes th{
         <option value="">-- Todos los Planes --</option>
         <option value="2008">2008</option>
         <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
         <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
       </select>
 
       <button class="btn btn-purple" onclick="alternarVistaFecha()">📅 Ver por Fecha (Hoy)</button>
-      <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 Descargar JSON</button>
+      <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 Generar y Descargar JSON</button>
     </div>
   </div>
 
@@ -384,37 +389,25 @@ function inicializarFiltros(){
   });
 }
 
-// Carga de datos directamente desde GitHub
-function cargarDatosRemotos(){
+function cargarExamenesRemotos(){
   fetch("https://cerpsalto.github.io/examenes/examenes.json")
     .then(res => res.json())
-    .then(jsonRemoto => {
-      examenesData = jsonRemoto.map(item => ({
-        activo: item.activo !== undefined ? item.activo : true,
-        Fecha: item.Fecha || "",
-        Hora: item.Hora || "",
-        Plan: item.Plan || "",
-        Nivel: item.Nivel || "",
-        "D.A": item["D.A"] || item.D_A || "",
-        Especialidad: item.Especialidad || "",
-        "Unidad Curricular/Asignatura": item["Unidad Curricular/Asignatura"] || item.Unidad_Curricular_Asignatura || item.Asignatura || item["Unidad Curricular / Asignatura"] || "",
-        Presidente: item.Presidente || "",
-        Secretario: item.Secretario || "",
-        Vocal: item.Vocal || "",
-        Suplente: item.Suplente || ""
+    .then(data => {
+      examenesData = data.map(item => ({
+        ...item,
+        activo: item.activo !== undefined ? item.activo : true 
       }));
       filtrarYRenderizar();
-      if(vistaCalendarioActiva) poblarVistaFechas();
     })
     .catch(err => {
-      console.error("Error al cargar el JSON remoto:", err);
+      console.warn("No se pudo cargar examenes.json remoto, iniciando vacío.", err);
       examenesData = [];
       filtrarYRenderizar();
     });
 }
 
 inicializarFiltros();
-cargarDatosRemotos();
+cargarExamenesRemotos();
 
 function filtrarYRenderizar(){
   const espSel = normalizarTexto(document.getElementById("filtroEspecialidad").value);
@@ -448,31 +441,30 @@ function filtrarYRenderizar(){
   let html = "";
   filtrados.forEach((item) => {
     const i = item._indexReal;
-    
     html += `
       <tr>
         <td class="checkbox-col">
           <input type="checkbox" class="checkbox-periodo" ${item.activo ? "checked" : ""} onchange="actualizarActivo(${i}, this.checked)">
         </td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Fecha)}" onchange="actualizarCampo(${i}, 'Fecha', this.value)"></td>
-        <td><input type="text" class="input-tabla" style="width:70px;" value="${escapeHtml(item.Hora)}" onchange="actualizarCampo(${i}, 'Hora', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Fecha || '')}" onchange="actualizarCampo(${i}, 'Fecha', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:70px;" value="${escapeHtml(item.Hora || '')}" onchange="actualizarCampo(${i}, 'Hora', this.value)"></td>
         <td>
-          <input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan)}" onchange="actualizarCampo(${i}, 'Plan', this.value)">
+          <input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan || '')}" onchange="actualizarCampo(${i}, 'Plan', this.value)">
         </td>
         <td>
-          <input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel)}" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
+          <input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel || '')}" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
         </td>
-        <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(item["D.A"])}" onchange="actualizarCampo(${i}, 'D.A', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(item["D.A"] || '')}" onchange="actualizarCampo(${i}, 'D.A', this.value)"></td>
         <td>
           <select class="input-tabla" onchange="actualizarCampo(${i}, 'Especialidad', this.value)">
             ${listaEspecialidadesBase.map(esp => `<option value="${esp}" ${normalizarTexto(item.Especialidad) === normalizarTexto(esp) ? 'selected' : ''}>${esp}</option>`).join('')}
           </select>
         </td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item["Unidad Curricular/Asignatura"])}" onchange="actualizarCampo(${i}, 'Unidad Curricular/Asignatura', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Presidente)}" onchange="actualizarCampo(${i}, 'Presidente', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Secretario)}" onchange="actualizarCampo(${i}, 'Secretario', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Vocal)}" onchange="actualizarCampo(${i}, 'Vocal', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Suplente)}" onchange="actualizarCampo(${i}, 'Suplente', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item["Unidad Curricular/Asignatura"] || '')}" onchange="actualizarCampo(${i}, 'Unidad Curricular/Asignatura', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Presidente || '')}" onchange="actualizarCampo(${i}, 'Presidente', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Secretario || '')}" onchange="actualizarCampo(${i}, 'Secretario', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Vocal || '')}" onchange="actualizarCampo(${i}, 'Vocal', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Suplente || '')}" onchange="actualizarCampo(${i}, 'Suplente', this.value)"></td>
         <td>
           <div class="acciones-item">
             <button class="btn-mini btn-red" onclick="eliminarFila(${i})" title="Eliminar examen">🗑️</button>
@@ -547,6 +539,7 @@ function poblarVistaFechas(){
     mapaFechas[f].push(item);
   });
 
+  // Ordenar fechas cronológicamente si tienen formato DD/MM/YYYY
   const fechasOrdenadas = Object.keys(mapaFechas).sort((a, b) => {
     const partesA = a.split('/');
     const partesB = b.split('/');
@@ -561,9 +554,12 @@ function poblarVistaFechas(){
   const contenedorLista = document.getElementById("listaFechasLateral");
   let htmlLista = "";
 
+  // Intentar detectar la fecha de hoy simulada (06/11/2026 o similar según el entorno)
+  // Formato dd/mm/yyyy
   const hoyStr = "06/11/2026"; 
   let fechaDefault = fechasOrdenadas[0];
 
+  // Si alguna fecha coincide con hoy, la priorizamos por defecto
   if(fechasOrdenadas.includes(hoyStr)){
     fechaDefault = hoyStr;
   }
