@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Carga Masiva a Firebase</title>
+<title>Carga Masiva desde GitHub a Firebase</title>
 <style>
   body {
     font-family: 'Segoe UI', sans-serif;
@@ -34,21 +34,23 @@
   .btn:hover { background: #007faa; }
   #log {
     margin-top: 20px;
-    padding: 10px;
+    padding: 12px;
     border-radius: 6px;
     font-weight: bold;
+    display: none;
   }
-  .exito { background: #d4edda; color: #155724; }
-  .error { background: #f8d7da; color: #721c24; }
+  .exito { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; display: block !important; }
+  .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; display: block !important; }
+  .info { background: #e2f0fb; color: #004466; border: 1px solid #bce2f3; display: block !important; }
 </style>
 </head>
 <body>
 
 <div class="card">
-  <h2>Cargador Masivo de Exámenes</h2>
-  <p>Haz clic en el botón para subir los registros iniciales a Firebase (nodo: <code>gestion_examenes</code>).</p>
+  <h2>Sincronizar GitHub con Firebase</h2>
+  <p>Este script descargará el archivo desde <code>cerpsalto.github.io/examenes/examenes.json</code> y lo guardará en Firebase.</p>
   
-  <button class="btn" onclick="subirDatosANube()">🚀 Subir JSON a Firebase</button>
+  <button class="btn" onclick="sincronizarGitHubFirebase()">📥 Descargar JSON y Subir a la Nube</button>
   
   <div id="log"></div>
 </div>
@@ -72,49 +74,33 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-// Pega aquí todo el JSON de los exámenes
-const datosExamenes = [
-  {
-    "Fecha": "16/11/2026",
-    "Hora": "8:00",
-    "Plan": "2023",
-    "Nivel": "1°",
-    "D.A": "Biología",
-    "Especialidad": "Biología",
-    "Unidad Curricular/Asignatura": "ICP",
-    "Presidente": "María Eugenia Fernández",
-    "Secretario": "Dario Dalmas",
-    "Vocal": "Moriana Rebuffo",
-    "Suplente": "Sandra Flores",
-    "activo": true
-  }
-  /* Agrega el resto de los objetos del JSON dentro de este arreglo */
-];
-
-function subirDatosANube() {
+async function sincronizarGitHubFirebase() {
   const log = document.getElementById("log");
-  log.className = "";
-  log.textContent = "Guardando datos en Firebase...";
+  log.className = "info";
+  log.textContent = "Conectando con GitHub para descargar el JSON...";
 
-  database.ref("gestion_examenes").set(datosExamenes)
-    .then(() => {
-      log.className = "exito";
-      log.style.color = "#155724";
-      log.style.background = "#d4edda";
-      log.style.padding = "10px";
-      log.style.marginTop = "15px";
-      log.style.borderRadius = "6px";
-      log.textContent = "¡Proceso terminado con éxito! Todos los exámenes están guardados en la nube.";
-    })
-    .catch((err) => {
-      log.className = "error";
-      log.style.color = "#721c24";
-      log.style.background = "#f8d7da";
-      log.style.padding = "10px";
-      log.style.marginTop = "15px";
-      log.style.borderRadius = "6px";
-      log.textContent = "Error al subir los datos: " + err.message;
-    });
+  try {
+    const respuesta = await fetch("https://cerpsalto.github.io/examenes/examenes.json");
+    if (!respuesta.ok) throw new Error("No se pudo acceder al archivo JSON en GitHub.");
+    
+    const datosRemotos = await respuesta.json();
+    
+    log.textContent = "JSON descargado correctamente. Guardando en Firebase...";
+
+    // Asegurar la estructura con la propiedad activo
+    const datosListos = datosRemotos.map(item => ({
+      ...item,
+      activo: item.activo !== undefined ? item.activo : true
+    }));
+
+    await database.ref("gestion_examenes").set(datosListos);
+
+    log.className = "exito";
+    log.textContent = "¡Proceso terminado con éxito! Todos los exámenes ya están en Firebase.";
+  } catch (err) {
+    log.className = "error";
+    log.textContent = "Error: " + err.message;
+  }
 }
 </script>
 
