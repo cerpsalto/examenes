@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Carga Masiva desde GitHub a Firebase</title>
+<title>Sincronización Completa GitHub a Firebase</title>
 <style>
   body {
     font-family: 'Segoe UI', sans-serif;
@@ -49,10 +49,10 @@
 <body>
 
 <div class="card">
-  <h2>Sincronizar GitHub con Firebase</h2>
-  <p>Este script descargará el archivo desde <code>cerpsalto.github.io/examenes/examenes.json</code> y lo guardará en Firebase.</p>
+  <h2>Sincronización Completa GitHub a Firebase</h2>
+  <p>Descarga el JSON de GitHub, limpia caracteres prohibidos por Firebase y actualiza la nube.</p>
   
-  <button class="btn" onclick="sincronizarGitHubFirebase()">📥 Descargar JSON y Subir a la Nube</button>
+  <button class="btn" onclick="sincronizarGitHubFirebase()">🚀 Sincronizar Todo Ahora</button>
   
   <div id="log"></div>
 </div>
@@ -87,23 +87,30 @@ async function sincronizarGitHubFirebase() {
     
     const datosRemotos = await respuesta.json();
     
-    log.textContent = "JSON descargado. Limpiando claves y guardando en Firebase...";
+    log.textContent = "JSON descargado. Mapeando claves para Firebase...";
 
-    // Limpia las claves con puntos (como "D.A" a "D_A") para que Firebase no rechace el registro
+    // Limpia y normaliza las claves para evitar errores en Firebase
     const datosLimpios = datosRemotos.map(item => {
-      const nuevoItem = {};
-      for (let key in item) {
-        const nuevaKey = key.replace(/\./g, '_');
-        nuevoItem[nuevaKey] = item[key];
-      }
-      nuevoItem.activo = nuevoItem.activo !== undefined ? nuevoItem.activo : true;
-      return nuevoItem;
+      return {
+        activo: item.activo !== undefined ? item.activo : true,
+        Fecha: item.Fecha || "",
+        Hora: item.Hora || "",
+        Plan: item.Plan || "",
+        Nivel: item.Nivel || "",
+        D_A: item["D.A"] || item.D_A || "", // Normaliza D.A a D_A
+        Especialidad: item.Especialidad || "",
+        "Unidad Curricular/Asignatura": item["Unidad Curricular/Asignatura"] || item.Asignatura || "",
+        Presidente: item.Presidente || "",
+        Secretario: item.Secretario || "",
+        Vocal: item.Vocal || "",
+        Suplente: item.Suplente || ""
+      };
     });
 
     await database.ref("gestion_examenes").set(datosLimpios);
 
     log.className = "exito";
-    log.textContent = "¡Proceso terminado con éxito! Todos los exámenes ya están guardados y legibles en Firebase.";
+    log.textContent = "¡Sincronización exitosa! Todos los exámenes ya están adaptados y guardados en Firebase.";
   } catch (err) {
     log.className = "error";
     log.textContent = "Error: " + err.message;
