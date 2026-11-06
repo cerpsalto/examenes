@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carga Masiva a Firebase</title>
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4fbff;
+    color: #003b57;
+    padding: 40px;
+    text-align: center;
+  }
+  .card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 2px solid #bce2f3;
+  }
+  .btn {
+    background: #0099cc;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  .btn:hover { background: #007faa; }
+  #log {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  .exito { background: #d4edda; color: #155724; }
+  .error { background: #f8d7da; color: #721c24; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Cargador Masivo de Exámenes</h2>
+  <p>Haz clic en el botón para subir los registros iniciales a Firebase (nodo: <code>gestion_examenes</code>).</p>
+  
+  <button class="btn" onclick="subirDatosANube()">🚀 Subir JSON a Firebase</button>
+  
+  <div id="log"></div>
+</div>
+
+<!-- FIREBASE SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAUbSmA64Kj6326H8-FJqSFDyb1Zzardj8",
+  authDomain: "calendario-actividades-76382.firebaseapp.com",
+  databaseURL: "https://calendario-actividades-76382-default-rtdb.firebaseio.com",
+  projectId: "calendario-actividades-76382",
+  storageBucket: "calendario-actividades-76382.firebasestorage.app",
+  messagingSenderId: "455833092742",
+  appId: "1:455833092742:web:eafb4950d8de8409b80707",
+  measurementId: "G-YWQ92KPD0T"
+};
+
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// Pega aquí todo el JSON de los exámenes
+const datosExamenes = [
+  {
+    "Fecha": "16/11/2026",
+    "Hora": "8:00",
+    "Plan": "2023",
+    "Nivel": "1°",
+    "D.A": "Biología",
+    "Especialidad": "Biología",
+    "Unidad Curricular/Asignatura": "ICP",
+    "Presidente": "María Eugenia Fernández",
+    "Secretario": "Dario Dalmas",
+    "Vocal": "Moriana Rebuffo",
+    "Suplente": "Sandra Flores",
+    "activo": true
+  }
+  /* Agrega el resto de los objetos del JSON dentro de este arreglo */
+];
+
+function subirDatosANube() {
+  const log = document.getElementById("log");
+  log.className = "";
+  log.textContent = "Guardando datos en Firebase...";
+
+  database.ref("gestion_examenes").set(datosExamenes)
+    .then(() => {
+      log.className = "exito";
+      log.textContent = "¡Carga exitosa! Todos los exámenes están ahora guardados en Firebase.";
+    })
+    .catch((err) => {
+      log.className = "error";
+      log.textContent = "Error al subir los datos: " + err.message;
+    });
+}
+</script>
+
+</body>
+</html>
