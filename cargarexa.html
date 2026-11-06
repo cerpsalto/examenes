@@ -406,6 +406,15 @@ function inicializarFiltroEspecialidades(){
   });
 }
 
+// Función auxiliar para obtener la asignatura de cualquier propiedad posible en el JSON
+function obtenerAsignatura(item) {
+  return item["Unidad Curricular/Asignatura"] || 
+         item["Asignatura"] || 
+         item["Unidad Curricular"] || 
+         item["Asignatura / U. Curricular"] || 
+         item["unidad_curricular"] || "";
+}
+
 // Sincronización en tiempo real con Firebase
 database.ref("gestion_examenes").on("value", function(snapshot){
   const data = snapshot.val();
@@ -414,6 +423,8 @@ database.ref("gestion_examenes").on("value", function(snapshot){
       ...item,
       activo: item.activo !== undefined ? item.activo : true 
     }));
+    filtrarYRenderizar();
+    if(vistaCalendarioActiva) poblarVistaFechas();
   } else {
     fetch("https://cerpsalto.github.io/examenes/examenes.json")
       .then(res => res.json())
@@ -423,11 +434,10 @@ database.ref("gestion_examenes").on("value", function(snapshot){
           activo: item.activo !== undefined ? item.activo : true 
         }));
         filtrarYRenderizar();
+        if(vistaCalendarioActiva) poblarVistaFechas();
       })
       .catch(() => { examenesData = []; filtrarYRenderizar(); });
   }
-  filtrarYRenderizar();
-  if(vistaCalendarioActiva) poblarVistaFechas();
 });
 
 inicializarFiltroEspecialidades();
@@ -444,11 +454,11 @@ function filtrarYRenderizar(){
   const filtrados = examenesData.filter((item, index) => {
     item._indexReal = index; 
 
-    const itemEsp = normalizarTexto(item.Especialidad);
+    const itemEsp = normalizarTexto(item.Especialidad || item["D.A"] || "");
     const itemNivel = normalizarTexto(item.Nivel);
     const itemPlan = String(item.Plan || "").trim();
 
-    const matchEsp = !espSel || itemEsp === espSel || itemEsp.includes(espSel);
+    const matchEsp = !espSel || itemEsp.includes(espSel);
     const matchNivel = !nivelSel || itemNivel === nivelSel;
     const matchPlan = !planSel || itemPlan === planSel;
 
@@ -458,15 +468,15 @@ function filtrarYRenderizar(){
   if(filtrados.length === 0){
     tabla.style.display = "none";
     mensaje.style.display = "block";
+    tbody.innerHTML = "";
     return;
   }
 
   let html = "";
   filtrados.forEach((item) => {
     const i = item._indexReal;
-    
-    // Captura segura de la asignatura desde cualquier propiedad posible en el JSON
-    const nombreAsignatura = item["Unidad Curricular/Asignatura"] || item["Asignatura"] || item["Unidad Curricular"] || "";
+    const nombreAsignatura = obtenerAsignatura(item);
+    const deptoAcademico = item["D.A"] || item.Departamento || item.DA || item.Especialidad || "";
 
     html += `
       <tr>
@@ -481,7 +491,7 @@ function filtrarYRenderizar(){
         <td>
           <input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel || '')}" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
         </td>
-        <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(item["D.A"] || '')}" onchange="actualizarCampo(${i}, 'D.A', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(deptoAcademico)}" onchange="actualizarCampo(${i}, 'D.A', this.value)"></td>
         <td>
           <select class="input-tabla" onchange="actualizarCampo(${i}, 'Especialidad', this.value)">
             ${listaEspecialidadesBase.map(esp => `<option value="${esp}" ${normalizarTexto(item.Especialidad) === normalizarTexto(esp) ? 'selected' : ''}>${esp}</option>`).join('')}
@@ -514,6 +524,7 @@ function actualizarAsignatura(index, valor){
   examenesData[index]["Unidad Curricular/Asignatura"] = valor;
   if(examenesData[index]["Asignatura"]) delete examenesData[index]["Asignatura"];
   if(examenesData[index]["Unidad Curricular"]) delete examenesData[index]["Unidad Curricular"];
+  if(examenesData[index]["Asignatura / U. Curricular"]) delete examenesData[index]["Asignatura / U. Curricular"];
 }
 
 function actualizarActivo(index, estado){
@@ -658,7 +669,7 @@ function mostrarDetalleFecha(fecha, mapaFechas){
   `;
 
   lista.forEach(ex => {
-    const nombreAsignatura = ex["Unidad Curricular/Asignatura"] || ex["Asignatura"] || ex["Unidad Curricular"] || "";
+    const nombreAsignatura = obtenerAsignatura(ex);
     html += `
       <tr>
         <td><strong>${escapeHtml(ex.Hora)}</strong></td>
