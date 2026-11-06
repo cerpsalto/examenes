@@ -71,16 +71,12 @@ select,input{
 }
 
 .btn:hover{background:#007faa}
-
 .btn-green{background:#00a86b}
 .btn-green:hover{background:#008e5b}
-
 .btn-red{background:#d9534f}
 .btn-red:hover{background:#c9302c}
-
 .btn-purple{background:#8e44ad}
 .btn-purple:hover{background:#732d91}
-
 .btn-guardar{background:#2980b9}
 .btn-guardar:hover{background:#1f618d}
 
@@ -286,23 +282,11 @@ table.tabla-examenes th{
       <label>Nivel / Año:</label>
       <select id="filtroNivel" onchange="filtrarYRenderizar()">
         <option value="">-- Todos los Niveles --</option>
-        <option value="1°">Primero (1°)</option>
-        <option value="2°">Segundo (2°)</option>
-        <option value="3°">Tercero (3°)</option>
-        <option value="4°">Cuarto (4°)</option>
       </select>
 
       <label>Plan:</label>
       <select id="filtroPlan" onchange="filtrarYRenderizar()">
         <option value="">-- Todos los Planes --</option>
-        <option value="2008">2008</option>
-        <option value="2023">2023</option>
-        <option value="2024">2024</option>
-        <option value="2025">2025</option>
-        <option value="2026">2026</option>
-        <option value="2027">2027</option>
-        <option value="2028">2028</option>
-        <option value="2029">2029</option>
       </select>
 
       <button class="btn btn-purple" onclick="alternarVistaFecha()">📅 Ver por Fecha (Hoy)</button>
@@ -345,14 +329,12 @@ table.tabla-examenes th{
   <!-- VISTA CALENDARIO / POR FECHA -->
   <div id="seccionVistaFecha" class="vista-fecha-container" style="display:none;">
     <div class="subtitulo-header">
-      <div class="subtitulo" id="tituloVistaFecha">EXÁMENES AGRUPADOS POR FECHA (DESTACANDO HOY)</div>
+      <div class="subtitulo" id="tituloVistaFecha">EXÁMENES AGRUPADOS POR FECHA</div>
       <button class="btn" onclick="alternarVistaFecha()">⬅️ Volver al Listado General</button>
     </div>
 
     <div class="calendario-grid">
-      <div class="selector-fechas-box" id="listaFechasLateral">
-        <!-- Se llena con las fechas disponibles -->
-      </div>
+      <div class="selector-fechas-box" id="listaFechasLateral"></div>
       <div class="detalle-fecha-box">
         <div class="subtitulo" id="tituloDetalleFecha" style="margin-bottom: 12px; font-size:16px;">Seleccione una fecha</div>
         <div id="contenidoDetalleFecha"></div>
@@ -401,13 +383,59 @@ function normalizarTexto(texto) {
     .trim();
 }
 
-function inicializarFiltros(){
+// Función auxiliar para obtener la asignatura independientemente de cómo venga escrita en la propiedad
+function obtenerAsignatura(item) {
+  return item["Unidad Curricular/Asignatura"] || item["Asignatura"] || item["Unidad Curricular"] || "";
+}
+
+function actualizarListasFiltros() {
   const selectEsp = document.getElementById("filtroEspecialidad");
-  listaEspecialidadesBase.forEach(esp => {
+  const selectNivel = document.getElementById("filtroNivel");
+  const selectPlan = document.getElementById("filtroPlan");
+
+  const valEspActual = selectEsp.value;
+  const valNivelActual = selectNivel.value;
+  const valPlanActual = selectPlan.value;
+
+  // Extraer valores únicos existentes en los datos para asegurar que funcionen los filtros
+  const especialidadesSet = new Set(listaEspecialidadesBase);
+  const nivelesSet = new Set();
+  const planesSet = new Set();
+
+  examenesData.forEach(item => {
+    if(item.Especialidad) especialidadesSet.add(item.Especialidad.trim());
+    if(item.Nivel) nivelesSet.add(String(item.Nivel).trim());
+    if(item.Plan) planesSet.add(String(item.Plan).trim());
+  });
+
+  // Poblar Especialidad
+  selectEsp.innerHTML = '<option value="">-- Todas las Especialidades --</option>';
+  Array.from(especialidadesSet).sort().forEach(esp => {
     const op = document.createElement("option");
     op.value = esp;
     op.textContent = esp;
+    if(esp === valEspActual) op.selected = true;
     selectEsp.appendChild(op);
+  });
+
+  // Poblar Nivel
+  selectNivel.innerHTML = '<option value="">-- Todos los Niveles --</option>';
+  Array.from(nivelesSet).sort().forEach(niv => {
+    const op = document.createElement("option");
+    op.value = niv;
+    op.textContent = niv;
+    if(niv === valNivelActual) op.selected = true;
+    selectNivel.appendChild(op);
+  });
+
+  // Poblar Plan
+  selectPlan.innerHTML = '<option value="">-- Todos los Planes --</option>';
+  Array.from(planesSet).sort().forEach(pln => {
+    const op = document.createElement("option");
+    op.value = pln;
+    op.textContent = pln;
+    if(pln === valPlanActual) op.selected = true;
+    selectPlan.appendChild(op);
   });
 }
 
@@ -419,8 +447,9 @@ database.ref("gestion_examenes").on("value", function(snapshot){
       ...item,
       activo: item.activo !== undefined ? item.activo : true 
     }));
+    actualizarListasFiltros();
+    filtrarYRenderizar();
   } else {
-    // Si Firebase está vacío, intentamos cargar el JSON remoto por defecto una vez
     fetch("https://cerpsalto.github.io/examenes/examenes.json")
       .then(res => res.json())
       .then(jsonRemoto => {
@@ -428,15 +457,15 @@ database.ref("gestion_examenes").on("value", function(snapshot){
           ...item,
           activo: item.activo !== undefined ? item.activo : true 
         }));
+        actualizarListasFiltros();
         filtrarYRenderizar();
       })
-      .catch(() => { examenesData = []; filtrarYRenderizar(); });
+      .catch(() => { examenesData = []; actualizarListasFiltros(); filtrarYRenderizar(); });
   }
-  filtrarYRenderizar();
   if(vistaCalendarioActiva) poblarVistaFechas();
 });
 
-inicializarFiltros();
+actualizarListasFiltros();
 
 function filtrarYRenderizar(){
   const espSel = normalizarTexto(document.getElementById("filtroEspecialidad").value);
@@ -454,7 +483,7 @@ function filtrarYRenderizar(){
     const itemNivel = normalizarTexto(item.Nivel);
     const itemPlan = String(item.Plan || "").trim();
 
-    const matchEsp = !espSel || itemEsp.includes(espSel) || espSel.includes(itemEsp);
+    const matchEsp = !espSel || itemEsp === espSel || itemEsp.includes(espSel);
     const matchNivel = !nivelSel || itemNivel === nivelSel;
     const matchPlan = !planSel || itemPlan === planSel;
 
@@ -470,6 +499,8 @@ function filtrarYRenderizar(){
   let html = "";
   filtrados.forEach((item) => {
     const i = item._indexReal;
+    const nombreAsignatura = obtenerAsignatura(item);
+
     html += `
       <tr>
         <td class="checkbox-col">
@@ -477,19 +508,15 @@ function filtrarYRenderizar(){
         </td>
         <td><input type="text" class="input-tabla" value="${escapeHtml(item.Fecha || '')}" onchange="actualizarCampo(${i}, 'Fecha', this.value)"></td>
         <td><input type="text" class="input-tabla" style="width:70px;" value="${escapeHtml(item.Hora || '')}" onchange="actualizarCampo(${i}, 'Hora', this.value)"></td>
-        <td>
-          <input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan || '')}" onchange="actualizarCampo(${i}, 'Plan', this.value)">
-        </td>
-        <td>
-          <input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel || '')}" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
-        </td>
+        <td><input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan || '')}" onchange="actualizarCampo(${i}, 'Plan', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel || '')}" onchange="actualizarCampo(${i}, 'Nivel', this.value)"></td>
         <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(item["D.A"] || '')}" onchange="actualizarCampo(${i}, 'D.A', this.value)"></td>
         <td>
           <select class="input-tabla" onchange="actualizarCampo(${i}, 'Especialidad', this.value)">
             ${listaEspecialidadesBase.map(esp => `<option value="${esp}" ${normalizarTexto(item.Especialidad) === normalizarTexto(esp) ? 'selected' : ''}>${esp}</option>`).join('')}
           </select>
         </td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item["Unidad Curricular/Asignatura"] || '')}" onchange="actualizarCampo(${i}, 'Unidad Curricular/Asignatura', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(nombreAsignatura)}" onchange="actualizarCampoAsignatura(${i}, this.value)"></td>
         <td><input type="text" class="input-tabla" value="${escapeHtml(item.Presidente || '')}" onchange="actualizarCampo(${i}, 'Presidente', this.value)"></td>
         <td><input type="text" class="input-tabla" value="${escapeHtml(item.Secretario || '')}" onchange="actualizarCampo(${i}, 'Secretario', this.value)"></td>
         <td><input type="text" class="input-tabla" value="${escapeHtml(item.Vocal || '')}" onchange="actualizarCampo(${i}, 'Vocal', this.value)"></td>
@@ -512,6 +539,13 @@ function actualizarCampo(index, campo, valor){
   examenesData[index][campo] = valor;
 }
 
+function actualizarCampoAsignatura(index, valor){
+  // Actualiza o crea la propiedad estándar unificada asegurando compatibilidad
+  examenesData[index]["Unidad Curricular/Asignatura"] = valor;
+  if(examenesData[index]["Asignatura"]) delete examenesData[index]["Asignatura"];
+  if(examenesData[index]["Unidad Curricular"]) delete examenesData[index]["Unidad Curricular"];
+}
+
 function actualizarActivo(index, estado){
   examenesData[index].activo = estado;
 }
@@ -532,6 +566,7 @@ function agregarFilaExamen(){
     Suplente: ""
   };
   examenesData.unshift(nuevoExamen);
+  actualizarListasFiltros();
   filtrarYRenderizar();
   if(vistaCalendarioActiva) poblarVistaFechas();
 }
@@ -539,6 +574,8 @@ function agregarFilaExamen(){
 function eliminarFila(index){
   if(confirm("¿Desea eliminar este examen del registro?")){
     examenesData.splice(index, 1);
+    actualizarListasFilsrosBusqueda = true;
+    actualizarListasFiltros();
     filtrarYRenderizar();
     if(vistaCalendarioActiva) poblarVistaFechas();
   }
@@ -654,12 +691,13 @@ function mostrarDetalleFecha(fecha, mapaFechas){
   `;
 
   lista.forEach(ex => {
+    const nombreAsig = obtenerAsignatura(ex);
     html += `
       <tr>
         <td><strong>${escapeHtml(ex.Hora)}</strong></td>
         <td>${escapeHtml(ex.Plan)}</td>
         <td>${escapeHtml(ex.Nivel)}</td>
-        <td><strong>${escapeHtml(ex["Unidad Curricular/Asignatura"])}</strong></td>
+        <td><strong>${escapeHtml(nombreAsig)}</strong></td>
         <td>${escapeHtml(ex.Especialidad)}</td>
         <td style="font-size:11px; text-align:left; padding-left:10px;">
           <div><strong>Pres:</strong> ${escapeHtml(ex.Presidente)}</div>
@@ -677,7 +715,6 @@ function mostrarDetalleFecha(fecha, mapaFechas){
 
 function descargarJSONExamenes(){
   const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
-
   const jsonString = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(datosLimpios, null, 2));
   const downloadAnchor = document.createElement('a');
   downloadAnchor.setAttribute("href", jsonString);
