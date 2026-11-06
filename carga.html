@@ -99,10 +99,20 @@ function subirDatosANube() {
   database.ref("gestion_examenes").set(datosExamenes)
     .then(() => {
       log.className = "exito";
-      log.textContent = "¡Carga exitosa! Todos los exámenes están ahora guardados en Firebase.";
+      log.style.color = "#155724";
+      log.style.background = "#d4edda";
+      log.style.padding = "10px";
+      log.style.marginTop = "15px";
+      log.style.borderRadius = "6px";
+      log.textContent = "¡Proceso terminado con éxito! Todos los exámenes están guardados en la nube.";
     })
     .catch((err) => {
       log.className = "error";
+      log.style.color = "#721c24";
+      log.style.background = "#f8d7da";
+      log.style.padding = "10px";
+      log.style.marginTop = "15px";
+      log.style.borderRadius = "6px";
       log.textContent = "Error al subir los datos: " + err.message;
     });
 }
