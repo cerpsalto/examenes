@@ -406,7 +406,7 @@ function inicializarFiltros(){
   });
 }
 
-// Sincronización en tiempo real con Firebase
+// Sincronización permanente y directa con Firebase Realtime Database
 database.ref("gestion_examenes").on("value", function(snapshot){
   const data = snapshot.val();
   if(data && Array.isArray(data)){
@@ -455,9 +455,12 @@ function filtrarYRenderizar(){
   let html = "";
   filtrados.forEach((item) => {
     const i = item._indexReal;
-    // Soporte para nombres nuevos o antiguos de las claves en Firebase
+    
+    // Soporte total para lectura robusta de claves
     const valDA = item.D_A !== undefined ? item.D_A : (item["D.A"] || '');
-    const valAsignatura = item["Unidad_Curricular_Asignatura"] !== undefined ? item["Unidad_Curricular_Asignatura"] : (item["Unidad Curricular/Asignatura"] || '');
+    const valAsignatura = item["Unidad Curricular/Asignatura"] !== undefined ? item["Unidad Curricular/Asignatura"] : 
+                          (item["Unidad_Curricular_Asignatura"] !== undefined ? item["Unidad_Curricular_Asignatura"] : 
+                          (item["Asignatura"] || ''));
 
     html += `
       <tr>
@@ -643,7 +646,10 @@ function mostrarDetalleFecha(fecha, mapaFechas){
   `;
 
   lista.forEach(ex => {
-    const valAsignatura = ex["Unidad_Curricular_Asignatura"] !== undefined ? ex["Unidad_Curricular_Asignatura"] : (ex["Unidad Curricular/Asignatura"] || '');
+    const valAsignatura = ex["Unidad Curricular/Asignatura"] !== undefined ? ex["Unidad Curricular/Asignatura"] : 
+                          (ex["Unidad_Curricular_Asignatura"] !== undefined ? ex["Unidad_Curricular_Asignatura"] : 
+                          (ex["Asignatura"] || ''));
+                          
     html += `
       <tr>
         <td><strong>${escapeHtml(ex.Hora)}</strong></td>
