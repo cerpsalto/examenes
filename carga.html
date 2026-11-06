@@ -50,9 +50,9 @@
 
 <div class="card">
   <h2>Sincronizar GitHub con Firebase</h2>
-  <p>Descarga el JSON de GitHub, limpia automáticamente las claves prohibidas y actualiza la nube.</p>
+  <p>Descarga el JSON de GitHub, elimina cualquier carácter prohibido y actualiza la nube.</p>
   
-  <button class="btn" onclick="sincronizarGitHubFirebase()">🚀 Sincronizar Todo Ahora</button>
+  <button class="btn" onclick="sincronizarGitHubFirebase()">📥 Descargar JSON y Subir a la Nube</button>
   
   <div id="log"></div>
 </div>
@@ -76,35 +76,43 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
+// Función para limpiar caracteres prohibidos por Firebase en las claves (. # $ / [ ])
+function limpiarClaves(obj) {
+  if (Array.isArray(obj)) {
+    return obj.map(item => limpiarClaves(item));
+  } else if (obj !== null && typeof obj === 'object') {
+    const nuevoObj = {};
+    for (let key in obj) {
+      // Reemplaza puntos, barras y otros símbolos prohibidos por guion bajo "_"
+      const nuevaKey = key.replace(/[.#$/\[\]]/g, '_');
+      nuevoObj[nuevaKey] = limpiarClaves(obj[key]);
+    }
+    return nuevoObj;
+  }
+  return obj;
+}
+
 async function sincronizarGitHubFirebase() {
   const log = document.getElementById("log");
   log.className = "info";
   log.textContent = "Conectando con GitHub para descargar el JSON...";
 
   try {
-    const respuesta = await fetch("https://cerpsalto.github.io/examenes/examenes.json");
+    // Añadimos un parámetro aleatorio para evitar que el navegador guarde en caché un JSON viejo
+    const respuesta = await fetch("https://cerpsalto.github.io/examenes/examenes.json?t=" + new Date().getTime());
     if (!respuesta.ok) throw new Error("No se pudo acceder al archivo JSON en GitHub.");
     
     const datosRemotos = await respuesta.json();
     
-    log.textContent = "JSON descargado. Limpiando claves dinámicamente...";
+    log.textContent = "JSON descargado. Limpiando claves y guardando en Firebase...";
 
-    // Recorre cada objeto y reemplaza cualquier caracter prohibido (. , # , $ , / , [ , ]) en las claves
-    const datosLimpios = datosRemotos.map(item => {
-      const nuevoItem = {};
-      for (let key in item) {
-        // Reemplaza puntos, barras y otros símbolos inválidos por guion bajo "_"
-        const nuevaKey = key.replace(/[.#$/\[\]]/g, '_');
-        nuevoItem[nuevaKey] = item[key];
-      }
-      nuevoItem.activo = nuevoItem.activo !== undefined ? nuevoItem.activo : true;
-      return nuevoItem;
-    });
+    // Aplica la limpieza profunda a todo el arreglo
+    const datosLimpios = limpiarClaves(datosRemotos);
 
     await database.ref("gestion_examenes").set(datosLimpios);
 
     log.className = "exito";
-    log.textContent = "¡Sincronización exitosa! Todos los exámenes están limpios y guardados en Firebase.";
+    log.textContent = "¡Proceso terminado con éxito! Todos los exámenes ya están limpios y guardados en Firebase.";
   } catch (err) {
     log.className = "error";
     log.textContent = "Error: " + err.message;
