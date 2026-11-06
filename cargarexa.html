@@ -409,10 +409,17 @@ function inicializarFiltroEspecialidades(){
 // Función auxiliar para obtener la asignatura de cualquier propiedad posible en el JSON
 function obtenerAsignatura(item) {
   return item["Unidad Curricular/Asignatura"] || 
+         item["Asignatura / U. Curricular"] || 
          item["Asignatura"] || 
          item["Unidad Curricular"] || 
-         item["Asignatura / U. Curricular"] || 
-         item["unidad_curricular"] || "";
+         item["unidad_curricular"] || 
+         item["materia"] || 
+         item["asignatura"] || "";
+}
+
+// Función auxiliar para obtener el Departamento Académico de cualquier propiedad posible
+function obtenerDA(item) {
+  return item["D.A"] || item["DA"] || item["Departamento"] || item["depto"] || item["Especialidad"] || "";
 }
 
 // Sincronización en tiempo real con Firebase
@@ -454,12 +461,19 @@ function filtrarYRenderizar(){
   const filtrados = examenesData.filter((item, index) => {
     item._indexReal = index; 
 
-    const itemEsp = normalizarTexto(item.Especialidad || item["D.A"] || "");
-    const itemNivel = normalizarTexto(item.Nivel);
+    const itemEsp = normalizarTexto(item.Especialidad || obtenerDA(item));
+    const itemNivel = normalizarTexto(item.Nivel || "");
     const itemPlan = String(item.Plan || "").trim();
 
+    // Filtro Especialidad
     const matchEsp = !espSel || itemEsp.includes(espSel);
-    const matchNivel = !nivelSel || itemNivel === nivelSel;
+    
+    // Filtro Nivel (compara número puro para igualar "1°" con "1")
+    const numNivelSel = nivelSel.replace(/[^0-9]/g, '');
+    const numItemNivel = itemNivel.replace(/[^0-9]/g, '');
+    const matchNivel = !nivelSel || (numNivelSel ? numNivelSel === numItemNivel : itemNivel.includes(nivelSel));
+
+    // Filtro Plan
     const matchPlan = !planSel || itemPlan === planSel;
 
     return matchEsp && matchNivel && matchPlan;
@@ -476,7 +490,7 @@ function filtrarYRenderizar(){
   filtrados.forEach((item) => {
     const i = item._indexReal;
     const nombreAsignatura = obtenerAsignatura(item);
-    const deptoAcademico = item["D.A"] || item.Departamento || item.DA || item.Especialidad || "";
+    const deptoAcademico = obtenerDA(item);
 
     html += `
       <tr>
@@ -494,7 +508,7 @@ function filtrarYRenderizar(){
         <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(deptoAcademico)}" onchange="actualizarCampo(${i}, 'D.A', this.value)"></td>
         <td>
           <select class="input-tabla" onchange="actualizarCampo(${i}, 'Especialidad', this.value)">
-            ${listaEspecialidadesBase.map(esp => `<option value="${esp}" ${normalizarTexto(item.Especialidad) === normalizarTexto(esp) ? 'selected' : ''}>${esp}</option>`).join('')}
+            ${listaEspecialidadesBase.map(esp => `<option value="${esp}" ${normalizarTexto(item.Especialidad || deptoAcademico) === normalizarTexto(esp) ? 'selected' : ''}>${esp}</option>`).join('')}
           </select>
         </td>
         <td><input type="text" class="input-tabla" value="${escapeHtml(nombreAsignatura)}" onchange="actualizarAsignatura(${i}, this.value)"></td>
@@ -522,9 +536,6 @@ function actualizarCampo(index, campo, valor){
 
 function actualizarAsignatura(index, valor){
   examenesData[index]["Unidad Curricular/Asignatura"] = valor;
-  if(examenesData[index]["Asignatura"]) delete examenesData[index]["Asignatura"];
-  if(examenesData[index]["Unidad Curricular"]) delete examenesData[index]["Unidad Curricular"];
-  if(examenesData[index]["Asignatura / U. Curricular"]) delete examenesData[index]["Asignatura / U. Curricular"];
 }
 
 function actualizarActivo(index, estado){
@@ -676,7 +687,7 @@ function mostrarDetalleFecha(fecha, mapaFechas){
         <td>${escapeHtml(ex.Plan)}</td>
         <td>${escapeHtml(ex.Nivel)}</td>
         <td><strong>${escapeHtml(nombreAsignatura)}</strong></td>
-        <td>${escapeHtml(ex.Especialidad)}</td>
+        <td>${escapeHtml(ex.Especialidad || obtenerDA(ex))}</td>
         <td style="font-size:11px; text-align:left; padding-left:10px;">
           <div><strong>Pres:</strong> ${escapeHtml(ex.Presidente)}</div>
           <div><strong>Sec:</strong> ${escapeHtml(ex.Secretario)}</div>
