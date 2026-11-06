@@ -81,9 +81,6 @@ select,input{
 .btn-purple{background:#8e44ad}
 .btn-purple:hover{background:#732d91}
 
-.btn-guardar{background:#2980b9}
-.btn-guardar:hover{background:#1f618d}
-
 /* VISTA CALENDARIO POR FECHA */
 .vista-fecha-container{
   padding: 20px;
@@ -301,7 +298,6 @@ table.tabla-examenes th{
       </select>
 
       <button class="btn btn-purple" onclick="alternarVistaFecha()">📅 Ver por Fecha (Hoy)</button>
-      <button class="btn btn-guardar" onclick="guardarEnFirebase()">💾 Guardar en la Nube</button>
       <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 Descargar JSON</button>
     </div>
   </div>
@@ -357,25 +353,7 @@ table.tabla-examenes th{
 
 </div>
 
-<!-- FIREBASE UTILS -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAUbSmA64Kj6326H8-FJqSFDyb1Zzardj8",
-  authDomain: "calendario-actividades-76382.firebaseapp.com",
-  databaseURL: "https://calendario-actividades-76382-default-rtdb.firebaseio.com",
-  projectId: "calendario-actividades-76382",
-  storageBucket: "calendario-actividades-76382.firebasestorage.app",
-  messagingSenderId: "455833092742",
-  appId: "1:455833092742:web:eafb4950d8de8409b80707",
-  measurementId: "G-YWQ92KPD0T"
-};
-
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-
 const listaEspecialidadesBase = [
   "Biología", "Com. Visual", "Derecho", "Español",
   "Física", "Geografía", "Historia", "Informática",
@@ -406,39 +384,37 @@ function inicializarFiltros(){
   });
 }
 
-// Sincronización en tiempo real con Firebase
-database.ref("gestion_examenes").on("value", function(snapshot){
-  const data = snapshot.val();
-  if(data && Array.isArray(data)){
-    examenesData = data.map(item => ({
-      ...item,
-      activo: item.activo !== undefined ? item.activo : true 
-    }));
-    filtrarYRenderizar();
-    if(vistaCalendarioActiva) poblarVistaFechas();
-  } else {
-    // Si Firebase está vacío, carga automáticamente desde el JSON de GitHub y lo inicializa en la nube
-    fetch("https://cerpsalto.github.io/examenes/examenes.json")
-      .then(res => res.json())
-      .then(jsonRemoto => {
-        examenesData = jsonRemoto.map(item => ({
-          ...item,
-          activo: item.activo !== undefined ? item.activo : true,
-          "Unidad Curricular/Asignatura": item["Unidad Curricular/Asignatura"] || item["Unidad_Curricular_Asignatura"] || item["Asignatura"] || ""
-        }));
-        // Guarda automáticamente en Firebase para que ya quede persistido
-        database.ref("gestion_examenes").set(examenesData);
-        filtrarYRenderizar();
-        if(vistaCalendarioActiva) poblarVistaFechas();
-      })
-      .catch(() => {
-        examenesData = [];
-        filtrarYRenderizar();
-      });
-  }
-});
+// Carga de datos directamente desde GitHub
+function cargarDatosRemotos(){
+  fetch("https://cerpsalto.github.io/examenes/examenes.json")
+    .then(res => res.json())
+    .then(jsonRemoto => {
+      examenesData = jsonRemoto.map(item => ({
+        activo: item.activo !== undefined ? item.activo : true,
+        Fecha: item.Fecha || "",
+        Hora: item.Hora || "",
+        Plan: item.Plan || "",
+        Nivel: item.Nivel || "",
+        "D.A": item["D.A"] || item.D_A || "",
+        Especialidad: item.Especialidad || "",
+        "Unidad Curricular/Asignatura": item["Unidad Curricular/Asignatura"] || item.Unidad_Curricular_Asignatura || item.Asignatura || item["Unidad Curricular / Asignatura"] || "",
+        Presidente: item.Presidente || "",
+        Secretario: item.Secretario || "",
+        Vocal: item.Vocal || "",
+        Suplente: item.Suplente || ""
+      }));
+      filtrarYRenderizar();
+      if(vistaCalendarioActiva) poblarVistaFechas();
+    })
+    .catch(err => {
+      console.error("Error al cargar el JSON remoto:", err);
+      examenesData = [];
+      filtrarYRenderizar();
+    });
+}
 
 inicializarFiltros();
+cargarDatosRemotos();
 
 function filtrarYRenderizar(){
   const espSel = normalizarTexto(document.getElementById("filtroEspecialidad").value);
@@ -473,33 +449,30 @@ function filtrarYRenderizar(){
   filtrados.forEach((item) => {
     const i = item._indexReal;
     
-    const valDA = item.D_A !== undefined ? item.D_A : (item["D.A"] || '');
-    const valAsignatura = item["Unidad Curricular/Asignatura"] || item["Unidad_Curricular_Asignatura"] || item["Asignatura"] || '';
-
     html += `
       <tr>
         <td class="checkbox-col">
           <input type="checkbox" class="checkbox-periodo" ${item.activo ? "checked" : ""} onchange="actualizarActivo(${i}, this.checked)">
         </td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Fecha || '')}" onchange="actualizarCampo(${i}, 'Fecha', this.value)"></td>
-        <td><input type="text" class="input-tabla" style="width:70px;" value="${escapeHtml(item.Hora || '')}" onchange="actualizarCampo(${i}, 'Hora', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Fecha)}" onchange="actualizarCampo(${i}, 'Fecha', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:70px;" value="${escapeHtml(item.Hora)}" onchange="actualizarCampo(${i}, 'Hora', this.value)"></td>
         <td>
-          <input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan || '')}" onchange="actualizarCampo(${i}, 'Plan', this.value)">
+          <input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan)}" onchange="actualizarCampo(${i}, 'Plan', this.value)">
         </td>
         <td>
-          <input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel || '')}" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
+          <input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel)}" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
         </td>
-        <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(valDA)}" onchange="actualizarCampo(${i}, 'D.A', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(item["D.A"])}" onchange="actualizarCampo(${i}, 'D.A', this.value)"></td>
         <td>
           <select class="input-tabla" onchange="actualizarCampo(${i}, 'Especialidad', this.value)">
             ${listaEspecialidadesBase.map(esp => `<option value="${esp}" ${normalizarTexto(item.Especialidad) === normalizarTexto(esp) ? 'selected' : ''}>${esp}</option>`).join('')}
           </select>
         </td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(valAsignatura)}" onchange="actualizarCampo(${i}, 'Unidad Curricular/Asignatura', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Presidente || '')}" onchange="actualizarCampo(${i}, 'Presidente', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Secretario || '')}" onchange="actualizarCampo(${i}, 'Secretario', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Vocal || '')}" onchange="actualizarCampo(${i}, 'Vocal', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Suplente || '')}" onchange="actualizarCampo(${i}, 'Suplente', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item["Unidad Curricular/Asignatura"])}" onchange="actualizarCampo(${i}, 'Unidad Curricular/Asignatura', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Presidente)}" onchange="actualizarCampo(${i}, 'Presidente', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Secretario)}" onchange="actualizarCampo(${i}, 'Secretario', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Vocal)}" onchange="actualizarCampo(${i}, 'Vocal', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Suplente)}" onchange="actualizarCampo(${i}, 'Suplente', this.value)"></td>
         <td>
           <div class="acciones-item">
             <button class="btn-mini btn-red" onclick="eliminarFila(${i})" title="Eliminar examen">🗑️</button>
@@ -548,15 +521,6 @@ function eliminarFila(index){
     filtrarYRenderizar();
     if(vistaCalendarioActiva) poblarVistaFechas();
   }
-}
-
-function guardarEnFirebase(){
-  const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
-  database.ref("gestion_examenes").set(datosLimpios).then(() => {
-    alert("¡Exámenes guardados correctamente en la nube!");
-  }).catch(err => {
-    alert("Error al guardar: " + err.message);
-  });
 }
 
 function alternarVistaFecha(){
@@ -660,14 +624,12 @@ function mostrarDetalleFecha(fecha, mapaFechas){
   `;
 
   lista.forEach(ex => {
-    const valAsignatura = ex["Unidad Curricular/Asignatura"] || ex["Unidad_Curricular_Asignatura"] || ex["Asignatura"] || '';
-                          
     html += `
       <tr>
         <td><strong>${escapeHtml(ex.Hora)}</strong></td>
         <td>${escapeHtml(ex.Plan)}</td>
         <td>${escapeHtml(ex.Nivel)}</td>
-        <td><strong>${escapeHtml(valAsignatura)}</strong></td>
+        <td><strong>${escapeHtml(ex["Unidad Curricular/Asignatura"])}</strong></td>
         <td>${escapeHtml(ex.Especialidad)}</td>
         <td style="font-size:11px; text-align:left; padding-left:10px;">
           <div><strong>Pres:</strong> ${escapeHtml(ex.Presidente)}</div>
