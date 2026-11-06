@@ -38,6 +38,8 @@
     border-radius: 6px;
     font-weight: bold;
     display: none;
+    text-align: left;
+    word-break: break-all;
   }
   .exito { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; display: block !important; }
   .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; display: block !important; }
@@ -85,18 +87,23 @@ async function sincronizarGitHubFirebase() {
     
     const datosRemotos = await respuesta.json();
     
-    log.textContent = "JSON descargado correctamente. Guardando en Firebase...";
+    log.textContent = "JSON descargado. Limpiando claves y guardando en Firebase...";
 
-    // Asegurar la estructura con la propiedad activo
-    const datosListos = datosRemotos.map(item => ({
-      ...item,
-      activo: item.activo !== undefined ? item.activo : true
-    }));
+    // Limpia las claves con puntos (como "D.A" a "D_A") para que Firebase no rechace el registro
+    const datosLimpios = datosRemotos.map(item => {
+      const nuevoItem = {};
+      for (let key in item) {
+        const nuevaKey = key.replace(/\./g, '_');
+        nuevoItem[nuevaKey] = item[key];
+      }
+      nuevoItem.activo = nuevoItem.activo !== undefined ? nuevoItem.activo : true;
+      return nuevoItem;
+    });
 
-    await database.ref("gestion_examenes").set(datosListos);
+    await database.ref("gestion_examenes").set(datosLimpios);
 
     log.className = "exito";
-    log.textContent = "¡Proceso terminado con éxito! Todos los exámenes ya están en Firebase.";
+    log.textContent = "¡Proceso terminado con éxito! Todos los exámenes ya están guardados y legibles en Firebase.";
   } catch (err) {
     log.className = "error";
     log.textContent = "Error: " + err.message;
