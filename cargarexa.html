@@ -81,6 +81,9 @@ select,input{
 .btn-purple{background:#8e44ad}
 .btn-purple:hover{background:#732d91}
 
+.btn-guardar{background:#2980b9}
+.btn-guardar:hover{background:#1f618d}
+
 /* VISTA CALENDARIO POR FECHA */
 .vista-fecha-container{
   padding: 20px;
@@ -286,7 +289,7 @@ table.tabla-examenes th{
         <option value="1°">Primero (1°)</option>
         <option value="2°">Segundo (2°)</option>
         <option value="3°">Tercero (3°)</option>
-        <option value="4°">Quarto (4°)</option>
+        <option value="4°">Cuarto (4°)</option>
       </select>
 
       <label>Plan:</label>
@@ -303,7 +306,8 @@ table.tabla-examenes th{
       </select>
 
       <button class="btn btn-purple" onclick="alternarVistaFecha()">📅 Ver por Fecha (Hoy)</button>
-      <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 Generar y Descargar JSON</button>
+      <button class="btn btn-guardar" onclick="guardarEnFirebase()">💾 Guardar en la Nube</button>
+      <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 Descargar JSON</button>
     </div>
   </div>
 
@@ -358,7 +362,25 @@ table.tabla-examenes th{
 
 </div>
 
+<!-- FIREBASE UTILS -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
 <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAUbSmA64Kj6326H8-FJqSFDyb1Zzardj8",
+  authDomain: "calendario-actividades-76382.firebaseapp.com",
+  databaseURL: "https://calendario-actividades-76382-default-rtdb.firebaseio.com",
+  projectId: "calendario-actividades-76382",
+  storageBucket: "calendario-actividades-76382.firebasestorage.app",
+  messagingSenderId: "455833092742",
+  appId: "1:455833092742:web:eafb4950d8de8409b80707",
+  measurementId: "G-YWQ92KPD0T"
+};
+
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
 const listaEspecialidadesBase = [
   "Biología", "Com. Visual", "Derecho", "Español",
   "Física", "Geografía", "Historia", "Informática",
@@ -389,25 +411,32 @@ function inicializarFiltros(){
   });
 }
 
-function cargarExamenesRemotos(){
-  fetch("https://cerpsalto.github.io/examenes/examenes.json")
-    .then(res => res.json())
-    .then(data => {
-      examenesData = data.map(item => ({
-        ...item,
-        activo: item.activo !== undefined ? item.activo : true 
-      }));
-      filtrarYRenderizar();
-    })
-    .catch(err => {
-      console.warn("No se pudo cargar examenes.json remoto, iniciando vacío.", err);
-      examenesData = [];
-      filtrarYRenderizar();
-    });
-}
+// Sincronización en tiempo real con Firebase
+database.ref("gestion_examenes").on("value", function(snapshot){
+  const data = snapshot.val();
+  if(data && Array.isArray(data)){
+    examenesData = data.map(item => ({
+      ...item,
+      activo: item.activo !== undefined ? item.activo : true 
+    }));
+  } else {
+    // Si Firebase está vacío, intentamos cargar el JSON remoto por defecto una vez
+    fetch("https://cerpsalto.github.io/examenes/examenes.json")
+      .then(res => res.json())
+      .then(jsonRemoto => {
+        examenesData = jsonRemoto.map(item => ({
+          ...item,
+          activo: item.activo !== undefined ? item.activo : true 
+        }));
+        filtrarYRenderizar();
+      })
+      .catch(() => { examenesData = []; filtrarYRenderizar(); });
+  }
+  filtrarYRenderizar();
+  if(vistaCalendarioActiva) poblarVistaFechas();
+});
 
 inicializarFiltros();
-cargarExamenesRemotos();
 
 function filtrarYRenderizar(){
   const espSel = normalizarTexto(document.getElementById("filtroEspecialidad").value);
@@ -515,6 +544,15 @@ function eliminarFila(index){
   }
 }
 
+function guardarEnFirebase(){
+  const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
+  database.ref("gestion_examenes").set(datosLimpios).then(() => {
+    alert("¡Exámenes guardados correctamente en la nube!");
+  }).catch(err => {
+    alert("Error al guardar: " + err.message);
+  });
+}
+
 function alternarVistaFecha(){
   vistaCalendarioActiva = !vistaCalendarioActiva;
   const secGeneral = document.getElementById("seccionTablaGeneral");
@@ -539,7 +577,6 @@ function poblarVistaFechas(){
     mapaFechas[f].push(item);
   });
 
-  // Ordenar fechas cronológicamente si tienen formato DD/MM/YYYY
   const fechasOrdenadas = Object.keys(mapaFechas).sort((a, b) => {
     const partesA = a.split('/');
     const partesB = b.split('/');
@@ -554,12 +591,9 @@ function poblarVistaFechas(){
   const contenedorLista = document.getElementById("listaFechasLateral");
   let htmlLista = "";
 
-  // Intentar detectar la fecha de hoy simulada (06/11/2026 o similar según el entorno)
-  // Formato dd/mm/yyyy
   const hoyStr = "06/11/2026"; 
   let fechaDefault = fechasOrdenadas[0];
 
-  // Si alguna fecha coincide con hoy, la priorizamos por defecto
   if(fechasOrdenadas.includes(hoyStr)){
     fechaDefault = hoyStr;
   }
