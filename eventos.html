@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Migrar JSON Completo a Firebase</title>
+  <style>
+    body { font-family: sans-serif; padding: 40px; text-align: center; background: #eef7fc; }
+    .card { background: white; padding: 30px; border-radius: 12px; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    button { background: #0099cc; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+    button:hover { background: #007faa; }
+    #estado { margin-top: 20px; font-weight: bold; color: #004466; }
+  </style>
+</head>
+<body>
 
+<div class="card">
+  <h2>Cargar JSON Completo a Firebase</h2>
+  <p>Esto reemplazará todo el nodo en Firebase con los 100+ exámenes completos desde tu GitHub.</p>
+  <button onclick="cargarYSubirJSON()">🚀 Subir Todo el JSON a Firebase</button>
+  <div id="estado"></div>
+</div>
+
+<!-- Firebase Compat Libraries -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAUbSmA64Kj6326H8-FJqSFDyb1Zzardj8",
+  authDomain: "calendario-actividades-76382.firebaseapp.com",
+  databaseURL: "https://calendario-actividades-76382-default-rtdb.firebaseio.com",
+  projectId: "calendario-actividades-76382",
+  storageBucket: "calendario-actividades-76382.firebasestorage.app",
+  messagingSenderId: "455833092742",
+  appId: "1:455833092742:web:eafb4950d8de8409b80707",
+  measurementId: "G-YWQ92KPD0T"
+};
+
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+function cargarYSubirJSON() {
+  const divEstado = document.getElementById("estado");
+  divEstado.textContent = "⏳ Descargando examenes.json desde GitHub...";
+
+  fetch("https://cerpsalto.github.io/examenes/examenes.json")
+    .then(res => {
+      if (!res.ok) throw new Error("No se pudo obtener el archivo JSON");
+      return res.json();
+    })
+    .then(datosJSON => {
+      divEstado.textContent = `⏳ Procesando ${datosJSON.length} registros...`;
+
+      // Normalizar cada objeto para evitar claves prohibidas como "/" por parte de Firebase
+      const datosEstandarizados = datosJSON.map(item => {
+        // Extrae el valor de la asignatura venga con el nombre que venga
+        const asignatura = item["Unidad Curricular/Asignatura"] || 
+                           item["Unidad Curricular_Asignatura"] || 
+                           item["Asignatura / U. Curricular"] || 
+                           item["Asignatura"] || 
+                           item["Unidad Curricular"] || "";
+
+        const da = item["D.A"] || item["D_A"] || item["DA"] || item["Departamento"] || item["Especialidad"] || "";
+
+        return {
+          activo: item.activo !== undefined ? item.activo : true,
+          Fecha: String(item.Fecha || item.fecha || "").trim(),
+          Hora: String(item.Hora || item.hora || "").trim(),
+          Plan: String(item.Plan || item.plan || "").trim(),
+          Nivel: String(item.Nivel || item.nivel || "").trim(),
+          "D_A": da,
+          Especialidad: String(item.Especialidad || da).trim(),
+          "Unidad Curricular_Asignatura": String(asignatura).trim(),
+          Presidente: String(item.Presidente || item.presidente || "").trim(),
+          Secretario: String(item.Secretario || item.secretario || "").trim(),
+          Vocal: String(item.Vocal || item.vocal || "").trim(),
+          Suplente: String(item.Suplente || item.suplente || "").trim()
+        };
+      });
+
+      divEstado.textContent = "⏳ Subiendo todo a Firebase (guardando nodo 'gestion_examenes')...";
+
+      // Reemplazo total en Firebase
+      return database.ref("gestion_examenes").set(datosEstandarizados);
+    })
+    .then(() => {
+      divEstado.innerHTML = "✅ <strong>¡ÉXITO COMPLETO!</strong><br>Se han subido y actualizado todos los exámenes en Firebase con las claves limpias.";
+    })
+    .catch(err => {
+      divEstado.innerHTML = `<span style="color:red;">❌ Error: ${err.message}</span>`;
+      console.error(err);
+    });
+}
+</script>
+
+</body>
+</html>
