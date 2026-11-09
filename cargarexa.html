@@ -65,9 +65,12 @@ select,input{
   background:#0099cc;
   color:white;
   padding:8px 14px;
-  border-radius:9px;
+  border-radius:99px;
   cursor:pointer;
   font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
 }
 
 .btn:hover{background:#007faa}
@@ -79,6 +82,8 @@ select,input{
 .btn-purple:hover{background:#732d91}
 .btn-guardar{background:#2980b9}
 .btn-guardar:hover{background:#1f618d}
+.btn-pdf{background:#e74c3c}
+.btn-pdf:hover{background:#c0392b}
 
 .vista-fecha-container{
   padding: 20px;
@@ -299,9 +304,10 @@ table.tabla-examenes th{
         <option value="2029">2029</option>
       </select>
 
-      <button class="btn btn-purple" onclick="alternarVistaFecha()">📅 Ver por Fecha (Hoy)</button>
-      <button class="btn btn-guardar" onclick="guardarEnFirebase()">💾 Guardar en la Nube</button>
-      <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 Descargar JSON</button>
+      <button class="btn btn-purple" onclick="alternarVistaFecha()">📅 Ver por Fecha</button>
+      <button class="btn btn-guardar" onclick="guardarEnFirebase()">💾 Guardar Nube</button>
+      <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 JSON</button>
+      <button class="btn btn-pdf" onclick="descargarPDFExamenes()">📄 Descargar PDF</button>
     </div>
   </div>
 
@@ -358,6 +364,10 @@ table.tabla-examenes th{
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
+<!-- PDFMAKE PARA GENERAR PDFS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
 <script>
 const firebaseConfig = {
   apiKey: "AIzaSyAUbSmA64Kj6326H8-FJqSFDyb1Zzardj8",
@@ -393,6 +403,28 @@ function normalizarTexto(texto) {
     .trim();
 }
 
+function parsearFecha(fechaStr) {
+  if (!fechaStr) return new Date(0);
+  const s = fechaStr.trim();
+  if (s.includes('/')) {
+    const p = s.split('/');
+    if (p.length === 3) return new Date(p[2], p[1] - 1, p[0]);
+  } else if (s.includes('-')) {
+    const p = s.split('-');
+    if (p.length === 3) return new Date(p[0], p[1] - 1, p[2]);
+  }
+  return new Date(s);
+}
+
+function formatearFechaEstandar(fechaStr) {
+  const d = parsearFecha(fechaStr);
+  if (isNaN(d.getTime())) return fechaStr || "";
+  const dia = String(d.getDate()).padStart(2, '0');
+  const mes = String(d.getMonth() + 1).padStart(2, '0');
+  const anio = d.getFullYear();
+  return `${dia}/${mes}/${anio}`;
+}
+
 function inicializarFiltroEspecialidades(){
   const selectEsp = document.getElementById("filtroEspecialidad");
   selectEsp.innerHTML = '<option value="">-- Todas las Especialidades --</option>';
@@ -421,7 +453,7 @@ function obtenerDA(item) {
 function mapearExamen(item) {
   return {
     activo: item.activo !== undefined ? item.activo : true,
-    Fecha: item.Fecha || "",
+    Fecha: formatearFechaEstandar(item.Fecha),
     Hora: item.Hora || "",
     Plan: item.Plan || "",
     Nivel: item.Nivel || "",
@@ -435,7 +467,6 @@ function mapearExamen(item) {
   };
 }
 
-// Lectura directa desde Firebase en tiempo real
 database.ref("gestion_examenes").on("value", function(snapshot){
   const data = snapshot.val();
   if(data && Array.isArray(data)){
@@ -450,16 +481,12 @@ database.ref("gestion_examenes").on("value", function(snapshot){
 
 inicializarFiltroEspecialidades();
 
-function filtrarYRenderizar(){
+function obtenerExamenesFiltrados() {
   const espSel = normalizarTexto(document.getElementById("filtroEspecialidad").value);
   const nivelSel = normalizarTexto(document.getElementById("filtroNivel").value);
   const planSel = document.getElementById("filtroPlan").value;
 
-  const tbody = document.getElementById("cuerpoTablaExamenes");
-  const mensaje = document.getElementById("mensajeInfo");
-  const tabla = document.getElementById("tablaExamenes");
-
-  const filtrados = examenesData.filter((item, index) => {
+  return examenesData.filter((item, index) => {
     item._indexReal = index; 
 
     const itemEsp = normalizarTexto(item.Especialidad || item["D_A"]);
@@ -467,15 +494,20 @@ function filtrarYRenderizar(){
     const itemPlan = String(item.Plan || "").trim();
 
     const matchEsp = !espSel || itemEsp.includes(espSel);
-    
     const numNivelSel = nivelSel.replace(/[^0-9]/g, '');
     const numItemNivel = itemNivel.replace(/[^0-9]/g, '');
     const matchNivel = !nivelSel || (numNivelSel ? numNivelSel === numItemNivel : itemNivel.includes(nivelSel));
-
     const matchPlan = !planSel || itemPlan === planSel;
 
     return matchEsp && matchNivel && matchPlan;
   });
+}
+
+function filtrarYRenderizar(){
+  const filtrados = obtenerExamenesFiltrados();
+  const tbody = document.getElementById("cuerpoTablaExamenes");
+  const mensaje = document.getElementById("mensajeInfo");
+  const tabla = document.getElementById("tablaExamenes");
 
   if(filtrados.length === 0){
     tabla.style.display = "none";
@@ -529,6 +561,7 @@ function filtrarYRenderizar(){
 }
 
 function actualizarCampo(index, campo, valor){
+  if(campo === 'Fecha') valor = formatearFechaEstandar(valor);
   examenesData[index][campo] = valor;
 }
 
@@ -601,21 +634,13 @@ function poblarVistaFechas(){
     mapaFechas[f].push(item);
   });
 
-  const fechasOrdenadas = Object.keys(mapaFechas).sort((a, b) => {
-    const partesA = a.split('/');
-    const partesB = b.split('/');
-    if(partesA.length === 3 && partesB.length === 3){
-      const dateA = new Date(partesA[2], partesA[1] - 1, partesA[0]);
-      const dateB = new Date(partesB[2], partesB[1] - 1, partesB[0]);
-      return dateA - dateB;
-    }
-    return a.localeCompare(b);
-  });
+  const fechasOrdenadas = Object.keys(mapaFechas).sort((a, b) => parsearFecha(a) - parsearFecha(b));
 
   const contenedorLista = document.getElementById("listaFechasLateral");
   let htmlLista = "";
 
-  const hoyStr = "16/11/2026"; 
+  const hoy = new Date();
+  const hoyStr = `${String(hoy.getDate()).padStart(2, '0')}/${String(hoy.getMonth() + 1).padStart(2, '0')}/${hoy.getFullYear()}`;
   let fechaDefault = fechasOrdenadas[0];
 
   if(fechasOrdenadas.includes(hoyStr)){
@@ -708,6 +733,137 @@ function descargarJSONExamenes(){
   document.body.appendChild(downloadAnchor);
   downloadAnchor.click();
   downloadAnchor.remove();
+}
+
+// DESCARGA PDF AGRUPADO POR ESPECIALIDAD (DESDE COLUMNA FECHA)
+function descargarPDFExamenes(){
+  const filtrados = obtenerExamenesFiltrados();
+
+  if (filtrados.length === 0) {
+    alert("No hay exámenes para exportar en el PDF.");
+    return;
+  }
+
+  // Agrupar por Especialidad
+  const grupos = {};
+  filtrados.forEach(item => {
+    const esp = item.Especialidad || item["D_A"] || "Sin Especialidad";
+    if (!grupos[esp]) grupos[esp] = [];
+    grupos[esp].push(item);
+  });
+
+  const docDefinition = {
+    pageSize: 'A4',
+    pageOrientation: 'landscape',
+    pageMargins: [30, 40, 30, 40],
+    header: function(currentPage, pageCount) {
+      return {
+        text: `Calendario de Exámenes - Período Institucional (Pág. ${currentPage} de ${pageCount})`,
+        alignment: 'right',
+        fontSize: 9,
+        color: '#777777',
+        margin: [0, 15, 30, 0]
+      };
+    },
+    content: [
+      { text: 'CALENDARIO DE EXÁMENES E EVALUACIONES', style: 'mainHeader' },
+      { text: `Generado el: ${new Date().toLocaleDateString('es-ES')}`, style: 'subHeader' },
+      { text: ' ', margin: [0, 5] }
+    ],
+    styles: {
+      mainHeader: {
+        fontSize: 18,
+        bold: true,
+        alignment: 'center',
+        color: '#004466'
+      },
+      subHeader: {
+        fontSize: 10,
+        alignment: 'center',
+        color: '#555555',
+        margin: [0, 2, 0, 10]
+      },
+      groupHeader: {
+        fontSize: 14,
+        bold: true,
+        color: '#ffffff',
+        fillColor: '#005b84',
+        margin: [0, 10, 0, 5],
+        padding: 5
+      },
+      tableHeader: {
+        bold: true,
+        fontSize: 10,
+        color: '#003f5c',
+        fillColor: '#bfe8fb',
+        alignment: 'center'
+      },
+      tableBody: {
+        fontSize: 9,
+        alignment: 'center'
+      }
+    }
+  };
+
+  // Recorrer grupos y armar tablas por especialidad
+  Object.keys(grupos).sort().forEach(esp => {
+    // Título de la Especialidad
+    docDefinition.content.push({
+      table: {
+        widths: ['*'],
+        body: [[{ text: `ESPECIALIDAD: ${esp.toUpperCase()}`, style: 'groupHeader' }]]
+      },
+      layout: 'noBorders'
+    });
+
+    const rows = [
+      [
+        { text: 'Fecha', style: 'tableHeader' },
+        { text: 'Hora', style: 'tableHeader' },
+        { text: 'Plan', style: 'tableHeader' },
+        { text: 'Nivel', style: 'tableHeader' },
+        { text: 'D.A', style: 'tableHeader' },
+        { text: 'Asignatura / U. Curricular', style: 'tableHeader' },
+        { text: 'Tribunal (Pres / Sec / Voc / Sup)', style: 'tableHeader' }
+      ]
+    ];
+
+    grupos[esp].forEach(item => {
+      const tribunal = [
+        item.Presidente ? `Pres: ${item.Presidente}` : '',
+        item.Secretario ? `Sec: ${item.Secretario}` : '',
+        item.Vocal ? `Voc: ${item.Vocal}` : '',
+        item.Suplente ? `Sup: ${item.Suplente}` : ''
+      ].filter(Boolean).join('\n');
+
+      rows.push([
+        { text: item.Fecha || '', style: 'tableBody' },
+        { text: item.Hora || '', style: 'tableBody' },
+        { text: item.Plan || '', style: 'tableBody' },
+        { text: item.Nivel || '', style: 'tableBody' },
+        { text: item["D_A"] || '', style: 'tableBody' },
+        { text: item["Unidad Curricular_Asignatura"] || '', style: 'tableBody', alignment: 'left' },
+        { text: tribunal, style: 'tableBody', alignment: 'left', fontSize: 8 }
+      ]);
+    });
+
+    docDefinition.content.push({
+      table: {
+        headerRows: 1,
+        widths: [65, 45, 40, 40, 65, '*', 200],
+        body: rows
+      },
+      layout: {
+        hLineWidth: function (i, node) { return (i === 0 || i === node.table.body.length) ? 1.5 : 0.5; },
+        vLineWidth: function (i, node) { return 0.5; },
+        hLineColor: function (i, node) { return '#1aa7d6'; },
+        vLineColor: function (i, node) { return '#1aa7d6'; }
+      },
+      margin: [0, 0, 0, 15]
+    });
+  });
+
+  pdfMake.createPdf(docDefinition).download(`calendario_examenes_${new Date().getTime()}.pdf`);
 }
 
 function escapeHtml(text){
