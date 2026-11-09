@@ -80,7 +80,6 @@ select,input{
 .btn-guardar{background:#2980b9}
 .btn-guardar:hover{background:#1f618d}
 
-/* VISTA CALENDARIO POR FECHA */
 .vista-fecha-container{
   padding: 20px;
 }
@@ -153,7 +152,6 @@ select,input{
   padding: 16px;
 }
 
-/* TABLA EXÁMENES */
 .seccion-tabla{
   padding:16px;
   overflow-x:auto;
@@ -406,44 +404,47 @@ function inicializarFiltroEspecialidades(){
   });
 }
 
-// Función auxiliar para obtener la asignatura de cualquier propiedad posible en el JSON
 function obtenerAsignatura(item) {
-  return item["Unidad Curricular/Asignatura"] || 
+  if (!item) return "";
+  return item["Unidad Curricular_Asignatura"] || 
+         item["Unidad Curricular/Asignatura"] || 
          item["Asignatura / U. Curricular"] || 
          item["Asignatura"] || 
-         item["Unidad Curricular"] || 
-         item["unidad_curricular"] || 
-         item["materia"] || 
-         item["asignatura"] || "";
+         item["Unidad Curricular"] || "";
 }
 
-// Función auxiliar para obtener el Departamento Académico de cualquier propiedad posible
 function obtenerDA(item) {
-  return item["D.A"] || item["DA"] || item["Departamento"] || item["depto"] || item["Especialidad"] || "";
+  if (!item) return "";
+  return item["D_A"] || item["D.A"] || item["DA"] || item["Departamento"] || item["Especialidad"] || "";
 }
 
-// Sincronización en tiempo real con Firebase
+function mapearExamen(item) {
+  return {
+    activo: item.activo !== undefined ? item.activo : true,
+    Fecha: item.Fecha || "",
+    Hora: item.Hora || "",
+    Plan: item.Plan || "",
+    Nivel: item.Nivel || "",
+    "D_A": obtenerDA(item),
+    Especialidad: item.Especialidad || obtenerDA(item),
+    "Unidad Curricular_Asignatura": obtenerAsignatura(item),
+    Presidente: item.Presidente || "",
+    Secretario: item.Secretario || "",
+    Vocal: item.Vocal || "",
+    Suplente: item.Suplente || ""
+  };
+}
+
+// Lectura directa desde Firebase en tiempo real
 database.ref("gestion_examenes").on("value", function(snapshot){
   const data = snapshot.val();
   if(data && Array.isArray(data)){
-    examenesData = data.map(item => ({
-      ...item,
-      activo: item.activo !== undefined ? item.activo : true 
-    }));
+    examenesData = data.map(mapearExamen);
     filtrarYRenderizar();
     if(vistaCalendarioActiva) poblarVistaFechas();
   } else {
-    fetch("https://cerpsalto.github.io/examenes/examenes.json")
-      .then(res => res.json())
-      .then(jsonRemoto => {
-        examenesData = jsonRemoto.map(item => ({
-          ...item,
-          activo: item.activo !== undefined ? item.activo : true 
-        }));
-        filtrarYRenderizar();
-        if(vistaCalendarioActiva) poblarVistaFechas();
-      })
-      .catch(() => { examenesData = []; filtrarYRenderizar(); });
+    examenesData = [];
+    filtrarYRenderizar();
   }
 });
 
@@ -461,19 +462,16 @@ function filtrarYRenderizar(){
   const filtrados = examenesData.filter((item, index) => {
     item._indexReal = index; 
 
-    const itemEsp = normalizarTexto(item.Especialidad || obtenerDA(item));
+    const itemEsp = normalizarTexto(item.Especialidad || item["D_A"]);
     const itemNivel = normalizarTexto(item.Nivel || "");
     const itemPlan = String(item.Plan || "").trim();
 
-    // Filtro Especialidad
     const matchEsp = !espSel || itemEsp.includes(espSel);
     
-    // Filtro Nivel (compara número puro para igualar "1°" con "1")
     const numNivelSel = nivelSel.replace(/[^0-9]/g, '');
     const numItemNivel = itemNivel.replace(/[^0-9]/g, '');
     const matchNivel = !nivelSel || (numNivelSel ? numNivelSel === numItemNivel : itemNivel.includes(nivelSel));
 
-    // Filtro Plan
     const matchPlan = !planSel || itemPlan === planSel;
 
     return matchEsp && matchNivel && matchPlan;
@@ -489,33 +487,33 @@ function filtrarYRenderizar(){
   let html = "";
   filtrados.forEach((item) => {
     const i = item._indexReal;
-    const nombreAsignatura = obtenerAsignatura(item);
-    const deptoAcademico = obtenerDA(item);
+    const nombreAsignatura = item["Unidad Curricular_Asignatura"];
+    const deptoAcademico = item["D_A"];
 
     html += `
       <tr>
         <td class="checkbox-col">
           <input type="checkbox" class="checkbox-periodo" ${item.activo ? "checked" : ""} onchange="actualizarActivo(${i}, this.checked)">
         </td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Fecha || '')}" onchange="actualizarCampo(${i}, 'Fecha', this.value)"></td>
-        <td><input type="text" class="input-tabla" style="width:70px;" value="${escapeHtml(item.Hora || '')}" onchange="actualizarCampo(${i}, 'Hora', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Fecha)}" onchange="actualizarCampo(${i}, 'Fecha', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:70px;" value="${escapeHtml(item.Hora)}" onchange="actualizarCampo(${i}, 'Hora', this.value)"></td>
         <td>
-          <input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan || '')}" onchange="actualizarCampo(${i}, 'Plan', this.value)">
+          <input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan)}" onchange="actualizarCampo(${i}, 'Plan', this.value)">
         </td>
         <td>
-          <input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel || '')}" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
+          <input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel)}" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
         </td>
-        <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(deptoAcademico)}" onchange="actualizarCampo(${i}, 'D.A', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(deptoAcademico)}" onchange="actualizarCampo(${i}, 'D_A', this.value)"></td>
         <td>
           <select class="input-tabla" onchange="actualizarCampo(${i}, 'Especialidad', this.value)">
             ${listaEspecialidadesBase.map(esp => `<option value="${esp}" ${normalizarTexto(item.Especialidad || deptoAcademico) === normalizarTexto(esp) ? 'selected' : ''}>${esp}</option>`).join('')}
           </select>
         </td>
         <td><input type="text" class="input-tabla" value="${escapeHtml(nombreAsignatura)}" onchange="actualizarAsignatura(${i}, this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Presidente || '')}" onchange="actualizarCampo(${i}, 'Presidente', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Secretario || '')}" onchange="actualizarCampo(${i}, 'Secretario', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Vocal || '')}" onchange="actualizarCampo(${i}, 'Vocal', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Suplente || '')}" onchange="actualizarCampo(${i}, 'Suplente', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Presidente)}" onchange="actualizarCampo(${i}, 'Presidente', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Secretario)}" onchange="actualizarCampo(${i}, 'Secretario', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Vocal)}" onchange="actualizarCampo(${i}, 'Vocal', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Suplente)}" onchange="actualizarCampo(${i}, 'Suplente', this.value)"></td>
         <td>
           <div class="acciones-item">
             <button class="btn-mini btn-red" onclick="eliminarFila(${i})" title="Eliminar examen">🗑️</button>
@@ -535,7 +533,7 @@ function actualizarCampo(index, campo, valor){
 }
 
 function actualizarAsignatura(index, valor){
-  examenesData[index]["Unidad Curricular/Asignatura"] = valor;
+  examenesData[index]["Unidad Curricular_Asignatura"] = valor;
 }
 
 function actualizarActivo(index, estado){
@@ -549,9 +547,9 @@ function agregarFilaExamen(){
     Hora: "8:00",
     Plan: "2023",
     Nivel: "1°",
-    "D.A": "Biología",
+    "D_A": "Biología",
     Especialidad: "Biología",
-    "Unidad Curricular/Asignatura": "Nueva Asignatura",
+    "Unidad Curricular_Asignatura": "Nueva Asignatura",
     Presidente: "",
     Secretario: "",
     Vocal: "",
@@ -617,7 +615,7 @@ function poblarVistaFechas(){
   const contenedorLista = document.getElementById("listaFechasLateral");
   let htmlLista = "";
 
-  const hoyStr = "06/11/2026"; 
+  const hoyStr = "16/11/2026"; 
   let fechaDefault = fechasOrdenadas[0];
 
   if(fechasOrdenadas.includes(hoyStr)){
@@ -680,14 +678,13 @@ function mostrarDetalleFecha(fecha, mapaFechas){
   `;
 
   lista.forEach(ex => {
-    const nombreAsignatura = obtenerAsignatura(ex);
     html += `
       <tr>
         <td><strong>${escapeHtml(ex.Hora)}</strong></td>
         <td>${escapeHtml(ex.Plan)}</td>
         <td>${escapeHtml(ex.Nivel)}</td>
-        <td><strong>${escapeHtml(nombreAsignatura)}</strong></td>
-        <td>${escapeHtml(ex.Especialidad || obtenerDA(ex))}</td>
+        <td><strong>${escapeHtml(ex["Unidad Curricular_Asignatura"])}</strong></td>
+        <td>${escapeHtml(ex.Especialidad || ex["D_A"])}</td>
         <td style="font-size:11px; text-align:left; padding-left:10px;">
           <div><strong>Pres:</strong> ${escapeHtml(ex.Presidente)}</div>
           <div><strong>Sec:</strong> ${escapeHtml(ex.Secretario)}</div>
