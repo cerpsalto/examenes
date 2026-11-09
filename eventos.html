@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Calendario mensual de actividades</title>
+<title>Gestión y Carga de Exámenes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-*{box-sizing:border-box}
+*{box-sizing:border-box; user-select:none;}
 
 body{
   margin:0;
@@ -14,10 +14,11 @@ body{
   background:linear-gradient(to bottom right,#cceeff,#99ccff);
   padding:12px;
   color:#003b57;
+  min-height:100vh;
 }
 
 .wrap{
-  max-width:1300px;
+  max-width:1450px;
   margin:0 auto;
   background:#fff;
   border-radius:18px;
@@ -38,12 +39,6 @@ body{
   margin-bottom:12px;
 }
 
-.logo-principal{
-  width:42px;
-  height:42px;
-  object-fit:contain;
-}
-
 .title{
   font-size:22px;
   font-weight:800;
@@ -52,7 +47,7 @@ body{
 
 .controls{
   display:flex;
-  gap:8px;
+  gap:10px;
   align-items:center;
   flex-wrap:wrap;
   justify-content:center;
@@ -69,330 +64,200 @@ select,input{
   border:none;
   background:#0099cc;
   color:white;
-  padding:8px 11px;
+  padding:8px 14px;
   border-radius:9px;
   cursor:pointer;
   font-weight:700;
 }
 
 .btn:hover{background:#007faa}
-
 .btn-green{background:#00a86b}
 .btn-green:hover{background:#008e5b}
-
 .btn-red{background:#d9534f}
 .btn-red:hover{background:#c9302c}
+.btn-purple{background:#8e44ad}
+.btn-purple:hover{background:#732d91}
+.btn-guardar{background:#2980b9}
+.btn-guardar:hover{background:#1f618d}
 
-.btn-small{
-  border:none;
-  background:#00a86b;
-  color:white;
-  padding:7px 12px;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:13px;
-  font-weight:900;
+.vista-fecha-container{
+  padding: 20px;
 }
 
-.btn-minus{
-  border:none;
-  background:#d9534f;
-  color:white;
-  padding:7px 12px;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:15px;
-  font-weight:900;
+.calendario-grid{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
-.vista-grafica{
-  padding:16px;
-}
-
-.grid-calendario{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
-  gap:12px;
-}
-
-.dia-card{
-  border:2px solid #d7edf8;
-  border-radius:14px;
-  background:#f8fcff;
-  padding:10px;
-  min-height:150px;
-}
-
-.dia-card.hoy-card{
-  border-color:#e6c800;
-  background:#fffbea;
-}
-
-.dia-numero{
-  font-size:18px;
-  font-weight:900;
-  color:#004466;
-  margin-bottom:8px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-}
-
-.fecha-con-logo{
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
-
-.logo-dia{
-  width:25px;
-  height:25px;
-  object-fit:contain;
-}
-
-.evento-card{
-  background:white;
-  border-left:5px solid #0099cc;
-  border-radius:8px;
-  padding:8px;
-  margin-bottom:8px;
-  box-shadow:0 1px 4px rgba(0,0,0,.08);
-}
-
-.evento-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:8px;
-}
-
-.evento-turno{
-  font-size:13px;
-  font-weight:900;
-  color:#004466;
-}
-
-.evento-salon{
-  font-size:12px;
-  font-weight:700;
-  color:#007faa;
-  margin-top:2px;
-}
-
-.evento-hora-grande{
-  font-size:19px;
-  font-weight:900;
-  color:#007faa;
-  margin:3px 0;
-}
-
-.evento-duracion{
-  font-size:13px;
-  font-weight:700;
-  color:#005f7f;
-  margin-bottom:4px;
-}
-
-.evento-nombre{
-  font-size:14px;
-  font-weight:700;
-  margin-bottom:7px;
-}
-
-.acciones-evento{
-  display:none;
-  gap:6px;
-  margin-top:8px;
-}
-
-.acciones-evento.activo{
-  display:flex;
-}
-
-.acciones-evento button{
-  flex:1;
-}
-
-.sin-actividad-card{
-  color:#7b929c;
-  font-size:13px;
-  text-align:center;
-  margin:24px 0;
-}
-
-.bloque-boton-reporte{
-  margin-top:22px;
-  text-align:center;
-}
-
-.boton-reporte{
-  font-size:18px;
-  padding:12px 24px;
-}
-
-.panel-reporte{
-  display:none;
-  margin-top:14px;
-  padding:14px;
-  background:#f1fbff;
-  border:2px solid #cdefff;
-  border-radius:14px;
-}
-
-.reporte{
-  display:none;
-  padding:16px;
-  margin-top:14px;
-  border-top:2px solid #cdefff;
-}
-
-.reporte h2{
-  color:#004466;
-  text-align:center;
-}
-
-.reporte-item{
-  background:#f8fcff;
-  border:1px solid #d7edf8;
-  border-radius:10px;
-  padding:10px;
-  margin-bottom:8px;
-}
-
-.reporte-fecha{
-  font-weight:900;
-  color:#004466;
-}
-
-.modal-fondo{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
-  z-index:1000;
-}
-
-.modal{
-  background:white;
-  border-radius:16px;
-  padding:18px;
-  width:100%;
-  max-width:420px;
-  box-shadow:0 0 18px rgba(0,0,0,.25);
-  max-height: 90vh;
+.selector-fechas-box{
+  flex: 1;
+  min-width: 280px;
+  background: #f4fbff;
+  border: 2px solid #bce2f3;
+  border-radius: 12px;
+  padding: 16px;
+  max-height: 500px;
   overflow-y: auto;
 }
 
-.modal h2{
-  margin-top:0;
-  color:#004466;
-  text-align:center;
+.fecha-item-btn{
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  background: #ffffff;
+  border: 1px solid #9ed8ef;
+  border-radius: 8px;
+  text-align: left;
+  font-weight: 700;
+  color: #004466;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
 }
 
-.modal label{
-  display:block;
-  font-weight:800;
-  margin-top:10px;
+.fecha-item-btn:hover{
+  background: #e1f3fc;
+  border-color: #0099cc;
 }
 
-.modal input,
-.modal select{
+.fecha-item-btn.active{
+  background: #0099cc;
+  color: white;
+  border-color: #007faa;
+}
+
+.badge-contador{
+  background: #d63384;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+}
+
+.fecha-item-btn.active .badge-contador{
+  background: #ffffff;
+  color: #0099cc;
+}
+
+.detalle-fecha-box{
+  flex: 2.5;
+  min-width: 320px;
+  background: #ffffff;
+  border: 2px solid #bce2f3;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.seccion-tabla{
+  padding:16px;
+  overflow-x:auto;
+}
+
+.subtitulo-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.subtitulo{
+  font-size:18px;
+  color:#005b84;
+  border-left:5px solid #1aa7d6;
+  padding-left:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  margin: 0;
+}
+
+table.tabla-examenes{
   width:100%;
-  padding:10px;
-  font-size:16px;
-  margin-top:5px;
+  border-collapse:collapse;
+  border-radius:10px;
+  overflow:hidden;
+  background:#ffffff;
 }
 
-.modal-actions{
-  display:flex;
-  gap:8px;
-  margin-top:16px;
+table.tabla-examenes th, 
+table.tabla-examenes td{
+  border:1px solid #1aa7d6;
+  padding:8px 6px;
+  text-align:center;
+  vertical-align:middle;
+  font-size:12px;
 }
 
-.modal-actions button{
-  flex:1;
+table.tabla-examenes thead{
+  background:#bfe8fb;
+}
+
+table.tabla-examenes th{
+  color:#003f5c;
+  font-weight:700;
+  text-transform:uppercase;
+}
+
+.checkbox-col{
+  width: 45px;
+}
+
+.checkbox-periodo{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #0099cc;
+}
+
+.input-tabla{
+  width: 100%;
+  padding: 4px;
+  font-size: 11px;
+  border: 1px solid #bce2f3;
+  border-radius: 4px;
+  text-align: center;
+  background: #fcfefe;
+}
+
+.input-tabla:focus{
+  background: #fff;
+  border-color: #0099cc;
+  outline: none;
+}
+
+.acciones-item{
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.btn-mini{
+  font-size: 10px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.mensaje-info{
+  text-align:center;
+  padding:30px;
+  color:#005b84;
+  font-weight:600;
+  font-size:15px;
 }
 
 @media(max-width:700px){
   body{padding:6px}
-  .wrap{border-radius:12px}
-  .top{padding:12px}
-
-  .encabezado{
-    flex-direction:column;
-    gap:5px;
-  }
-
-  .logo-principal{
-    width:38px;
-    height:38px;
-  }
-
-  .title{
-    font-size:20px;
-    text-align:center;
-  }
-
-  .controls{
-    flex-direction:column;
-    align-items:stretch;
-  }
-
-  .controls label{
-    font-weight:700;
-  }
-
-  .controls select,
-  .controls input,
-  .btn{
-    width:100%;
-    font-size:16px;
-    padding:12px;
-  }
-
-  .grid-calendario{
-    grid-template-columns:1fr;
-  }
-
-  .dia-numero{
-    font-size:22px;
-  }
-
-  .evento-hora-grande{
-    font-size:24px;
-  }
-
-  .evento-nombre{
-    font-size:17px;
-  }
-
-  .evento-duracion{
-    font-size:15px;
-  }
-
-  .btn-small,
-  .btn-minus{
-    padding:11px 14px;
-    font-size:18px;
-  }
-
-  .acciones-evento{
-    flex-direction:column;
-  }
-
-  .acciones-evento button{
-    width:100%;
-    padding:11px;
-    font-size:16px;
-  }
-
-  .modal-actions{
-    flex-direction:column;
-  }
+  .controls{flex-direction:column; align-items:stretch;}
+  .subtitulo-header{flex-direction: column; align-items: stretch;}
+  .calendario-grid{flex-direction: column;}
 }
 </style>
 </head>
@@ -403,79 +268,88 @@ select,input{
 
   <div class="top">
     <div class="encabezado">
-      <img src="dia.png" class="logo-principal" alt="Logo">
-      <div class="title">Calendario mensual de actividades</div>
+      <div class="title">Gestión y Carga de Exámenes Institucionales</div>
     </div>
 
     <div class="controls">
-      <label>Mes:</label>
-      <select id="mes" onchange="generarCalendario()"></select>
+      <label>Especialidad:</label>
+      <select id="filtroEspecialidad" onchange="filtrarYRenderizar()">
+        <option value="">-- Todas las Especialidades --</option>
+      </select>
 
-      <label>Año:</label>
-      <input type="number" id="anio" min="2020" max="2100" onchange="generarCalendario()">
+      <label>Nivel / Año:</label>
+      <select id="filtroNivel" onchange="filtrarYRenderizar()">
+        <option value="">-- Todos los Niveles --</option>
+        <option value="1°">Primero (1°)</option>
+        <option value="2°">Segundo (2°)</option>
+        <option value="3°">Tercero (3°)</option>
+        <option value="4°">Cuarto (4°)</option>
+      </select>
 
-      <button class="btn" onclick="alternarAnteriores()" id="btnAnteriores">Ver días anteriores</button>
+      <label>Plan:</label>
+      <select id="filtroPlan" onchange="filtrarYRenderizar()">
+        <option value="">-- Todos los Planes --</option>
+        <option value="2008">2008</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+      </select>
 
-      <input type="text" id="buscador" placeholder="Buscar actividad..." oninput="generarCalendario()">
+      <button class="btn btn-purple" onclick="alternarVistaFecha()">📅 Ver por Fecha (Hoy)</button>
+      <button class="btn btn-guardar" onclick="guardarEnFirebase()">💾 Guardar en la Nube</button>
+      <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 Descargar JSON</button>
     </div>
   </div>
 
-  <div class="vista-grafica">
-    <div class="grid-calendario" id="gridCalendario"></div>
-
-    <div class="bloque-boton-reporte">
-      <button class="btn btn-green boton-reporte" onclick="mostrarPanelReporte()">
-        Generar reporte
-      </button>
+  <div id="seccionTablaGeneral" class="seccion-tabla">
+    <div class="subtitulo-header">
+      <div class="subtitulo" id="tituloTabla">LISTADO GENERAL DE EXÁMENES</div>
+      <button class="btn btn-green" onclick="agregarFilaExamen()">➕ Agregar Examen</button>
     </div>
 
-    <div class="panel-reporte" id="panelReporte">
-      <div class="controls">
-        <label>Desde:</label>
-        <input type="date" id="fechaDesde">
+    <div id="mensajeInfo" class="mensaje-info" style="display:none;">No se encontraron exámenes con los filtros seleccionados.</div>
 
-        <label>Hasta:</label>
-        <input type="date" id="fechaHasta">
+    <table id="tablaExamenes" class="tabla-examenes">
+      <thead>
+        <tr>
+          <th class="checkbox-col" title="Seleccionar si se da en el período">Período</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Plan</th>
+          <th>Nivel</th>
+          <th>D.A</th>
+          <th>Especialidad</th>
+          <th>Asignatura / U. Curricular</th>
+          <th>Presidente</th>
+          <th>Secretario</th>
+          <th>Vocal</th>
+          <th>Suplente</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpoTablaExamenes"></tbody>
+    </table>
+  </div>
 
-        <button class="btn btn-green" onclick="generarReporte()">Ver reporte</button>
-        <button class="btn btn-red" onclick="cerrarReporte()">Cerrar</button>
+  <div id="seccionVistaFecha" class="vista-fecha-container" style="display:none;">
+    <div class="subtitulo-header">
+      <div class="subtitulo" id="tituloVistaFecha">EXÁMENES AGRUPADOS POR FECHA</div>
+      <button class="btn" onclick="alternarVistaFecha()">⬅️ Volver al Listado General</button>
+    </div>
+
+    <div class="calendario-grid">
+      <div class="selector-fechas-box" id="listaFechasLateral"></div>
+      <div class="detalle-fecha-box">
+        <div class="subtitulo" id="tituloDetalleFecha" style="margin-bottom: 12px; font-size:16px;">Seleccione una fecha</div>
+        <div id="contenidoDetalleFecha"></div>
       </div>
     </div>
-
-    <div class="reporte" id="reporte"></div>
   </div>
 
-</div>
-
-<div class="modal-fondo" id="modalFondo">
-  <div class="modal">
-    <h2 id="tituloModal">Agregar actividad</h2>
-
-    <label>Turno</label>
-    <select id="modalTurno" onchange="actualizarLimiteHora()">
-      <option value="Matutino">Matutino</option>
-      <option value="Vespertino">Vespertino</option>
-      <option value="Nocturno">Nocturno</option>
-      <option value="Toda la jornada">Toda la jornada</option>
-    </select>
-
-    <label>Salón / Espacio</label>
-    <select id="modalSalon"></select>
-
-    <label>Hora de inicio</label>
-    <input type="time" id="modalHora">
-
-    <label>Duración de la actividad</label>
-    <input type="time" id="modalDuracion" value="01:00">
-
-    <label>Actividad</label>
-    <input type="text" id="modalNombre" placeholder="Nombre de la actividad">
-
-    <div class="modal-actions">
-      <button class="btn btn-green" onclick="guardarDesdeModal()">Guardar</button>
-      <button class="btn btn-red" onclick="cerrarModal()">Cancelar</button>
-    </div>
-  </div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -496,511 +370,343 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-const nombresMes = [
-  "Enero","Febrero","Marzo","Abril","Mayo","Junio",
-  "Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre"
+const listaEspecialidadesBase = [
+  "Biología", "Com. Visual", "Derecho", "Español",
+  "Física", "Geografía", "Historia", "Informática",
+  "Inglés", "Literatura", "Matemática", "Química",
+  "Trayecto equivalente", "Maestro Técnico", "Filosofía",
+  "Sociología"
 ];
 
-const turnos = ["Matutino", "Vespertino", "Nocturno", "Toda la jornada"];
+let examenesData = [];
+let vistaCalendarioActiva = false;
+let fechaSeleccionadaActual = null;
 
-const ordenTurnos = {
-  "Matutino": 1,
-  "Vespertino": 2,
-  "Nocturno": 3,
-  "Toda la jornada": 4
-};
-
-const limitesHora = {
-  "Matutino": {min:"07:00", max:"14:00"},
-  "Vespertino": {min:"14:00", max:"20:00"},
-  "Nocturno": {min:"18:00", max:"23:00"},
-  "Toda la jornada": {min:"07:00", max:"23:30"}
-};
-
-const mesSelect = document.getElementById("mes");
-const anioInput = document.getElementById("anio");
-const gridCalendario = document.getElementById("gridCalendario");
-const buscador = document.getElementById("buscador");
-const btnAnteriores = document.getElementById("btnAnteriores");
-
-const modalFondo = document.getElementById("modalFondo");
-const tituloModal = document.getElementById("tituloModal");
-const modalTurno = document.getElementById("modalTurno");
-const modalSalon = document.getElementById("modalSalon");
-const modalHora = document.getElementById("modalHora");
-const modalDuracion = document.getElementById("modalDuracion");
-const modalNombre = document.getElementById("modalNombre");
-
-let datosFirebase = {};
-let mostrarAnteriores = false;
-
-let modalModo = "agregar";
-let modalAnio = null;
-let modalMes = null;
-let modalDia = null;
-let modalKey = null;
-let modalIndex = null;
-
-const hoy = new Date();
-const hoyDia = hoy.getDate();
-const hoyMes = hoy.getMonth();
-const hoyAnio = hoy.getFullYear();
-
-// Inicializar selectores de meses
-for(let i=0;i<12;i++){
-  const op = document.createElement("option");
-  op.value = i;
-  op.textContent = nombresMes[i];
-  mesSelect.appendChild(op);
+function normalizarTexto(texto) {
+  return String(texto || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
 }
 
-// Inicializar desplegable de salones con la opción "No requiere"
-function cargarSalones(){
-  modalSalon.innerHTML = "";
-
-  const opNoRequiere = document.createElement("option");
-  opNoRequiere.value = "No requiere";
-  opNoRequiere.textContent = "No requiere";
-  modalSalon.appendChild(opNoRequiere);
-
-  const opActos = document.createElement("option");
-  opActos.value = "Salón de actos";
-  opActos.textContent = "Salón de actos";
-  modalSalon.appendChild(opActos);
-
-  const opBiblio = document.createElement("option");
-  opBiblio.value = "Biblioteca";
-  opBiblio.textContent = "Biblioteca";
-  modalSalon.appendChild(opBiblio);
-
-  for(let i=1; i<=24; i++){
+function inicializarFiltroEspecialidades(){
+  const selectEsp = document.getElementById("filtroEspecialidad");
+  selectEsp.innerHTML = '<option value="">-- Todas las Especialidades --</option>';
+  listaEspecialidadesBase.forEach(esp => {
     const op = document.createElement("option");
-    op.value = `Salón ${i}`;
-    op.textContent = `Salón ${i}`;
-    modalSalon.appendChild(op);
-  }
-}
-cargarSalones();
-
-mesSelect.value = hoyMes;
-anioInput.value = hoyAnio;
-
-function keyDia(anio, mes, dia, turno){
-  return `calendario_${anio}_${mes + 1}_${dia}_${turno}`;
-}
-
-function obtenerEventos(key){
-  return datosFirebase[key] || [];
-}
-
-function ordenarEventos(a,b){
-  const turnoA = ordenTurnos[a.turno] || 99;
-  const turnoB = ordenTurnos[b.turno] || 99;
-
-  if(turnoA !== turnoB){
-    return turnoA - turnoB;
-  }
-
-  const horaA = a.hora || "99:99";
-  const horaB = b.hora || "99:99";
-
-  return horaA.localeCompare(horaB);
-}
-
-database.ref("actividades").on("value", function(snapshot){
-  datosFirebase = snapshot.val() || {};
-  generarCalendario();
-});
-
-function generarCalendario(){
-  const mes = parseInt(mesSelect.value);
-  const anio = parseInt(anioInput.value);
-  const totalDias = new Date(anio, mes + 1, 0).getDate();
-  const textoBusqueda = buscador.value.toLowerCase().trim();
-
-  let html = "";
-
-  for(let dia=1; dia<=totalDias; dia++){
-    const esMesActual = anio === hoyAnio && mes === hoyMes;
-    const esDiaPasado = esMesActual && dia < hoyDia;
-    const esHoy = esMesActual && dia === hoyDia;
-
-    if(esDiaPasado && !mostrarAnteriores){
-      continue;
-    }
-
-    let eventosDia = [];
-
-    turnos.forEach(turno => {
-      const key = keyDia(anio, mes, dia, turno);
-      const eventos = obtenerEventos(key);
-
-      eventos.forEach((ev, index) => {
-        if((ev.nombre || "").trim() !== "" || (ev.hora || "").trim() !== ""){
-          eventosDia.push({
-            key,
-            index,
-            turno,
-            salon: ev.salon || "No requiere",
-            hora: ev.hora || "",
-            duracion: ev.duracion || "01:00",
-            nombre: ev.nombre || ""
-          });
-        }
-      });
-    });
-
-    eventosDia.sort(ordenarEventos);
-
-    let eventosFiltrados = eventosDia;
-
-    if(textoBusqueda !== ""){
-      eventosFiltrados = eventosDia.filter(ev =>
-        ev.nombre.toLowerCase().includes(textoBusqueda) ||
-        ev.hora.toLowerCase().includes(textoBusqueda) ||
-        ev.duracion.toLowerCase().includes(textoBusqueda) ||
-        ev.turno.toLowerCase().includes(textoBusqueda) ||
-        ev.salon.toLowerCase().includes(textoBusqueda)
-      );
-
-      if(eventosFiltrados.length === 0){
-        continue;
-      }
-    }
-
-    html += `
-      <div class="dia-card ${esHoy ? "hoy-card" : ""}">
-        <div class="dia-numero">
-          <span class="fecha-con-logo">
-            <img src="dia.png" class="logo-dia" alt="Día">
-            <span>${dia}/${mes + 1}/${anio}</span>
-          </span>
-          <button class="btn-small" onclick="abrirAgregar(${anio}, ${mes}, ${dia})">+</button>
-        </div>
-    `;
-
-    if(eventosFiltrados.length === 0){
-      html += `<div class="sin-actividad-card">Sin actividades</div>`;
-    }else{
-      eventosFiltrados.forEach(ev => {
-        const idAcciones = `acciones_${anio}_${mes}_${dia}_${ev.turno.replace(/\s+/g, '_')}_${ev.index}`;
-        const textoSalon = ev.salon === "No requiere" ? "No requiere salón" : `📍 ${escapeHtml(ev.salon)}`;
-
-        html += `
-          <div class="evento-card">
-            <div class="evento-header">
-              <div>
-                <div class="evento-turno">${escapeHtml(ev.turno)}</div>
-                <div class="evento-salon">${textoSalon}</div>
-              </div>
-              <button class="btn-minus" onclick="mostrarAcciones('${idAcciones}')">-</button>
-            </div>
-
-            <div class="evento-hora-grande">${escapeHtml(ev.hora || "Sin hora")}</div>
-            <div class="evento-duracion">Duración: ${escapeHtml(ev.duracion || "01:00")} hs</div>
-            <div class="evento-nombre">${escapeHtml(ev.nombre || "Sin nombre")}</div>
-
-            <div class="acciones-evento" id="${idAcciones}">
-              <button class="btn" onclick="abrirEditar('${ev.key}', ${ev.index}, ${anio}, ${mes}, ${dia})">Editar</button>
-              <button class="btn btn-red" onclick="eliminarEvento('${ev.key}', ${ev.index})">Quitar</button>
-            </div>
-          </div>
-        `;
-      });
-    }
-
-    html += `</div>`;
-  }
-
-  gridCalendario.innerHTML = html;
-}
-
-function mostrarAcciones(id){
-  const panel = document.getElementById(id);
-  if(panel){
-    panel.classList.toggle("activo");
-  }
-}
-
-function abrirAgregar(anio, mes, dia){
-  modalModo = "agregar";
-  modalAnio = anio;
-  modalMes = mes;
-  modalDia = dia;
-  modalKey = null;
-  modalIndex = null;
-
-  tituloModal.textContent = "Agregar actividad";
-  modalTurno.value = "Matutino";
-  modalSalon.value = "No requiere";
-  modalHora.value = "";
-  modalDuracion.value = "01:00";
-  modalNombre.value = "";
-  actualizarLimiteHora();
-
-  modalFondo.style.display = "flex";
-}
-
-function abrirEditar(key, index, anio, mes, dia){
-  const eventos = obtenerEventos(key);
-  const evento = eventos[index];
-
-  if(!evento){
-    return;
-  }
-
-  const partes = key.split("_");
-  const turnoActual = partes[4];
-
-  modalModo = "editar";
-  modalAnio = anio;
-  modalMes = mes;
-  modalDia = dia;
-  modalKey = key;
-  modalIndex = index;
-
-  tituloModal.textContent = "Editar actividad";
-  modalTurno.value = turnoActual;
-  modalSalon.value = evento.salon || "No requiere";
-  modalHora.value = evento.hora || "";
-  modalDuracion.value = evento.duracion || "01:00";
-  modalNombre.value = evento.nombre || "";
-  actualizarLimiteHora();
-
-  modalFondo.style.display = "flex";
-}
-
-function cerrarModal(){
-  modalFondo.style.display = "none";
-}
-
-function actualizarLimiteHora(){
-  const turno = modalTurno.value;
-
-  if (turno === "Toda la jornada") {
-    modalHora.value = "07:00";
-    modalDuracion.value = "16:30";
-    modalHora.disabled = true;
-    modalDuracion.disabled = true;
-  } else {
-    modalHora.disabled = false;
-    modalDuracion.disabled = false;
-    modalHora.min = limitesHora[turno].min;
-    modalHora.max = limitesHora[turno].max;
-
-    if(modalHora.value){
-      if(modalHora.value < modalHora.min || modalHora.value > modalHora.max){
-        modalHora.value = "";
-      }
-    }
-  }
-}
-
-function guardarDesdeModal(){
-  const turno = modalTurno.value;
-  const salon = modalSalon.value;
-  const hora = modalHora.value;
-  const duracion = modalDuracion.value;
-  const nombre = modalNombre.value.trim();
-
-  if(!nombre){
-    alert("Escriba el nombre de la actividad.");
-    return;
-  }
-
-  if(!hora){
-    alert("Seleccione una hora de inicio.");
-    return;
-  }
-
-  if(!duracion){
-    alert("Ingrese la duración de la actividad.");
-    return;
-  }
-
-  if(duracion === "00:00"){
-    alert("La duración no puede ser 00:00.");
-    return;
-  }
-
-  if(turno !== "Toda la jornada" && (hora < limitesHora[turno].min || hora > limitesHora[turno].max)){
-    alert("La hora seleccionada no corresponde al turno elegido.");
-    return;
-  }
-
-  if(modalModo === "agregar"){
-    const key = keyDia(modalAnio, modalMes, modalDia, turno);
-    const eventos = obtenerEventos(key);
-
-    eventos.push({
-      hora,
-      duracion,
-      nombre,
-      salon
-    });
-
-    datosFirebase[key] = eventos;
-
-    database.ref("actividades/" + key).set(eventos).then(() => {
-      cerrarModal();
-      generarCalendario();
-    });
-  }
-
-  if(modalModo === "editar"){
-    const keyNueva = keyDia(modalAnio, modalMes, modalDia, turno);
-    const eventosViejos = obtenerEventos(modalKey);
-
-    if(!eventosViejos[modalIndex]){
-      cerrarModal();
-      return;
-    }
-
-    eventosViejos.splice(modalIndex, 1);
-
-    const eventosNuevos = obtenerEventos(keyNueva);
-
-    eventosNuevos.push({
-      hora,
-      duracion,
-      nombre,
-      salon
-    });
-
-    datosFirebase[modalKey] = eventosViejos;
-    datosFirebase[keyNueva] = eventosNuevos;
-
-    Promise.all([
-      database.ref("actividades/" + modalKey).set(eventosViejos),
-      database.ref("actividades/" + keyNueva).set(eventosNuevos)
-    ]).then(() => {
-      cerrarModal();
-      generarCalendario();
-    });
-  }
-}
-
-function eliminarEvento(key, index){
-  if(!confirm("¿Quitar esta actividad?")){
-    return;
-  }
-
-  const eventos = obtenerEventos(key);
-  eventos.splice(index, 1);
-  datosFirebase[key] = eventos;
-
-  database.ref("actividades/" + key).set(eventos).then(() => {
-    generarCalendario();
+    op.value = esp;
+    op.textContent = esp;
+    selectEsp.appendChild(op);
   });
 }
 
-function alternarAnteriores(){
-  mostrarAnteriores = !mostrarAnteriores;
-  btnAnteriores.textContent = mostrarAnteriores ? "Ocultar días anteriores" : "Ver días anteriores";
-  generarCalendario();
+// Función auxiliar robusta para obtener la asignatura de cualquier variación de clave
+function obtenerAsignatura(item) {
+  if (!item) return "";
+  return item["Unidad Curricular/Asignatura"] || 
+         item["Unidad Curricular / Asignatura"] ||
+         item["Asignatura / U. Curricular"] || 
+         item["Asignatura"] || 
+         item["Unidad Curricular"] || 
+         item["unidad_curricular"] || 
+         item["materia"] || 
+         item["asignatura"] || "";
 }
 
-function mostrarPanelReporte(){
-  const panel = document.getElementById("panelReporte");
-  panel.style.display = panel.style.display === "block" ? "none" : "block";
+function obtenerDA(item) {
+  if (!item) return "";
+  return item["D.A"] || item["DA"] || item["Departamento"] || item["depto"] || item["Especialidad"] || "";
 }
 
-function cerrarReporte(){
-  document.getElementById("panelReporte").style.display = "none";
-  document.getElementById("reporte").style.display = "none";
-}
+// Escuchar cambios de Firebase
+database.ref("gestion_examenes").on("value", function(snapshot){
+  const data = snapshot.val();
+  if(data && Array.isArray(data)){
+    examenesData = data.map(item => ({
+      ...item,
+      activo: item.activo !== undefined ? item.activo : true 
+    }));
+    filtrarYRenderizar();
+    if(vistaCalendarioActiva) poblarVistaFechas();
+  } else {
+    fetch("https://cerpsalto.github.io/examenes/examenes.json")
+      .then(res => res.json())
+      .then(jsonRemoto => {
+        examenesData = jsonRemoto.map(item => ({
+          ...item,
+          activo: item.activo !== undefined ? item.activo : true 
+        }));
+        filtrarYRenderizar();
+        if(vistaCalendarioActiva) poblarVistaFechas();
+      })
+      .catch(() => { examenesData = []; filtrarYRenderizar(); });
+  }
+});
 
-function generarReporte(){
-  const desde = document.getElementById("fechaDesde").value;
-  const hasta = document.getElementById("fechaHasta").value;
-  const reporte = document.getElementById("reporte");
+inicializarFiltroEspecialidades();
 
-  if(!desde || !hasta){
-    alert("Seleccione fecha desde y fecha hasta.");
+function filtrarYRenderizar(){
+  const espSel = normalizarTexto(document.getElementById("filtroEspecialidad").value);
+  const nivelSel = normalizarTexto(document.getElementById("filtroNivel").value);
+  const planSel = document.getElementById("filtroPlan").value;
+
+  const tbody = document.getElementById("cuerpoTablaExamenes");
+  const mensaje = document.getElementById("mensajeInfo");
+  const tabla = document.getElementById("tablaExamenes");
+
+  const filtrados = examenesData.filter((item, index) => {
+    item._indexReal = index; 
+
+    const itemEsp = normalizarTexto(item.Especialidad || obtenerDA(item));
+    const itemNivel = normalizarTexto(item.Nivel || "");
+    const itemPlan = String(item.Plan || "").trim();
+
+    const matchEsp = !espSel || itemEsp.includes(espSel);
+    
+    const numNivelSel = nivelSel.replace(/[^0-9]/g, '');
+    const numItemNivel = itemNivel.replace(/[^0-9]/g, '');
+    const matchNivel = !nivelSel || (numNivelSel ? numNivelSel === numItemNivel : itemNivel.includes(nivelSel));
+
+    const matchPlan = !planSel || itemPlan === planSel;
+
+    return matchEsp && matchNivel && matchPlan;
+  });
+
+  if(filtrados.length === 0){
+    tabla.style.display = "none";
+    mensaje.style.display = "block";
+    tbody.innerHTML = "";
     return;
   }
 
-  if(desde > hasta){
-    alert("La fecha desde no puede ser posterior a la fecha hasta.");
+  let html = "";
+  filtrados.forEach((item) => {
+    const i = item._indexReal;
+    const nombreAsignatura = obtenerAsignatura(item);
+    const deptoAcademico = obtenerDA(item);
+
+    html += `
+      <tr>
+        <td class="checkbox-col">
+          <input type="checkbox" class="checkbox-periodo" ${item.activo ? "checked" : ""} onchange="actualizarActivo(${i}, this.checked)">
+        </td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Fecha || '')}" onchange="actualizarCampo(${i}, 'Fecha', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:70px;" value="${escapeHtml(item.Hora || '')}" onchange="actualizarCampo(${i}, 'Hora', this.value)"></td>
+        <td>
+          <input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan || '')}" onchange="actualizarCampo(${i}, 'Plan', this.value)">
+        </td>
+        <td>
+          <input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel || '')}" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
+        </td>
+        <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(deptoAcademico)}" onchange="actualizarCampo(${i}, 'D.A', this.value)"></td>
+        <td>
+          <select class="input-tabla" onchange="actualizarCampo(${i}, 'Especialidad', this.value)">
+            ${listaEspecialidadesBase.map(esp => `<option value="${esp}" ${normalizarTexto(item.Especialidad || deptoAcademico) === normalizarTexto(esp) ? 'selected' : ''}>${esp}</option>`).join('')}
+          </select>
+        </td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(nombreAsignatura)}" onchange="actualizarAsignatura(${i}, this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Presidente || '')}" onchange="actualizarCampo(${i}, 'Presidente', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Secretario || '')}" onchange="actualizarCampo(${i}, 'Secretario', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Vocal || '')}" onchange="actualizarCampo(${i}, 'Vocal', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Suplente || '')}" onchange="actualizarCampo(${i}, 'Suplente', this.value)"></td>
+        <td>
+          <div class="acciones-item">
+            <button class="btn-mini btn-red" onclick="eliminarFila(${i})" title="Eliminar examen">🗑️</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+
+  tbody.innerHTML = html;
+  mensaje.style.display = "none";
+  tabla.style.display = "table";
+}
+
+function actualizarCampo(index, campo, valor){
+  examenesData[index][campo] = valor;
+}
+
+function actualizarAsignatura(index, valor){
+  examenesData[index]["Unidad Curricular/Asignatura"] = valor;
+  // Guardamos copias en claves comunes para evitar inconsistencias de Firebase
+  examenesData[index]["Asignatura / U. Curricular"] = valor;
+}
+
+function actualizarActivo(index, estado){
+  examenesData[index].activo = estado;
+}
+
+function agregarFilaExamen(){
+  const nuevoExamen = {
+    activo: true,
+    Fecha: "16/11/2026",
+    Hora: "8:00",
+    Plan: "2023",
+    Nivel: "1°",
+    "D.A": "Biología",
+    Especialidad: "Biología",
+    "Unidad Curricular/Asignatura": "Nueva Asignatura",
+    Presidente: "",
+    Secretario: "",
+    Vocal: "",
+    Suplente: ""
+  };
+  examenesData.unshift(nuevoExamen);
+  filtrarYRenderizar();
+  if(vistaCalendarioActiva) poblarVistaFechas();
+}
+
+function eliminarFila(index){
+  if(confirm("¿Desea eliminar este examen del registro?")){
+    examenesData.splice(index, 1);
+    filtrarYRenderizar();
+    if(vistaCalendarioActiva) poblarVistaFechas();
+  }
+}
+
+function guardarEnFirebase(){
+  const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
+  database.ref("gestion_examenes").set(datosLimpios).then(() => {
+    alert("¡Exámenes guardados correctamente en la nube!");
+  }).catch(err => {
+    alert("Error al guardar: " + err.message);
+  });
+}
+
+function alternarVistaFecha(){
+  vistaCalendarioActiva = !vistaCalendarioActiva;
+  const secGeneral = document.getElementById("seccionTablaGeneral");
+  const secFecha = document.getElementById("seccionVistaFecha");
+
+  if(vistaCalendarioActiva){
+    secGeneral.style.display = "none";
+    secFecha.style.display = "block";
+    poblarVistaFechas();
+  } else {
+    secFecha.style.display = "none";
+    secGeneral.style.display = "block";
+    filtrarYRenderizar();
+  }
+}
+
+function poblarVistaFechas(){
+  const mapaFechas = {};
+  examenesData.forEach(item => {
+    const f = (item.Fecha || "Sin fecha").trim();
+    if(!mapaFechas[f]) mapaFechas[f] = [];
+    mapaFechas[f].push(item);
+  });
+
+  const fechasOrdenadas = Object.keys(mapaFechas).sort((a, b) => {
+    const partesA = a.split('/');
+    const partesB = b.split('/');
+    if(partesA.length === 3 && partesB.length === 3){
+      const dateA = new Date(partesA[2], partesA[1] - 1, partesA[0]);
+      const dateB = new Date(partesB[2], partesB[1] - 1, partesB[0]);
+      return dateA - dateB;
+    }
+    return a.localeCompare(b);
+  });
+
+  const contenedorLista = document.getElementById("listaFechasLateral");
+  let htmlLista = "";
+
+  const hoyStr = "16/11/2026"; 
+  let fechaDefault = fechasOrdenadas[0];
+
+  if(fechasOrdenadas.includes(hoyStr)){
+    fechaDefault = hoyStr;
+  }
+
+  if(!fechaSeleccionadaActual || !mapaFechas[fechaSeleccionadaActual]){
+    fechaSeleccionadaActual = fechaDefault;
+  }
+
+  fechasOrdenadas.forEach(fecha => {
+    const cantidad = mapaFechas[fecha].length;
+    const esHoy = (fecha === hoyStr);
+    const etiquetaHoy = esHoy ? " ⭐ (HOY)" : "";
+    const claseActiva = (fecha === fechaSeleccionadaActual) ? "active" : "";
+
+    htmlLista += `
+      <button class="fecha-item-btn ${claseActiva}" onclick="seleccionarFechaCalendario('${fecha}')">
+        <span>📅 ${fecha}${etiquetaHoy}</span>
+        <span class="badge-contador">${cantidad}</span>
+      </button>
+    `;
+  });
+
+  contenedorLista.innerHTML = htmlLista;
+  mostrarDetalleFecha(fechaSeleccionadaActual, mapaFechas);
+}
+
+function seleccionarFechaCalendario(fecha){
+  fechaSeleccionadaActual = fecha;
+  poblarVistaFechas();
+}
+
+function mostrarDetalleFecha(fecha, mapaFechas){
+  const tituloDetalle = document.getElementById("tituloDetalleFecha");
+  const contenidoDetalle = document.getElementById("contenidoDetalleFecha");
+
+  if(!fecha || !mapaFechas[fecha]){
+    tituloDetalle.textContent = "Sin fecha seleccionada";
+    contenidoDetalle.innerHTML = "<div class='mensaje-info'>Seleccione una fecha a la izquierda.</div>";
     return;
   }
 
-  let fechaActual = new Date(desde + "T00:00:00");
-  const fechaFinal = new Date(hasta + "T00:00:00");
-
-  let items = [];
-
-  while(fechaActual <= fechaFinal){
-    const anio = fechaActual.getFullYear();
-    const mes = fechaActual.getMonth();
-    const dia = fechaActual.getDate();
-
-    let eventosDia = [];
-
-    turnos.forEach(turno => {
-      const key = keyDia(anio, mes, dia, turno);
-      const eventos = obtenerEventos(key);
-
-      eventos.forEach(ev => {
-        if((ev.nombre || "").trim() !== "" || (ev.hora || "").trim() !== ""){
-          eventosDia.push({
-            turno,
-            salon: ev.salon || "No requiere",
-            hora: ev.hora || "",
-            duracion: ev.duracion || "01:00",
-            nombre: ev.nombre || ""
-          });
-        }
-      });
-    });
-
-    eventosDia.sort(ordenarEventos);
-
-    eventosDia.forEach(ev => {
-      items.push({
-        fecha: `${dia}/${mes + 1}/${anio}`,
-        turno: ev.turno,
-        salon: ev.salon,
-        hora: ev.hora || "Sin hora",
-        duracion: ev.duracion || "01:00",
-        nombre: ev.nombre || "Sin nombre"
-      });
-    });
-
-    fechaActual.setDate(fechaActual.getDate() + 1);
-  }
+  tituloDetalle.textContent = `Exámenes programados para el ${fecha}:`;
+  const lista = mapaFechas[fecha];
 
   let html = `
-    <h2>Reporte de actividades</h2>
-    <p><strong>Desde:</strong> ${formatearFechaInput(desde)}
-    &nbsp; <strong>Hasta:</strong> ${formatearFechaInput(hasta)}</p>
+    <table class="tabla-examenes" style="margin-top:10px;">
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Plan</th>
+          <th>Nivel</th>
+          <th>Asignatura</th>
+          <th>Especialidad</th>
+          <th>Tribunal (Pres. / Sec. / Voc. / Sup.)</th>
+        </tr>
+      </thead>
+      <tbody>
   `;
 
-  if(items.length === 0){
-    html += `<p>No hay actividades cargadas en el rango seleccionado.</p>`;
-  }else{
-    items.forEach(item => {
-      html += `
-        <div class="reporte-item">
-          <div class="reporte-fecha">${escapeHtml(item.fecha)}</div>
-          <div><strong>Turno:</strong> ${escapeHtml(item.turno)}</div>
-          <div><strong>Salón / Espacio:</strong> ${escapeHtml(item.salon)}</div>
-          <div><strong>Hora de inicio:</strong> ${escapeHtml(item.hora)}</div>
-          <div><strong>Duración:</strong> ${escapeHtml(item.duracion)} hs</div>
-          <div><strong>Actividad:</strong> ${escapeHtml(item.nombre)}</div>
-        </div>
-      `;
-    });
-  }
+  lista.forEach(ex => {
+    const nombreAsignatura = obtenerAsignatura(ex);
+    html += `
+      <tr>
+        <td><strong>${escapeHtml(ex.Hora)}</strong></td>
+        <td>${escapeHtml(ex.Plan)}</td>
+        <td>${escapeHtml(ex.Nivel)}</td>
+        <td><strong>${escapeHtml(nombreAsignatura)}</strong></td>
+        <td>${escapeHtml(ex.Especialidad || obtenerDA(ex))}</td>
+        <td style="font-size:11px; text-align:left; padding-left:10px;">
+          <div><strong>Pres:</strong> ${escapeHtml(ex.Presidente)}</div>
+          <div><strong>Sec:</strong> ${escapeHtml(ex.Secretario)}</div>
+          <div><strong>Voc:</strong> ${escapeHtml(ex.Vocal)}</div>
+          <div><strong>Sup:</strong> ${escapeHtml(ex.Suplente)}</div>
+        </td>
+      </tr>
+    `;
+  });
 
-  reporte.innerHTML = html;
-  reporte.style.display = "block";
-  reporte.scrollIntoView({behavior:"smooth"});
+  html += `</tbody></table>`;
+  contenidoDetalle.innerHTML = html;
 }
 
-function formatearFechaInput(fecha){
-  const partes = fecha.split("-");
-  return `${partes[2]}/${partes[1]}/${partes[0]}`;
+function descargarJSONExamenes(){
+  const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
+  const jsonString = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(datosLimpios, null, 2));
+  const downloadAnchor = document.createElement('a');
+  downloadAnchor.setAttribute("href", jsonString);
+  downloadAnchor.setAttribute("download", "examenes.json");
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
 }
 
 function escapeHtml(text){
@@ -1010,8 +716,6 @@ function escapeHtml(text){
     .replaceAll(">","&gt;")
     .replaceAll('"',"&quot;");
 }
-
-generarCalendario();
 </script>
 
 </body>
