@@ -411,24 +411,14 @@ function formatearFechaEstandar(fechaStr) {
   return `${dia}/${mes}/${anio}`;
 }
 
-function inicializarFiltroEspecialidades(){
-  const selectEsp = document.getElementById("filtroEspecialidad");
-  const valorActual = selectEsp.value;
-  selectEsp.innerHTML = '<option value="">Todas las Especialidades</option>';
-  
-  const conjuntoEspecialidades = new Set();
-  examenesData.forEach(item => {
-    const esp = (item.Especialidad || item["D_A"] || item["D.A"] || "").trim();
-    if(esp) conjuntoEspecialidades.add(esp);
-  });
+function obtenerEspecialidad(item) {
+  if (!item) return "";
+  return item.Especialidad || item["Especialidad "] || item.especialidad || item["D_A"] || item["D.A"] || item.DA || item.Departamento || "";
+}
 
-  Array.from(conjuntoEspecialidades).sort().forEach(esp => {
-    const op = document.createElement("option");
-    op.value = esp;
-    op.textContent = esp;
-    if(esp === valorActual) op.selected = true;
-    selectEsp.appendChild(op);
-  });
+function obtenerDA(item) {
+  if (!item) return "";
+  return item["D_A"] || item["D.A"] || item["DA"] || item["Departamento"] || item.Especialidad || "";
 }
 
 function obtenerAsignatura(item) {
@@ -440,12 +430,30 @@ function obtenerAsignatura(item) {
          item["Unidad Curricular"] || "";
 }
 
-function obtenerDA(item) {
-  if (!item) return "";
-  return item["D_A"] || item["D.A"] || item["DA"] || item["Departamento"] || item["Especialidad"] || "";
+function inicializarFiltroEspecialidades(){
+  const selectEsp = document.getElementById("filtroEspecialidad");
+  const valorActual = selectEsp.value;
+  selectEsp.innerHTML = '<option value="">Todas las Especialidades</option>';
+  
+  const conjuntoEspecialidades = new Set();
+  examenesData.forEach(item => {
+    const esp = obtenerEspecialidad(item).trim();
+    const da = obtenerDA(item).trim();
+    if(esp) conjuntoEspecialidades.add(esp);
+    if(da) conjuntoEspecialidades.add(da);
+  });
+
+  Array.from(conjuntoEspecialidades).sort().forEach(esp => {
+    const op = document.createElement("option");
+    op.value = esp;
+    op.textContent = esp;
+    if(esp === valorActual) op.selected = true;
+    selectEsp.appendChild(op);
+  });
 }
 
 function mapearExamen(item) {
+  const esp = obtenerEspecialidad(item);
   const da = obtenerDA(item);
   return {
     activo: item.activo !== undefined ? item.activo : true,
@@ -454,7 +462,7 @@ function mapearExamen(item) {
     Plan: item.Plan || "",
     Nivel: item.Nivel || "",
     "D_A": da,
-    Especialidad: item.Especialidad || da,
+    Especialidad: esp || da,
     "Unidad Curricular_Asignatura": obtenerAsignatura(item),
     Presidente: item.Presidente || "",
     Secretario: item.Secretario || "",
@@ -484,11 +492,12 @@ function obtenerExamenesFiltrados() {
   return examenesData.filter((item, index) => {
     item._indexReal = index; 
 
-    const itemEsp = normalizarTexto(item.Especialidad || item["D_A"]);
+    const itemEsp = normalizarTexto(item.Especialidad || "");
+    const itemDA = normalizarTexto(item["D_A"] || "");
     const itemNivel = normalizarTexto(item.Nivel || "");
     const itemPlan = String(item.Plan || "").trim();
 
-    const matchEsp = !espSel || itemEsp.includes(espSel);
+    const matchEsp = !espSel || itemEsp.includes(espSel) || itemDA.includes(espSel);
     const numNivelSel = nivelSel.replace(/[^0-9]/g, '');
     const numItemNivel = itemNivel.replace(/[^0-9]/g, '');
     const matchNivel = !nivelSel || (numNivelSel ? numNivelSel === numItemNivel : itemNivel.includes(nivelSel));
@@ -556,6 +565,7 @@ function filtrarYRenderizar(){
 function actualizarCampo(index, campo, valor){
   if(campo === 'Fecha') valor = formatearFechaEstandar(valor);
   examenesData[index][campo] = valor;
+  if(campo === 'Especialidad' || campo === 'D_A') inicializarFiltroEspecialidades();
 }
 
 function actualizarAsignatura(index, valor){
@@ -573,8 +583,8 @@ function agregarFilaExamen(){
     Hora: "8:00",
     Plan: "2023",
     Nivel: "1°",
-    "D_A": "Biología",
-    Especialidad: "Biología",
+    "D_A": "Informática",
+    Especialidad: "Informática",
     "Unidad Curricular_Asignatura": "Nueva Asignatura",
     Presidente: "",
     Secretario: "",
@@ -731,7 +741,6 @@ function descargarJSONExamenes(){
   downloadAnchor.remove();
 }
 
-// DESCARGA PDF CON FORMATO TABLA DE EXCEL COMPLETA
 function descargarPDFExamenes(){
   const filtrados = obtenerExamenesFiltrados();
 
