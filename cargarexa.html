@@ -391,7 +391,7 @@ function normalizarTexto(texto) {
 
 function parsearFecha(fechaStr) {
   if (!fechaStr) return new Date(0);
-  const s = fechaStr.trim();
+  const s = String(fechaStr).trim();
   if (s.includes('/')) {
     const p = s.split('/');
     if (p.length === 3) return new Date(p[2], p[1] - 1, p[0]);
@@ -413,11 +413,12 @@ function formatearFechaEstandar(fechaStr) {
 
 function inicializarFiltroEspecialidades(){
   const selectEsp = document.getElementById("filtroEspecialidad");
+  const valorActual = selectEsp.value;
   selectEsp.innerHTML = '<option value="">Todas las Especialidades</option>';
   
   const conjuntoEspecialidades = new Set();
   examenesData.forEach(item => {
-    const esp = (item.Especialidad || item["D_A"] || "").trim();
+    const esp = (item.Especialidad || item["D_A"] || item["D.A"] || "").trim();
     if(esp) conjuntoEspecialidades.add(esp);
   });
 
@@ -425,6 +426,7 @@ function inicializarFiltroEspecialidades(){
     const op = document.createElement("option");
     op.value = esp;
     op.textContent = esp;
+    if(esp === valorActual) op.selected = true;
     selectEsp.appendChild(op);
   });
 }
@@ -444,14 +446,15 @@ function obtenerDA(item) {
 }
 
 function mapearExamen(item) {
+  const da = obtenerDA(item);
   return {
     activo: item.activo !== undefined ? item.activo : true,
     Fecha: formatearFechaEstandar(item.Fecha),
     Hora: item.Hora || "",
     Plan: item.Plan || "",
     Nivel: item.Nivel || "",
-    "D_A": obtenerDA(item),
-    Especialidad: item.Especialidad || obtenerDA(item),
+    "D_A": da,
+    Especialidad: item.Especialidad || da,
     "Unidad Curricular_Asignatura": obtenerAsignatura(item),
     Presidente: item.Presidente || "",
     Secretario: item.Secretario || "",
@@ -579,6 +582,7 @@ function agregarFilaExamen(){
     Suplente: ""
   };
   examenesData.unshift(nuevoExamen);
+  inicializarFiltroEspecialidades();
   filtrarYRenderizar();
   if(vistaCalendarioActiva) poblarVistaFechas();
 }
@@ -586,6 +590,7 @@ function agregarFilaExamen(){
 function eliminarFila(index){
   if(confirm("¿Desea eliminar este examen del registro?")){
     examenesData.splice(index, 1);
+    inicializarFiltroEspecialidades();
     filtrarYRenderizar();
     if(vistaCalendarioActiva) poblarVistaFechas();
   }
@@ -726,7 +731,7 @@ function descargarJSONExamenes(){
   downloadAnchor.remove();
 }
 
-// DESCARGA PDF AGRUPADO POR ESPECIALIDAD CON EL FORMATO EXACTO DE LA TABLA COMPLETA
+// DESCARGA PDF CON FORMATO TABLA DE EXCEL COMPLETA
 function descargarPDFExamenes(){
   const filtrados = obtenerExamenesFiltrados();
 
