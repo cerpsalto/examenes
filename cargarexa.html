@@ -309,7 +309,7 @@ table.tabla-examenes th{
   <div id="seccionTablaGeneral" class="seccion-tabla">
     <div class="subtitulo-header">
       <div class="subtitulo" id="tituloTabla">LISTADO GENERAL DE EXÁMENES</div>
-      <button class="btn btn-green" onclick="agregarFilaExamen()">➕ Agregar Examen</button>
+      <button class="btn btn-green" type="button" onclick="agregarFilaExamen()">➕ Agregar Examen</button>
     </div>
 
     <div id="mensajeInfo" class="mensaje-info" style="display:none;">No se encontraron exámenes con los filtros seleccionados.</div>
@@ -475,13 +475,14 @@ database.ref("gestion_examenes").on("value", function(snapshot){
   const data = snapshot.val();
   if(data && Array.isArray(data)){
     examenesData = data.map(mapearExamen);
-    inicializarFiltroEspecialidades();
-    filtrarYRenderizar();
-    if(vistaCalendarioActiva) poblarVistaFechas();
+  } else if (data && typeof data === 'object') {
+    examenesData = Object.values(data).map(mapearExamen);
   } else {
     examenesData = [];
-    filtrarYRenderizar();
   }
+  inicializarFiltroEspecialidades();
+  filtrarYRenderizar();
+  if(vistaCalendarioActiva) poblarVistaFechas();
 });
 
 function obtenerExamenesFiltrados() {
@@ -489,22 +490,21 @@ function obtenerExamenesFiltrados() {
   const nivelSel = normalizarTexto(document.getElementById("filtroNivel").value);
   const planSel = document.getElementById("filtroPlan").value;
 
-  return examenesData.filter((item, index) => {
-    item._indexReal = index; 
+  return examenesData.map((item, index) => ({ ...item, _indexReal: index }))
+    .filter((item) => {
+      const itemEsp = normalizarTexto(item.Especialidad || "");
+      const itemDA = normalizarTexto(item["D_A"] || "");
+      const itemNivel = normalizarTexto(item.Nivel || "");
+      const itemPlan = String(item.Plan || "").trim();
 
-    const itemEsp = normalizarTexto(item.Especialidad || "");
-    const itemDA = normalizarTexto(item["D_A"] || "");
-    const itemNivel = normalizarTexto(item.Nivel || "");
-    const itemPlan = String(item.Plan || "").trim();
+      const matchEsp = !espSel || itemEsp.includes(espSel) || itemDA.includes(espSel);
+      const numNivelSel = nivelSel.replace(/[^0-9]/g, '');
+      const numItemNivel = itemNivel.replace(/[^0-9]/g, '');
+      const matchNivel = !nivelSel || (numNivelSel ? numNivelSel === numItemNivel : itemNivel.includes(nivelSel));
+      const matchPlan = !planSel || itemPlan === planSel;
 
-    const matchEsp = !espSel || itemEsp.includes(espSel) || itemDA.includes(espSel);
-    const numNivelSel = nivelSel.replace(/[^0-9]/g, '');
-    const numItemNivel = itemNivel.replace(/[^0-9]/g, '');
-    const matchNivel = !nivelSel || (numNivelSel ? numNivelSel === numItemNivel : itemNivel.includes(nivelSel));
-    const matchPlan = !planSel || itemPlan === planSel;
-
-    return matchEsp && matchNivel && matchPlan;
-  });
+      return matchEsp && matchNivel && matchPlan;
+    });
 }
 
 function filtrarYRenderizar(){
@@ -550,7 +550,7 @@ function filtrarYRenderizar(){
         <td><input type="text" class="input-tabla" value="${escapeHtml(item.Suplente)}" onchange="actualizarCampo(${i}, 'Suplente', this.value)"></td>
         <td>
           <div class="acciones-item">
-            <button class="btn-mini btn-red" onclick="eliminarFila(${i})" title="Eliminar examen">🗑️</button>
+            <button type="button" class="btn-mini btn-red" onclick="eliminarFila(${i})" title="Eliminar examen">🗑️</button>
           </div>
         </td>
       </tr>
@@ -566,21 +566,24 @@ function actualizarCampo(index, campo, valor){
   if(campo === 'Fecha') valor = formatearFechaEstandar(valor);
   examenesData[index][campo] = valor;
   if(campo === 'Especialidad' || campo === 'D_A') inicializarFiltroEspecialidades();
+  guardarEnFirebaseSilencioso();
 }
 
 function actualizarAsignatura(index, valor){
   examenesData[index]["Unidad Curricular_Asignatura"] = valor;
+  guardarEnFirebaseSilencioso();
 }
 
 function actualizarActivo(index, estado){
   examenesData[index].activo = estado;
+  guardarEnFirebaseSilencioso();
 }
 
 function agregarFilaExamen(){
   const nuevoExamen = {
     activo: true,
     Fecha: "16/11/2026",
-    Hora: "8:00",
+    Hora: "08:00",
     Plan: "2023",
     Nivel: "1°",
     "D_A": "Informática",
@@ -595,6 +598,7 @@ function agregarFilaExamen(){
   inicializarFiltroEspecialidades();
   filtrarYRenderizar();
   if(vistaCalendarioActiva) poblarVistaFechas();
+  guardarEnFirebaseSilencioso();
 }
 
 function eliminarFila(index){
@@ -603,7 +607,13 @@ function eliminarFila(index){
     inicializarFiltroEspecialidades();
     filtrarYRenderizar();
     if(vistaCalendarioActiva) poblarVistaFechas();
+    guardarEnFirebaseSilencioso();
   }
+}
+
+function guardarEnFirebaseSilencioso(){
+  const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
+  database.ref("gestion_examenes").set(datosLimpios);
 }
 
 function guardarEnFirebase(){
