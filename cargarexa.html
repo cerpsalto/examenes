@@ -279,12 +279,12 @@ table.tabla-examenes th{
     <div class="controls">
       <label>Especialidad:</label>
       <select id="filtroEspecialidad" onchange="filtrarYRenderizar()">
-        <option value="">-- Todas las Especialidades --</option>
+        <option value="">Todas las Especialidades</option>
       </select>
 
       <label>Nivel / Año:</label>
       <select id="filtroNivel" onchange="filtrarYRenderizar()">
-        <option value="">-- Todos los Niveles --</option>
+        <option value="">Todos los Niveles</option>
         <option value="1°">Primero (1°)</option>
         <option value="2°">Segundo (2°)</option>
         <option value="3°">Tercero (3°)</option>
@@ -293,15 +293,9 @@ table.tabla-examenes th{
 
       <label>Plan:</label>
       <select id="filtroPlan" onchange="filtrarYRenderizar()">
-        <option value="">-- Todos los Planes --</option>
+        <option value="">Todos los Planes</option>
         <option value="2008">2008</option>
         <option value="2023">2023</option>
-        <option value="2024">2024</option>
-        <option value="2025">2025</option>
-        <option value="2026">2026</option>
-        <option value="2027">2027</option>
-        <option value="2028">2028</option>
-        <option value="2029">2029</option>
       </select>
 
       <button class="btn btn-purple" onclick="alternarVistaFecha()">📅 Ver por Fecha</button>
@@ -383,14 +377,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-const listaEspecialidadesBase = [
-  "Biología", "Com. Visual", "Derecho", "Español",
-  "Física", "Geografía", "Historia", "Informática",
-  "Inglés", "Literatura", "Matemática", "Química",
-  "Trayecto equivalente", "Maestro Técnico", "Filosofía",
-  "Sociología"
-];
-
 let examenesData = [];
 let vistaCalendarioActiva = false;
 let fechaSeleccionadaActual = null;
@@ -427,8 +413,15 @@ function formatearFechaEstandar(fechaStr) {
 
 function inicializarFiltroEspecialidades(){
   const selectEsp = document.getElementById("filtroEspecialidad");
-  selectEsp.innerHTML = '<option value="">-- Todas las Especialidades --</option>';
-  listaEspecialidadesBase.forEach(esp => {
+  selectEsp.innerHTML = '<option value="">Todas las Especialidades</option>';
+  
+  const conjuntoEspecialidades = new Set();
+  examenesData.forEach(item => {
+    const esp = (item.Especialidad || item["D_A"] || "").trim();
+    if(esp) conjuntoEspecialidades.add(esp);
+  });
+
+  Array.from(conjuntoEspecialidades).sort().forEach(esp => {
     const op = document.createElement("option");
     op.value = esp;
     op.textContent = esp;
@@ -471,6 +464,7 @@ database.ref("gestion_examenes").on("value", function(snapshot){
   const data = snapshot.val();
   if(data && Array.isArray(data)){
     examenesData = data.map(mapearExamen);
+    inicializarFiltroEspecialidades();
     filtrarYRenderizar();
     if(vistaCalendarioActiva) poblarVistaFechas();
   } else {
@@ -478,8 +472,6 @@ database.ref("gestion_examenes").on("value", function(snapshot){
     filtrarYRenderizar();
   }
 });
-
-inicializarFiltroEspecialidades();
 
 function obtenerExamenesFiltrados() {
   const espSel = normalizarTexto(document.getElementById("filtroEspecialidad").value);
@@ -537,9 +529,7 @@ function filtrarYRenderizar(){
         </td>
         <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(deptoAcademico)}" onchange="actualizarCampo(${i}, 'D_A', this.value)"></td>
         <td>
-          <select class="input-tabla" onchange="actualizarCampo(${i}, 'Especialidad', this.value)">
-            ${listaEspecialidadesBase.map(esp => `<option value="${esp}" ${normalizarTexto(item.Especialidad || deptoAcademico) === normalizarTexto(esp) ? 'selected' : ''}>${esp}</option>`).join('')}
-          </select>
+          <input type="text" class="input-tabla" value="${escapeHtml(item.Especialidad || deptoAcademico)}" onchange="actualizarCampo(${i}, 'Especialidad', this.value)">
         </td>
         <td><input type="text" class="input-tabla" value="${escapeHtml(nombreAsignatura)}" onchange="actualizarAsignatura(${i}, this.value)"></td>
         <td><input type="text" class="input-tabla" value="${escapeHtml(item.Presidente)}" onchange="actualizarCampo(${i}, 'Presidente', this.value)"></td>
@@ -696,7 +686,10 @@ function mostrarDetalleFecha(fecha, mapaFechas){
           <th>Nivel</th>
           <th>Asignatura</th>
           <th>Especialidad</th>
-          <th>Tribunal (Pres. / Sec. / Voc. / Sup.)</th>
+          <th>Presidente</th>
+          <th>Secretario</th>
+          <th>Vocal</th>
+          <th>Suplente</th>
         </tr>
       </thead>
       <tbody>
@@ -710,12 +703,10 @@ function mostrarDetalleFecha(fecha, mapaFechas){
         <td>${escapeHtml(ex.Nivel)}</td>
         <td><strong>${escapeHtml(ex["Unidad Curricular_Asignatura"])}</strong></td>
         <td>${escapeHtml(ex.Especialidad || ex["D_A"])}</td>
-        <td style="font-size:11px; text-align:left; padding-left:10px;">
-          <div><strong>Pres:</strong> ${escapeHtml(ex.Presidente)}</div>
-          <div><strong>Sec:</strong> ${escapeHtml(ex.Secretario)}</div>
-          <div><strong>Voc:</strong> ${escapeHtml(ex.Vocal)}</div>
-          <div><strong>Sup:</strong> ${escapeHtml(ex.Suplente)}</div>
-        </td>
+        <td>${escapeHtml(ex.Presidente)}</td>
+        <td>${escapeHtml(ex.Secretario)}</td>
+        <td>${escapeHtml(ex.Vocal)}</td>
+        <td>${escapeHtml(ex.Suplente)}</td>
       </tr>
     `;
   });
@@ -735,7 +726,7 @@ function descargarJSONExamenes(){
   downloadAnchor.remove();
 }
 
-// DESCARGA PDF AGRUPADO POR ESPECIALIDAD (DESDE COLUMNA FECHA)
+// DESCARGA PDF AGRUPADO POR ESPECIALIDAD CON EL FORMATO EXACTO DE LA TABLA COMPLETA
 function descargarPDFExamenes(){
   const filtrados = obtenerExamenesFiltrados();
 
@@ -744,7 +735,6 @@ function descargarPDFExamenes(){
     return;
   }
 
-  // Agrupar por Especialidad
   const grupos = {};
   filtrados.forEach(item => {
     const esp = item.Especialidad || item["D_A"] || "Sin Especialidad";
@@ -755,59 +745,57 @@ function descargarPDFExamenes(){
   const docDefinition = {
     pageSize: 'A4',
     pageOrientation: 'landscape',
-    pageMargins: [30, 40, 30, 40],
+    pageMargins: [20, 30, 20, 30],
     header: function(currentPage, pageCount) {
       return {
         text: `Calendario de Exámenes - Período Institucional (Pág. ${currentPage} de ${pageCount})`,
         alignment: 'right',
-        fontSize: 9,
+        fontSize: 8,
         color: '#777777',
-        margin: [0, 15, 30, 0]
+        margin: [0, 10, 20, 0]
       };
     },
     content: [
       { text: 'CALENDARIO DE EXÁMENES E EVALUACIONES', style: 'mainHeader' },
       { text: `Generado el: ${new Date().toLocaleDateString('es-ES')}`, style: 'subHeader' },
-      { text: ' ', margin: [0, 5] }
+      { text: ' ', margin: [0, 4] }
     ],
     styles: {
       mainHeader: {
-        fontSize: 18,
+        fontSize: 16,
         bold: true,
         alignment: 'center',
         color: '#004466'
       },
       subHeader: {
-        fontSize: 10,
+        fontSize: 9,
         alignment: 'center',
         color: '#555555',
-        margin: [0, 2, 0, 10]
+        margin: [0, 2, 0, 8]
       },
       groupHeader: {
-        fontSize: 14,
+        fontSize: 12,
         bold: true,
         color: '#ffffff',
         fillColor: '#005b84',
-        margin: [0, 10, 0, 5],
-        padding: 5
+        margin: [0, 8, 0, 4],
+        padding: 4
       },
       tableHeader: {
         bold: true,
-        fontSize: 10,
+        fontSize: 8,
         color: '#003f5c',
         fillColor: '#bfe8fb',
         alignment: 'center'
       },
       tableBody: {
-        fontSize: 9,
+        fontSize: 8,
         alignment: 'center'
       }
     }
   };
 
-  // Recorrer grupos y armar tablas por especialidad
   Object.keys(grupos).sort().forEach(esp => {
-    // Título de la Especialidad
     docDefinition.content.push({
       table: {
         widths: ['*'],
@@ -823,43 +811,44 @@ function descargarPDFExamenes(){
         { text: 'Plan', style: 'tableHeader' },
         { text: 'Nivel', style: 'tableHeader' },
         { text: 'D.A', style: 'tableHeader' },
-        { text: 'Asignatura / U. Curricular', style: 'tableHeader' },
-        { text: 'Tribunal (Pres / Sec / Voc / Sup)', style: 'tableHeader' }
+        { text: 'Especialidad', style: 'tableHeader' },
+        { text: 'Unidad Curricular / Asignatura', style: 'tableHeader' },
+        { text: 'Presidente', style: 'tableHeader' },
+        { text: 'Secretario', style: 'tableHeader' },
+        { text: 'Vocal', style: 'tableHeader' },
+        { text: 'Suplente', style: 'tableHeader' }
       ]
     ];
 
     grupos[esp].forEach(item => {
-      const tribunal = [
-        item.Presidente ? `Pres: ${item.Presidente}` : '',
-        item.Secretario ? `Sec: ${item.Secretario}` : '',
-        item.Vocal ? `Voc: ${item.Vocal}` : '',
-        item.Suplente ? `Sup: ${item.Suplente}` : ''
-      ].filter(Boolean).join('\n');
-
       rows.push([
         { text: item.Fecha || '', style: 'tableBody' },
         { text: item.Hora || '', style: 'tableBody' },
         { text: item.Plan || '', style: 'tableBody' },
         { text: item.Nivel || '', style: 'tableBody' },
         { text: item["D_A"] || '', style: 'tableBody' },
+        { text: item.Especialidad || '', style: 'tableBody' },
         { text: item["Unidad Curricular_Asignatura"] || '', style: 'tableBody', alignment: 'left' },
-        { text: tribunal, style: 'tableBody', alignment: 'left', fontSize: 8 }
+        { text: item.Presidente || '', style: 'tableBody', alignment: 'left' },
+        { text: item.Secretario || '', style: 'tableBody', alignment: 'left' },
+        { text: item.Vocal || '', style: 'tableBody', alignment: 'left' },
+        { text: item.Suplente || '', style: 'tableBody', alignment: 'left' }
       ]);
     });
 
     docDefinition.content.push({
       table: {
         headerRows: 1,
-        widths: [65, 45, 40, 40, 65, '*', 200],
+        widths: [55, 35, 30, 30, 50, 55, '*', 85, 85, 85, 85],
         body: rows
       },
       layout: {
-        hLineWidth: function (i, node) { return (i === 0 || i === node.table.body.length) ? 1.5 : 0.5; },
+        hLineWidth: function (i, node) { return 0.5; },
         vLineWidth: function (i, node) { return 0.5; },
         hLineColor: function (i, node) { return '#1aa7d6'; },
         vLineColor: function (i, node) { return '#1aa7d6'; }
       },
-      margin: [0, 0, 0, 15]
+      margin: [0, 0, 0, 10]
     });
   });
 
