@@ -23,7 +23,7 @@
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Ecología",
     "Presidente": "María Eugenia",
-    "Secretario": "Sonia Kosolap",
+    "Secretario": "Sonia kosolap",
     "Vocal": "Virginia Ricciardi",
     "Suplente": "Javier Texeira"
   },
@@ -37,7 +37,7 @@
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Ecología",
     "Presidente": "María Eugenia",
-    "Secretario": "Sonia Kosolap",
+    "Secretario": "Sonia kosolap",
     "Vocal": "Virginia Ricciardi",
     "Suplente": "Javier Texeira"
   },
@@ -64,10 +64,10 @@
     "D.A": "Historia",
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "ICP",
-    "Presidente": "Maria Grilli",
+    "Presidente": "María Grilli",
     "Secretario": "Gabriela Moreira",
     "Vocal": "Eduviges de Thy",
-    "Suplente": "Soledad Rodríquez"
+    "Suplente": "Soledad Rodríguez"
   },
   {
     "activo": true,
@@ -91,7 +91,7 @@
     "Nivel": "1°",
     "D.A": "Derecho",
     "Especialidad": "Derecho/Sociología",
-    "Unidad Curricular/Asignatura": "Derecho Público I",
+    "Unidad Curricular/Asignatura": "ICP",
     "Presidente": "Fabiana Bautista",
     "Secretario": "Lea Silva",
     "Vocal": "Laura Conti",
@@ -120,9 +120,9 @@
     "D.A": "Sociología",
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Sociología III",
-    "Presidente": "B. Pagani",
-    "Secretario": "Lea Silva",
-    "Vocal": "",
+    "Presidente": "Emilio Arredondo",
+    "Secretario": "B. Pagani",
+    "Vocal": "Lea Silva",
     "Suplente": "Fabian Bochia"
   },
   {
@@ -134,8 +134,8 @@
     "D.A": "Derecho",
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Las tecnologías de la Información y el Derecho",
-    "Presidente": "Maria Realini",
-    "Secretario": "Alvaro Machado",
+    "Presidente": "María Realini",
+    "Secretario": "Álvaro Machado",
     "Vocal": "Fabiana Bautista",
     "Suplente": "A. Camacho"
   },
@@ -257,12 +257,12 @@
     "Hora": "15:30",
     "Plan": "2023",
     "Nivel": "1°",
-    "D.A": "Matemática",
-    "Especialidad": "Informática",
+    "D.A": "Informática",
+    "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Matemática Discreta",
     "Presidente": "Álvaro Nuñez",
     "Secretario": "Blas Mello",
-    "Vocal": "Federico Arauio",
+    "Vocal": "Federico Araujo",
     "Suplente": "Wilsmar Dos Santos"
   },
   {
@@ -271,8 +271,8 @@
     "Hora": "15:30",
     "Plan": "2008",
     "Nivel": "2°",
-    "D.A": "Matemática",
-    "Especialidad": "Informática",
+    "D.A": "Informática",
+    "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Matemática II",
     "Presidente": "Álvaro Nuñez",
     "Secretario": "Blas Mello",
@@ -319,7 +319,7 @@
     "Presidente": "Gabriela Barboza",
     "Secretario": "Patricia Coelho",
     "Vocal": "Valeria Equillor",
-    "Suplente": "Mirvam Taruselli"
+    "Suplente": "Miryam Taruselli"
   },
   {
     "activo": true,
@@ -369,8 +369,8 @@
     "Hora": "8:00",
     "Plan": "2023",
     "Nivel": "1°",
-    "D.A": "Química",
-    "Especialidad": "Matemática",
+    "D.A": "Matemática",
+    "Especialidad": "Química",
     "Unidad Curricular/Asignatura": "Matemática para Química",
     "Presidente": "Álvaro Nuñez",
     "Secretario": "Federico Araujo",
@@ -394,7 +394,7 @@
   {
     "activo": true,
     "Fecha": "16/11/2026",
-    "Hora": "8:00",
+    "Hora": "15:30",
     "Plan": "2023",
     "Nivel": "1°",
     "D.A": "Matemática",
@@ -412,10 +412,10 @@
     "Plan": "2023",
     "Nivel": "1°",
     "D.A": "Matemática",
-    "Especialidad": "Electroelectrónica",
-    "Unidad Curricular/Asignatura": "Matemàtica aplicada II",
+    "Especialidad": "Electro. Mecánica",
+    "Unidad Curricular/Asignatura": "Matemática aplicada I",
     "Presidente": "Álvaro Nuñez",
-    "Secretario": "Federico Arauio",
+    "Secretario": "Federico Araujo",
     "Vocal": "Blas Mello",
     "Suplente": "Wilsmar Dos Santos"
   },
@@ -441,21 +441,7 @@
     "Nivel": "2°",
     "D.A": "Matemática",
     "Especialidad": "Electro. Mecánica",
-    "Unidad Curricular/Asignatura": "Matemática aplicada I",
-    "Presidente": "Federico Arauio",
-    "Secretario": "Álvaro Nuñez",
-    "Vocal": "Blas Mello",
-    "Suplente": "Wilsmar Dos Santos"
-  },
-  {
-    "activo": true,
-    "Fecha": "16/11/2026",
-    "Hora": "15:30",
-    "Plan": "2023",
-    "Nivel": "2°",
-    "D.A": "Matemática",
-    "Especialidad": "Electro. Mecánica",
-    "Unidad Curricular/Asignatura": "Matemàtica aplicada II",
+    "Unidad Curricular/Asignatura": "Matemática aplicada II",
     "Presidente": "Federico Araujo",
     "Secretario": "Álvaro Nuñez",
     "Vocal": "Blas Mello",
@@ -515,7 +501,7 @@
     "Presidente": "Gabriela Rochón",
     "Secretario": "Paula Galván",
     "Vocal": "Lucia Gabrielli",
-    "Suplente": "Pablo CardozO"
+    "Suplente": "Pablo Cardozo"
   },
   {
     "activo": true,
@@ -539,7 +525,7 @@
     "Nivel": "2°",
     "D.A": "Derecho",
     "Especialidad": "Profesorado y MT",
-    "Unidad Curricular/Asignatura": "Sistema Educativo Nacional: Marco Normativo",
+    "Unidad Curricular/Asignatura": "Sistema Educativo Nacional: Marco Normativo y",
     "Presidente": "Alexandra Camacho",
     "Secretario": "Erick Bremerman",
     "Vocal": "Álvaro Machado",
@@ -597,9 +583,9 @@
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Educación para la Salud",
     "Presidente": "Guidahi Calleros",
-    "Secretario": "Lourdes Barboza",
-    "Vocal": "Sandra Flores",
-    "Suplente": ""
+    "Secretario": "Marcelo Barreto",
+    "Vocal": "Lourdes Barboza",
+    "Suplente": "Sandra Flores"
   },
   {
     "activo": true,
@@ -610,9 +596,9 @@
     "D.A": "Biología",
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Biología Vegetal I",
-    "Presidente": "Marcelo Barreto",
-    "Secretario": "Sonia Kosolap",
-    "Vocal": "Dario Dalmas",
+    "Presidente": "Sonia kosolap",
+    "Secretario": "Dario Dalmas",
+    "Vocal": "Andrea Prado",
     "Suplente": "Moriana Rebuffo"
   },
   {
@@ -624,7 +610,7 @@
     "D.A": "Biología",
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Biología Vegetal II",
-    "Presidente": "Sonia Kosolap",
+    "Presidente": "Sonia kosolap",
     "Secretario": "Darío Dalmas",
     "Vocal": "Andrea Prado",
     "Suplente": "Moriana Rebuffo"
@@ -639,9 +625,9 @@
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Teoría de las Artes",
     "Presidente": "Luis Araújo",
-    "Secretario": "Mario Ferreyra",
-    "Vocal": "Santiago Pablo",
-    "Suplente": ""
+    "Secretario": "Pablo Sanchez",
+    "Vocal": "Mario Ferreyra",
+    "Suplente": "Santiago Pablo"
   },
   {
     "activo": true,
@@ -651,10 +637,10 @@
     "Nivel": "4°",
     "D.A": "Com. Visual",
     "Especialidad": "Com. Visual",
-    "Unidad Curricular/Asignatura": "Heuristica",
-    "Presidente": "Pablo Sanchez",
-    "Secretario": "Luis Arauio",
-    "Vocal": "Mario Ferreyra",
+    "Unidad Curricular/Asignatura": "Heurística",
+    "Presidente": "Luis Araujo",
+    "Secretario": "Mario Ferreyra",
+    "Vocal": "Pablo Sánchez",
     "Suplente": "Santiago Pablo"
   },
   {
@@ -667,9 +653,9 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "La región del Río de la Plata hasta 1830",
     "Presidente": "Ana Almeida",
-    "Secretario": "Alicia Moreira",
-    "Vocal": "Victor Pizzichillo",
-    "Suplente": ""
+    "Secretario": "Gabriela Moreira",
+    "Vocal": "Alicia Moreira",
+    "Suplente": "Victor Pizzichillo"
   },
   {
     "activo": true,
@@ -681,9 +667,9 @@
     "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Taller integrado de sistemas",
     "Presidente": "Guillermo Uscudum",
-    "Secretario": "Mauricio Vazquez",
-    "Vocal": "Marcos Berttoni",
-    "Suplente": ""
+    "Secretario": "Jorge Ferreira",
+    "Vocal": "Mauricio Vazquez",
+    "Suplente": "Marcos Berttoni"
   },
   {
     "activo": true,
@@ -695,9 +681,9 @@
     "Especialidad": "Inglés",
     "Unidad Curricular/Asignatura": "Taller de enseñanza por competencias",
     "Presidente": "Gabriela Barboza",
-    "Secretario": "Valeria Equillor",
-    "Vocal": "Miriam Taruselli",
-    "Suplente": ""
+    "Secretario": "Verónica Velazquez",
+    "Vocal": "Valeria Equillor",
+    "Suplente": "Miriam Taruselli"
   },
   {
     "activo": true,
@@ -707,11 +693,11 @@
     "Nivel": "4°",
     "D.A": "Inglés",
     "Especialidad": "Inglés",
-    "Unidad Curricular/Asignatura": "Didáctica de la Fonética v evaluación",
+    "Unidad Curricular/Asignatura": "Didáctica de la Fonética y evaluación",
     "Presidente": "Agustin Grattarola",
-    "Secretario": "Miriam Taruselli",
-    "Vocal": "Virginia Reinoso",
-    "Suplente": ""
+    "Secretario": "Virginia Reinoso",
+    "Vocal": "Miriam Taruselli",
+    "Suplente": "Virginia Reinoso"
   },
   {
     "activo": true,
@@ -723,9 +709,9 @@
     "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Fundamentos de la Matemática I",
     "Presidente": "Wilsmar Dos Santos",
-    "Secretario": "Blas Melo",
-    "Vocal": "María Frequeiro",
-    "Suplente": ""
+    "Secretario": "Patricia Vedovatti",
+    "Vocal": "Blas Melo",
+    "Suplente": "María Frequeiro"
   },
   {
     "activo": true,
@@ -737,9 +723,9 @@
     "Especialidad": "Química",
     "Unidad Curricular/Asignatura": "ICP",
     "Presidente": "Ivana Lima",
-    "Secretario": "Fernanda Molina",
-    "Vocal": "Enzo Fagundez",
-    "Suplente": ""
+    "Secretario": "Daniela Viola",
+    "Vocal": "Fernanda Molina",
+    "Suplente": "Enzo Fagundez"
   },
   {
     "activo": true,
@@ -749,11 +735,11 @@
     "Nivel": "3°",
     "D.A": "Química",
     "Especialidad": "Química",
-    "Unidad Curricular/Asignatura": "Análisis v reflexión acerca de prácticas",
+    "Unidad Curricular/Asignatura": "Análisis y reflexión acerca de prácticas",
     "Presidente": "Daniela Viola",
-    "Secretario": "Fernanda Molina",
-    "Vocal": "Enzo Fagundez",
-    "Suplente": ""
+    "Secretario": "Ivana Lima",
+    "Vocal": "Fernanda Molina",
+    "Suplente": "Enzo Fagundez"
   },
   {
     "activo": true,
@@ -765,9 +751,9 @@
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Biología Evolutiva",
     "Presidente": "Darío Dalmas",
-    "Secretario": "Andrea Prado",
-    "Vocal": "Moriana Rebuffo",
-    "Suplente": ""
+    "Secretario": "Sonia kosolap",
+    "Vocal": "Andrea Prado",
+    "Suplente": "Moriana Rebuffo"
   },
   {
     "activo": true,
@@ -779,23 +765,23 @@
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Lectura y escritura académica en Cs.",
     "Presidente": "Virginia Ricciardi",
-    "Secretario": "Marcelo Barreto",
-    "Vocal": "Guidahi Calleros",
-    "Suplente": ""
+    "Secretario": "María Eugenia",
+    "Vocal": "Marcelo Barreto",
+    "Suplente": "Guidahi Calleros"
   },
   {
     "activo": true,
     "Fecha": "23/11/2026",
     "Hora": "8:02",
-    "Plan": "2008",
+    "Plan": "2023",
     "Nivel": "1°",
     "D.A": "Sociología",
     "Especialidad": "Sociología",
-    "Unidad Curricular/Asignatura": "Procesos sociales contemporáneos",
+    "Unidad Curricular/Asignatura": "Sociología",
     "Presidente": "Emilio Arredondo",
-    "Secretario": "Lea Silva",
-    "Vocal": "Fabian Bochia",
-    "Suplente": ""
+    "Secretario": "B. Pagani",
+    "Vocal": "Lea Silva",
+    "Suplente": "Fabian Bochia"
   },
   {
     "activo": true,
@@ -805,11 +791,11 @@
     "Nivel": "3°",
     "D.A": "Derecho",
     "Especialidad": "Derecho/Sociología",
-    "Unidad Curricular/Asignatura": "Ciencias Políticas",
+    "Unidad Curricular/Asignatura": "Procesos sociales contemporáneos / Ciencias Políticas",
     "Presidente": "Fanny Fernandez",
-    "Secretario": "Erick Bremermann",
-    "Vocal": "B. Pagani",
-    "Suplente": ""
+    "Secretario": "Emilio Arredondo",
+    "Vocal": "Erick Bremermann",
+    "Suplente": "B. Pagani"
   },
   {
     "activo": true,
@@ -821,9 +807,9 @@
     "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Introducción al Cálculo",
     "Presidente": "Juan Volpi",
-    "Secretario": "WIlsmar dos Santos",
-    "Vocal": "Luis Dutra",
-    "Suplente": ""
+    "Secretario": "Alvaro Núñez",
+    "Vocal": "WIlsmar dos Santos",
+    "Suplente": "Luis Dutra"
   },
   {
     "activo": true,
@@ -835,8 +821,8 @@
     "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Introducción al Cálculo vectorial",
     "Presidente": "Álvaro Núñez",
-    "Secretario": "José Di Laccio",
-    "Vocal": "Juan Volpi",
+    "Secretario": "WIlsmar dos Santos",
+    "Vocal": "José Di Laccio",
     "Suplente": "Luis Dutra"
   },
   {
@@ -847,11 +833,11 @@
     "Nivel": "3°",
     "D.A": "Física",
     "Especialidad": "Física",
-    "Unidad Curricular/Asignatura": "Computación y tecnologias en ciencias",
+    "Unidad Curricular/Asignatura": "Computación y tecnologías en ciencias",
     "Presidente": "María Maldonado",
-    "Secretario": "Victoria López",
-    "Vocal": "Ruben Rodriguez",
-    "Suplente": ""
+    "Secretario": "Juan Volpi",
+    "Vocal": "Victoria López",
+    "Suplente": "Ruben Rodriguez"
   },
   {
     "activo": true,
@@ -863,9 +849,9 @@
     "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "La naturaleza epistemológica de la Física",
     "Presidente": "Maria Maldonado",
-    "Secretario": "Victoria López",
-    "Vocal": "José Di Laccio",
-    "Suplente": ""
+    "Secretario": "Ruben Rodriguez",
+    "Vocal": "Victoria López",
+    "Suplente": "José Di Laccio"
   },
   {
     "activo": true,
@@ -877,9 +863,9 @@
     "Especialidad": "Geografía",
     "Unidad Curricular/Asignatura": "Análisis Estadísitico de bases sociales y ambientales",
     "Presidente": "Lucia Sicilia",
-    "Secretario": "Rossana Meirelles",
-    "Vocal": "Mariza Rebollo",
-    "Suplente": ""
+    "Secretario": "Patricia de los Santos",
+    "Vocal": "Rossana Meirelles",
+    "Suplente": "Mariza Rebollo"
   },
   {
     "activo": true,
@@ -891,8 +877,8 @@
     "Especialidad": "Idioma Español",
     "Unidad Curricular/Asignatura": "Estilistica y análisis de texto I",
     "Presidente": "Lucia Gabrielli",
-    "Secretario": "Pablo Cardozo",
-    "Vocal": "Paola Gómez",
+    "Secretario": "Maria Sara Martínez",
+    "Vocal": "Pablo Cardozo",
     "Suplente": "Rosmalit Olivera"
   },
   {
@@ -903,9 +889,9 @@
     "Nivel": "3°",
     "D.A": "Español",
     "Especialidad": "Idioma Español",
-    "Unidad Curricular/Asignatura": "Literatura en Lenqua Española II",
-    "Presidente": "Maria Sara Martínez",
-    "Secretario": "María Laura",
+    "Unidad Curricular/Asignatura": "Literatura en Lengua Española II",
+    "Presidente": "María Laura",
+    "Secretario": "Paola Gómez",
     "Vocal": "Pablo Márquez",
     "Suplente": "Paola Borges"
   },
@@ -917,11 +903,11 @@
     "Nivel": "4°",
     "D.A": "Español",
     "Especialidad": "Idioma Español",
-    "Unidad Curricular/Asignatura": "Idioma Español",
+    "Unidad Curricular/Asignatura": "Estilistica y Análisis de Textos II",
     "Presidente": "Pablo Cardozo",
-    "Secretario": "Lucia Gabrielli",
-    "Vocal": "Rosmalit Olivera",
-    "Suplente": ""
+    "Secretario": "Maria Sara Martinez",
+    "Vocal": "Lucia Gabrielli",
+    "Suplente": "Rosmalit Olivera"
   },
   {
     "activo": true,
@@ -931,11 +917,11 @@
     "Nivel": "3°",
     "D.A": "Informática",
     "Especialidad": "Informática",
-    "Unidad Curricular/Asignatura": "Estilistica v Análisis de Textos II",
-    "Presidente": "Maria Sara Martinez",
-    "Secretario": "Jorge Ferreira",
-    "Vocal": "Diego Caballero",
-    "Suplente": ""
+    "Unidad Curricular/Asignatura": "Ciudadanía Digital",
+    "Presidente": "Felipe Machado",
+    "Secretario": "Andrea Barisano",
+    "Vocal": "Jorge Ferreira",
+    "Suplente": "Diego Caballero"
   },
   {
     "activo": true,
@@ -947,8 +933,8 @@
     "Especialidad": "Literatura",
     "Unidad Curricular/Asignatura": "Lingüística General",
     "Presidente": "Rosmalit Olivera",
-    "Secretario": "Paula Galvan",
-    "Vocal": "Paola Gómez",
+    "Secretario": "Fabiana Meneses",
+    "Vocal": "Paula Galvan",
     "Suplente": "Lucia Gabrielli"
   },
   {
@@ -959,9 +945,9 @@
     "Nivel": "3°",
     "D.A": "Literatura",
     "Especialidad": "Literatura",
-    "Unidad Curricular/Asignatura": "Escritura v texto literario en la educación media",
-    "Presidente": "Fabiana Meneses",
-    "Secretario": "Lorena Garcia",
+    "Unidad Curricular/Asignatura": "Escritura y texto literario en la educación media",
+    "Presidente": "Lorena Garcia",
+    "Secretario": "Paola Gómez",
     "Vocal": "Pablo Márquez",
     "Suplente": "Fernando Rocha"
   },
@@ -973,9 +959,9 @@
     "Nivel": "3°",
     "D.A": "Literatura",
     "Especialidad": "Literatura",
-    "Unidad Curricular/Asignatura": "Literatura Uruguava I",
-    "Presidente": "Paola Gómez",
-    "Secretario": "Pablo Márquez",
+    "Unidad Curricular/Asignatura": "Literatura Uruguaya I",
+    "Presidente": "Pablo Márquez",
+    "Secretario": "Paola Gómez",
     "Vocal": "María Laura",
     "Suplente": "Paola Borges"
   },
@@ -987,11 +973,11 @@
     "Nivel": "4°",
     "D.A": "Literatura",
     "Especialidad": "Literatura",
-    "Unidad Curricular/Asignatura": "Literatura Uruguava II",
+    "Unidad Curricular/Asignatura": "Literatura Uruguaya II",
     "Presidente": "María Laura González",
-    "Secretario": "Paola Gómez",
-    "Vocal": "Pablo Márquez",
-    "Suplente": ""
+    "Secretario": "Luis Raineri",
+    "Vocal": "Paola Gómez",
+    "Suplente": "Paola Borges"
   },
   {
     "activo": true,
@@ -1002,10 +988,10 @@
     "D.A": "Matemática",
     "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Lenguaje en las aplicaciones de la Matemática",
-    "Presidente": "Luis Raineri",
-    "Secretario": "Alba Machado",
-    "Vocal": "Juan Volpi",
-    "Suplente": ""
+    "Presidente": "Alba Machado",
+    "Secretario": "Pablo Márquez",
+    "Vocal": "Analí Da Silva",
+    "Suplente": "Juan Volpi"
   },
   {
     "activo": true,
@@ -1017,9 +1003,9 @@
     "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Introducción a la Topología",
     "Presidente": "Juan Volpi",
-    "Secretario": "Anali Da Silva",
-    "Vocal": "Alba Machado",
-    "Suplente": ""
+    "Secretario": "Luis Raineri",
+    "Vocal": "Anali Da Silva",
+    "Suplente": "Alba Machado"
   },
   {
     "activo": true,
@@ -1031,9 +1017,9 @@
     "Especialidad": "Profesorado y MT",
     "Unidad Curricular/Asignatura": "Desarrollo Humano Integral",
     "Presidente": "Pablo Cardozo",
-    "Secretario": "Lucas Barros",
-    "Vocal": "Lorena Silva",
-    "Suplente": "Liliana Flores"
+    "Secretario": "Liliana Flores",
+    "Vocal": "Lucas Barros",
+    "Suplente": "Lorena Silva"
   },
   {
     "activo": true,
@@ -1045,9 +1031,9 @@
     "Especialidad": "Profesorado y MT",
     "Unidad Curricular/Asignatura": "Aprendizaje Neurociencias y Procesos",
     "Presidente": "Pablo Cardozo",
-    "Secretario": "Lorena Silva",
-    "Vocal": "Liliana Flores",
-    "Suplente": ""
+    "Secretario": "Lucas Barros",
+    "Vocal": "Lorena Silva",
+    "Suplente": "Liliana Flores"
   },
   {
     "activo": true,
@@ -1056,12 +1042,12 @@
     "Plan": "2023",
     "Nivel": "3°",
     "D.A": "Área Filosófica",
-    "Especialidad": "Profesorado v MT",
-    "Unidad Curricular/Asignatura": "Filosofia de la Educación",
+    "Especialidad": "Profesorado y MT",
+    "Unidad Curricular/Asignatura": "Filosofía de la Educación",
     "Presidente": "Isabel Rodriquez",
-    "Secretario": "María Nicola",
-    "Vocal": "Jesus Arbiza",
-    "Suplente": ""
+    "Secretario": "Maria Barrios",
+    "Vocal": "María Nicola",
+    "Suplente": "Jesus Arbiza"
   },
   {
     "activo": true,
@@ -1072,10 +1058,10 @@
     "D.A": "Biología",
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Biología Celular",
-    "Presidente": "Jaría Eugenia Fernánde",
-    "Secretario": "Andrea Prado",
-    "Vocal": "Moriana Rebuffo",
-    "Suplente": "Sandra Flores"
+    "Presidente": "María Eugenia Fernández",
+    "Secretario": "Sandra Flores",
+    "Vocal": "Andrea Prado",
+    "Suplente": "Moriana Rebuffo"
   },
   {
     "activo": true,
@@ -1086,10 +1072,10 @@
     "D.A": "Biología",
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Tecnología educativa es. Cs. Biológicas",
-    "Presidente": "aría Eugenia Fernánde",
-    "Secretario": "Andrea Prado",
-    "Vocal": "Moriana Rebuffo",
-    "Suplente": "Sandra Flores"
+    "Presidente": "María Eugenia Fernández",
+    "Secretario": "Sandra Flores",
+    "Vocal": "Andrea Prado",
+    "Suplente": "Moriana Rebuffo"
   },
   {
     "activo": true,
@@ -1101,9 +1087,9 @@
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Técnicas y recursos de la plástica",
     "Presidente": "Maximiliano Goñi",
-    "Secretario": "Santiago Pablo",
-    "Vocal": "Luis Araujo",
-    "Suplente": ""
+    "Secretario": "Pablo Sanchez",
+    "Vocal": "Santiago Pablo",
+    "Suplente": "Luis Araujo"
   },
   {
     "activo": true,
@@ -1113,11 +1099,11 @@
     "Nivel": "1°",
     "D.A": "Derecho",
     "Especialidad": "Derecho",
-    "Unidad Curricular/Asignatura": "Derecho Público",
+    "Unidad Curricular/Asignatura": "Derecho Público I",
     "Presidente": "Alexandra Camacho",
-    "Secretario": "Fabiana Bautista",
-    "Vocal": "Alvaro Machado",
-    "Suplente": "Erick Bremermann"
+    "Secretario": "Erick Bremermann",
+    "Vocal": "Fabiana Bautista",
+    "Suplente": "Alvaro Machado"
   },
   {
     "activo": true,
@@ -1129,9 +1115,9 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Derecho Público I",
     "Presidente": "Alexandra Camacho",
-    "Secretario": "Fabiana Bautista",
-    "Vocal": "Alvaro Machado",
-    "Suplente": "Erick Bremermann"
+    "Secretario": "Erick Bremermann",
+    "Vocal": "Fabiana Bautista",
+    "Suplente": "Alvaro Machado"
   },
   {
     "activo": true,
@@ -1141,11 +1127,11 @@
     "Nivel": "2°",
     "D.A": "Derecho",
     "Especialidad": "Derecho/Sociología",
-    "Unidad Curricular/Asignatura": "Derecho Público II. Constitución Nacional v",
+    "Unidad Curricular/Asignatura": "Derecho Público II. Constitución Nacional y",
     "Presidente": "Alexandra Camacho",
-    "Secretario": "Fabiana Bautista",
-    "Vocal": "Alvaro Machado",
-    "Suplente": "Erick Bremermann"
+    "Secretario": "Erick Bremermann",
+    "Vocal": "Fabiana Bautista",
+    "Suplente": "Alvaro Machado"
   },
   {
     "activo": true,
@@ -1157,9 +1143,9 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Derecho Internacional Público",
     "Presidente": "Alexandra Camacho",
-    "Secretario": "Fabiana Bautista",
-    "Vocal": "Alvaro Machado",
-    "Suplente": "Erick Bremermann"
+    "Secretario": "Erick Bremermann",
+    "Vocal": "Fabiana Bautista",
+    "Suplente": "Alvaro Machado"
   },
   {
     "activo": true,
@@ -1171,9 +1157,9 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Derecho Laboral",
     "Presidente": "Alvaro Machado",
-    "Secretario": "Fabiana Bautista",
-    "Vocal": "Erick Bremermann",
-    "Suplente": ""
+    "Secretario": "Erick Bremermann",
+    "Vocal": "Fabiana Bautista",
+    "Suplente": "Isabel Rodriquez"
   },
   {
     "activo": true,
@@ -1183,11 +1169,11 @@
     "Nivel": "1°",
     "D.A": "Filosofía",
     "Especialidad": "Filosofía",
-    "Unidad Curricular/Asignatura": "Historia de la Filosofía Antiqua v Medieval",
+    "Unidad Curricular/Asignatura": "Historia de la Filosofía Antigua y Medieval",
     "Presidente": "Rosario Piastri",
-    "Secretario": "Jesús Arbiza",
-    "Vocal": "Isabel Rodriquez",
-    "Suplente": "Adán Chiappa"
+    "Secretario": "Adán Chiappa",
+    "Vocal": "Jesús Arbiza",
+    "Suplente": ""
   },
   {
     "activo": true,
@@ -1197,10 +1183,10 @@
     "Nivel": "2°",
     "D.A": "Filosofía",
     "Especialidad": "Filosofía",
-    "Unidad Curricular/Asignatura": "Epistemologia",
+    "Unidad Curricular/Asignatura": "Epistemología",
     "Presidente": "María Nicola",
-    "Secretario": "Isabel Rodriquez",
-    "Vocal": "Silvana Rasedo",
+    "Secretario": "Silvana Rasedo",
+    "Vocal": "Isabel Rodriquez",
     "Suplente": "Daina Capurro"
   },
   {
@@ -1213,8 +1199,8 @@
     "Especialidad": "Filosofía",
     "Unidad Curricular/Asignatura": "Metafísica",
     "Presidente": "Adán Chiappa",
-    "Secretario": "Jesús Arbiza",
-    "Vocal": "Rosario Piastri",
+    "Secretario": "Rosario Piastri",
+    "Vocal": "Jesús Arbiza",
     "Suplente": "Isabel Rodriquez"
   },
   {
@@ -1225,11 +1211,11 @@
     "Nivel": "4°",
     "D.A": "Filosofía",
     "Especialidad": "Filosofía",
-    "Unidad Curricular/Asignatura": "Historia de la Filosofia en América Latina",
-    "Presidente": "Adán Chiappa",
-    "Secretario": "Jesús Arbiza",
-    "Vocal": "Rosario Piastri",
-    "Suplente": "Isabel Rodriquez"
+    "Unidad Curricular/Asignatura": "Historia de la Filosofía en América Latina",
+    "Presidente": "Isabel Rodriquez",
+    "Secretario": "Adán Chiappa",
+    "Vocal": "Jesús Arbiza",
+    "Suplente": "Rosario Piastri"
   },
   {
     "activo": true,
@@ -1239,11 +1225,11 @@
     "Nivel": "1°",
     "D.A": "Geografía",
     "Especialidad": "Geografía",
-    "Unidad Curricular/Asignatura": "Geografía Fisica I",
-    "Presidente": "Rosana Meirelles",
+    "Unidad Curricular/Asignatura": "Geografía Física I",
+    "Presidente": "Mariza Rebollo",
     "Secretario": "Emilio Silva",
-    "Vocal": "Marcela Pérez",
-    "Suplente": "Mariza Rebollo"
+    "Vocal": "Rosana Meirelles",
+    "Suplente": "Marcela Pérez"
   },
   {
     "activo": true,
@@ -1253,11 +1239,11 @@
     "Nivel": "2°",
     "D.A": "Geografía",
     "Especialidad": "Geografía",
-    "Unidad Curricular/Asignatura": "Geografía Fisica II. Hidrología y Geomorfologia.",
-    "Presidente": "Mariza Rebollo",
-    "Secretario": "Rosana Meirelles",
+    "Unidad Curricular/Asignatura": "Geografía Física I",
+    "Presidente": "Emilio Silva",
+    "Secretario": "Mariza Rebollo",
     "Vocal": "Marcela Pérez",
-    "Suplente": "Emilio Silva"
+    "Suplente": "Rosana Meirelles"
   },
   {
     "activo": true,
@@ -1267,11 +1253,25 @@
     "Nivel": "2°",
     "D.A": "Geografía",
     "Especialidad": "Geografía",
-    "Unidad Curricular/Asignatura": "Cartografia y Sistemas de Información",
-    "Presidente": "Lucia Sicilia",
+    "Unidad Curricular/Asignatura": "Geografía Física II. Hidrología y Geomorfología.",
+    "Presidente": "Mariza Rebollo",
+    "Secretario": "Emilio Silva",
+    "Vocal": "Rosana Meirelles",
+    "Suplente": "Marcela Pérez"
+  },
+  {
+    "activo": true,
+    "Fecha": "27/11/2026",
+    "Hora": "8:00",
+    "Plan": "2023",
+    "Nivel": "2°",
+    "D.A": "Geografía",
+    "Especialidad": "Geografía",
+    "Unidad Curricular/Asignatura": "Cartografía y Sistemas de Información",
+    "Presidente": "Patricia de los Santos",
     "Secretario": "Ana Urroz",
-    "Vocal": "Marcela Pérez",
-    "Suplente": "Patricia de los Santos"
+    "Vocal": "Lucia Sicilia",
+    "Suplente": "Marcela Pérez"
   },
   {
     "activo": true,
@@ -1281,7 +1281,7 @@
     "Nivel": "4°",
     "D.A": "Geografía",
     "Especialidad": "Geografía",
-    "Unidad Curricular/Asignatura": "Geografía de los Paises Desarrollados",
+    "Unidad Curricular/Asignatura": "Geografía de los Países Desarrollados",
     "Presidente": "Ana Urroz",
     "Secretario": "Patricia de los Santos",
     "Vocal": "Lucia Sicilia",
@@ -1297,9 +1297,9 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "De las Primeras Civilizaciones a la Edad",
     "Presidente": "Soledad Rodríquez",
-    "Secretario": "Marianela",
-    "Vocal": "Alicia Moreira",
-    "Suplente": "Ana Almeida"
+    "Secretario": "Ana Almeida",
+    "Vocal": "Marianela",
+    "Suplente": "Alicia Moreira"
   },
   {
     "activo": true,
@@ -1311,9 +1311,9 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "Historia Local",
     "Presidente": "Soledad Rodriquez",
-    "Secretario": "Alicia Moreira",
-    "Vocal": "",
-    "Suplente": ""
+    "Secretario": "Ana Almeida",
+    "Vocal": "Marianela",
+    "Suplente": "Alicia Moreira"
   },
   {
     "activo": true,
@@ -1325,9 +1325,9 @@
     "Especialidad": "Inglés",
     "Unidad Curricular/Asignatura": "Didáctica de la lengua y la evaluación",
     "Presidente": "Gabriela Barboza",
-    "Secretario": "Patricia Coelho",
-    "Vocal": "Miriam Taruselli",
-    "Suplente": "Verónica Velazquez"
+    "Secretario": "Verónica Velazquez",
+    "Vocal": "Patricia Coelho",
+    "Suplente": "Miriam Taruselli"
   },
   {
     "activo": true,
@@ -1339,9 +1339,9 @@
     "Especialidad": "Inglés",
     "Unidad Curricular/Asignatura": "Lenguas Extranjeras I",
     "Presidente": "Esther Aris",
-    "Secretario": "Flora Rodriquez",
-    "Vocal": "Wilsmar Dos Santos",
-    "Suplente": "Maria Luisa Realini"
+    "Secretario": "Patricia Vedovatti",
+    "Vocal": "Alba Machado",
+    "Suplente": "Flora Rodriquez"
   },
   {
     "activo": true,
@@ -1352,16 +1352,16 @@
     "D.A": "Matemática",
     "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Evolución del Pensamiento Matemático",
-    "Presidente": "Patricia Vedovatti",
-    "Secretario": "Anali Da Silva",
+    "Presidente": "Anali Da Silva",
+    "Secretario": "Wilsmar Dos Santos",
     "Vocal": "Alba Machado",
-    "Suplente": ""
+    "Suplente": "Maria Luisa Realini"
   },
   {
     "activo": true,
     "Fecha": "27/11/2026",
     "Hora": "8:00",
-    "Plan": "2008",
+    "Plan": "2023",
     "Nivel": "4°",
     "D.A": "Matemática",
     "Especialidad": "Matemática",
@@ -1375,15 +1375,15 @@
     "activo": true,
     "Fecha": "27/11/2026",
     "Hora": "8:00",
-    "Plan": "2023",
+    "Plan": "2008",
     "Nivel": "4°",
     "D.A": "Matemática",
     "Especialidad": "Matemática",
-    "Unidad Curricular/Asignatura": "Estrategias de Aprendizaje y de Enseñanza de Matemática",
-    "Presidente": "Alba Machado",
-    "Secretario": "Wilsmar Dos Santos",
-    "Vocal": "Patricia Vedovatti",
-    "Suplente": "Anali Da Silva"
+    "Unidad Curricular/Asignatura": "Estrategias de Aprendizaje y de Enseñanza de",
+    "Presidente": "Wilsmar Dos Santos",
+    "Secretario": "Patricia Vedovatti",
+    "Vocal": "Anali Da Silva",
+    "Suplente": ""
   },
   {
     "activo": true,
@@ -1394,10 +1394,10 @@
     "D.A": "Química",
     "Especialidad": "Química",
     "Unidad Curricular/Asignatura": "Química Inorgánica I",
-    "Presidente": "Enrique Savio",
-    "Secretario": "Verónica Crusi",
-    "Vocal": "Enzo Fagundez",
-    "Suplente": ""
+    "Presidente": "Verónica Crusi",
+    "Secretario": "Enzo Fagundez",
+    "Vocal": "Enrique Savio",
+    "Suplente": "Verónica Crusi"
   },
   {
     "activo": true,
@@ -1407,11 +1407,11 @@
     "Nivel": "4°",
     "D.A": "Química",
     "Especialidad": "Química",
-    "Unidad Curricular/Asignatura": "Quimica Ambiental v Toxicologia",
+    "Unidad Curricular/Asignatura": "Química Ambiental y Toxicología",
     "Presidente": "Verónica Crusi",
-    "Secretario": "Enzo Fagundez",
-    "Vocal": "Enrique Savio",
-    "Suplente": ""
+    "Secretario": "Enrique Savio",
+    "Vocal": "Enzo Fagundez",
+    "Suplente": "Javier Texeira"
   },
   {
     "activo": true,
@@ -1422,9 +1422,9 @@
     "D.A": "Biología",
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Los seres vivos en su ambiente",
-    "Presidente": "Javier Texeira",
-    "Secretario": "Moriana Rebuffo",
-    "Vocal": "Darío Dalmas",
+    "Presidente": "Guidahi Calleros",
+    "Secretario": "Darío Dalmas",
+    "Vocal": "Moriana Rebuffo",
     "Suplente": "Marcelo Barreto"
   },
   {
@@ -1436,10 +1436,10 @@
     "D.A": "Com. Visual",
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Imagen I",
-    "Presidente": "Luis Arauio",
-    "Secretario": "Santiago Pablo",
-    "Vocal": "Silvia García Aquiar",
-    "Suplente": "Mari Rodriquez"
+    "Presidente": "Luis Araujo",
+    "Secretario": "Silvia García Aguiar",
+    "Vocal": "Mari Rodriguez",
+    "Suplente": "Santiago Pablo"
   },
   {
     "activo": true,
@@ -1450,9 +1450,9 @@
     "D.A": "Com. Visual",
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Imagen II",
-    "Presidente": "Silvia García Aquiar",
-    "Secretario": "Mari Rodriquez",
-    "Vocal": "Maximiliano Goñi",
+    "Presidente": "Silvia García Aguiar",
+    "Secretario": "Maximiliano Goñi",
+    "Vocal": "Mari Rodriguez",
     "Suplente": "Santiago Pablo"
   },
   {
@@ -1464,9 +1464,9 @@
     "D.A": "Com. Visual",
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Imagen III",
-    "Presidente": "Luis Araújo",
+    "Presidente": "Maximiliano Goñi",
     "Secretario": "Mari Rodríquez",
-    "Vocal": "Maximiliano Goñi",
+    "Vocal": "Luis Araújo",
     "Suplente": "Santiago Pablo"
   },
   {
@@ -1478,9 +1478,9 @@
     "D.A": "Com. Visual",
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Imagen A",
-    "Presidente": "Silvia García Aquiar",
-    "Secretario": "Santiago Pablo",
-    "Vocal": "Maximiliano Goñi",
+    "Presidente": "Silvia García Aguiar",
+    "Secretario": "Maximiliano Goñi",
+    "Vocal": "Santiago Pablo",
     "Suplente": "Mari Rodríquez"
   },
   {
@@ -1492,10 +1492,10 @@
     "D.A": "Com. Visual",
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Imagen B",
-    "Presidente": "Silvia García Aquiar",
-    "Secretario": "Santiago Pablo",
-    "Vocal": "Mari Rodríquez",
-    "Suplente": "Maximiliano Goñi"
+    "Presidente": "Silvia García Aguiar",
+    "Secretario": "Mari Rodríquez",
+    "Vocal": "Santiago Pablo",
+    "Suplente": "Lea Silva"
   },
   {
     "activo": true,
@@ -1506,9 +1506,9 @@
     "D.A": "Sociología",
     "Especialidad": "Sociología",
     "Unidad Curricular/Asignatura": "Ciudadanía y DD.HH",
-    "Presidente": "Lea Silva",
-    "Secretario": "B. Pagani",
-    "Vocal": "Fabian Bochia",
+    "Presidente": "Fabian Bochia",
+    "Secretario": "Maximiliano Goñi",
+    "Vocal": "B. Pagani",
     "Suplente": "Emilio Arredondo"
   },
   {
@@ -1521,6 +1521,20 @@
     "Especialidad": "Filosofía",
     "Unidad Curricular/Asignatura": "Profundización en metodologías activas para el",
     "Presidente": "Verónica Francia",
+    "Secretario": "Jose Echevarria",
+    "Vocal": "Daina Capurro",
+    "Suplente": "Isabel Rodriquez"
+  },
+  {
+    "activo": true,
+    "Fecha": "30/11/2026",
+    "Hora": "8:00",
+    "Plan": "2023",
+    "Nivel": "3°",
+    "D.A": "Filosofía",
+    "Especialidad": "Filosofía",
+    "Unidad Curricular/Asignatura": "Métodos y lenguaje filosóficos",
+    "Presidente": "Verónica Francia",
     "Secretario": "Daina Capurro",
     "Vocal": "Jose Echevarria",
     "Suplente": "Isabel Rodriquez"
@@ -1530,27 +1544,13 @@
     "Fecha": "30/11/2026",
     "Hora": "8:00",
     "Plan": "2023",
-    "Nivel": "3°",
-    "D.A": "Filosofia",
-    "Especialidad": "Filosofia",
-    "Unidad Curricular/Asignatura": "Métodos v lenguaje filosóficos",
-    "Presidente": "Verónica Francia",
-    "Secretario": "Isabel Rodriquez",
-    "Vocal": "Jose Echevarria",
-    "Suplente": "Daina Capurro"
-  },
-  {
-    "activo": true,
-    "Fecha": "30/11/2026",
-    "Hora": "8:00",
-    "Plan": "2023",
     "Nivel": "2°",
     "D.A": "Matemática",
-    "Especialidad": "Fisica",
+    "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Sistemas Lineales",
     "Presidente": "Álvaro Núñez",
-    "Secretario": "Wilsmar Dos Santos",
-    "Vocal": "Patricia Vedovatti",
+    "Secretario": "Patricia Vedovatti",
+    "Vocal": "Wilsmar Dos Santos",
     "Suplente": "Juan Volpi"
   },
   {
@@ -1563,9 +1563,9 @@
     "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Modelado computacional en Física",
     "Presidente": "José Di Laccio",
-    "Secretario": "Maria",
-    "Vocal": "Giselle Vargas",
-    "Suplente": "Maria Maldonado"
+    "Secretario": "Giselle Vargas",
+    "Vocal": "Maria Maldonado",
+    "Suplente": "Mario Silva"
   },
   {
     "activo": true,
@@ -1575,7 +1575,7 @@
     "Nivel": "4°",
     "D.A": "Física",
     "Especialidad": "Física",
-    "Unidad Curricular/Asignatura": "Provecto de Física",
+    "Unidad Curricular/Asignatura": "Proyecto de Física",
     "Presidente": "Maria Maldonado",
     "Secretario": "José Di Laccio",
     "Vocal": "Giselle Vargas",
@@ -1587,11 +1587,11 @@
     "Hora": "8:00",
     "Plan": "2023",
     "Nivel": "3°",
-    "D.A": "Geografia",
+    "D.A": "Geografía",
     "Especialidad": "Geografía",
-    "Unidad Curricular/Asignatura": "Cartografia v SIG aplicado a la docencia",
-    "Presidente": "Alejandro Perez",
-    "Secretario": "Patricia de los Santos",
+    "Unidad Curricular/Asignatura": "Cartografía y SIG aplicado a la docencia",
+    "Presidente": "Patricia de los Santos",
+    "Secretario": "Alejandro Perez",
     "Vocal": "Lucia Sicilia",
     "Suplente": "Mariza Rebollo"
   },
@@ -1602,11 +1602,11 @@
     "Plan": "2023",
     "Nivel": "1°",
     "D.A": "Español",
-    "Especialidad": "Español",
-    "Unidad Curricular/Asignatura": "Idioma Español",
+    "Especialidad": "Idioma Español",
+    "Unidad Curricular/Asignatura": "Latín II",
     "Presidente": "Sixto Monetta",
-    "Secretario": "Inés González",
-    "Vocal": "Paula Galván",
+    "Secretario": "Paula Galván",
+    "Vocal": "Inés González",
     "Suplente": "Esther Aris"
   },
   {
@@ -1617,10 +1617,10 @@
     "Nivel": "2°",
     "D.A": "Español",
     "Especialidad": "Idioma Español",
-    "Unidad Curricular/Asignatura": "Lingüística |",
+    "Unidad Curricular/Asignatura": "Lingüística I",
     "Presidente": "Pablo Cardozo",
-    "Secretario": "Lucía Gabrielli",
-    "Vocal": "Rosmalit Olivera",
+    "Secretario": "Rosmalit Olivera",
+    "Vocal": "Lucía Gabrielli",
     "Suplente": "Inés González"
   },
   {
@@ -1632,10 +1632,10 @@
     "D.A": "Español",
     "Especialidad": "Idioma Español",
     "Unidad Curricular/Asignatura": "Gramática Histórica I",
-    "Presidente": "Sixto Monetta",
-    "Secretario": "Pau",
-    "Vocal": "Inés González",
-    "Suplente": "Paula Galván"
+    "Presidente": "Inés González",
+    "Secretario": "Sixto Monetta",
+    "Vocal": "Paula Galván",
+    "Suplente": ""
   },
   {
     "activo": true,
@@ -1645,10 +1645,10 @@
     "Nivel": "3°",
     "D.A": "Informática",
     "Especialidad": "Informática",
-    "Unidad Curricular/Asignatura": "Metodología de la educación a distancia v REA",
+    "Unidad Curricular/Asignatura": "Metodología de la educación a distancia y REA",
     "Presidente": "Eduardo Cantos",
-    "Secretario": "Jorge Ferreira",
-    "Vocal": "Marcos Bertoni",
+    "Secretario": "Marcos Bertoni",
+    "Vocal": "Jorge Ferreira",
     "Suplente": "Felipe Machado"
   },
   {
@@ -1661,9 +1661,9 @@
     "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Proyecto didáctico de extensión",
     "Presidente": "Felipe Machado",
-    "Secretario": "Marcos Bertoni",
-    "Vocal": "Andrea Barisano",
-    "Suplente": "Diego Caballero"
+    "Secretario": "Wilsmar Dos Santos",
+    "Vocal": "Marcos Bertoni",
+    "Suplente": "Juan Volpi"
   },
   {
     "activo": true,
@@ -1674,9 +1674,9 @@
     "D.A": "Matemática",
     "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Geometría",
-    "Presidente": "Álvaro Nuñez",
-    "Secretario": "Juan Volpi",
-    "Vocal": "Wilsmar Dos Santos",
+    "Presidente": "Diego Caballero",
+    "Secretario": "Andrea Barisano",
+    "Vocal": "Álvaro Nuñez",
     "Suplente": "Patricia Vedovatti"
   },
   {
@@ -1689,9 +1689,9 @@
     "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Análisis I",
     "Presidente": "Luis Dutra",
-    "Secretario": "Jose Gerfauo",
-    "Vocal": "María Frequeiro",
-    "Suplente": "Juan Volpi"
+    "Secretario": "Juan Volpi",
+    "Vocal": "Jose Gerfauo",
+    "Suplente": "María Frequeiro"
   },
   {
     "activo": true,
@@ -1703,8 +1703,8 @@
     "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Profundización",
     "Presidente": "María Frequeiro",
-    "Secretario": "Jose Gerfauo",
-    "Vocal": "Juan Volpi",
+    "Secretario": "Juan Volpi",
+    "Vocal": "Jose Gerfauo",
     "Suplente": "Luis Dutra"
   },
   {
@@ -1714,10 +1714,10 @@
     "Plan": "2023",
     "Nivel": "1°",
     "D.A": "Física",
-    "Especialidad": "Quimica",
-    "Unidad Curricular/Asignatura": "Fisica para Química",
-    "Presidente": "Ruben Rodriquez",
-    "Secretario": "Andrea Torales",
+    "Especialidad": "Química",
+    "Unidad Curricular/Asignatura": "Física para Química",
+    "Presidente": "Andrea Torales",
+    "Secretario": "Ruben Rodriquez",
     "Vocal": "María Lopez",
     "Suplente": "Martia Maldonado"
   },
@@ -1729,11 +1729,11 @@
     "Nivel": "2°",
     "D.A": "Física",
     "Especialidad": "Química",
-    "Unidad Curricular/Asignatura": "Fisica II",
+    "Unidad Curricular/Asignatura": "Física II",
     "Presidente": "Martia Maldonado",
-    "Secretario": "Maria Lopez",
+    "Secretario": "Mario Silva",
     "Vocal": "Ruben Rodriquez",
-    "Suplente": "Mario Silva"
+    "Suplente": "Maria Lopez"
   },
   {
     "activo": true,
@@ -1743,10 +1743,10 @@
     "Nivel": "1°",
     "D.A": "Física",
     "Especialidad": "Electroelectrónica",
-    "Unidad Curricular/Asignatura": "Elementos de la Fisica para la Electro",
+    "Unidad Curricular/Asignatura": "Elementos de la Física para la Electro",
     "Presidente": "Ruben Rodriquez",
-    "Secretario": "Mario Silva",
-    "Vocal": "Andrea Torales",
+    "Secretario": "Andrea Torales",
+    "Vocal": "Mario Silva",
     "Suplente": "Giselle Vargas"
   },
   {
@@ -1757,11 +1757,11 @@
     "Nivel": "1°",
     "D.A": "Física",
     "Especialidad": "Electro. Mecánica",
-    "Unidad Curricular/Asignatura": "Fisica Aplicada",
-    "Presidente": "Mario Silva",
-    "Secretario": "Giselle Vargas",
-    "Vocal": "Ruben Rodriguez",
-    "Suplente": "Andrea Torales"
+    "Unidad Curricular/Asignatura": "Física Aplicada",
+    "Presidente": "Andrea Torales",
+    "Secretario": "Ruben Rodriguez",
+    "Vocal": "Giselle Vargas",
+    "Suplente": "Mario Silva"
   },
   {
     "activo": true,
@@ -1772,10 +1772,10 @@
     "D.A": "Com. Visual",
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Técnicas y medios de la visualidad",
-    "Presidente": "Luis Araujo",
+    "Presidente": "Olga Marquez",
     "Secretario": "Christian Acosta",
-    "Vocal": "Mari Rodriquez",
-    "Suplente": "Olga Marquez"
+    "Vocal": "Luis Araujo",
+    "Suplente": "Mari Rodriquez"
   },
   {
     "activo": true,
@@ -1783,12 +1783,12 @@
     "Hora": "8:00",
     "Plan": "2023",
     "Nivel": "1°",
-    "D.A": "Sociologia",
+    "D.A": "Sociología",
     "Especialidad": "Sociología",
-    "Unidad Curricular/Asignatura": "Sociología del Trabajo v el Ocio",
-    "Presidente": "Bochia",
-    "Secretario": "Emilio Arredondo",
-    "Vocal": "Fabian",
+    "Unidad Curricular/Asignatura": "Sociología del Trabajo y el Ocio",
+    "Presidente": "Emilio Arredondo",
+    "Secretario": "B. Pagani",
+    "Vocal": "Fabian Bochia",
     "Suplente": "Lea Silva"
   },
   {
@@ -1798,11 +1798,11 @@
     "Plan": "2023",
     "Nivel": "1°",
     "D.A": "Derecho",
-    "Especialidad": "Derecho/Sociología",
+    "Especialidad": "Derecho",
     "Unidad Curricular/Asignatura": "Historia del Derecho",
     "Presidente": "Álvaro Machado",
-    "Secretario": "Angela Martinez",
-    "Vocal": "Fanny Fernandez",
+    "Secretario": "Fanny Fernandez",
+    "Vocal": "Angela Martinez",
     "Suplente": "Fabiana Bautista"
   },
   {
@@ -1815,9 +1815,9 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Principios Generales del Derecho",
     "Presidente": "Álvaro Machado",
-    "Secretario": "Fabiana Bautista",
-    "Vocal": "Fanny Fernandez",
-    "Suplente": ""
+    "Secretario": "Fanny Fernandez",
+    "Vocal": "Fabiana Bautista",
+    "Suplente": "Fabiana Bautista"
   },
   {
     "activo": true,
@@ -1829,8 +1829,8 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Derecho Privado I",
     "Presidente": "Alvaro Machado",
-    "Secretario": "Fanny Fernandez",
-    "Vocal": "Angela Martínez",
+    "Secretario": "Angela Martínez",
+    "Vocal": "Fanny Fernandez",
     "Suplente": "Fabiana Bautista"
   },
   {
@@ -1843,8 +1843,8 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Derecho Privado II",
     "Presidente": "Angela Martínez",
-    "Secretario": "Alvaro Machado",
-    "Vocal": "Fanny Fernandez",
+    "Secretario": "Fanny Fernandez",
+    "Vocal": "Alvaro Machado",
     "Suplente": "Fabiana Bautista"
   },
   {
@@ -1857,8 +1857,8 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Filosofía del Derecho",
     "Presidente": "Ángela Martinez",
-    "Secretario": "Fanny Fernandez",
-    "Vocal": "Alvaro Machado",
+    "Secretario": "Alvaro Machado",
+    "Vocal": "Fanny Fernandez",
     "Suplente": "Fabiana Bautista"
   },
   {
@@ -1869,10 +1869,10 @@
     "Nivel": "1°",
     "D.A": "Filosofía",
     "Especialidad": "Filosofía",
-    "Unidad Curricular/Asignatura": "Etica",
+    "Unidad Curricular/Asignatura": "Ética",
     "Presidente": "Daina Capurro",
-    "Secretario": "Adán Chiappa",
-    "Vocal": "Verònica Francia",
+    "Secretario": "Verónica Francia",
+    "Vocal": "Adán Chiappa",
     "Suplente": "José Echevarria"
   },
   {
@@ -1884,9 +1884,9 @@
     "D.A": "Filosofía",
     "Especialidad": "Filosofía",
     "Unidad Curricular/Asignatura": "Filosofía Política",
-    "Presidente": "Verònica Francia",
-    "Secretario": "Daina Capurro",
-    "Vocal": "Adán Chiappa",
+    "Presidente": "Verónica Francia",
+    "Secretario": "Adán Chiappa",
+    "Vocal": "Daina Capurro",
     "Suplente": "José Echevarria"
   },
   {
@@ -1897,10 +1897,10 @@
     "Nivel": "4°",
     "D.A": "Filosofía",
     "Especialidad": "Filosofía",
-    "Unidad Curricular/Asignatura": "Filosofia teórica",
+    "Unidad Curricular/Asignatura": "Filosofía teórica",
     "Presidente": "Isabel Rodriguez",
-    "Secretario": "Joela Barrios",
-    "Vocal": "Daina Capurro",
+    "Secretario": "Daina Capurro",
+    "Vocal": "Joela Barrios",
     "Suplente": "José Echevarria"
   },
   {
@@ -1911,10 +1911,10 @@
     "Nivel": "3°",
     "D.A": "Filosofía",
     "Especialidad": "Filosofía",
-    "Unidad Curricular/Asignatura": "Historia de la Filosofia Contemporánea I",
+    "Unidad Curricular/Asignatura": "Historia de la Filosofía Contemporánea I",
     "Presidente": "Isabel Rodriquez",
-    "Secretario": "María Nicola",
-    "Vocal": "Joela Barrios",
+    "Secretario": "Joela Barrios",
+    "Vocal": "María Nicola",
     "Suplente": "Tomas Prado"
   },
   {
@@ -1927,8 +1927,8 @@
     "Especialidad": "Filosofía",
     "Unidad Curricular/Asignatura": "Historia de la Filosofía en el Uruguay",
     "Presidente": "Joela Barrios",
-    "Secretario": "Maria Nicola",
-    "Vocal": "Isabel Rodriquez",
+    "Secretario": "Isabel Rodriquez",
+    "Vocal": "Maria Nicola",
     "Suplente": "Tomas Prado"
   },
   {
@@ -1941,8 +1941,8 @@
     "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Probabilidad y Estadística",
     "Presidente": "Álvaro Núñez",
-    "Secretario": "Blas Mello",
-    "Vocal": "Luis Raineri",
+    "Secretario": "Luis Raineri",
+    "Vocal": "Blas Mello",
     "Suplente": "Patricia Vedovatti"
   },
   {
@@ -1955,8 +1955,8 @@
     "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Cálculos de Varias Variables",
     "Presidente": "Álvaro Núñez",
-    "Secretario": "Luis Raineri",
-    "Vocal": "Blas Mello",
+    "Secretario": "Blas Mello",
+    "Vocal": "Luis Raineri",
     "Suplente": "Patricia Vedovatti"
   },
   {
@@ -1967,10 +1967,10 @@
     "Nivel": "3°",
     "D.A": "Física",
     "Especialidad": "Física",
-    "Unidad Curricular/Asignatura": "Fluidos. Fisica Térmica v Ondas",
+    "Unidad Curricular/Asignatura": "Fluidos. Física Térmica y Ondas",
     "Presidente": "Andrea Torales",
-    "Secretario": "Mario Silva",
-    "Vocal": "Emilio Silva Garia",
+    "Secretario": "Emilio Silva Garia",
+    "Vocal": "Mario Silva",
     "Suplente": "María Maldonado"
   },
   {
@@ -1983,8 +1983,8 @@
     "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Laboratorios de fenómenos clásicos",
     "Presidente": "Victoria López",
-    "Secretario": "Emilio Silva Garia",
-    "Vocal": "José Di Laccio",
+    "Secretario": "José Di Laccio",
+    "Vocal": "Emilio Silva Garia",
     "Suplente": "Maria Maldonado"
   },
   {
@@ -2007,12 +2007,12 @@
     "Hora": "8:02",
     "Plan": "2023",
     "Nivel": "4°",
-    "D.A": "Geografia",
+    "D.A": "Geografía",
     "Especialidad": "Geografía",
     "Unidad Curricular/Asignatura": "Seminario de Inv. Interdisciplinario",
     "Presidente": "Marcela Pérez",
-    "Secretario": "Ana Urroz",
-    "Vocal": "Emilio Silva",
+    "Secretario": "Emilio Silva",
+    "Vocal": "Ana Urroz",
     "Suplente": "Lucia Sicilia"
   },
   {
@@ -2025,8 +2025,8 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "Epistemología de la Historia y su enseñanza",
     "Presidente": "Ana Almeida",
-    "Secretario": "Alicia Moreira",
-    "Vocal": "Víctor Pizzichillo",
+    "Secretario": "Víctor Pizzichillo",
+    "Vocal": "Alicia Moreira",
     "Suplente": "Soledad Rodríguez"
   },
   {
@@ -2039,8 +2039,8 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "Historiografía y Filosofía de la Historia",
     "Presidente": "Marianela",
-    "Secretario": "Ana Almeida",
-    "Vocal": "Soledad Rodríquez",
+    "Secretario": "Soledad Rodríquez",
+    "Vocal": "Ana Almeida",
     "Suplente": "Cristian Cames"
   },
   {
@@ -2051,10 +2051,10 @@
     "Nivel": "4°",
     "D.A": "Historia",
     "Especialidad": "Historia",
-    "Unidad Curricular/Asignatura": "Historia Universal S.XX v XXI",
-    "Presidente": "Víctor Pizzichillo",
-    "Secretario": "Gabriela Moreira",
-    "Vocal": "Ana Almeida",
+    "Unidad Curricular/Asignatura": "Historia Universal S.XX y XXI",
+    "Presidente": "Luian Grilli",
+    "Secretario": "Víctor Pizzichillo",
+    "Vocal": "Gabriela Moreira",
     "Suplente": "Alicia Moreira"
   },
   {
@@ -2067,8 +2067,8 @@
     "Especialidad": "Español/Literatura",
     "Unidad Curricular/Asignatura": "Literatura Grecolatina",
     "Presidente": "Daniel Quijano",
-    "Secretario": "Maria Laura González",
-    "Vocal": "Pablo Márquez",
+    "Secretario": "Pablo Márquez",
+    "Vocal": "Maria Laura González",
     "Suplente": "Isabel Flores"
   },
   {
@@ -2079,10 +2079,10 @@
     "Nivel": "3°",
     "D.A": "Literatura",
     "Especialidad": "Idioma Español",
-    "Unidad Curricular/Asignatura": "Literatura en Lenqua Española I",
+    "Unidad Curricular/Asignatura": "Literatura en Lengua Española I",
     "Presidente": "Paola Borges",
-    "Secretario": "M.L. González",
-    "Vocal": "Paola Gómez",
+    "Secretario": "Paola Gómez",
+    "Vocal": "M.L. González",
     "Suplente": "Isabel Flores"
   },
   {
@@ -2095,8 +2095,8 @@
     "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Programación I",
     "Presidente": "Nancy Lopez",
-    "Secretario": "Marcos Berttoni",
-    "Vocal": "Guillermo Uscudum",
+    "Secretario": "Guillermo Uscudum",
+    "Vocal": "Marcos Berttoni",
     "Suplente": "Diego Caballero"
   },
   {
@@ -2109,8 +2109,8 @@
     "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Base de Datos",
     "Presidente": "Marcos Berttoni",
-    "Secretario": "Nancy Lopez",
-    "Vocal": "Eduardo Cantos",
+    "Secretario": "Eduardo Cantos",
+    "Vocal": "Nancy Lopez",
     "Suplente": "Diego Caballero"
   },
   {
@@ -2123,8 +2123,8 @@
     "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Robótica",
     "Presidente": "Eduardo Cantos",
-    "Secretario": "Nancy Lopez",
-    "Vocal": "Guillermo Uscudum",
+    "Secretario": "Guillermo Uscudum",
+    "Vocal": "Nancy Lopez",
     "Suplente": "Diego Caballero"
   },
   {
@@ -2137,8 +2137,8 @@
     "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Sistemas Operativos",
     "Presidente": "Guillermo Uscudum",
-    "Secretario": "Marcos Berttoni",
-    "Vocal": "Nancy Lopez",
+    "Secretario": "Nancy Lopez",
+    "Vocal": "Marcos Berttoni",
     "Suplente": "Diego Caballero"
   },
   {
@@ -2151,8 +2151,8 @@
     "Especialidad": "Inglés",
     "Unidad Curricular/Asignatura": "Taller de Producción Oral",
     "Presidente": "Agustin Grattarola",
-    "Secretario": "Verónica Velázquez",
-    "Vocal": "Virginia Reinoso",
+    "Secretario": "Virginia Reinoso",
+    "Vocal": "Verónica Velázquez",
     "Suplente": "Miriam Taruselli"
   },
   {
@@ -2165,8 +2165,8 @@
     "Especialidad": "Inglés",
     "Unidad Curricular/Asignatura": "Aspectos Literarios",
     "Presidente": "Cecilia Machiavello",
-    "Secretario": "Luisa Realini",
-    "Vocal": "Verónica Velázquez",
+    "Secretario": "Cecilia Machiavello",
+    "Vocal": "Luisa Realini",
     "Suplente": "Gabriela Barboza"
   },
   {
@@ -2177,10 +2177,10 @@
     "Nivel": "3°",
     "D.A": "Inglés",
     "Especialidad": "Inglés",
-    "Unidad Curricular/Asignatura": "Lengua v Literatura I",
+    "Unidad Curricular/Asignatura": "Lengua y Literatura I",
     "Presidente": "Luisa Realini",
-    "Secretario": "María V. Reinoso",
-    "Vocal": "Cecilia Machiavello",
+    "Secretario": "Cecilia Machiavello",
+    "Vocal": "María V. Reinoso",
     "Suplente": "Gabriela Barboza"
   },
   {
@@ -2193,8 +2193,8 @@
     "Especialidad": "Inglés",
     "Unidad Curricular/Asignatura": "Lengua y Literatura II",
     "Presidente": "Agustin Grattarola",
-    "Secretario": "María V. Reinoso",
-    "Vocal": "Verònica Velázquez",
+    "Secretario": "Verónica Velázquez",
+    "Vocal": "María V. Reinoso",
     "Suplente": "Miriam Taruselli"
   },
   {
@@ -2207,8 +2207,8 @@
     "Especialidad": "Literatura",
     "Unidad Curricular/Asignatura": "Literatura Española I: Medieval",
     "Presidente": "Daniel Quijano",
-    "Secretario": "Paola Borges",
-    "Vocal": "Maria Laura",
+    "Secretario": "Maria Laura",
+    "Vocal": "Paola Borges",
     "Suplente": "Isabel Flores"
   },
   {
@@ -2221,8 +2221,8 @@
     "Especialidad": "Literatura",
     "Unidad Curricular/Asignatura": "Literatura Iberoamericana I",
     "Presidente": "Fernando Rocha",
-    "Secretario": "Lorena García",
-    "Vocal": "Paola Gómez",
+    "Secretario": "Paola Gómez",
+    "Vocal": "Lorena García",
     "Suplente": "Paola Borges"
   },
   {
@@ -2235,8 +2235,8 @@
     "Especialidad": "Literatura",
     "Unidad Curricular/Asignatura": "Innovación en educación literaria",
     "Presidente": "Isabel Flores",
-    "Secretario": "Femando Rocha",
-    "Vocal": "Lorena García",
+    "Secretario": "Lorena García",
+    "Vocal": "Femando Rocha",
     "Suplente": "Paola Borges"
   },
   {
@@ -2247,10 +2247,10 @@
     "Nivel": "2°",
     "D.A": "Matemática",
     "Especialidad": "Matemática",
-    "Unidad Curricular/Asignatura": "Geometría  Algebra Lineal I",
+    "Unidad Curricular/Asignatura": "Geometría Algebra Lineal I",
     "Presidente": "Federico Araujo",
-    "Secretario": "Luis Dutra",
-    "Vocal": "Juan Volpi",
+    "Secretario": "Juan Volpi",
+    "Vocal": "Luis Dutra",
     "Suplente": "Wilsmar Dos Santos"
   },
   {
@@ -2261,10 +2261,10 @@
     "Nivel": "3°",
     "D.A": "Matemática",
     "Especialidad": "Matemática",
-    "Unidad Curricular/Asignatura": "Probabilidad v Estadística I",
+    "Unidad Curricular/Asignatura": "Probabilidad y Estadística I",
     "Presidente": "Juan Volpi",
-    "Secretario": "Luis Dutra",
-    "Vocal": "Federico Arauio",
+    "Secretario": "Federico Araujo",
+    "Vocal": "Luis Dutra",
     "Suplente": "Wilsmar Dos Santos"
   },
   {
@@ -2277,8 +2277,8 @@
     "Especialidad": "Química",
     "Unidad Curricular/Asignatura": "Química Orgánica",
     "Presidente": "Verónica Crusi",
-    "Secretario": "Javier Texeira",
-    "Vocal": "Enrique Savio",
+    "Secretario": "Enrique Savio",
+    "Vocal": "Javier Texeira",
     "Suplente": "Enzo Fagundez"
   },
   {
@@ -2291,8 +2291,8 @@
     "Especialidad": "Química",
     "Unidad Curricular/Asignatura": "Química de las Biomoléculas",
     "Presidente": "Verónica Crusi",
-    "Secretario": "Javier Texeira",
-    "Vocal": "Enrique Savio",
+    "Secretario": "Enrique Savio",
+    "Vocal": "Javier Texeira",
     "Suplente": "Enzo Fagundez"
   },
   {
@@ -2305,8 +2305,8 @@
     "Especialidad": "Química",
     "Unidad Curricular/Asignatura": "Fisicoquímica I",
     "Presidente": "Enrique Savio",
-    "Secretario": "Javier Texeira",
-    "Vocal": "Verónica Crusi",
+    "Secretario": "Verónica Crusi",
+    "Vocal": "Javier Texeira",
     "Suplente": "Enzo Fagundez"
   },
   {
@@ -2314,13 +2314,13 @@
     "Fecha": "4/12/2026",
     "Hora": "15:30",
     "Plan": "2023",
-    "Nivel": "1",
-    "D.A": "Electroelectróni",
+    "Nivel": "1°",
+    "D.A": "Electroelectrónica",
     "Especialidad": "Electroelectrónica",
     "Unidad Curricular/Asignatura": "Teoría general de circuitos",
     "Presidente": "Camilo Monetta",
-    "Secretario": "Marcelo Correa",
-    "Vocal": "Pablo Ferreira",
+    "Secretario": "Pablo Ferreira",
+    "Vocal": "Marcelo Correa",
     "Suplente": "Martín Finozzi"
   },
   {
@@ -2329,12 +2329,12 @@
     "Hora": "15:30",
     "Plan": "2023",
     "Nivel": "3°",
-    "D.A": "Electroelectróni",
+    "D.A": "Electroelectrónica",
     "Especialidad": "Electroelectrónica",
-    "Unidad Curricular/Asignatura": "Modelos teóricos del amplificador operacional v",
+    "Unidad Curricular/Asignatura": "Modelos teóricos del amplificador operacional y",
     "Presidente": "Marcelo Correa",
-    "Secretario": "Pablo Ferreira",
-    "Vocal": "Camilo Monetta",
+    "Secretario": "Camilo Monetta",
+    "Vocal": "Pablo Ferreira",
     "Suplente": "Martín Finozzi"
   },
   {
@@ -2342,13 +2342,13 @@
     "Fecha": "4/12/2026",
     "Hora": "15:30",
     "Plan": "2023",
-    "Nivel": "20",
-    "D.A": "Electro.",
+    "Nivel": "2°",
+    "D.A": "Electro. Mecánica",
     "Especialidad": "Electro. Mecánica",
     "Unidad Curricular/Asignatura": "Introducción a la Electricidad Automotriz",
     "Presidente": "Juan Varesi",
-    "Secretario": "Martin Finozzi",
-    "Vocal": "Marcelo Correa",
+    "Secretario": "Marcelo Correa",
+    "Vocal": "Martin Finozzi",
     "Suplente": "Richard Correa"
   },
   {
@@ -2358,11 +2358,11 @@
     "Plan": "2023",
     "Nivel": "1°",
     "D.A": "A.Pedagógica",
-    "Especialidad": "Profesorado v MT",
-    "Unidad Curricular/Asignatura": "Teorias Pedagógicas",
+    "Especialidad": "Profesorado y MT",
+    "Unidad Curricular/Asignatura": "Teorías Pedagógicas",
     "Presidente": "Mario Sosa",
-    "Secretario": "Jesus Arbiza",
-    "Vocal": "Mario Sosa",
+    "Secretario": "Mario Sosa",
+    "Vocal": "Jesus Arbiza",
     "Suplente": "Gabriela Moreira"
   },
   {
@@ -2373,10 +2373,10 @@
     "Nivel": "1°",
     "D.A": "Á.Pedagógica",
     "Especialidad": "Profesorado y MT",
-    "Unidad Curricular/Asignatura": "Pedagogia I",
+    "Unidad Curricular/Asignatura": "Pedagogía I",
     "Presidente": "Mario Sosa",
-    "Secretario": "Mario Sosa",
-    "Vocal": "Jesus Arbiza",
+    "Secretario": "Jesus Arbiza",
+    "Vocal": "Mario Sosa",
     "Suplente": "Gabriela Moreira"
   },
   {
@@ -2386,11 +2386,11 @@
     "Plan": "2008",
     "Nivel": "2°",
     "D.A": "A.Pedagógica",
-    "Especialidad": "Profesorado v MT",
+    "Especialidad": "Profesorado y MT",
     "Unidad Curricular/Asignatura": "Pedagogía II",
     "Presidente": "Mario Sosa",
-    "Secretario": "Mario Sosa",
-    "Vocal": "Jesus Arbiza",
+    "Secretario": "Jesus Arbiza",
+    "Vocal": "Mario Sosa",
     "Suplente": "Gabriela Moreira"
   },
   {
@@ -2403,8 +2403,8 @@
     "Especialidad": "Profesorado y MT",
     "Unidad Curricular/Asignatura": "Sistema Educativo Nacional: Políticas",
     "Presidente": "Álvaro Machado",
-    "Secretario": "Erick Bremerman",
-    "Vocal": "Alexandra Camacho",
+    "Secretario": "Alexandra Camacho",
+    "Vocal": "Erick Bremerman",
     "Suplente": "Fanny Fernandez"
   },
   {
@@ -2417,8 +2417,8 @@
     "Especialidad": "Profesorado y MT",
     "Unidad Curricular/Asignatura": "Problemas epistemológicos y pensamiento",
     "Presidente": "Isabel Rodriquez",
-    "Secretario": "Maria Barrios",
-    "Vocal": "María Nicola",
+    "Secretario": "María Nicola",
+    "Vocal": "Maria Barrios",
     "Suplente": "Jesus Arbiza"
   },
   {
@@ -2431,8 +2431,8 @@
     "Especialidad": "Profesorado y MT",
     "Unidad Curricular/Asignatura": "Investigación Educativa: Elaboración de",
     "Presidente": "Gabriela Moreira",
-    "Secretario": "Fabian Bochia",
-    "Vocal": "Fanny Fernández",
+    "Secretario": "Fanny Fernández",
+    "Vocal": "Fabian Bochia",
     "Suplente": "Nidia Angelo"
   },
   {
@@ -2440,13 +2440,13 @@
     "Fecha": "9/12/2026",
     "Hora": "8:00",
     "Plan": "2008",
-    "Nivel": "3",
+    "Nivel": "3°",
     "D.A": "A.Sociológica",
-    "Especialidad": "Profesorado v MT",
+    "Especialidad": "Profesorado y MT",
     "Unidad Curricular/Asignatura": "Investigación Educativa",
     "Presidente": "Fanny Fernández",
-    "Secretario": "Gabriela Moreira",
-    "Vocal": "Fabian Bochia",
+    "Secretario": "Fabian Bochia",
+    "Vocal": "Gabriela Moreira",
     "Suplente": "Nidia Angelo"
   },
   {
@@ -2456,11 +2456,11 @@
     "Plan": "2008",
     "Nivel": "1°",
     "D.A": "Biología",
-    "Especialidad": "Biologia",
-    "Unidad Curricular/Asignatura": "Biofisica",
+    "Especialidad": "Biología",
+    "Unidad Curricular/Asignatura": "Biofísica",
     "Presidente": "Marcelo Barreto",
-    "Secretario": "Moriana Rebuffo",
-    "Vocal": "Darío Dalmas",
+    "Secretario": "Darío Dalmas",
+    "Vocal": "Moriana Rebuffo",
     "Suplente": "Guidahi Calleros"
   },
   {
@@ -2469,12 +2469,12 @@
     "Hora": "8:00",
     "Plan": "2023",
     "Nivel": "1°",
-    "D.A": "Biologia",
+    "D.A": "Biología",
     "Especialidad": "Biología",
-    "Unidad Curricular/Asignatura": "Bioquimica",
+    "Unidad Curricular/Asignatura": "Bioquímica",
     "Presidente": "Lourdes Barboza",
-    "Secretario": "Virginia Ricciardi",
-    "Vocal": "Javier Texeira",
+    "Secretario": "Javier Texeira",
+    "Vocal": "Virginia Ricciardi",
     "Suplente": "Virginia Ricciardi"
   },
   {
@@ -2482,13 +2482,13 @@
     "Fecha": "11/12/2026",
     "Hora": "8:00",
     "Plan": "2023",
-    "Nivel": "2",
+    "Nivel": "2°",
     "D.A": "Biología",
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Genética",
     "Presidente": "Virginia Ricciardi",
-    "Secretario": "Lourdes Barboza",
-    "Vocal": "Javier Texeira",
+    "Secretario": "Javier Texeira",
+    "Vocal": "Lourdes Barboza",
     "Suplente": "Virginia Ricciardi"
   },
   {
@@ -2497,12 +2497,12 @@
     "Hora": "8:00",
     "Plan": "2023",
     "Nivel": "3°",
-    "D.A": "Biologia",
+    "D.A": "Biología",
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Investigación en enseñanza de las Cs. Biol.",
     "Presidente": "Moriana Rebuffo",
-    "Secretario": "Marcelo Barreto",
-    "Vocal": "Andrea Prado",
+    "Secretario": "Andrea Prado",
+    "Vocal": "Marcelo Barreto",
     "Suplente": "Guidahi Calleros"
   },
   {
@@ -2515,8 +2515,8 @@
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Prácticas de Observación en situaciones",
     "Presidente": "María Eugenia",
-    "Secretario": "Andrea Prado",
-    "Vocal": "Moriana Rebuffo",
+    "Secretario": "Moriana Rebuffo",
+    "Vocal": "Andrea Prado",
     "Suplente": "Guidahi Calleros"
   },
   {
@@ -2529,8 +2529,8 @@
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Diseño I",
     "Presidente": "Ángel Gallino",
-    "Secretario": "Santiago Pablo",
-    "Vocal": "Luis Arauio",
+    "Secretario": "Luis Araujo",
+    "Vocal": "Santiago Pablo",
     "Suplente": "Rosario Alfonso"
   },
   {
@@ -2538,13 +2538,13 @@
     "Fecha": "11/12/2026",
     "Hora": "8:00",
     "Plan": "2023",
-    "Nivel": "20",
+    "Nivel": "2°",
     "D.A": "Com. Visual",
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Diseño II",
     "Presidente": "Angel Gallino",
-    "Secretario": "Luis Arauio",
-    "Vocal": "Santiago Pablo",
+    "Secretario": "Santiago Pablo",
+    "Vocal": "Luis Araujo",
     "Suplente": "Rosario Alfonso"
   },
   {
@@ -2557,8 +2557,8 @@
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Diseño III",
     "Presidente": "Ángel Gallino",
-    "Secretario": "Rosario Alfonso",
-    "Vocal": "Luis Arauio",
+    "Secretario": "Luis Araujo",
+    "Vocal": "Rosario Alfonso",
     "Suplente": "Santiago Pablo."
   },
   {
@@ -2568,11 +2568,11 @@
     "Plan": "2008",
     "Nivel": "3°",
     "D.A": "Com. Visual",
-    "Especialidad": "Com, Visual",
+    "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Diseño III",
     "Presidente": "Angel Gallino",
-    "Secretario": "Rosario Alfonso",
-    "Vocal": "Luis Araujo",
+    "Secretario": "Luis Araujo",
+    "Vocal": "Rosario Alfonso",
     "Suplente": "Santiago Pablo"
   },
   {
@@ -2585,22 +2585,22 @@
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Diseño IV",
     "Presidente": "Santiago Pablo",
-    "Secretario": "Rosario Alfonso",
-    "Vocal": "Maximiliano Goñi",
+    "Secretario": "Maximiliano Goñi",
+    "Vocal": "Rosario Alfonso",
     "Suplente": ""
   },
   {
     "activo": true,
     "Fecha": "11/12/2026",
     "Hora": "8:02",
-    "Plan": "2008",
+    "Plan": "2023",
     "Nivel": "1°",
     "D.A": "Derecho",
     "Especialidad": "Derecho",
     "Unidad Curricular/Asignatura": "Conceptos fundamentales del Derecho",
     "Presidente": "Laura Conti",
-    "Secretario": "Erick Bremermann",
-    "Vocal": "Maria Realini",
+    "Secretario": "Maria Realini",
+    "Vocal": "Erick Bremermann",
     "Suplente": "A. Camacho"
   },
   {
@@ -2613,8 +2613,8 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Principios Fundamentales del Derecho",
     "Presidente": "Laura Conti",
-    "Secretario": "Erick Bremermann",
-    "Vocal": "A. Camacho",
+    "Secretario": "A. Camacho",
+    "Vocal": "Erick Bremermann",
     "Suplente": "Maria Realini"
   },
   {
@@ -2624,11 +2624,11 @@
     "Plan": "2023",
     "Nivel": "3°",
     "D.A": "Derecho",
-    "Especialidad": "Derecho/Sociologia",
+    "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "La evolución histórica de a terminología jurídica",
     "Presidente": "Laura Conti",
-    "Secretario": "Maria Realini",
-    "Vocal": "Fanny Femandez",
+    "Secretario": "Fanny Femandez",
+    "Vocal": "Maria Realini",
     "Suplente": "Fabiana Bautista"
   },
   {
@@ -2641,8 +2641,8 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Derecho Penal",
     "Presidente": "Erick Bremermann",
-    "Secretario": "Laura Conti",
-    "Vocal": "Maria Realini",
+    "Secretario": "Maria Realini",
+    "Vocal": "Laura Conti",
     "Suplente": "A. Camacho"
   },
   {
@@ -2655,8 +2655,8 @@
     "Especialidad": "Filosofía",
     "Unidad Curricular/Asignatura": "Creación Filosófica",
     "Presidente": "Verónica Francia",
-    "Secretario": "Jose Echevarría",
-    "Vocal": "Maria Barrios",
+    "Secretario": "Maria Barrios",
+    "Vocal": "Jose Echevarría",
     "Suplente": "Mònica Rodriquez"
   },
   {
@@ -2666,11 +2666,11 @@
     "Plan": "2023",
     "Nivel": "4°",
     "D.A": "Filosofía",
-    "Especialidad": "Filosofia",
+    "Especialidad": "Filosofía",
     "Unidad Curricular/Asignatura": "Abordajes interdisciplinarios de la Filosofía",
     "Presidente": "Verónica Francia",
-    "Secretario": "Jose Echevarría",
-    "Vocal": "Mònica Rodriquez",
+    "Secretario": "Mònica Rodriquez",
+    "Vocal": "Jose Echevarría",
     "Suplente": "Maria Barrios"
   },
   {
@@ -2683,8 +2683,8 @@
     "Especialidad": "Geografía",
     "Unidad Curricular/Asignatura": "Dinàmicas socioeconòmicas globales",
     "Presidente": "Rosana Meirelles",
-    "Secretario": "Alejandro Pérez",
-    "Vocal": "Lucia Sicilia",
+    "Secretario": "Lucia Sicilia",
+    "Vocal": "Alejandro Pérez",
     "Suplente": "Emilio Silva"
   },
   {
@@ -2697,8 +2697,8 @@
     "Especialidad": "Geografía",
     "Unidad Curricular/Asignatura": "Geografía de América Latina",
     "Presidente": "Lucia Sicilia",
-    "Secretario": "Emilio Silva",
-    "Vocal": "Mariza Rebollo",
+    "Secretario": "Mariza Rebollo",
+    "Vocal": "Emilio Silva",
     "Suplente": "Rosana Meirelles"
   },
   {
@@ -2711,8 +2711,8 @@
     "Especialidad": "Geografía",
     "Unidad Curricular/Asignatura": "Taller de apoyo a la Didáctica",
     "Presidente": "Rosana Meirelles",
-    "Secretario": "Emilio Silva",
-    "Vocal": "Alejandro Pérez",
+    "Secretario": "Alejandro Pérez",
+    "Vocal": "Emilio Silva",
     "Suplente": "Lucia Sicilia"
   },
   {
@@ -2725,8 +2725,8 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "América y América Latina hasta 1830",
     "Presidente": "Eduviges de Thy",
-    "Secretario": "Marianela",
-    "Vocal": "Regino López",
+    "Secretario": "Regino López",
+    "Vocal": "Marianela",
     "Suplente": "Alicia Moreira"
   },
   {
@@ -2734,13 +2734,13 @@
     "Fecha": "11/12/2026",
     "Hora": "8:00",
     "Plan": "2023",
-    "Nivel": "20",
+    "Nivel": "2°",
     "D.A": "Historia",
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "Historia de las Expresiones Artísiticas",
     "Presidente": "Ana Almeida",
-    "Secretario": "Soledad Rodriquez",
-    "Vocal": "Cristian Cames",
+    "Secretario": "Cristian Cames",
+    "Vocal": "Soledad Rodriquez",
     "Suplente": "Regino López"
   },
   {
@@ -2753,8 +2753,8 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "América Latina de 1830 a comienzo del Siglo",
     "Presidente": "Alicia Moreira",
-    "Secretario": "Eduviges de Thy",
-    "Vocal": "Regino López",
+    "Secretario": "Regino López",
+    "Vocal": "Eduviges de Thy",
     "Suplente": "Marianela"
   },
   {
@@ -2767,8 +2767,8 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "Prácticas e Innovaciones en la enseñanza de la",
     "Presidente": "Soledad Rodríguez",
-    "Secretario": "Cristian Cames",
-    "Vocal": "Ana Almeida",
+    "Secretario": "Ana Almeida",
+    "Vocal": "Cristian Cames",
     "Suplente": "Eduviges de Thy"
   },
   {
@@ -2781,9 +2781,9 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "Taller de investigación histórica",
     "Presidente": "Ana Almeida",
-    "Secretario": "Eduviges de Thy",
-    "Vocal": "Cristian Cames",
-    "Suplente": "Rodríguez"
+    "Secretario": "Cristian Cames",
+    "Vocal": "Eduviges de Thy",
+    "Suplente": "Soledad Rodríguez"
   },
   {
     "activo": true,
@@ -2795,8 +2795,8 @@
     "Especialidad": "Idioma Español",
     "Unidad Curricular/Asignatura": "Lingüística III",
     "Presidente": "Ines Gonzalez",
-    "Secretario": "Pablo Cardozo",
-    "Vocal": "Esther Aris",
+    "Secretario": "Esther Aris",
+    "Vocal": "Pablo Cardozo",
     "Suplente": "Paula Galván"
   },
   {
@@ -2809,8 +2809,8 @@
     "Especialidad": "Idioma Español",
     "Unidad Curricular/Asignatura": "Lingüítica IV",
     "Presidente": "Pablo Cardozo",
-    "Secretario": "Esther Aris",
-    "Vocal": "Ines Gonzalez",
+    "Secretario": "Ines Gonzalez",
+    "Vocal": "Esther Aris",
     "Suplente": "Paula Galván"
   },
   {
@@ -2823,8 +2823,8 @@
     "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Inteligencia Artificial",
     "Presidente": "Eduardo Cantos",
-    "Secretario": "Diego Caballero",
-    "Vocal": "Jorge Ferreira",
+    "Secretario": "Jorge Ferreira",
+    "Vocal": "Diego Caballero",
     "Suplente": "Mauricio Vázquez"
   },
   {
@@ -2832,13 +2832,13 @@
     "Fecha": "11/12/2026",
     "Hora": "15:30",
     "Plan": "2008",
-    "Nivel": "3",
+    "Nivel": "3°",
     "D.A": "Informática",
     "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Redes del Computador I",
     "Presidente": "Diego Caballero",
-    "Secretario": "Mauricio Vázquez",
-    "Vocal": "Jorge Ferreira",
+    "Secretario": "Jorge Ferreira",
+    "Vocal": "Mauricio Vázquez",
     "Suplente": "Eduardo Cantos"
   },
   {
@@ -2851,8 +2851,8 @@
     "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Taller integrador II",
     "Presidente": "Diego Caballero",
-    "Secretario": "Eduardo Cantos",
-    "Vocal": "Jorge Ferreira",
+    "Secretario": "Jorge Ferreira",
+    "Vocal": "Eduardo Cantos",
     "Suplente": "Mauricio Vázquez"
   },
   {
@@ -2861,12 +2861,12 @@
     "Hora": "8:00",
     "Plan": "2023",
     "Nivel": "3°",
-    "D.A": "Inalés",
+    "D.A": "Inglés",
     "Especialidad": "Inglés",
     "Unidad Curricular/Asignatura": "Lingüística I",
     "Presidente": "Verónica Velazquez",
-    "Secretario": "Cecilia Machiavello",
-    "Vocal": "Luisa Realini",
+    "Secretario": "Luisa Realini",
+    "Vocal": "Cecilia Machiavello",
     "Suplente": "Agustin Grattarola"
   },
   {
@@ -2879,8 +2879,8 @@
     "Especialidad": "Inglés",
     "Unidad Curricular/Asignatura": "Lingüística II",
     "Presidente": "Agustín Grattarola",
-    "Secretario": "Luisa Realini",
-    "Vocal": "Verónica Velazquez",
+    "Secretario": "Verónica Velazquez",
+    "Vocal": "Luisa Realini",
     "Suplente": "Cecilia Machiavello"
   },
   {
@@ -2893,8 +2893,8 @@
     "Especialidad": "Literatura",
     "Unidad Curricular/Asignatura": "Literatura Española III",
     "Presidente": "Paola Borges",
-    "Secretario": "Daniel Quijano",
-    "Vocal": "Pablo Márquez",
+    "Secretario": "Pablo Márquez",
+    "Vocal": "Daniel Quijano",
     "Suplente": "Maria Laura"
   },
   {
@@ -2907,8 +2907,8 @@
     "Especialidad": "Literatura",
     "Unidad Curricular/Asignatura": "Literatura Iberoamericana II",
     "Presidente": "Rosana Miglionico",
-    "Secretario": "Lorena García",
-    "Vocal": "Paola Gómez",
+    "Secretario": "Paola Gómez",
+    "Vocal": "Lorena García",
     "Suplente": "Fernando Rocha"
   },
   {
@@ -2921,21 +2921,21 @@
     "Especialidad": "Literatura",
     "Unidad Curricular/Asignatura": "Literatura iberoamericana II",
     "Presidente": "Fernando Rocha",
-    "Secretario": "Rosana Miglionico",
-    "Vocal": "Paola Gómez",
-    "Suplente": "Lorena García"
+    "Secretario": "Enzo Faqundez",
+    "Vocal": "Rosana Miglionico",
+    "Suplente": "Paola Gómez"
   },
   {
     "activo": true,
     "Fecha": "11/12/2026",
     "Hora": "8:00",
     "Plan": "2023",
-    "Nivel": "2",
+    "Nivel": "2°",
     "D.A": "Química",
     "Especialidad": "Química",
     "Unidad Curricular/Asignatura": "Química Experimental Dimensión Analítica",
-    "Presidente": "Enzo Faqundez",
-    "Secretario": "Enrique Savio",
+    "Presidente": "Enrique Savio",
+    "Secretario": "Lorena García",
     "Vocal": "Martin Quiroga",
     "Suplente": "Javier Texeira"
   },
@@ -2946,11 +2946,11 @@
     "Plan": "2023",
     "Nivel": "3°",
     "D.A": "Química",
-    "Especialidad": "Quimica",
+    "Especialidad": "Química",
     "Unidad Curricular/Asignatura": "Química Inorgánica II",
     "Presidente": "Verónica Crusi",
-    "Secretario": "Fernanda Molina",
-    "Vocal": "Javier Texeira",
+    "Secretario": "Javier Texeira",
+    "Vocal": "Fernanda Molina",
     "Suplente": "Ivana Lima"
   },
   {
@@ -2963,8 +2963,8 @@
     "Especialidad": "Química",
     "Unidad Curricular/Asignatura": "Fisicoquímica II",
     "Presidente": "Martin Quiroga",
-    "Secretario": "Enzo Fagundez",
-    "Vocal": "Enrique Savio",
+    "Secretario": "Enrique Savio",
+    "Vocal": "Enzo Fagundez",
     "Suplente": "Javier Texeira"
   },
   {
@@ -2973,12 +2973,12 @@
     "Hora": "15:30",
     "Plan": "2023",
     "Nivel": "3°",
-    "D.A": "Electroelectróni",
+    "D.A": "Electroelectrónica",
     "Especialidad": "Electroelectrónica",
     "Unidad Curricular/Asignatura": "Redes industriales",
     "Presidente": "Martín Finozzi",
-    "Secretario": "Pablo Ferreira",
-    "Vocal": "Camilo Monetta",
+    "Secretario": "Camilo Monetta",
+    "Vocal": "Pablo Ferreira",
     "Suplente": "Marcelo Correa"
   },
   {
@@ -2987,12 +2987,12 @@
     "Hora": "15:30",
     "Plan": "2023",
     "Nivel": "1°",
-    "D.A": "Electro.",
+    "D.A": "Electro. Mecánica",
     "Especialidad": "Electro. Mecánica",
     "Unidad Curricular/Asignatura": "Taller I",
     "Presidente": "Juan Varesi",
-    "Secretario": "Richard Correa",
-    "Vocal": "Martin Finozzi",
+    "Secretario": "Martin Finozzi",
+    "Vocal": "Richard Correa",
     "Suplente": "Marcelo Correa"
   },
   {
@@ -3005,8 +3005,8 @@
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Biología Animal I",
     "Presidente": "Virginia Ricciardi",
-    "Secretario": "Lourdes Barboza",
-    "Vocal": "Darío Dalmas",
+    "Secretario": "Darío Dalmas",
+    "Vocal": "Lourdes Barboza",
     "Suplente": "Andrea Prado"
   },
   {
@@ -3019,8 +3019,8 @@
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Zoología I",
     "Presidente": "Virginia Ricciardi",
-    "Secretario": "Lourdes Barboza",
-    "Vocal": "Darío Dalmas",
+    "Secretario": "Darío Dalmas",
+    "Vocal": "Lourdes Barboza",
     "Suplente": "Andrea Prado"
   },
   {
@@ -3029,12 +3029,12 @@
     "Hora": "8:00",
     "Plan": "2008",
     "Nivel": "4°",
-    "D.A": "Biologia",
+    "D.A": "Biología",
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Zoología II",
     "Presidente": "Virginia Ricciardi",
-    "Secretario": "Lourdes Barboza",
-    "Vocal": "Dario Dalmas",
+    "Secretario": "Dario Dalmas",
+    "Vocal": "Lourdes Barboza",
     "Suplente": "Andrea Prado"
   },
   {
@@ -3044,11 +3044,11 @@
     "Plan": "2023",
     "Nivel": "4°",
     "D.A": "Biología",
-    "Especialidad": "Biologia",
+    "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Biología Animal II",
     "Presidente": "Dario Dalmas",
-    "Secretario": "Andrea Prado",
-    "Vocal": "Virginia Ricciardi",
+    "Secretario": "Virginia Ricciardi",
+    "Vocal": "Andrea Prado",
     "Suplente": "Lourdes Barboza"
   },
   {
@@ -3061,8 +3061,8 @@
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Historia del Arte I",
     "Presidente": "Regino Lopez",
-    "Secretario": "Luján Grilli",
-    "Vocal": "Cristian Cames",
+    "Secretario": "Cristian Cames",
+    "Vocal": "Luján Grilli",
     "Suplente": "Eduviges de Thy"
   },
   {
@@ -3075,8 +3075,8 @@
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Historia del Arte II",
     "Presidente": "Regino Lopez",
-    "Secretario": "Luján Grilli",
-    "Vocal": "Eduviges de Thy",
+    "Secretario": "Eduviges de Thy",
+    "Vocal": "Luján Grilli",
     "Suplente": "Cristian Cames"
   },
   {
@@ -3089,8 +3089,8 @@
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Historia del Arte IV",
     "Presidente": "Eduviges de Thy",
-    "Secretario": "Cristian Cames",
-    "Vocal": "Regino Lopez",
+    "Secretario": "Regino Lopez",
+    "Vocal": "Cristian Cames",
     "Suplente": "Luián Grilli"
   },
   {
@@ -3103,9 +3103,9 @@
     "Especialidad": "Com. Visual",
     "Unidad Curricular/Asignatura": "Gramatica del lenguaje visual",
     "Presidente": "Olga Marquez",
-    "Secretario": "Mari Rodríquez",
-    "Vocal": "Christian Acosta",
-    "Suplente": "Luis Araujo"
+    "Secretario": "Christian Acosta",
+    "Vocal": "Lea Silva",
+    "Suplente": "Mari Rodríquez"
   },
   {
     "activo": true,
@@ -3116,8 +3116,8 @@
     "D.A": "Sociología",
     "Especialidad": "Sociología",
     "Unidad Curricular/Asignatura": "Teoría Social I",
-    "Presidente": "Lea Silva",
-    "Secretario": "Fabian Bochia",
+    "Presidente": "Fabian Bochia",
+    "Secretario": "Luis Araujo",
     "Vocal": "Emilio Arredondo",
     "Suplente": "B. Pagani"
   },
@@ -3131,8 +3131,8 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Seminario de Derechos Humanos",
     "Presidente": "Álvaro Machado",
-    "Secretario": "Alexandra Camacho",
-    "Vocal": "Lea Silva",
+    "Secretario": "Lea Silva",
+    "Vocal": "Alexandra Camacho",
     "Suplente": "Fabiana Bautista"
   },
   {
@@ -3141,12 +3141,12 @@
     "Hora": "8:02",
     "Plan": "2023",
     "Nivel": "4°",
-    "D.A": "Sociologia",
-    "Especialidad": "Derecho/Sociologia",
+    "D.A": "Sociología",
+    "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Derecho Comercial",
     "Presidente": "Álvaro Machado",
-    "Secretario": "Alexandra Camacho",
-    "Vocal": "Fabiana Bautista",
+    "Secretario": "Fabiana Bautista",
+    "Vocal": "Alexandra Camacho",
     "Suplente": ""
   },
   {
@@ -3156,11 +3156,11 @@
     "Plan": "2023",
     "Nivel": "3°",
     "D.A": "Física",
-    "Especialidad": "Fisica",
+    "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Dificultades del aprendizaje en Física",
     "Presidente": "Victoria López",
-    "Secretario": "Giselle Vargas",
-    "Vocal": "Ruben Rodriguez",
+    "Secretario": "Ruben Rodriguez",
+    "Vocal": "Giselle Vargas",
     "Suplente": "Andrea Torales"
   },
   {
@@ -3173,8 +3173,8 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "Artes v lenguajes contemporáneos",
     "Presidente": "Ana Almeida",
-    "Secretario": "Soledad Rodriquez",
-    "Vocal": "Regino López",
+    "Secretario": "Regino López",
+    "Vocal": "Soledad Rodriquez",
     "Suplente": "Cristian Cames"
   },
   {
@@ -3187,13 +3187,13 @@
     "Especialidad": "Español/Literatura",
     "Unidad Curricular/Asignatura": "Literatura Medieval v Renacentista",
     "Presidente": "Pablo Márquez",
-    "Secretario": "Paola Borges",
-    "Vocal": "Maria Laura González",
+    "Secretario": "Maria Laura González",
+    "Vocal": "Paola Borges",
     "Suplente": "Paula Galván"
   },
   {
     "activo": true,
-    "Fecha": "14/12/2026",
+    "Fecha": "11/12/2026",
     "Hora": "8:00",
     "Plan": "2023",
     "Nivel": "1°",
@@ -3201,8 +3201,8 @@
     "Especialidad": "Idioma Español",
     "Unidad Curricular/Asignatura": "Latin I",
     "Presidente": "Gabriela Rochón",
-    "Secretario": "Daniel Quijano",
-    "Vocal": "Pablo Cardozo",
+    "Secretario": "Pablo Cardozo",
+    "Vocal": "Daniel Quijano",
     "Suplente": "Esther Aris"
   },
   {
@@ -3215,8 +3215,8 @@
     "Especialidad": "Idioma Español",
     "Unidad Curricular/Asignatura": "Lingüística II",
     "Presidente": "Pablo Cardozo",
-    "Secretario": "Inés González",
-    "Vocal": "Rosmalit Olivera",
+    "Secretario": "Rosmalit Olivera",
+    "Vocal": "Inés González",
     "Suplente": "Maria Sara Martinez"
   },
   {
@@ -3229,8 +3229,8 @@
     "Especialidad": "Idioma Español",
     "Unidad Curricular/Asignatura": "Gramática Histórica II",
     "Presidente": "Gabriela Rochón",
-    "Secretario": "Pablo Cardozo",
-    "Vocal": "Paula Galván",
+    "Secretario": "Paula Galván",
+    "Vocal": "Pablo Cardozo",
     "Suplente": "Esther Aris"
   },
   {
@@ -3243,8 +3243,8 @@
     "Especialidad": "Inglés",
     "Unidad Curricular/Asignatura": "Introducción a la Fonética v Fonología",
     "Presidente": "Luisa Realini",
-    "Secretario": "Agustin Grattarola",
-    "Vocal": "Valeria Equillior",
+    "Secretario": "Valeria Equillior",
+    "Vocal": "Agustin Grattarola",
     "Suplente": "Matias Monzón"
   },
   {
@@ -3257,8 +3257,8 @@
     "Especialidad": "Inglés",
     "Unidad Curricular/Asignatura": "Fonética y Fonologia I",
     "Presidente": "Matias Monzon",
-    "Secretario": "Valeria Equillior",
-    "Vocal": "Agustin Grattarola",
+    "Secretario": "Agustin Grattarola",
+    "Vocal": "Valeria Equillior",
     "Suplente": "María Luisa Realini"
   },
   {
@@ -3271,8 +3271,8 @@
     "Especialidad": "Inglés",
     "Unidad Curricular/Asignatura": "Fonética v Fonología IV",
     "Presidente": "Valeria Equillior",
-    "Secretario": "María Luisa Realini",
-    "Vocal": "Agustin Grattarola",
+    "Secretario": "Agustin Grattarola",
+    "Vocal": "María Luisa Realini",
     "Suplente": "Matias Monzon"
   },
   {
@@ -3283,24 +3283,38 @@
     "Nivel": "1°",
     "D.A": "Literatura",
     "Especialidad": "Literatura",
-    "Unidad Curricular/Asignatura": "Literatura Española II: Siglo de Oro a la",
+    "Unidad Curricular/Asignatura": "Corrientes Literarias",
     "Presidente": "Paola Borges",
-    "Secretario": "María Laura González",
-    "Vocal": "Daniel Quijano",
+    "Secretario": "Daniel Quijano",
+    "Vocal": "María Laura González",
     "Suplente": "Isabel Flores"
+  },
+  {
+    "activo": true,
+    "Fecha": "11/12/2026",
+    "Hora": "8:00",
+    "Plan": "2023",
+    "Nivel": "2°",
+    "D.A": "Literatura",
+    "Especialidad": "Literatura",
+    "Unidad Curricular/Asignatura": "Literatura Española II: Siglo de Oro a la",
+    "Presidente": "Daniel Quijano",
+    "Secretario": "María Laura González",
+    "Vocal": "Paola Borges",
+    "Suplente": "Pablo Márquez"
   },
   {
     "activo": true,
     "Fecha": "14/12/2026",
     "Hora": "8:00",
     "Plan": "2023",
-    "Nivel": "20",
+    "Nivel": "2°",
     "D.A": "Literatura",
     "Especialidad": "Literatura",
     "Unidad Curricular/Asignatura": "Teoria Literaria",
-    "Presidente": "Daniel Quijano",
-    "Secretario": "Paola Borges",
-    "Vocal": "María Laura González",
+    "Presidente": "Paola Borges",
+    "Secretario": "María Laura González",
+    "Vocal": "Daniel Quijano",
     "Suplente": "Isabel Flores"
   },
   {
@@ -3313,8 +3327,8 @@
     "Especialidad": "Literatura",
     "Unidad Curricular/Asignatura": "Literatura y lenquaje digital",
     "Presidente": "Alejandro Pignataro",
-    "Secretario": "Pablo Márquez",
-    "Vocal": "María Laura González",
+    "Secretario": "María Laura González",
+    "Vocal": "Pablo Márquez",
     "Suplente": "Lorena Garcia"
   },
   {
@@ -3328,8 +3342,8 @@
     "Unidad Curricular/Asignatura": "Narrativa transmedia",
     "Presidente": "Pablo Márquez",
     "Secretario": "Alejandro Pignataro",
-    "Vocal": "María Laura González",
-    "Suplente": ""
+    "Vocal": "Alejandro Pignataro",
+    "Suplente": "María Laura González"
   },
   {
     "activo": true,
@@ -3342,8 +3356,8 @@
     "Unidad Curricular/Asignatura": "Metodología de la investigación literaria",
     "Presidente": "Pablo Márquez",
     "Secretario": "Alejandro Pignataro",
-    "Vocal": "María Laura González",
-    "Suplente": ""
+    "Vocal": "Alejandro Pignataro",
+    "Suplente": "María Laura González"
   },
   {
     "activo": true,
@@ -3355,9 +3369,9 @@
     "Especialidad": "Literatura",
     "Unidad Curricular/Asignatura": "Metodología de la investigación y análisis",
     "Presidente": "Maria Laura González",
-    "Secretario": "Pablo Márquez",
-    "Vocal": "Alejandro Pignataro",
-    "Suplente": ""
+    "Secretario": "Alejandro Pignataro",
+    "Vocal": "Pablo Márquez",
+    "Suplente": "Alejandro Pignataro"
   },
   {
     "activo": true,
@@ -3369,8 +3383,8 @@
     "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Fundamentos de la Matemática II",
     "Presidente": "Wilsmar Dos Santos",
-    "Secretario": "Blas Melo",
-    "Vocal": "Fernando Gerfaou",
+    "Secretario": "Fernando Gerfaou",
+    "Vocal": "Blas Melo",
     "Suplente": "Juan Volpi"
   },
   {
@@ -3383,8 +3397,8 @@
     "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Probablidad y Estadística II",
     "Presidente": "Juan Volpi",
-    "Secretario": "Patricia Vedovatti",
-    "Vocal": "Federico Araujo",
+    "Secretario": "Federico Araujo",
+    "Vocal": "Patricia Vedovatti",
     "Suplente": "Blas Melo"
   },
   {
@@ -3397,9 +3411,9 @@
     "Especialidad": "Profesorado v MT",
     "Unidad Curricular/Asignatura": "Educación, Sociedad y Cultura",
     "Presidente": "Fabian Bochia",
-    "Secretario": "Myriam Souza",
-    "Vocal": "Fanny Fernández",
-    "Suplente": ""
+    "Secretario": "Fanny Fernández",
+    "Vocal": "Myriam Souza",
+    "Suplente": "Fanny Fernández"
   },
   {
     "activo": true,
@@ -3410,24 +3424,24 @@
     "D.A": "A. Sociológica",
     "Especialidad": "Profesorado v MT",
     "Unidad Curricular/Asignatura": "Sociología de la Educación",
-    "Presidente": "Fanny Fernández",
+    "Presidente": "Myriam Souza",
     "Secretario": "Fabian Bochia",
-    "Vocal": "Myriam Souza",
-    "Suplente": ""
+    "Vocal": "Fabian Bochia",
+    "Suplente": "Fabian Bochia"
   },
   {
     "activo": true,
     "Fecha": "16/12/2026",
     "Hora": "8:00",
     "Plan": "2008",
-    "Nivel": "2",
+    "Nivel": "2°",
     "D.A": "A.Filosófica",
     "Especialidad": "Profesorado v MT",
     "Unidad Curricular/Asignatura": "Teoría del Conocimiento y Epistemología",
     "Presidente": "Isabel Rodriquez",
-    "Secretario": "María Nicola",
-    "Vocal": "Maria Barrios",
-    "Suplente": "Jesus Arbiza"
+    "Secretario": "Maria Barrios",
+    "Vocal": "María Nicola",
+    "Suplente": "Isabel Rodriquez"
   },
   {
     "activo": true,
@@ -3438,9 +3452,9 @@
     "D.A": "Á.Filosófica",
     "Especialidad": "Profesorado v MT",
     "Unidad Curricular/Asignatura": "Epistemologia de la Educación",
-    "Presidente": "Isabel Rodriquez",
+    "Presidente": "María Nicola",
     "Secretario": "Maria Barrios",
-    "Vocal": "María Nicola",
+    "Vocal": "Jesus Arbiza",
     "Suplente": "Jesus Arbiza"
   },
   {
@@ -3453,8 +3467,8 @@
     "Especialidad": "Profesorado y MT",
     "Unidad Curricular/Asignatura": "Investigación Educativa II",
     "Presidente": "Fabian Bochia",
-    "Secretario": "Mario Sosa",
-    "Vocal": "Gabriela Moreira",
+    "Secretario": "Gabriela Moreira",
+    "Vocal": "Mario Sosa",
     "Suplente": "Nidia Angelo"
   },
   {
@@ -3467,8 +3481,8 @@
     "Especialidad": "Biologia",
     "Unidad Curricular/Asignatura": "Biología Evolutiva",
     "Presidente": "Sonia kosolap",
-    "Secretario": "Andrea Prado",
-    "Vocal": "Darío Dalmas",
+    "Secretario": "Darío Dalmas",
+    "Vocal": "Andrea Prado",
     "Suplente": "Guidahi Calleros"
   },
   {
@@ -3481,8 +3495,8 @@
     "Especialidad": "Biologia",
     "Unidad Curricular/Asignatura": "Biología Humana",
     "Presidente": "Marcelo Barreto",
-    "Secretario": "Maria Fernández",
-    "Vocal": "Darío Dalmas",
+    "Secretario": "Darío Dalmas",
+    "Vocal": "Maria Fernández",
     "Suplente": "Moriana Rebuffo"
   },
   {
@@ -3495,8 +3509,8 @@
     "Especialidad": "Biologia",
     "Unidad Curricular/Asignatura": "Biología Humana",
     "Presidente": "Lourdes Barboza",
-    "Secretario": "Maria Fernández",
-    "Vocal": "Dario Dalmas",
+    "Secretario": "Dario Dalmas",
+    "Vocal": "Maria Fernández",
     "Suplente": "Moriana Rebuffo"
   },
   {
@@ -3509,8 +3523,8 @@
     "Especialidad": "Biologia",
     "Unidad Curricular/Asignatura": "Fisiología Humana",
     "Presidente": "Lourdes Barboza",
-    "Secretario": "Darío Dalmas",
-    "Vocal": "Maria Fernández",
+    "Secretario": "Maria Fernández",
+    "Vocal": "Darío Dalmas",
     "Suplente": "Moriana Rebuffo"
   },
   {
@@ -3523,8 +3537,8 @@
     "Especialidad": "Biología",
     "Unidad Curricular/Asignatura": "Biologia Evolutiva",
     "Presidente": "Dario Dalmas",
-    "Secretario": "Sonia kosolap",
-    "Vocal": "Andrea Prado",
+    "Secretario": "Andrea Prado",
+    "Vocal": "Sonia kosolap",
     "Suplente": "Guidahi Calleros"
   },
   {
@@ -3537,8 +3551,8 @@
     "Especialidad": "Derecho",
     "Unidad Curricular/Asignatura": "Historia del Pensamiento Político y Social",
     "Presidente": "Erick Bremermann",
-    "Secretario": "Fanny Fernandez",
-    "Vocal": "Alexandra Camacho",
+    "Secretario": "Alexandra Camacho",
+    "Vocal": "Fanny Fernandez",
     "Suplente": "Fabiana Bautista"
   },
   {
@@ -3551,9 +3565,9 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Sociologia II",
     "Presidente": "B. Pagani",
-    "Secretario": "Fabian Bochia",
-    "Vocal": "Emilio Arredondo",
-    "Suplente": "Laura Conti"
+    "Secretario": "Emilio Arredondo",
+    "Vocal": "Fabian Bochia",
+    "Suplente": "B. Pagani"
   },
   {
     "activo": true,
@@ -3564,9 +3578,9 @@
     "D.A": "Sociologia",
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Sociologia IV",
-    "Presidente": "B. Pagani",
+    "Presidente": "Emilio Arredondo",
     "Secretario": "Fabian Bochia",
-    "Vocal": "Emilio Arredondo",
+    "Vocal": "Laura Conti",
     "Suplente": "Laura Conti"
   },
   {
@@ -3579,8 +3593,8 @@
     "Especialidad": "Derecho/Sociología",
     "Unidad Curricular/Asignatura": "Seminario de Derecho Procesal",
     "Presidente": "Erick Bremermann",
-    "Secretario": "Fanny Fernandez",
-    "Vocal": "Alexandra Camacho",
+    "Secretario": "Alexandra Camacho",
+    "Vocal": "Fanny Fernandez",
     "Suplente": "Fabiana Bautista"
   },
   {
@@ -3593,9 +3607,9 @@
     "Especialidad": "Filosofía",
     "Unidad Curricular/Asignatura": "Lógica",
     "Presidente": "María Nicola",
-    "Secretario": "Verónica Francia",
-    "Vocal": "Tomas Prado",
-    "Suplente": "Rodríquez"
+    "Secretario": "Tomas Prado",
+    "Vocal": "Verónica Francia",
+    "Suplente": "Mònica Rodríquez"
   },
   {
     "activo": true,
@@ -3603,13 +3617,13 @@
     "Hora": "8:00",
     "Plan": "2023",
     "Nivel": "20",
-    "D.A": "Filosofia",
-    "Especialidad": "Filosofía",
+    "D.A": "Filosofía",
+    "Especialidad": "Filosofia",
     "Unidad Curricular/Asignatura": "Historia de la Filosofía Moderna",
-    "Presidente": "Mònica Rodriquez",
+    "Presidente": "Adán Chiappa",
     "Secretario": "Isabel Rodriquez",
-    "Vocal": "Adán Chiappa",
-    "Suplente": "Jesus Arbiza"
+    "Vocal": "Jesus Arbiza",
+    "Suplente": "Mònica Rodriquez"
   },
   {
     "activo": true,
@@ -3617,12 +3631,12 @@
     "Hora": "8:00",
     "Plan": "2023",
     "Nivel": "3°",
-    "D.A": "Filosofía",
+    "D.A": "Filosofia",
     "Especialidad": "Filosofía",
     "Unidad Curricular/Asignatura": "Historia de la Filosofia Contemporánea II",
     "Presidente": "Mónica Rodríquez",
-    "Secretario": "Tomas Prado",
-    "Vocal": "Isabel Rodriquez",
+    "Secretario": "Isabel Rodriquez",
+    "Vocal": "Tomas Prado",
     "Suplente": "Jesus Arbiza"
   },
   {
@@ -3635,8 +3649,8 @@
     "Especialidad": "Filosofia",
     "Unidad Curricular/Asignatura": "Estética",
     "Presidente": "Isabel Rodriquez",
-    "Secretario": "Jesus Arbiza",
-    "Vocal": "Silvana Rasedo",
+    "Secretario": "Silvana Rasedo",
+    "Vocal": "Jesus Arbiza",
     "Suplente": "Monica Rodriquez"
   },
   {
@@ -3649,8 +3663,8 @@
     "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Principios de Conservación en Mecánica",
     "Presidente": "José Di Laccio",
-    "Secretario": "Andrea Torales",
-    "Vocal": "Mario Silva",
+    "Secretario": "Mario Silva",
+    "Vocal": "Andrea Torales",
     "Suplente": "Giselle Vargas"
   },
   {
@@ -3663,9 +3677,9 @@
     "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Fundamentos de Electromagnetismo",
     "Presidente": "Andrea Torales",
-    "Secretario": "Giselle Vargas",
-    "Vocal": "José Di Laccio",
-    "Suplente": "Mario Silva"
+    "Secretario": "José Di Laccio",
+    "Vocal": "Mario Silva",
+    "Suplente": "Giselle Vargas"
   },
   {
     "activo": true,
@@ -3677,9 +3691,9 @@
     "Especialidad": "Fisica",
     "Unidad Curricular/Asignatura": "Electromagnetismo",
     "Presidente": "María Maldonado",
-    "Secretario": "Mario Silva",
-    "Vocal": "José Di Laccio",
-    "Suplente": "Andrea Torales"
+    "Secretario": "José Di Laccio",
+    "Vocal": "Mario Silva",
+    "Suplente": "María Maldonado"
   },
   {
     "activo": true,
@@ -3688,11 +3702,11 @@
     "Plan": "2008",
     "Nivel": "3°",
     "D.A": "Fisica",
-    "Especialidad": "Fisica",
+    "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Física Térmica",
-    "Presidente": "María Maldonado",
-    "Secretario": "Andrea Torales",
-    "Vocal": "Emilio Silva Garcia",
+    "Presidente": "Emilio Silva Garcia",
+    "Secretario": "José Di Laccio",
+    "Vocal": "Andrea Torales",
     "Suplente": "Victoria López"
   },
   {
@@ -3702,11 +3716,11 @@
     "Plan": "2008",
     "Nivel": "4°",
     "D.A": "Fisica Moderna",
-    "Especialidad": "Fisica",
+    "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Fisica",
     "Presidente": "Emilio Silva Garcia",
-    "Secretario": "Mario Silva",
-    "Vocal": "José Di Laccio",
+    "Secretario": "José Di Laccio",
+    "Vocal": "Mario Silva",
     "Suplente": "Andrea Torales"
   },
   {
@@ -3719,8 +3733,8 @@
     "Especialidad": "Física",
     "Unidad Curricular/Asignatura": "Física",
     "Presidente": "Victoria López",
-    "Secretario": "José Di Laccio",
-    "Vocal": "Mario Silva",
+    "Secretario": "Mario Silva",
+    "Vocal": "José Di Laccio",
     "Suplente": "Emilio Silva Garcia"
   },
   {
@@ -3733,8 +3747,8 @@
     "Especialidad": "Geografía",
     "Unidad Curricular/Asignatura": "Teoria y Métodos de la Geografia",
     "Presidente": "Emilio Silva",
-    "Secretario": "Graciela Garcia",
-    "Vocal": "Marcela Pérez",
+    "Secretario": "Marcela Pérez",
+    "Vocal": "Graciela Garcia",
     "Suplente": "Lucia Sicilia"
   },
   {
@@ -3746,10 +3760,10 @@
     "D.A": "Geografía",
     "Especialidad": "Geografía",
     "Unidad Curricular/Asignatura": "Geografia Humana v Económica",
-    "Presidente": "Emilio Silva",
-    "Secretario": "Marcela Pérez",
+    "Presidente": "Lucia Sicilia",
+    "Secretario": "Emilio Silva",
     "Vocal": "Graciela Garcia",
-    "Suplente": "Lucia Sicilia"
+    "Suplente": "Marcela Pérez"
   },
   {
     "activo": true,
@@ -3761,8 +3775,8 @@
     "Especialidad": "Geografía",
     "Unidad Curricular/Asignatura": "Taller cartográfico de apoyo a la práctica",
     "Presidente": "Emilio Silva",
-    "Secretario": "Lucia Sicilia",
-    "Vocal": "Alejandro Perez",
+    "Secretario": "Alejandro Perez",
+    "Vocal": "Lucia Sicilia",
     "Suplente": "Graciela Garcia"
   },
   {
@@ -3775,8 +3789,8 @@
     "Especialidad": "Geografía",
     "Unidad Curricular/Asignatura": "Geografía del Uruguay II",
     "Presidente": "Ana Urroz",
-    "Secretario": "Rossana Meirelles",
-    "Vocal": "Patricia de los Santos",
+    "Secretario": "Patricia de los Santos",
+    "Vocal": "Rossana Meirelles",
     "Suplente": "Mariza Rebollo"
   },
   {
@@ -3786,11 +3800,11 @@
     "Plan": "2023",
     "Nivel": "4°",
     "D.A": "Geografía",
-    "Especialidad": "Geografía de los Países Desarrollados  PMA",
-    "Unidad Curricular/Asignatura": "Geografía",
+    "Especialidad": "Geografía",
+    "Unidad Curricular/Asignatura": "Geografía de los Países Desarrollados  PMA",
     "Presidente": "Ana Urroz",
-    "Secretario": "Rossana Meirelles",
-    "Vocal": "Patricia de los Santos",
+    "Secretario": "Patricia de los Santos",
+    "Vocal": "Rossana Meirelles",
     "Suplente": "Mariza Rebollo"
   },
   {
@@ -3800,12 +3814,12 @@
     "Plan": "2023",
     "Nivel": "1°",
     "D.A": "Historia",
-    "Especialidad": "Civilizaciones Actuales  Globalización",
-    "Unidad Curricular/Asignatura": "Historia",
+    "Especialidad": "Historia",
+    "Unidad Curricular/Asignatura": "Civilizaciones Actuales  Globalización",
     "Presidente": "Ana Almeida",
     "Secretario": "Alicia Moreira",
-    "Vocal": "Soledad",
-    "Suplente": "Marianela"
+    "Vocal": "Soledad Rodríguez",
+    "Suplente": "Gabriela Moreira"
   },
   {
     "activo": true,
@@ -3814,12 +3828,12 @@
     "Plan": "2023",
     "Nivel": "2°",
     "D.A": "Historia",
-    "Especialidad": "Historia Universal Siglo VII, VIII, XIX",
-    "Unidad Curricular/Asignatura": "Historia",
-    "Presidente": "Rodríguez",
-    "Secretario": "Eduviges de Thy",
-    "Vocal": "Gabriela Moreira",
-    "Suplente": "Victor Pizzichillo"
+    "Especialidad": "Historia",
+    "Unidad Curricular/Asignatura": "Historia Universal Siglo VII, VIII, XIX",
+    "Presidente": "Eduviges de Thy",
+    "Secretario": "Gabriela Moreira",
+    "Vocal": "Victor Pizzichillo",
+    "Suplente": "Marianela"
   },
   {
     "activo": true,
@@ -3831,8 +3845,8 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "Historia del Uruquav de 1830 a 1930",
     "Presidente": "Víctor Pizzichillo",
-    "Secretario": "Marianela",
-    "Vocal": "Gabriela Moreira",
+    "Secretario": "Gabriela Moreira",
+    "Vocal": "Marianela",
     "Suplente": "Alicia Moreira"
   },
   {
@@ -3845,8 +3859,8 @@
     "Especialidad": "Historia",
     "Unidad Curricular/Asignatura": "Historia Regional Rioplatense Hasta 1830",
     "Presidente": "Alicia Moreira",
-    "Secretario": "Marianela",
-    "Vocal": "Gabriela Moreira",
+    "Secretario": "Gabriela Moreira",
+    "Vocal": "Marianela",
     "Suplente": "Victor Pizzichillo"
   },
   {
@@ -3855,12 +3869,12 @@
     "Hora": "8:00",
     "Plan": "2023",
     "Nivel": "4°",
-    "D.A": "Historia",
+    "D.A": "Historia del Uruquav de 1930 a comienzos del",
     "Especialidad": "Historia",
-    "Unidad Curricular/Asignatura": "Historia del Uruquav de 1930 a comienzos del",
+    "Unidad Curricular/Asignatura": "Historia",
     "Presidente": "Victor Pizzichillo",
-    "Secretario": "Marianela",
-    "Vocal": "Alicia Moreira",
+    "Secretario": "Alicia Moreira",
+    "Vocal": "Marianela",
     "Suplente": "Gabriela Moreira"
   },
   {
@@ -3873,9 +3887,9 @@
     "Especialidad": "Español",
     "Unidad Curricular/Asignatura": "Gramática Española I",
     "Presidente": "Rosmalit Olivera",
-    "Secretario": "María Sara Martínez",
-    "Vocal": "Lucia Gabrielli",
-    "Suplente": "Gabriela Rochón"
+    "Secretario": "Lucia Gabrielli",
+    "Vocal": "Gabriela Rochón",
+    "Suplente": "María Sara Martínez"
   },
   {
     "activo": true,
@@ -3884,11 +3898,11 @@
     "Plan": "2023",
     "Nivel": "2°",
     "D.A": "Idioma Español",
-    "Especialidad": "Gramática Española II",
-    "Unidad Curricular/Asignatura": "Español",
+    "Especialidad": "Español",
+    "Unidad Curricular/Asignatura": "Gramática Española II",
     "Presidente": "Rosmalit Olivera",
     "Secretario": "Lucia Gabrielli",
-    "Vocal": "María Sara Martínez",
+    "Vocal": "María Sara Martinez",
     "Suplente": "Gabriela Rochón"
   },
   {
@@ -3897,12 +3911,12 @@
     "Hora": "8:00",
     "Plan": "2023",
     "Nivel": "3°",
-    "D.A": "Gramática Española III",
-    "Especialidad": "Idioma Español",
-    "Unidad Curricular/Asignatura": "Español",
+    "D.A": "Idioma Español",
+    "Especialidad": "Español",
+    "Unidad Curricular/Asignatura": "Gramática Española III",
     "Presidente": "Gabriela Rochón",
-    "Secretario": "María Sara Martínez",
-    "Vocal": "Rosmalit Olivera",
+    "Secretario": "Rosmalit Olivera",
+    "Vocal": "María Sara Martínez",
     "Suplente": "Lucia Gabrielli"
   },
   {
@@ -3912,11 +3926,11 @@
     "Plan": "2023",
     "Nivel": "4°",
     "D.A": "Español",
-    "Especialidad": "Informática",
-    "Unidad Curricular/Asignatura": "Idioma Español",
+    "Especialidad": "Idioma Español",
+    "Unidad Curricular/Asignatura": "Gramática Española IV",
     "Presidente": "Lucía Gabrielli",
-    "Secretario": "Maria Sara Martínez",
-    "Vocal": "Rosmalit Olivera",
+    "Secretario": "Rosmalit Olivera",
+    "Vocal": "Maria Sara Martínez",
     "Suplente": "Gabriela Rochón"
   },
   {
@@ -3927,37 +3941,9 @@
     "Nivel": "1°",
     "D.A": "Informática",
     "Especialidad": "Informática",
-    "Unidad Curricular/Asignatura": "Gramática Española IV",
-    "Presidente": "Jorge Ferreira",
-    "Secretario": "Nancy Lopez",
-    "Vocal": "Guillermo Uscudum",
-    "Suplente": "Jorge Ferreira"
-  },
-  {
-    "activo": true,
-    "Fecha": "18/12/2026",
-    "Hora": "15:30",
-    "Plan": "2023",
-    "Nivel": "2°",
-    "D.A": "Informática",
-    "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Lógica para Informática",
-    "Presidente": "Guillermo Uscudum",
-    "Secretario": "Marcos Berttoni",
-    "Vocal": "Nancy Lopez",
-    "Suplente": "Jorge Ferreira"
-  },
-  {
-    "activo": true,
-    "Fecha": "18/12/2026",
-    "Hora": "15:30",
-    "Plan": "2008",
-    "Nivel": "2°",
-    "D.A": "Informática",
-    "Especialidad": "Informática",
-    "Unidad Curricular/Asignatura": "Programación II",
-    "Presidente": "Guillermo Uscudum",
-    "Secretario": "Marcos Berttoni",
+    "Presidente": "Jorge Ferreira",
+    "Secretario": "Guillermo Uscudum",
     "Vocal": "Nancy Lopez",
     "Suplente": "Jorge Ferreira"
   },
@@ -3966,7 +3952,7 @@
     "Fecha": "18/12/2026",
     "Hora": "15:30",
     "Plan": "2023",
-    "Nivel": "3°",
+    "Nivel": "2°",
     "D.A": "Informática",
     "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Programación II",
@@ -3980,13 +3966,41 @@
     "Fecha": "18/12/2026",
     "Hora": "15:30",
     "Plan": "2008",
-    "Nivel": "1°",
+    "Nivel": "2°",
+    "D.A": "Informática",
+    "Especialidad": "Informática",
+    "Unidad Curricular/Asignatura": "Programación II",
+    "Presidente": "Guillermo Uscudum",
+    "Secretario": "Nancy Lopez",
+    "Vocal": "Marcos Berttoni",
+    "Suplente": "Jorge Ferreira"
+  },
+  {
+    "activo": true,
+    "Fecha": "18/12/2026",
+    "Hora": "15:30",
+    "Plan": "2023",
+    "Nivel": "3°",
     "D.A": "Informática",
     "Especialidad": "Informática",
     "Unidad Curricular/Asignatura": "Ingeniería de Software",
+    "Presidente": "Guillermo Uscudum",
+    "Secretario": "Marcos Berttoni",
+    "Vocal": "Nancy Lopez",
+    "Suplente": "Jorge Ferreira"
+  },
+  {
+    "activo": true,
+    "Fecha": "18/12/2026",
+    "Hora": "15:30",
+    "Plan": "2008",
+    "Nivel": "1°",
+    "D.A": "Informática",
+    "Especialidad": "Informática",
+    "Unidad Curricular/Asignatura": "Organización del Computador",
     "Presidente": "Marcos Berttoni",
-    "Secretario": "Nancy Lopez",
-    "Vocal": "Guillermo Uscudum",
+    "Secretario": "Guillermo Uscudum",
+    "Vocal": "Nancy Lopez",
     "Suplente": "Jorge Ferreira"
   },
   {
@@ -3997,10 +4011,10 @@
     "Nivel": "4°",
     "D.A": "Informática",
     "Especialidad": "Informática",
-    "Unidad Curricular/Asignatura": "Organización del Computador",
+    "Unidad Curricular/Asignatura": "Informática de Soporte",
     "Presidente": "Elizabeth Silva",
-    "Secretario": "Diego Caballero",
-    "Vocal": "Eduardo Cantos",
+    "Secretario": "Eduardo Cantos",
+    "Vocal": "Diego Caballero",
     "Suplente": "Felipe Machado"
   },
   {
@@ -4011,10 +4025,10 @@
     "Nivel": "1°",
     "D.A": "Inglés",
     "Especialidad": "Inglés",
-    "Unidad Curricular/Asignatura": "Informática de Soporte",
+    "Unidad Curricular/Asignatura": "Lengua y Cultura Inglesa",
     "Presidente": "Maria V. Reinoso",
-    "Secretario": "Miriam Taruselli",
-    "Vocal": "Cecilia Machiavello",
+    "Secretario": "Cecilia Machiavello",
+    "Vocal": "Miriam Taruselli",
     "Suplente": "Matiás Monzón"
   },
   {
@@ -4022,13 +4036,13 @@
     "Fecha": "18/12/2026",
     "Hora": "8:00",
     "Plan": "2023",
-    "Nivel": "2",
+    "Nivel": "2°",
     "D.A": "Inglés",
     "Especialidad": "Inglés",
-    "Unidad Curricular/Asignatura": "Lengua y Cultura Inglesa",
+    "Unidad Curricular/Asignatura": "Lengua y Cultura Inglesa II",
     "Presidente": "Cecilia Machiavello",
-    "Secretario": "Miriam Taruselli",
-    "Vocal": "María V. Reinoso",
+    "Secretario": "María V. Reinoso",
+    "Vocal": "Miriam Taruselli",
     "Suplente": "Matiás Monzón"
   },
   {
@@ -4039,10 +4053,10 @@
     "Nivel": "3°",
     "D.A": "Inglés",
     "Especialidad": "Inglés",
-    "Unidad Curricular/Asignatura": "Lengua y Cultura Inglesa II",
+    "Unidad Curricular/Asignatura": "Lengua y Cultura Inglesa III",
     "Presidente": "Verónica Veázquez",
-    "Secretario": "Miriam Taruselli",
-    "Vocal": "Verònica Veázquez",
+    "Secretario": "Verònica Veázquez",
+    "Vocal": "Miriam Taruselli",
     "Suplente": "Matiás Monzón"
   },
   {
@@ -4053,10 +4067,10 @@
     "Nivel": "4°",
     "D.A": "Inglés",
     "Especialidad": "Inglés",
-    "Unidad Curricular/Asignatura": "Lengua y Cultura Inglesa III",
-    "Presidente": "Verónica Veázquez",
-    "Secretario": "Miriam Taruselli",
-    "Vocal": "Verònica Veázquez",
+    "Unidad Curricular/Asignatura": "Lengua y cultura inglesa IV",
+    "Presidente": "Miriam Taruselli",
+    "Secretario": "Verònica Veázquez",
+    "Vocal": "Verónica Veázquez",
     "Suplente": "Matiás Monzón"
   },
   {
@@ -4064,13 +4078,13 @@
     "Fecha": "18/12/2026",
     "Hora": "8:00",
     "Plan": "2023",
-    "Nivel": "20",
+    "Nivel": "2°",
     "D.A": "Literatura",
     "Especialidad": "Literatura",
-    "Unidad Curricular/Asignatura": "Lengua y cultura inglesa IV",
+    "Unidad Curricular/Asignatura": "Literatura Universal I: Barroco e Ilustración.",
     "Presidente": "Pablo Márquez",
-    "Secretario": "María Laura González",
-    "Vocal": "Daniel Quijano",
+    "Secretario": "Daniel Quijano",
+    "Vocal": "María Laura González",
     "Suplente": "Alejandro Pignataro"
   },
   {
@@ -4081,10 +4095,10 @@
     "Nivel": "3°",
     "D.A": "Literatura",
     "Especialidad": "Literatura",
-    "Unidad Curricular/Asignatura": "Literatura Universal I: Barroco e Ilustración.",
+    "Unidad Curricular/Asignatura": "Literatura Universal II",
     "Presidente": "María Laura González",
-    "Secretario": "Pablo Márquez",
-    "Vocal": "Daniel Quijano",
+    "Secretario": "Daniel Quijano",
+    "Vocal": "Pablo Márquez",
     "Suplente": "Alejandro Pignataro"
   },
   {
@@ -4092,13 +4106,13 @@
     "Fecha": "18/12/2026",
     "Hora": "8:02",
     "Plan": "2023",
-    "Nivel": "20",
+    "Nivel": "4°",
     "D.A": "Literatura",
-    "Especialidad": "Matemática",
-    "Unidad Curricular/Asignatura": "Literatura Universal II",
+    "Especialidad": "Literatura",
+    "Unidad Curricular/Asignatura": "Estética Literaria",
     "Presidente": "Alejandro Pignataro",
-    "Secretario": "Paola Gómez",
-    "Vocal": "Paola Borges",
+    "Secretario": "Paola Borges",
+    "Vocal": "Paola Gómez",
     "Suplente": "Rosana Miglionico"
   },
   {
@@ -4106,10 +4120,10 @@
     "Fecha": "18/12/2026",
     "Hora": "8:00",
     "Plan": "2023",
-    "Nivel": "20",
+    "Nivel": "2°",
     "D.A": "Matemática",
     "Especialidad": "Matemática",
-    "Unidad Curricular/Asignatura": "Estética Literaria",
+    "Unidad Curricular/Asignatura": "Geometría y Algebra Lineal II",
     "Presidente": "Álvaro Nuñez",
     "Secretario": "Juan Volpi",
     "Vocal": "Patricia Vedovatti",
@@ -4120,13 +4134,13 @@
     "Fecha": "18/12/2026",
     "Hora": "8:00",
     "Plan": "2008",
-    "Nivel": "2",
+    "Nivel": "2°",
     "D.A": "Matemática",
     "Especialidad": "Matemática",
-    "Unidad Curricular/Asignatura": "Geometría y Algebra Lineal II",
+    "Unidad Curricular/Asignatura": "Geometria v Algebra Lineal",
     "Presidente": "Juan Volpi",
-    "Secretario": "Patricia Vedovatti",
-    "Vocal": "Álvaro Nuñez",
+    "Secretario": "Álvaro Nuñez",
+    "Vocal": "Patricia Vedovatti",
     "Suplente": "Federico Araujo"
   },
   {
@@ -4137,10 +4151,10 @@
     "Nivel": "3°",
     "D.A": "Matemática",
     "Especialidad": "Matemática",
-    "Unidad Curricular/Asignatura": "Geometria v Algebra Lineal",
-    "Presidente": "Wilsmar Dos Santos",
-    "Secretario": "Maria Frequeiro",
-    "Vocal": "Fernando Gerfaou",
+    "Unidad Curricular/Asignatura": "Análisis II",
+    "Presidente": "Fernando Gerfaou",
+    "Secretario": "Wilsmar Dos Santos",
+    "Vocal": "Maria Frequeiro",
     "Suplente": "Luis Dutra"
   },
   {
@@ -4153,8 +4167,8 @@
     "Especialidad": "Matemática",
     "Unidad Curricular/Asignatura": "Análisis II",
     "Presidente": "Wilsmar Dos Santos",
-    "Secretario": "Maria Frequeiro",
-    "Vocal": "Fernando Gerfaou",
+    "Secretario": "Fernando Gerfaou",
+    "Vocal": "Maria Frequeiro",
     "Suplente": "Luis Dutra"
   },
   {
@@ -4165,10 +4179,10 @@
     "Nivel": "4°",
     "D.A": "Matemática",
     "Especialidad": "Matemática",
-    "Unidad Curricular/Asignatura": "Análisis II",
+    "Unidad Curricular/Asignatura": "Análisis III",
     "Presidente": "Wilsmar Dos Santos",
-    "Secretario": "Maria Frequeiro",
-    "Vocal": "Fernando Gerfaou",
+    "Secretario": "Fernando Gerfaou",
+    "Vocal": "Maria Frequeiro",
     "Suplente": "Luis Dutra"
   },
   {
@@ -4178,11 +4192,11 @@
     "Plan": "2023",
     "Nivel": "1°",
     "D.A": "Química",
-    "Especialidad": "Quimica",
-    "Unidad Curricular/Asignatura": "Análisis III",
+    "Especialidad": "Química",
+    "Unidad Curricular/Asignatura": "Química General I y su enseñanza",
     "Presidente": "Daniela Viola",
-    "Secretario": "Enrique Savio",
-    "Vocal": "Alberto Quiroga",
+    "Secretario": "Alberto Quiroga",
+    "Vocal": "Enrique Savio",
     "Suplente": "Javier Texeira"
   },
   {
@@ -4193,10 +4207,10 @@
     "Nivel": "2°",
     "D.A": "Química",
     "Especialidad": "Química",
-    "Unidad Curricular/Asignatura": "Química General I y su enseñanza",
+    "Unidad Curricular/Asignatura": "Química General II v su Enseñanza",
     "Presidente": "Daniela Viola",
-    "Secretario": "Enrique Savio",
-    "Vocal": "Alberto Quiroga",
+    "Secretario": "Alberto Quiroga",
+    "Vocal": "Enrique Savio",
     "Suplente": "Javier Texeira"
   },
   {
@@ -4206,11 +4220,11 @@
     "Plan": "2023",
     "Nivel": "3°",
     "D.A": "Química",
-    "Especialidad": "Quimica",
-    "Unidad Curricular/Asignatura": "Química General II v su Enseñanza",
-    "Presidente": "Verónica Crusi",
+    "Especialidad": "Química",
+    "Unidad Curricular/Asignatura": "El lenguaje de la Química",
+    "Presidente": "Enzo Fagundez",
     "Secretario": "Ivana Lima",
-    "Vocal": "Enzo Fagundez",
+    "Vocal": "Verónica Crusi",
     "Suplente": "Javier Texeira"
   },
   {
@@ -4221,10 +4235,10 @@
     "Nivel": "4°",
     "D.A": "Química",
     "Especialidad": "Química",
-    "Unidad Curricular/Asignatura": "El lenguaje de la Química",
+    "Unidad Curricular/Asignatura": "Metodología de la investigación",
     "Presidente": "Ivana Lima",
-    "Secretario": "Enzo Fagundez",
-    "Vocal": "Verónica Crusi",
+    "Secretario": "Verónica Crusi",
+    "Vocal": "Enzo Fagundez",
     "Suplente": "Javier Texeira"
   },
   {
@@ -4234,11 +4248,11 @@
     "Plan": "2023",
     "Nivel": "3°",
     "D.A": "Electroelectróni",
-    "Especialidad": "Electro.",
-    "Unidad Curricular/Asignatura": "Metodología de la investigación",
+    "Especialidad": "Electroelectrónica",
+    "Unidad Curricular/Asignatura": "Electrónica Digital",
     "Presidente": "Camilo Monetta",
-    "Secretario": "Pablo Ferreira",
-    "Vocal": "Marcelo Correa",
+    "Secretario": "Marcelo Correa",
+    "Vocal": "Pablo Ferreira",
     "Suplente": "Martin Finozzi"
   },
   {
@@ -4249,10 +4263,10 @@
     "Nivel": "2°",
     "D.A": "Electro.",
     "Especialidad": "Electro. Mecánica",
-    "Unidad Curricular/Asignatura": "Electrónica Digital",
-    "Presidente": "Marcelo Correa",
-    "Secretario": "Juan Varesi",
-    "Vocal": "Martin Finozzi",
-    "Suplente": "Richard Correa"
+    "Unidad Curricular/Asignatura": "Taller II",
+    "Presidente": "Juan Varesi",
+    "Secretario": "Martin Finozzi",
+    "Vocal": "Richard Correa",
+    "Suplente": "Marcelo Correa"
   }
 ]
