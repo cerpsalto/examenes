@@ -298,6 +298,10 @@ table.tabla-examenes th{
         <option value="2023">2023</option>
       </select>
 
+      <!-- BUSCADOR POR UNIDAD CURRICULAR -->
+      <label>Unidad Curricular:</label>
+      <input type="text" id="filtroAsignatura" placeholder="Buscar materia..." oninput="filtrarYRenderizar()" style="width:160px;">
+
       <button class="btn btn-purple" onclick="alternarVistaFecha()">📅 Ver por Fecha</button>
       <button class="btn btn-guardar" onclick="guardarEnFirebase()">💾 Guardar Nube</button>
       <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 JSON</button>
@@ -397,14 +401,17 @@ function parsearFecha(fechaStr) {
     if (p.length === 3) return new Date(p[2], p[1] - 1, p[0]);
   } else if (s.includes('-')) {
     const p = s.split('-');
-    if (p.length === 3) return new Date(p[0], p[1] - 1, p[2]);
+    if (p.length === 3) {
+      if (p[0].length === 4) return new Date(p[0], p[1] - 1, p[2]);
+      return new Date(p[2], p[1] - 1, p[0]);
+    }
   }
   return new Date(s);
 }
 
 function formatearFechaEstandar(fechaStr) {
   const d = parsearFecha(fechaStr);
-  if (isNaN(d.getTime())) return fechaStr || "";
+  if (isNaN(d.getTime()) || d.getTime() === 0) return fechaStr || "";
   const dia = String(d.getDate()).padStart(2, '0');
   const mes = String(d.getMonth() + 1).padStart(2, '0');
   const anio = d.getFullYear();
@@ -428,6 +435,15 @@ function obtenerAsignatura(item) {
          item["Asignatura / U. Curricular"] || 
          item["Asignatura"] || 
          item["Unidad Curricular"] || "";
+}
+
+function ordenarPorFechaYHora(lista) {
+  return lista.sort((a, b) => {
+    const timeA = parsearFecha(a.Fecha).getTime();
+    const timeB = parsearFecha(b.Fecha).getTime();
+    if (timeA !== timeB) return timeA - timeB;
+    return String(a.Hora || "").localeCompare(String(b.Hora || ""));
+  });
 }
 
 function inicializarFiltroEspecialidades(){
@@ -480,6 +496,7 @@ database.ref("gestion_examenes").on("value", function(snapshot){
   } else {
     examenesData = [];
   }
+  ordenarPorFechaYHora(examenesData);
   inicializarFiltroEspecialidades();
   filtrarYRenderizar();
   if(vistaCalendarioActiva) poblarVistaFechas();
@@ -489,22 +506,27 @@ function obtenerExamenesFiltrados() {
   const espSel = normalizarTexto(document.getElementById("filtroEspecialidad").value);
   const nivelSel = normalizarTexto(document.getElementById("filtroNivel").value);
   const planSel = document.getElementById("filtroPlan").value;
+  const asigSel = normalizarTexto(document.getElementById("filtroAsignatura").value);
 
-  return examenesData.map((item, index) => ({ ...item, _indexReal: index }))
+  const filtrados = examenesData.map((item, index) => ({ ...item, _indexReal: index }))
     .filter((item) => {
       const itemEsp = normalizarTexto(item.Especialidad || "");
       const itemDA = normalizarTexto(item["D_A"] || "");
       const itemNivel = normalizarTexto(item.Nivel || "");
       const itemPlan = String(item.Plan || "").trim();
+      const itemAsig = normalizarTexto(item["Unidad Curricular_Asignatura"] || "");
 
       const matchEsp = !espSel || itemEsp.includes(espSel) || itemDA.includes(espSel);
       const numNivelSel = nivelSel.replace(/[^0-9]/g, '');
       const numItemNivel = itemNivel.replace(/[^0-9]/g, '');
       const matchNivel = !nivelSel || (numNivelSel ? numNivelSel === numItemNivel : itemNivel.includes(nivelSel));
       const matchPlan = !planSel || itemPlan === planSel;
+      const matchAsig = !asigSel || itemAsig.includes(asigSel);
 
-      return matchEsp && matchNivel && matchPlan;
+      return matchEsp && matchNivel && matchPlan && matchAsig;
     });
+
+  return ordenarPorFechaYHora(filtrados);
 }
 
 function filtrarYRenderizar(){
@@ -565,7 +587,9 @@ function filtrarYRenderizar(){
 function actualizarCampo(index, campo, valor){
   if(campo === 'Fecha') valor = formatearFechaEstandar(valor);
   examenesData[index][campo] = valor;
+  if(campo === 'Fecha' || campo === 'Hora') ordenarPorFechaYHora(examenesData);
   if(campo === 'Especialidad' || campo === 'D_A') inicializarFiltroEspecialidades();
+  filtrarYRenderizar();
   guardarEnFirebaseSilencioso();
 }
 
@@ -595,6 +619,7 @@ function agregarFilaExamen(){
     Suplente: ""
   };
   examenesData.unshift(nuevoExamen);
+  ordenarPorFechaYHora(examenesData);
   inicializarFiltroEspecialidades();
   filtrarYRenderizar();
   if(vistaCalendarioActiva) poblarVistaFechas();
@@ -700,7 +725,7 @@ function mostrarDetalleFecha(fecha, mapaFechas){
   }
 
   tituloDetalle.textContent = `Exámenes programados para el ${fecha}:`;
-  const lista = mapaFechas[fecha];
+  const lista = ordenarPorFechaYHora(mapaFechas[fecha]);
 
   let html = `
     <table class="tabla-examenes" style="margin-top:10px;">
