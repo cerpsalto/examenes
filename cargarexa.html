@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Gestión y Carga de Exámenes</title>
+<title>Gestión y Consulta de Exámenes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -11,12 +11,171 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(to bottom right,#cceeff,#99ccff);
+  background:linear-gradient(135deg,#c9e6ff 0%,#9ed0ff 100%);
   padding:12px;
   color:#003b57;
   min-height:100vh;
 }
 
+/* PANTALLA DE INICIO */
+.inicio-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 88vh;
+  padding: 20px;
+}
+
+.inicio-titulo{
+  font-size: 26px;
+  font-weight: 800;
+  color: #073b56;
+  margin-bottom: 36px;
+  text-align: center;
+  letter-spacing: -0.3px;
+}
+
+.opciones-grid{
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 720px;
+  width: 100%;
+}
+
+.card-opcion{
+  flex: 1;
+  min-width: 260px;
+  max-width: 310px;
+  background: #f8fbff;
+  border-radius: 22px;
+  padding: 36px 26px 32px 26px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(7, 59, 86, 0.08);
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-opcion:hover{
+  transform: translateY(-6px);
+  background: #ffffff;
+  box-shadow: 0 16px 32px rgba(7, 59, 86, 0.14);
+}
+
+/* RECUADRO BLANCO CON BORDE AZUL MARINO */
+.card-icono-box{
+  width: 96px;
+  height: 96px;
+  background: #ffffff;
+  border: 4px solid #0d3b5c;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  box-shadow: 0 6px 14px rgba(13, 59, 92, 0.12);
+}
+
+.card-icono-box svg{
+  width: 64px;
+  height: 64px;
+}
+
+.card-opcion h3{
+  margin: 0 0 10px 0;
+  font-size: 19px;
+  font-weight: 800;
+  color: #073b56;
+}
+
+.card-opcion p{
+  margin: 0;
+  font-size: 13px;
+  color: #4f6d7e;
+  line-height: 1.45;
+}
+
+/* MODAL DE LOGIN (CONTRASEÑA) */
+.login-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 59, 86, 0.55);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+}
+
+.login-card{
+  background: #f8fbff;
+  padding: 32px 28px;
+  border-radius: 22px;
+  box-shadow: 0 14px 32px rgba(7, 59, 86, 0.22);
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.login-card h2{
+  margin: 0 0 8px 0;
+  color: #073b56;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.login-card p{
+  margin: 0 0 20px 0;
+  color: #4f6d7e;
+  font-size: 13px;
+}
+
+.login-group{
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+.login-group label{
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #073b56;
+}
+
+.login-group input{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #b5daf5;
+  background: #ffffff;
+  font-size: 14px;
+  user-select: text;
+}
+
+.login-group input:focus{
+  outline: none;
+  border-color: #0d3b5c;
+}
+
+.login-error{
+  color: #d9534f;
+  background: #fdf2f2;
+  border: 1px solid #f5c6cb;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-bottom: 14px;
+  display: none;
+}
+
+/* CONTENEDORES PRINCIPALES */
 .wrap{
   max-width:1450px;
   margin:0 auto;
@@ -24,66 +183,142 @@ body{
   border-radius:18px;
   box-shadow:0 0 12px rgba(0,0,0,.12);
   overflow:hidden;
+  display: none;
 }
 
 .top{
-  padding:14px 16px;
+  padding:18px 22px;
   border-bottom:3px solid #0099cc;
 }
 
 .encabezado{
   display:flex;
   align-items:center;
-  justify-content:center;
-  gap:12px;
-  margin-bottom:12px;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:16px;
+  flex-wrap: wrap;
 }
 
 .title{
   font-size:22px;
   font-weight:800;
-  color:#004466;
+  color:#073b56;
 }
 
-.controls{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  flex-wrap:wrap;
-  justify-content:center;
+.user-actions-bar{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.user-badge{
+  background: #eef7ff;
+  border: 1px solid #bce2f3;
+  color: #073b56;
+  padding: 6px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* BARRA DE FILTROS Y BOTONES ORDENADA */
+.filtros-panel{
+  background: #f4fbff;
+  border: 1px solid #d4eefc;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filtros-fila{
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filtro-item{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filtro-item label{
+  font-size: 13px;
+  font-weight: 700;
+  color: #073b56;
+}
+
+.acciones-fila{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px solid #e0f2fc;
 }
 
 select,input{
-  padding:8px;
+  padding:7px 10px;
   border-radius:8px;
   border:1px solid #9ed8ef;
-  font-size:14px;
+  font-size:13px;
+  background: #ffffff;
+  color: #003b57;
+  user-select: text;
+}
+
+select:focus, input:focus{
+  outline: none;
+  border-color: #0099cc;
 }
 
 .btn{
-  border:none;
+  border:2px solid transparent;
   background:#0099cc;
   color:white;
-  padding:8px 14px;
+  padding:7px 16px;
   border-radius:99px;
   cursor:pointer;
   font-weight:700;
+  font-size: 13px;
   display:inline-flex;
   align-items:center;
+  justify-content:center;
   gap:6px;
+  transition: all 0.2s ease;
 }
 
 .btn:hover{background:#007faa}
+.btn-navy{background:#0d3b5c}
+.btn-navy:hover{background:#07263d}
 .btn-green{background:#00a86b}
 .btn-green:hover{background:#008e5b}
 .btn-red{background:#d9534f}
 .btn-red:hover{background:#c9302c}
-.btn-purple{background:#8e44ad}
-.btn-purple:hover{background:#732d91}
 .btn-guardar{background:#2980b9}
 .btn-guardar:hover{background:#1f618d}
 .btn-pdf{background:#e74c3c}
 .btn-pdf:hover{background:#c0392b}
+
+/* BOTÓN BLANCO CON BORDE AZUL MARINO (VOLVER / CANCELAR) */
+.btn-outline-blue{
+  background: #ffffff;
+  color: #0d3b5c;
+  border: 2px solid #0d3b5c;
+}
+
+.btn-outline-blue:hover{
+  background: #eef7ff;
+  color: #07263d;
+  border-color: #07263d;
+}
 
 .vista-fecha-container{
   padding: 20px;
@@ -103,7 +338,7 @@ select,input{
   border: 2px solid #bce2f3;
   border-radius: 12px;
   padding: 16px;
-  max-height: 500px;
+  max-height: 550px;
   overflow-y: auto;
 }
 
@@ -155,10 +390,11 @@ select,input{
   border: 2px solid #bce2f3;
   border-radius: 12px;
   padding: 16px;
+  overflow-x: auto;
 }
 
 .seccion-tabla{
-  padding:16px;
+  padding:16px 22px;
   overflow-x:auto;
 }
 
@@ -172,7 +408,7 @@ select,input{
 }
 
 .subtitulo{
-  font-size:18px;
+  font-size:17px;
   color:#005b84;
   border-left:5px solid #1aa7d6;
   padding-left:10px;
@@ -260,7 +496,8 @@ table.tabla-examenes th{
 
 @media(max-width:700px){
   body{padding:6px}
-  .controls{flex-direction:column; align-items:stretch;}
+  .filtros-fila{flex-direction:column; align-items:stretch;}
+  .filtro-item{justify-content: space-between;}
   .subtitulo-header{flex-direction: column; align-items: stretch;}
   .calendario-grid{flex-direction: column;}
 }
@@ -269,50 +506,145 @@ table.tabla-examenes th{
 
 <body>
 
-<div class="wrap">
+<!-- 1. PANTALLA DE INICIO CON DOS TARJETAS -->
+<div id="pantallaInicio" class="inicio-container">
+  <div class="inicio-titulo">Seleccione tarea a realizar</div>
 
-  <div class="top">
-    <div class="encabezado">
-      <div class="title">Gestión y Carga de Exámenes Institucionales</div>
+  <div class="opciones-grid">
+    <!-- OPCIÓN 1: VER EXÁMENES (ACCESO LIBRE) -->
+    <div class="card-opcion" onclick="abrirVistaPublica()">
+      <div class="card-icono-box">
+        <svg viewBox="0 0 64 64" fill="none">
+          <rect x="12" y="10" width="40" height="44" rx="5" fill="#F4EDE2" stroke="#0D3B5C" stroke-width="3"/>
+          <line x1="20" y1="22" x2="44" y2="22" stroke="#0D3B5C" stroke-width="3" stroke-linecap="round"/>
+          <line x1="20" y1="31" x2="44" y2="31" stroke="#1AA7D6" stroke-width="3" stroke-linecap="round"/>
+          <line x1="20" y1="40" x2="36" y2="40" stroke="#E28743" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Ver Exámenes</h3>
+      <p>Acceso libre. Consulta las mesas de exámenes disponibles.</p>
     </div>
 
-    <div class="controls">
-      <label>Especialidad:</label>
-      <select id="filtroEspecialidad" onchange="filtrarYRenderizar()">
-        <option value="">Todas las Especialidades</option>
-      </select>
+    <!-- OPCIÓN 2: CARGAR / MODIFICAR EXÁMENES (CON CONTRASEÑA) -->
+    <div class="card-opcion" onclick="solicitarAccesoAdmin()">
+      <div class="card-icono-box">
+        <svg viewBox="0 0 64 64" fill="none">
+          <rect x="12" y="10" width="32" height="42" rx="4" fill="#F4EDE2" stroke="#0D3B5C" stroke-width="3"/>
+          <line x1="18" y1="20" x2="34" y2="20" stroke="#0D3B5C" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="18" y1="27" x2="38" y2="27" stroke="#1AA7D6" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M34 36L45 25L50 30L39 41L32 43L34 36Z" fill="#E28743" stroke="#0D3B5C" stroke-width="2.5" stroke-linejoin="round"/>
+          <rect x="38" y="40" width="16" height="13" rx="3" fill="#0D3B5C"/>
+          <path d="M42 40V36C42 33.8 43.8 32 46 32C48.2 32 50 33.8 50 36V40" stroke="#0D3B5C" stroke-width="2.5"/>
+          <circle cx="46" cy="46.5" r="1.8" fill="#FFFFFF"/>
+        </svg>
+      </div>
+      <h3>Cargar / Modificar Exámenes</h3>
+      <p>Requiere contraseña. Alta, edición y gestión del registro de exámenes.</p>
+    </div>
+  </div>
+</div>
 
-      <label>Nivel / Año:</label>
-      <select id="filtroNivel" onchange="filtrarYRenderizar()">
-        <option value="">Todos los Niveles</option>
-        <option value="1°">Primero (1°)</option>
-        <option value="2°">Segundo (2°)</option>
-        <option value="3°">Tercero (3°)</option>
-        <option value="4°">Cuarto (4°)</option>
-      </select>
+<!-- 2. MODAL DE CONTRASEÑA PARA CARGAR / MODIFICAR -->
+<div id="loginOverlay" class="login-overlay">
+  <div class="login-card">
+    <h2>🔒 Acceso a Gestión</h2>
+    <p>Ingrese usuario y contraseña para cargar o modificar exámenes</p>
 
-      <label>Plan:</label>
-      <select id="filtroPlan" onchange="filtrarYRenderizar()">
-        <option value="">Todos los Planes</option>
-        <option value="2008">2008</option>
-        <option value="2023">2023</option>
-      </select>
+    <div id="loginError" class="login-error"></div>
 
-      <!-- BUSCADOR POR UNIDAD CURRICULAR -->
-      <label>Unidad Curricular:</label>
-      <input type="text" id="filtroAsignatura" placeholder="Buscar materia..." oninput="filtrarYRenderizar()" style="width:160px;">
+    <form onsubmit="iniciarSesion(event)">
+      <div class="login-group">
+        <label for="loginEmail">Correo Electrónico</label>
+        <input type="email" id="loginEmail" required placeholder="Ingrese su correo" autocomplete="username">
+      </div>
+      <div class="login-group">
+        <label for="loginPassword">Contraseña</label>
+        <input type="password" id="loginPassword" required placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <div style="display: flex; gap: 8px; margin-top: 18px;">
+        <button type="button" class="btn btn-outline-blue" style="flex: 1;" onclick="cerrarModalLogin()">Cancelar</button>
+        <button type="submit" id="btnSubmitLogin" class="btn btn-navy" style="flex: 1.5;">Ingresar</button>
+      </div>
+    </form>
+  </div>
+</div>
 
-      <button class="btn btn-purple" onclick="alternarVistaFecha()">📅 Ver por Fecha</button>
-      <button class="btn btn-guardar" onclick="guardarEnFirebase()">💾 Guardar Nube</button>
-      <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 JSON</button>
-      <button class="btn btn-pdf" onclick="descargarPDFExamenes()">📄 Descargar PDF</button>
+<!-- 3. VISTA PÚBLICA (VER EXÁMENES - ACCESO LIBRE) -->
+<div id="vistaPublicaWrap" class="wrap">
+  <div class="top" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+    <div class="title">Consulta de Exámenes</div>
+    <button class="btn btn-outline-blue" onclick="volverAlInicio()">Volver</button>
+  </div>
+
+  <div class="vista-fecha-container">
+    <div class="calendario-grid">
+      <div class="selector-fechas-box" id="listaFechasLateral"></div>
+      <div class="detalle-fecha-box">
+        <div class="subtitulo" id="tituloDetalleFecha" style="margin-bottom: 12px; font-size:16px;">Seleccione una fecha</div>
+        <div id="contenidoDetalleFecha"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. VISTA ADMINISTRACIÓN (CARGAR / MODIFICAR - CON CONTRASEÑA) -->
+<div id="vistaAdminWrap" class="wrap">
+  <div class="top">
+    <div class="encabezado">
+      <div class="title">Gestión y Carga de Exámenes</div>
+      <div class="user-actions-bar">
+        <span id="usuarioConectadoLabel" class="user-badge"></span>
+        <button class="btn btn-outline-blue" onclick="volverAlInicio()">Volver</button>
+        <button class="btn btn-red" onclick="cerrarSesion()">Cerrar Sesión</button>
+      </div>
+    </div>
+
+    <div class="filtros-panel">
+      <div class="filtros-fila">
+        <div class="filtro-item">
+          <label for="filtroEspecialidad">Especialidad:</label>
+          <select id="filtroEspecialidad" onchange="filtrarYRenderizar()">
+            <option value="">Todas las Especialidades</option>
+          </select>
+        </div>
+
+        <div class="filtro-item">
+          <label for="filtroNivel">Nivel / Año:</label>
+          <select id="filtroNivel" onchange="filtrarYRenderizar()">
+            <option value="">Todos los Niveles</option>
+            <option value="1°">Primero (1°)</option>
+            <option value="2°">Segundo (2°)</option>
+            <option value="3°">Tercero (3°)</option>
+            <option value="4°">Cuarto (4°)</option>
+          </select>
+        </div>
+
+        <div class="filtro-item">
+          <label for="filtroPlan">Plan:</label>
+          <select id="filtroPlan" onchange="filtrarYRenderizar()">
+            <option value="">Todos los Planes</option>
+            <option value="2008">2008</option>
+            <option value="2023">2023</option>
+          </select>
+        </div>
+
+        <div class="filtro-item">
+          <label for="filtroAsignatura">Unidad Curricular:</label>
+          <input type="text" id="filtroAsignatura" placeholder="Buscar materia..." oninput="filtrarYRenderizar()" style="width:180px;">
+        </div>
+      </div>
+
+      <div class="acciones-fila">
+        <button class="btn btn-guardar" onclick="guardarEnFirebase()">💾 Guardar</button>
+        <button class="btn btn-green" onclick="descargarJSONExamenes()">📥 Exportar JSON</button>
+        <button class="btn btn-pdf" onclick="descargarPDFExamenes()">📄 Descargar PDF</button>
+      </div>
     </div>
   </div>
 
-  <!-- VISTA GENERAL (TABLA EDITABLE) -->
-  <div id="seccionTablaGeneral" class="seccion-tabla">
+  <div class="seccion-tabla">
     <div class="subtitulo-header">
-      <div class="subtitulo" id="tituloTabla">LISTADO GENERAL DE EXÁMENES</div>
+      <div class="subtitulo" id="tituloTabla">LISTADO GENERAL DE EXÁMENES (EDICIÓN)</div>
       <button class="btn btn-green" type="button" onclick="agregarFilaExamen()">➕ Agregar Examen</button>
     </div>
 
@@ -339,36 +671,20 @@ table.tabla-examenes th{
       <tbody id="cuerpoTablaExamenes"></tbody>
     </table>
   </div>
-
-  <!-- VISTA CALENDARIO / POR FECHA -->
-  <div id="seccionVistaFecha" class="vista-fecha-container" style="display:none;">
-    <div class="subtitulo-header">
-      <div class="subtitulo" id="tituloVistaFecha">EXÁMENES AGRUPADOS POR FECHA</div>
-      <button class="btn" onclick="alternarVistaFecha()">⬅️ Volver al Listado General</button>
-    </div>
-
-    <div class="calendario-grid">
-      <div class="selector-fechas-box" id="listaFechasLateral"></div>
-      <div class="detalle-fecha-box">
-        <div class="subtitulo" id="tituloDetalleFecha" style="margin-bottom: 12px; font-size:16px;">Seleccione una fecha</div>
-        <div id="contenidoDetalleFecha"></div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
-<!-- FIREBASE UTILS -->
+<!-- FIREBASE UTILS (INCLUYE AUTH) -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
-<!-- PDFMAKE PARA GENERAR PDFS -->
+<!-- PDFMAKE -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 
 <script>
 const firebaseConfig = {
-  apiKey: "AIzaSyAUbSmA64Kj6326H8-FJqSFDyb1Zzardj8",
+  apiKey: "AIzaSyAubSmA64kj6326H8-FJqSFDyb1Zzardj8",
   authDomain: "calendario-actividades-76382.firebaseapp.com",
   databaseURL: "https://calendario-actividades-76382-default-rtdb.firebaseio.com",
   projectId: "calendario-actividades-76382",
@@ -379,11 +695,115 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
 const database = firebase.database();
 
 let examenesData = [];
-let vistaCalendarioActiva = false;
 let fechaSeleccionadaActual = null;
+let modoActual = "inicio";
+
+function ocultarTodo() {
+  document.getElementById("pantallaInicio").style.display = "none";
+  document.getElementById("vistaPublicaWrap").style.display = "none";
+  document.getElementById("vistaAdminWrap").style.display = "none";
+  document.getElementById("loginOverlay").style.display = "none";
+}
+
+function volverAlInicio() {
+  modoActual = "inicio";
+  ocultarTodo();
+  document.getElementById("pantallaInicio").style.display = "flex";
+}
+
+function abrirVistaPublica() {
+  modoActual = "publico";
+  ocultarTodo();
+  document.getElementById("vistaPublicaWrap").style.display = "block";
+  poblarVistaFechas();
+}
+
+function solicitarAccesoAdmin() {
+  if (auth.currentUser) {
+    abrirVistaAdmin(auth.currentUser);
+  } else {
+    document.getElementById("loginError").style.display = "none";
+    document.getElementById("loginPassword").value = "";
+    document.getElementById("loginOverlay").style.display = "flex";
+  }
+}
+
+function cerrarModalLogin() {
+  document.getElementById("loginOverlay").style.display = "none";
+}
+
+function abrirVistaAdmin(user) {
+  modoActual = "admin";
+  ocultarTodo();
+  document.getElementById("vistaAdminWrap").style.display = "block";
+  document.getElementById("usuarioConectadoLabel").textContent = "👤 " + user.email;
+  inicializarFiltroEspecialidades();
+  filtrarYRenderizar();
+}
+
+function iniciarSesion(e) {
+  e.preventDefault();
+  const email = document.getElementById("loginEmail").value.trim();
+  const pass = document.getElementById("loginPassword").value;
+  const errorBox = document.getElementById("loginError");
+  const btn = document.getElementById("btnSubmitLogin");
+
+  errorBox.style.display = "none";
+  btn.disabled = true;
+  btn.textContent = "Verificando...";
+
+  auth.setPersistence(firebase.auth.Auth.Persistence.NONE)
+    .then(() => auth.signInWithEmailAndPassword(email, pass))
+    .then((credencial) => {
+      abrirVistaAdmin(credencial.user);
+    })
+    .catch((err) => {
+      console.error("Error Firebase Auth:", err.code, err.message);
+      if (err.code === "auth/invalid-credential" || err.code === "auth/wrong-password" || err.code === "auth/user-not-found") {
+        errorBox.textContent = "Correo o contraseña incorrectos.";
+      } else if (err.code === "auth/operation-not-allowed") {
+        errorBox.textContent = "Habilite Correo/Contraseña en Firebase Authentication.";
+      } else {
+        errorBox.textContent = "Error (" + err.code + "): " + err.message;
+      }
+      errorBox.style.display = "block";
+    })
+    .finally(() => {
+      btn.disabled = false;
+      btn.textContent = "Ingresar";
+    });
+}
+
+function cerrarSesion() {
+  if (confirm("¿Desea cerrar la sesión?")) {
+    auth.signOut().then(() => {
+      volverAlInicio();
+    });
+  }
+}
+
+database.ref("gestion_examenes").on("value", function(snapshot){
+  const data = snapshot.val();
+  if(data && Array.isArray(data)){
+    examenesData = data.map(mapearExamen);
+  } else if (data && typeof data === 'object') {
+    examenesData = Object.values(data).map(mapearExamen);
+  } else {
+    examenesData = [];
+  }
+  ordenarPorFechaYHora(examenesData);
+
+  if (modoActual === "publico") {
+    poblarVistaFechas();
+  } else if (modoActual === "admin" && auth.currentUser) {
+    inicializarFiltroEspecialidades();
+    filtrarYRenderizar();
+  }
+});
 
 function normalizarTexto(texto) {
   return String(texto || "")
@@ -446,28 +866,6 @@ function ordenarPorFechaYHora(lista) {
   });
 }
 
-function inicializarFiltroEspecialidades(){
-  const selectEsp = document.getElementById("filtroEspecialidad");
-  const valorActual = selectEsp.value;
-  selectEsp.innerHTML = '<option value="">Todas las Especialidades</option>';
-  
-  const conjuntoEspecialidades = new Set();
-  examenesData.forEach(item => {
-    const esp = obtenerEspecialidad(item).trim();
-    const da = obtenerDA(item).trim();
-    if(esp) conjuntoEspecialidades.add(esp);
-    if(da) conjuntoEspecialidades.add(da);
-  });
-
-  Array.from(conjuntoEspecialidades).sort().forEach(esp => {
-    const op = document.createElement("option");
-    op.value = esp;
-    op.textContent = esp;
-    if(esp === valorActual) op.selected = true;
-    selectEsp.appendChild(op);
-  });
-}
-
 function mapearExamen(item) {
   const esp = obtenerEspecialidad(item);
   const da = obtenerDA(item);
@@ -487,205 +885,28 @@ function mapearExamen(item) {
   };
 }
 
-database.ref("gestion_examenes").on("value", function(snapshot){
-  const data = snapshot.val();
-  if(data && Array.isArray(data)){
-    examenesData = data.map(mapearExamen);
-  } else if (data && typeof data === 'object') {
-    examenesData = Object.values(data).map(mapearExamen);
-  } else {
-    examenesData = [];
-  }
-  ordenarPorFechaYHora(examenesData);
-  inicializarFiltroEspecialidades();
-  filtrarYRenderizar();
-  if(vistaCalendarioActiva) poblarVistaFechas();
-});
-
-function obtenerExamenesFiltrados() {
-  const espSel = normalizarTexto(document.getElementById("filtroEspecialidad").value);
-  const nivelSel = normalizarTexto(document.getElementById("filtroNivel").value);
-  const planSel = document.getElementById("filtroPlan").value;
-  const asigSel = normalizarTexto(document.getElementById("filtroAsignatura").value);
-
-  const filtrados = examenesData.map((item, index) => ({ ...item, _indexReal: index }))
-    .filter((item) => {
-      const itemEsp = normalizarTexto(item.Especialidad || "");
-      const itemDA = normalizarTexto(item["D_A"] || "");
-      const itemNivel = normalizarTexto(item.Nivel || "");
-      const itemPlan = String(item.Plan || "").trim();
-      const itemAsig = normalizarTexto(item["Unidad Curricular_Asignatura"] || "");
-
-      const matchEsp = !espSel || itemEsp.includes(espSel) || itemDA.includes(espSel);
-      const numNivelSel = nivelSel.replace(/[^0-9]/g, '');
-      const numItemNivel = itemNivel.replace(/[^0-9]/g, '');
-      const matchNivel = !nivelSel || (numNivelSel ? numNivelSel === numItemNivel : itemNivel.includes(nivelSel));
-      const matchPlan = !planSel || itemPlan === planSel;
-      const matchAsig = !asigSel || itemAsig.includes(asigSel);
-
-      return matchEsp && matchNivel && matchPlan && matchAsig;
-    });
-
-  return ordenarPorFechaYHora(filtrados);
-}
-
-function filtrarYRenderizar(){
-  const filtrados = obtenerExamenesFiltrados();
-  const tbody = document.getElementById("cuerpoTablaExamenes");
-  const mensaje = document.getElementById("mensajeInfo");
-  const tabla = document.getElementById("tablaExamenes");
-
-  if(filtrados.length === 0){
-    tabla.style.display = "none";
-    mensaje.style.display = "block";
-    tbody.innerHTML = "";
-    return;
-  }
-
-  let html = "";
-  filtrados.forEach((item) => {
-    const i = item._indexReal;
-    const nombreAsignatura = item["Unidad Curricular_Asignatura"];
-    const deptoAcademico = item["D_A"];
-
-    html += `
-      <tr>
-        <td class="checkbox-col">
-          <input type="checkbox" class="checkbox-periodo" ${item.activo ? "checked" : ""} onchange="actualizarActivo(${i}, this.checked)">
-        </td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Fecha)}" onchange="actualizarCampo(${i}, 'Fecha', this.value)"></td>
-        <td><input type="text" class="input-tabla" style="width:70px;" value="${escapeHtml(item.Hora)}" onchange="actualizarCampo(${i}, 'Hora', this.value)"></td>
-        <td>
-          <input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan)}" onchange="actualizarCampo(${i}, 'Plan', this.value)">
-        </td>
-        <td>
-          <input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel)}" onchange="actualizarCampo(${i}, 'Nivel', this.value)">
-        </td>
-        <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(deptoAcademico)}" onchange="actualizarCampo(${i}, 'D_A', this.value)"></td>
-        <td>
-          <input type="text" class="input-tabla" value="${escapeHtml(item.Especialidad || deptoAcademico)}" onchange="actualizarCampo(${i}, 'Especialidad', this.value)">
-        </td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(nombreAsignatura)}" onchange="actualizarAsignatura(${i}, this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Presidente)}" onchange="actualizarCampo(${i}, 'Presidente', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Secretario)}" onchange="actualizarCampo(${i}, 'Secretario', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Vocal)}" onchange="actualizarCampo(${i}, 'Vocal', this.value)"></td>
-        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Suplente)}" onchange="actualizarCampo(${i}, 'Suplente', this.value)"></td>
-        <td>
-          <div class="acciones-item">
-            <button type="button" class="btn-mini btn-red" onclick="eliminarFila(${i})" title="Eliminar examen">🗑️</button>
-          </div>
-        </td>
-      </tr>
-    `;
-  });
-
-  tbody.innerHTML = html;
-  mensaje.style.display = "none";
-  tabla.style.display = "table";
-}
-
-function actualizarCampo(index, campo, valor){
-  if(campo === 'Fecha') valor = formatearFechaEstandar(valor);
-  examenesData[index][campo] = valor;
-  if(campo === 'Fecha' || campo === 'Hora') ordenarPorFechaYHora(examenesData);
-  if(campo === 'Especialidad' || campo === 'D_A') inicializarFiltroEspecialidades();
-  filtrarYRenderizar();
-  guardarEnFirebaseSilencioso();
-}
-
-function actualizarAsignatura(index, valor){
-  examenesData[index]["Unidad Curricular_Asignatura"] = valor;
-  guardarEnFirebaseSilencioso();
-}
-
-function actualizarActivo(index, estado){
-  examenesData[index].activo = estado;
-  guardarEnFirebaseSilencioso();
-}
-
-function agregarFilaExamen(){
-  const nuevoExamen = {
-    activo: true,
-    Fecha: "16/11/2026",
-    Hora: "08:00",
-    Plan: "2023",
-    Nivel: "1°",
-    "D_A": "Informática",
-    Especialidad: "Informática",
-    "Unidad Curricular_Asignatura": "Nueva Asignatura",
-    Presidente: "",
-    Secretario: "",
-    Vocal: "",
-    Suplente: ""
-  };
-  examenesData.unshift(nuevoExamen);
-  ordenarPorFechaYHora(examenesData);
-  inicializarFiltroEspecialidades();
-  filtrarYRenderizar();
-  if(vistaCalendarioActiva) poblarVistaFechas();
-  guardarEnFirebaseSilencioso();
-}
-
-function eliminarFila(index){
-  if(confirm("¿Desea eliminar este examen del registro?")){
-    examenesData.splice(index, 1);
-    inicializarFiltroEspecialidades();
-    filtrarYRenderizar();
-    if(vistaCalendarioActiva) poblarVistaFechas();
-    guardarEnFirebaseSilencioso();
-  }
-}
-
-function guardarEnFirebaseSilencioso(){
-  const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
-  database.ref("gestion_examenes").set(datosLimpios);
-}
-
-function guardarEnFirebase(){
-  const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
-  database.ref("gestion_examenes").set(datosLimpios).then(() => {
-    alert("¡Exámenes guardados correctamente en la nube!");
-  }).catch(err => {
-    alert("Error al guardar: " + err.message);
-  });
-}
-
-function alternarVistaFecha(){
-  vistaCalendarioActiva = !vistaCalendarioActiva;
-  const secGeneral = document.getElementById("seccionTablaGeneral");
-  const secFecha = document.getElementById("seccionVistaFecha");
-
-  if(vistaCalendarioActiva){
-    secGeneral.style.display = "none";
-    secFecha.style.display = "block";
-    poblarVistaFechas();
-  } else {
-    secFecha.style.display = "none";
-    secGeneral.style.display = "block";
-    filtrarYRenderizar();
-  }
-}
-
 function poblarVistaFechas(){
   const mapaFechas = {};
   examenesData.forEach(item => {
+    if (item.activo === false) return;
     const f = (item.Fecha || "Sin fecha").trim();
     if(!mapaFechas[f]) mapaFechas[f] = [];
     mapaFechas[f].push(item);
   });
 
   const fechasOrdenadas = Object.keys(mapaFechas).sort((a, b) => parsearFecha(a) - parsearFecha(b));
-
   const contenedorLista = document.getElementById("listaFechasLateral");
   let htmlLista = "";
 
+  if (fechasOrdenadas.length === 0) {
+    contenedorLista.innerHTML = "<div class='mensaje-info'>No hay exámenes cargados.</div>";
+    document.getElementById("contenidoDetalleFecha").innerHTML = "";
+    return;
+  }
+
   const hoy = new Date();
   const hoyStr = `${String(hoy.getDate()).padStart(2, '0')}/${String(hoy.getMonth() + 1).padStart(2, '0')}/${hoy.getFullYear()}`;
-  let fechaDefault = fechasOrdenadas[0];
-
-  if(fechasOrdenadas.includes(hoyStr)){
-    fechaDefault = hoyStr;
-  }
+  let fechaDefault = fechasOrdenadas.includes(hoyStr) ? hoyStr : fechasOrdenadas[0];
 
   if(!fechaSeleccionadaActual || !mapaFechas[fechaSeleccionadaActual]){
     fechaSeleccionadaActual = fechaDefault;
@@ -693,8 +914,7 @@ function poblarVistaFechas(){
 
   fechasOrdenadas.forEach(fecha => {
     const cantidad = mapaFechas[fecha].length;
-    const esHoy = (fecha === hoyStr);
-    const etiquetaHoy = esHoy ? " ⭐ (HOY)" : "";
+    const etiquetaHoy = (fecha === hoyStr) ? " ⭐ (HOY)" : "";
     const claseActiva = (fecha === fechaSeleccionadaActual) ? "active" : "";
 
     htmlLista += `
@@ -765,7 +985,181 @@ function mostrarDetalleFecha(fecha, mapaFechas){
   contenidoDetalle.innerHTML = html;
 }
 
+function inicializarFiltroEspecialidades(){
+  const selectEsp = document.getElementById("filtroEspecialidad");
+  const valorActual = selectEsp.value;
+  selectEsp.innerHTML = '<option value="">Todas las Especialidades</option>';
+  
+  const conjuntoEspecialidades = new Set();
+  examenesData.forEach(item => {
+    const esp = obtenerEspecialidad(item).trim();
+    const da = obtenerDA(item).trim();
+    if(esp) conjuntoEspecialidades.add(esp);
+    if(da) conjuntoEspecialidades.add(da);
+  });
+
+  Array.from(conjuntoEspecialidades).sort().forEach(esp => {
+    const op = document.createElement("option");
+    op.value = esp;
+    op.textContent = esp;
+    if(esp === valorActual) op.selected = true;
+    selectEsp.appendChild(op);
+  });
+}
+
+function obtenerExamenesFiltrados() {
+  const espSel = normalizarTexto(document.getElementById("filtroEspecialidad").value);
+  const nivelSel = normalizarTexto(document.getElementById("filtroNivel").value);
+  const planSel = document.getElementById("filtroPlan").value;
+  const asigSel = normalizarTexto(document.getElementById("filtroAsignatura").value);
+
+  const filtrados = examenesData.map((item, index) => ({ ...item, _indexReal: index }))
+    .filter((item) => {
+      const itemEsp = normalizarTexto(item.Especialidad || "");
+      const itemDA = normalizarTexto(item["D_A"] || "");
+      const itemNivel = normalizarTexto(item.Nivel || "");
+      const itemPlan = String(item.Plan || "").trim();
+      const itemAsig = normalizarTexto(item["Unidad Curricular_Asignatura"] || "");
+
+      const matchEsp = !espSel || itemEsp.includes(espSel) || itemDA.includes(espSel);
+      const numNivelSel = nivelSel.replace(/[^0-9]/g, '');
+      const numItemNivel = itemNivel.replace(/[^0-9]/g, '');
+      const matchNivel = !nivelSel || (numNivelSel ? numNivelSel === numItemNivel : itemNivel.includes(nivelSel));
+      const matchPlan = !planSel || itemPlan === planSel;
+      const matchAsig = !asigSel || itemAsig.includes(asigSel);
+
+      return matchEsp && matchNivel && matchPlan && matchAsig;
+    });
+
+  return ordenarPorFechaYHora(filtrados);
+}
+
+function filtrarYRenderizar(){
+  if (!auth.currentUser) return;
+
+  const filtrados = obtenerExamenesFiltrados();
+  const tbody = document.getElementById("cuerpoTablaExamenes");
+  const mensaje = document.getElementById("mensajeInfo");
+  const tabla = document.getElementById("tablaExamenes");
+
+  if(filtrados.length === 0){
+    tabla.style.display = "none";
+    mensaje.style.display = "block";
+    tbody.innerHTML = "";
+    return;
+  }
+
+  let html = "";
+  filtrados.forEach((item) => {
+    const i = item._indexReal;
+    const nombreAsignatura = item["Unidad Curricular_Asignatura"];
+    const deptoAcademico = item["D_A"];
+
+    html += `
+      <tr>
+        <td class="checkbox-col">
+          <input type="checkbox" class="checkbox-periodo" ${item.activo ? "checked" : ""} onchange="actualizarActivo(${i}, this.checked)">
+        </td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Fecha)}" onchange="actualizarCampo(${i}, 'Fecha', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:70px;" value="${escapeHtml(item.Hora)}" onchange="actualizarCampo(${i}, 'Hora', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:60px;" value="${escapeHtml(item.Plan)}" onchange="actualizarCampo(${i}, 'Plan', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:50px;" value="${escapeHtml(item.Nivel)}" onchange="actualizarCampo(${i}, 'Nivel', this.value)"></td>
+        <td><input type="text" class="input-tabla" style="width:80px;" value="${escapeHtml(deptoAcademico)}" onchange="actualizarCampo(${i}, 'D_A', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Especialidad || deptoAcademico)}" onchange="actualizarCampo(${i}, 'Especialidad', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(nombreAsignatura)}" onchange="actualizarAsignatura(${i}, this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Presidente)}" onchange="actualizarCampo(${i}, 'Presidente', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Secretario)}" onchange="actualizarCampo(${i}, 'Secretario', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Vocal)}" onchange="actualizarCampo(${i}, 'Vocal', this.value)"></td>
+        <td><input type="text" class="input-tabla" value="${escapeHtml(item.Suplente)}" onchange="actualizarCampo(${i}, 'Suplente', this.value)"></td>
+        <td>
+          <div class="acciones-item">
+            <button type="button" class="btn-mini btn-red" onclick="eliminarFila(${i})" title="Eliminar examen">🗑️</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+
+  tbody.innerHTML = html;
+  mensaje.style.display = "none";
+  tabla.style.display = "table";
+}
+
+function actualizarCampo(index, campo, valor){
+  if (!auth.currentUser) return;
+  if(campo === 'Fecha') valor = formatearFechaEstandar(valor);
+  examenesData[index][campo] = valor;
+  if(campo === 'Fecha' || campo === 'Hora') ordenarPorFechaYHora(examenesData);
+  if(campo === 'Especialidad' || campo === 'D_A') inicializarFiltroEspecialidades();
+  filtrarYRenderizar();
+  guardarEnFirebaseSilencioso();
+}
+
+function actualizarAsignatura(index, valor){
+  if (!auth.currentUser) return;
+  examenesData[index]["Unidad Curricular_Asignatura"] = valor;
+  guardarEnFirebaseSilencioso();
+}
+
+function actualizarActivo(index, estado){
+  if (!auth.currentUser) return;
+  examenesData[index].activo = estado;
+  guardarEnFirebaseSilencioso();
+}
+
+function agregarFilaExamen(){
+  if (!auth.currentUser) return;
+  const nuevoExamen = {
+    activo: true,
+    Fecha: "16/11/2026",
+    Hora: "08:00",
+    Plan: "2023",
+    Nivel: "1°",
+    "D_A": "Informática",
+    Especialidad: "Informática",
+    "Unidad Curricular_Asignatura": "Nueva Asignatura",
+    Presidente: "",
+    Secretario: "",
+    Vocal: "",
+    Suplente: ""
+  };
+  examenesData.unshift(nuevoExamen);
+  ordenarPorFechaYHora(examenesData);
+  inicializarFiltroEspecialidades();
+  filtrarYRenderizar();
+  guardarEnFirebaseSilencioso();
+}
+
+function eliminarFila(index){
+  if (!auth.currentUser) return;
+  if(confirm("¿Desea eliminar este examen del registro?")){
+    examenesData.splice(index, 1);
+    inicializarFiltroEspecialidades();
+    filtrarYRenderizar();
+    guardarEnFirebaseSilencioso();
+  }
+}
+
+function guardarEnFirebaseSilencioso(){
+  if (!auth.currentUser) return;
+  const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
+  database.ref("gestion_examenes").set(datosLimpios).catch(() => {
+    alert("Error de permisos al guardar en la nube.");
+  });
+}
+
+function guardarEnFirebase(){
+  if (!auth.currentUser) return;
+  const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
+  database.ref("gestion_examenes").set(datosLimpios).then(() => {
+    alert("¡Exámenes guardados correctamente en la nube!");
+  }).catch(err => {
+    alert("Error al guardar: " + err.message);
+  });
+}
+
 function descargarJSONExamenes(){
+  if (!auth.currentUser) return;
   const datosLimpios = examenesData.map(({ _indexReal, ...resto }) => resto);
   const jsonString = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(datosLimpios, null, 2));
   const downloadAnchor = document.createElement('a');
@@ -777,6 +1171,7 @@ function descargarJSONExamenes(){
 }
 
 function descargarPDFExamenes(){
+  if (!auth.currentUser) return;
   const filtrados = obtenerExamenesFiltrados();
 
   if (filtrados.length === 0) {
@@ -810,37 +1205,11 @@ function descargarPDFExamenes(){
       { text: ' ', margin: [0, 4] }
     ],
     styles: {
-      mainHeader: {
-        fontSize: 16,
-        bold: true,
-        alignment: 'center',
-        color: '#004466'
-      },
-      subHeader: {
-        fontSize: 9,
-        alignment: 'center',
-        color: '#555555',
-        margin: [0, 2, 0, 8]
-      },
-      groupHeader: {
-        fontSize: 12,
-        bold: true,
-        color: '#ffffff',
-        fillColor: '#005b84',
-        margin: [0, 8, 0, 4],
-        padding: 4
-      },
-      tableHeader: {
-        bold: true,
-        fontSize: 8,
-        color: '#003f5c',
-        fillColor: '#bfe8fb',
-        alignment: 'center'
-      },
-      tableBody: {
-        fontSize: 8,
-        alignment: 'center'
-      }
+      mainHeader: { fontSize: 16, bold: true, alignment: 'center', color: '#004466' },
+      subHeader: { fontSize: 9, alignment: 'center', color: '#555555', margin: [0, 2, 0, 8] },
+      groupHeader: { fontSize: 12, bold: true, color: '#ffffff', fillColor: '#005b84', margin: [0, 8, 0, 4], padding: 4 },
+      tableHeader: { bold: true, fontSize: 8, color: '#003f5c', fillColor: '#bfe8fb', alignment: 'center' },
+      tableBody: { fontSize: 8, alignment: 'center' }
     }
   };
 
@@ -892,10 +1261,10 @@ function descargarPDFExamenes(){
         body: rows
       },
       layout: {
-        hLineWidth: function (i, node) { return 0.5; },
-        vLineWidth: function (i, node) { return 0.5; },
-        hLineColor: function (i, node) { return '#1aa7d6'; },
-        vLineColor: function (i, node) { return '#1aa7d6'; }
+        hLineWidth: function () { return 0.5; },
+        vLineWidth: function () { return 0.5; },
+        hLineColor: function () { return '#1aa7d6'; },
+        vLineColor: function () { return '#1aa7d6'; }
       },
       margin: [0, 0, 0, 10]
     });
