@@ -571,9 +571,44 @@ table.tabla-examenes th{
 
 <!-- 3. VISTA PÚBLICA (VER EXÁMENES - ACCESO LIBRE) -->
 <div id="vistaPublicaWrap" class="wrap">
-  <div class="top" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-    <div class="title">Consulta de Exámenes</div>
-    <button class="btn btn-outline-blue" onclick="volverAlInicio()">Volver</button>
+  <div class="top">
+    <div class="encabezado">
+      <div class="title">Consulta de Exámenes</div>
+      <button class="btn btn-outline-blue" onclick="volverAlInicio()">Volver</button>
+    </div>
+
+    <!-- NUEVA BARRA DE FILTROS EN LA VISTA PÚBLICA -->
+    <div class="filtros-panel">
+      <div class="filtros-fila">
+        <div class="filtro-item">
+          <label for="pubFiltroAsignatura">Asignatura:</label>
+          <input type="text" id="pubFiltroAsignatura" placeholder="Escribir asignatura..." oninput="poblarVistaFechas()" style="width:190px;">
+        </div>
+
+        <div class="filtro-item">
+          <label for="pubFiltroPlan">Plan:</label>
+          <select id="pubFiltroPlan" onchange="poblarVistaFechas()">
+            <option value="">Todos los Planes</option>
+          </select>
+        </div>
+
+        <div class="filtro-item">
+          <label for="pubFiltroDA">Departamento Académico:</label>
+          <select id="pubFiltroDA" onchange="poblarVistaFechas()">
+            <option value="">Todos los D.A.</option>
+          </select>
+        </div>
+
+        <div class="filtro-item">
+          <label for="pubFiltroNivel">Nivel:</label>
+          <select id="pubFiltroNivel" onchange="poblarVistaFechas()">
+            <option value="">Todos los Niveles</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn btn-outline-blue" style="padding: 6px 12px; font-size: 12px;" onclick="limpiarFiltrosPublicos()">Limpiar</button>
+      </div>
+    </div>
   </div>
 
   <div class="vista-fecha-container">
@@ -719,6 +754,7 @@ function abrirVistaPublica() {
   modoActual = "publico";
   ocultarTodo();
   document.getElementById("vistaPublicaWrap").style.display = "block";
+  inicializarFiltrosPublicos();
   poblarVistaFechas();
 }
 
@@ -798,6 +834,7 @@ database.ref("gestion_examenes").on("value", function(snapshot){
   ordenarPorFechaYHora(examenesData);
 
   if (modoActual === "publico") {
+    inicializarFiltrosPublicos();
     poblarVistaFechas();
   } else if (modoActual === "admin" && auth.currentUser) {
     inicializarFiltroEspecialidades();
@@ -885,10 +922,107 @@ function mapearExamen(item) {
   };
 }
 
+/* FILTROS Y LÓGICA DE VISTA PÚBLICA */
+function inicializarFiltrosPublicos() {
+  const selPlan = document.getElementById("pubFiltroPlan");
+  const selDA = document.getElementById("pubFiltroDA");
+  const selNivel = document.getElementById("pubFiltroNivel");
+
+  const valPlan = selPlan.value;
+  const valDA = selDA.value;
+  const valNivel = selNivel.value;
+
+  const planes = new Set();
+  const das = new Set();
+  const niveles = new Set();
+
+  const hoyInicio = new Date();
+  hoyInicio.setHours(0, 0, 0, 0);
+
+  examenesData.forEach(item => {
+    if (item.activo === false) return;
+    const fechaEx = parsearFecha(item.Fecha);
+    if (!isNaN(fechaEx.getTime()) && fechaEx.getTime() > 0) {
+      fechaEx.setHours(0, 0, 0, 0);
+      if (fechaEx < hoyInicio) return; // Ignorar pasados para las opciones de filtro
+    }
+
+    if (item.Plan) planes.add(String(item.Plan).trim());
+    const da = (item["D_A"] || item.Especialidad || "").trim();
+    if (da) das.add(da);
+    if (item.Nivel) niveles.add(String(item.Nivel).trim());
+  });
+
+  selPlan.innerHTML = '<option value="">Todos los Planes</option>';
+  Array.from(planes).sort().forEach(p => {
+    const op = document.createElement("option");
+    op.value = p;
+    op.textContent = p;
+    if (p === valPlan) op.selected = true;
+    selPlan.appendChild(op);
+  });
+
+  selDA.innerHTML = '<option value="">Todos los D.A.</option>';
+  Array.from(das).sort().forEach(d => {
+    const op = document.createElement("option");
+    op.value = d;
+    op.textContent = d;
+    if (d === valDA) op.selected = true;
+    selDA.appendChild(op);
+  });
+
+  selNivel.innerHTML = '<option value="">Todos los Niveles</option>';
+  Array.from(niveles).sort().forEach(n => {
+    const op = document.createElement("option");
+    op.value = n;
+    op.textContent = n;
+    if (n === valNivel) op.selected = true;
+    selNivel.appendChild(op);
+  });
+}
+
+function limpiarFiltrosPublicos() {
+  document.getElementById("pubFiltroAsignatura").value = "";
+  document.getElementById("pubFiltroPlan").value = "";
+  document.getElementById("pubFiltroDA").value = "";
+  document.getElementById("pubFiltroNivel").value = "";
+  poblarVistaFechas();
+}
+
 function poblarVistaFechas(){
+  const filtroAsig = normalizarTexto(document.getElementById("pubFiltroAsignatura").value);
+  const filtroPlan = String(document.getElementById("pubFiltroPlan").value).trim();
+  const filtroDA = normalizarTexto(document.getElementById("pubFiltroDA").value);
+  const filtroNivel = normalizarTexto(document.getElementById("pubFiltroNivel").value);
+
+  const hoyInicio = new Date();
+  hoyInicio.setHours(0, 0, 0, 0);
+
   const mapaFechas = {};
   examenesData.forEach(item => {
     if (item.activo === false) return;
+
+    // 1. Ocultar exámenes cuya fecha ya pasó
+    const fechaEx = parsearFecha(item.Fecha);
+    if (!isNaN(fechaEx.getTime()) && fechaEx.getTime() > 0) {
+      fechaEx.setHours(0, 0, 0, 0);
+      if (fechaEx < hoyInicio) return;
+    }
+
+    // 2. Aplicar filtros de búsqueda
+    const itemAsig = normalizarTexto(item["Unidad Curricular_Asignatura"] || "");
+    const itemPlan = String(item.Plan || "").trim();
+    const itemDA = normalizarTexto(item["D_A"] || "");
+    const itemEsp = normalizarTexto(item.Especialidad || "");
+    const itemNivel = normalizarTexto(item.Nivel || "");
+
+    const matchAsig = !filtroAsig || itemAsig.includes(filtroAsig);
+    const matchPlan = !filtroPlan || itemPlan === filtroPlan;
+    const matchDA = !filtroDA || itemDA === filtroDA || itemEsp === filtroDA;
+    const matchNivel = !filtroNivel || itemNivel === filtroNivel;
+
+    if (!matchAsig || !matchPlan || !matchDA || !matchNivel) return;
+
     const f = (item.Fecha || "Sin fecha").trim();
     if(!mapaFechas[f]) mapaFechas[f] = [];
     mapaFechas[f].push(item);
@@ -899,13 +1033,13 @@ function poblarVistaFechas(){
   let htmlLista = "";
 
   if (fechasOrdenadas.length === 0) {
-    contenedorLista.innerHTML = "<div class='mensaje-info'>No hay exámenes cargados.</div>";
+    contenedorLista.innerHTML = "<div class='mensaje-info'>No hay próximos exámenes que coincidan con la búsqueda.</div>";
+    document.getElementById("tituloDetalleFecha").textContent = "Sin resultados";
     document.getElementById("contenidoDetalleFecha").innerHTML = "";
     return;
   }
 
-  const hoy = new Date();
-  const hoyStr = `${String(hoy.getDate()).padStart(2, '0')}/${String(hoy.getMonth() + 1).padStart(2, '0')}/${hoy.getFullYear()}`;
+  const hoyStr = `${String(hoyInicio.getDate()).padStart(2, '0')}/${String(hoyInicio.getMonth() + 1).padStart(2, '0')}/${hoyInicio.getFullYear()}`;
   let fechaDefault = fechasOrdenadas.includes(hoyStr) ? hoyStr : fechasOrdenadas[0];
 
   if(!fechaSeleccionadaActual || !mapaFechas[fechaSeleccionadaActual]){
@@ -954,6 +1088,7 @@ function mostrarDetalleFecha(fecha, mapaFechas){
           <th>Hora</th>
           <th>Plan</th>
           <th>Nivel</th>
+          <th>D.A</th>
           <th>Asignatura</th>
           <th>Especialidad</th>
           <th>Presidente</th>
@@ -971,6 +1106,7 @@ function mostrarDetalleFecha(fecha, mapaFechas){
         <td><strong>${escapeHtml(ex.Hora)}</strong></td>
         <td>${escapeHtml(ex.Plan)}</td>
         <td>${escapeHtml(ex.Nivel)}</td>
+        <td>${escapeHtml(ex["D_A"])}</td>
         <td><strong>${escapeHtml(ex["Unidad Curricular_Asignatura"])}</strong></td>
         <td>${escapeHtml(ex.Especialidad || ex["D_A"])}</td>
         <td>${escapeHtml(ex.Presidente)}</td>
@@ -985,6 +1121,7 @@ function mostrarDetalleFecha(fecha, mapaFechas){
   contenidoDetalle.innerHTML = html;
 }
 
+/* LÓGICA DE VISTA ADMINISTRACIÓN (MUESTRA TODOS LOS EXÁMENES) */
 function inicializarFiltroEspecialidades(){
   const selectEsp = document.getElementById("filtroEspecialidad");
   const valorActual = selectEsp.value;
