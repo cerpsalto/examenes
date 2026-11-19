@@ -393,6 +393,22 @@ select:focus, input:focus{
   overflow-x: auto;
 }
 
+.badge-pasado{
+  display: inline-block;
+  background: #e9ecef;
+  color: #6c757d;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-left: 4px;
+}
+
+.fila-pasada{
+  background-color: #f8f9fa;
+  color: #6c757d;
+}
+
 .seccion-tabla{
   padding:16px 22px;
   overflow-x:auto;
@@ -577,7 +593,7 @@ table.tabla-examenes th{
       <button class="btn btn-outline-blue" onclick="volverAlInicio()">Volver</button>
     </div>
 
-    <!-- NUEVA BARRA DE FILTROS EN LA VISTA PÚBLICA -->
+    <!-- BARRA DE FILTROS INDEPENDIENTES DE LA FECHA -->
     <div class="filtros-panel">
       <div class="filtros-fila">
         <div class="filtro-item">
@@ -612,12 +628,19 @@ table.tabla-examenes th{
   </div>
 
   <div class="vista-fecha-container">
-    <div class="calendario-grid">
+    <!-- MODO 1: CALENDARIO POR FECHA (CUANDO NO HAY FILTROS ACTIVOS) -->
+    <div class="calendario-grid" id="contenedorCalendarioFechas">
       <div class="selector-fechas-box" id="listaFechasLateral"></div>
       <div class="detalle-fecha-box">
         <div class="subtitulo" id="tituloDetalleFecha" style="margin-bottom: 12px; font-size:16px;">Seleccione una fecha</div>
         <div id="contenidoDetalleFecha"></div>
       </div>
+    </div>
+
+    <!-- MODO 2: RESULTADOS DE BÚSQUEDA INDEPENDIENTE DE FECHA (CUANDO HAY FILTROS ACTIVOS) -->
+    <div id="contenedorResultadosBusqueda" class="detalle-fecha-box" style="display:none; width:100%;">
+      <div class="subtitulo" id="tituloResultadosBusqueda" style="margin-bottom: 12px; font-size:16px;">Resultados de la búsqueda</div>
+      <div id="contenidoResultadosBusqueda"></div>
     </div>
   </div>
 </div>
@@ -936,17 +959,9 @@ function inicializarFiltrosPublicos() {
   const das = new Set();
   const niveles = new Set();
 
-  const hoyInicio = new Date();
-  hoyInicio.setHours(0, 0, 0, 0);
-
+  // Poblar con todos los exámenes activos (incluidos pasados, para poder buscarlos)
   examenesData.forEach(item => {
     if (item.activo === false) return;
-    const fechaEx = parsearFecha(item.Fecha);
-    if (!isNaN(fechaEx.getTime()) && fechaEx.getTime() > 0) {
-      fechaEx.setHours(0, 0, 0, 0);
-      if (fechaEx < hoyInicio) return; // Ignorar pasados para las opciones de filtro
-    }
-
     if (item.Plan) planes.add(String(item.Plan).trim());
     const da = (item["D_A"] || item.Especialidad || "").trim();
     if (da) das.add(da);
@@ -995,33 +1010,114 @@ function poblarVistaFechas(){
   const filtroDA = normalizarTexto(document.getElementById("pubFiltroDA").value);
   const filtroNivel = normalizarTexto(document.getElementById("pubFiltroNivel").value);
 
+  const hayFiltroActivo = Boolean(filtroAsig || filtroPlan || filtroDA || filtroNivel);
+
+  const contCalendario = document.getElementById("contenedorCalendarioFechas");
+  const contBusqueda = document.getElementById("contenedorResultadosBusqueda");
+
   const hoyInicio = new Date();
   hoyInicio.setHours(0, 0, 0, 0);
+
+  // MODO BÚSQUEDA INDEPENDIENTE DE FECHA (Muestra TODOS los que coincidan, incluso pasados)
+  if (hayFiltroActivo) {
+    contCalendario.style.display = "none";
+    contBusqueda.style.display = "block";
+
+    const resultados = examenesData.filter(item => {
+      if (item.activo === false) return false;
+
+      const itemAsig = normalizarTexto(item["Unidad Curricular_Asignatura"] || "");
+      const itemPlan = String(item.Plan || "").trim();
+      const itemDA = normalizarTexto(item["D_A"] || "");
+      const itemEsp = normalizarTexto(item.Especialidad || "");
+      const itemNivel = normalizarTexto(item.Nivel || "");
+
+      const matchAsig = !filtroAsig || itemAsig.includes(filtroAsig);
+      const matchPlan = !filtroPlan || itemPlan === filtroPlan;
+      const matchDA = !filtroDA || itemDA === filtroDA || itemEsp === filtroDA;
+      const matchNivel = !filtroNivel || itemNivel === filtroNivel;
+
+      return matchAsig && matchPlan && matchDA && matchNivel;
+    });
+
+    ordenarPorFechaYHora(resultados);
+
+    const tituloBusqueda = document.getElementById("tituloResultadosBusqueda");
+    const contenidoBusqueda = document.getElementById("contenidoResultadosBusqueda");
+
+    tituloBusqueda.textContent = `Resultados encontrados (${resultados.length})`;
+
+    if (resultados.length === 0) {
+      contenidoBusqueda.innerHTML = "<div class='mensaje-info'>No se encontraron exámenes que coincidan con la búsqueda.</div>";
+      return;
+    }
+
+    let html = `
+      <table class="tabla-examenes" style="margin-top:10px;">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Plan</th>
+            <th>Nivel</th>
+            <th>D.A</th>
+            <th>Asignatura</th>
+            <th>Especialidad</th>
+            <th>Presidente</th>
+            <th>Secretario</th>
+            <th>Vocal</th>
+            <th>Suplente</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    resultados.forEach(ex => {
+      const fechaEx = parsearFecha(ex.Fecha);
+      let esPasado = false;
+      if (!isNaN(fechaEx.getTime()) && fechaEx.getTime() > 0) {
+        fechaEx.setHours(0, 0, 0, 0);
+        esPasado = fechaEx < hoyInicio;
+      }
+
+      const claseFila = esPasado ? "fila-pasada" : "";
+      const etiquetaEstado = esPasado ? '<span class="badge-pasado">Finalizado</span>' : "";
+
+      html += `
+        <tr class="${claseFila}">
+          <td><strong>${escapeHtml(ex.Fecha)}</strong>${etiquetaEstado}</td>
+          <td><strong>${escapeHtml(ex.Hora)}</strong></td>
+          <td>${escapeHtml(ex.Plan)}</td>
+          <td>${escapeHtml(ex.Nivel)}</td>
+          <td>${escapeHtml(ex["D_A"])}</td>
+          <td><strong>${escapeHtml(ex["Unidad Curricular_Asignatura"])}</strong></td>
+          <td>${escapeHtml(ex.Especialidad || ex["D_A"])}</td>
+          <td>${escapeHtml(ex.Presidente)}</td>
+          <td>${escapeHtml(ex.Secretario)}</td>
+          <td>${escapeHtml(ex.Vocal)}</td>
+          <td>${escapeHtml(ex.Suplente)}</td>
+        </tr>
+      `;
+    });
+
+    html += `</tbody></table>`;
+    contenidoBusqueda.innerHTML = html;
+    return;
+  }
+
+  // MODO CALENDARIO POR FECHA (Sin filtros: oculta los exámenes que ya pasaron)
+  contBusqueda.style.display = "none";
+  contCalendario.style.display = "flex";
 
   const mapaFechas = {};
   examenesData.forEach(item => {
     if (item.activo === false) return;
 
-    // 1. Ocultar exámenes cuya fecha ya pasó
     const fechaEx = parsearFecha(item.Fecha);
     if (!isNaN(fechaEx.getTime()) && fechaEx.getTime() > 0) {
       fechaEx.setHours(0, 0, 0, 0);
       if (fechaEx < hoyInicio) return;
     }
-
-    // 2. Aplicar filtros de búsqueda
-    const itemAsig = normalizarTexto(item["Unidad Curricular_Asignatura"] || "");
-    const itemPlan = String(item.Plan || "").trim();
-    const itemDA = normalizarTexto(item["D_A"] || "");
-    const itemEsp = normalizarTexto(item.Especialidad || "");
-    const itemNivel = normalizarTexto(item.Nivel || "");
-
-    const matchAsig = !filtroAsig || itemAsig.includes(filtroAsig);
-    const matchPlan = !filtroPlan || itemPlan === filtroPlan;
-    const matchDA = !filtroDA || itemDA === filtroDA || itemEsp === filtroDA;
-    const matchNivel = !filtroNivel || itemNivel === filtroNivel;
-
-    if (!matchAsig || !matchPlan || !matchDA || !matchNivel) return;
 
     const f = (item.Fecha || "Sin fecha").trim();
     if(!mapaFechas[f]) mapaFechas[f] = [];
@@ -1033,8 +1129,8 @@ function poblarVistaFechas(){
   let htmlLista = "";
 
   if (fechasOrdenadas.length === 0) {
-    contenedorLista.innerHTML = "<div class='mensaje-info'>No hay próximos exámenes que coincidan con la búsqueda.</div>";
-    document.getElementById("tituloDetalleFecha").textContent = "Sin resultados";
+    contenedorLista.innerHTML = "<div class='mensaje-info'>No hay próximos exámenes cargados.</div>";
+    document.getElementById("tituloDetalleFecha").textContent = "Sin próximos exámenes";
     document.getElementById("contenidoDetalleFecha").innerHTML = "";
     return;
   }
